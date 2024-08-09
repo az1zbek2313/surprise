@@ -46,3 +46,24 @@ export const CategoryCardData = [
     image: defaultImage,
   }
 ];
+
+export const clients = [
+  {
+    id:1,
+    amount:1000,
+    title:'Components',
+    description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia inventore a sed, quos"
+  },
+  {
+    id:2,
+    amount:70,
+    title:'Growth',
+    description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia inventore a sed, quos"
+  },
+  {
+    id:3,
+    amount:49,
+    title:'Project',
+    description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia inventore a sed, quos"
+  }
+]

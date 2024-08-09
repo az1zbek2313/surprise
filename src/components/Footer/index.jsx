@@ -14,7 +14,7 @@ function Footer() {
           <p onClick={toStart} className="text-md font-bold delay-100 duration-500 cursor-pointer">🍀Artisian Marketplace</p>
         </div>
         <div className="mx-auto sm:mx-0">
-          <span className="opacity-50 text-sm">©️ 2024 Artisian Marketplace.All right reserved.</span>
+          <span className="opacity-50 text-center block sm:text-end sm:inline-block text-xs sm:text-sm">©️ 2024 Artisian Marketplace.All right reserved.</span>
         </div>
       </div>
     </div>
