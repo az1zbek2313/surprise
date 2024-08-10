@@ -1,6 +1,9 @@
+import Footer from "../components/Footer"
+
 function Detail() {
   return (
-    <div className="font-sans tracking-wide p-4 lg:max-w-6xl max-w-2xl max-lg:mx-auto">
+   <>
+     <div className="font-sans tracking-wide p-4 lg:max-w-6xl max-w-2xl max-lg:mx-auto">
       <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-8">
         <div className="lg:col-span-3 text-center">
           <div className="lg:h-[450px] p-4 relative before:absolute before:inset-0 before:bg-black before:opacity-20 before:rounded">
@@ -363,6 +366,9 @@ function Detail() {
         </div>
       </div>
     </div>
+
+    <Footer />
+   </>
   );
 }
 
