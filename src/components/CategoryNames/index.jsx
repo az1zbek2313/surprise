@@ -11,4 +11,4 @@ function CategoryNames({name, to}) {
   )
 }
 
-export default CategoryNames
+export default CategoryNames;
