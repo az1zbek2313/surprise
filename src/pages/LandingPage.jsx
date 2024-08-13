@@ -4,11 +4,11 @@ function LandingPage() {
   return (
     <div>
       <Products /> <br />
-      <CategoryNames name={"Shop by Category"} to={"#"} />
+      <CategoryNames name={"Shop by Category"} to={"category"} />
       <ShopCategory /> <br />
-      <CategoryNames name={"Featured Products"} to={"#"} />
+      <CategoryNames name={"Featured Products"} to={"category"} />
       <Products /> <br />
-      <CategoryNames name={"Popular Products"} to={"#"} />
+      <CategoryNames name={"Popular Products"} to={"category"} />
       <Products /> <br />
       <Footer />
     </div>
