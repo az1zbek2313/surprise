@@ -41,7 +41,7 @@ function Category() {
                 6 Items
               </p>
               <div className="flex items-center gap-1 md:gap-4">
-                <p className="text-gray-500 text-xs md:text-sm dark:text-gray-300">
+                <p className="hidden md:inline-block text-gray-500 text-xs md:text-sm dark:text-gray-300">
                   Sort
                 </p>
 
