@@ -1,9 +1,9 @@
 import { styles } from "../../util/style";
 
-function ProductCard({image, title, about, price}) {
+function ProductCard({image, title, about, price, width}) {
 
   return (
-    <div id="productCard" className="card shadow-lg rounded lg:w-[32%] md:w-[48%] md:mx-0 mx-auto">
+    <div id="productCard" className={`card shadow-lg rounded  md:w-[48%] md:mx-0 mx-auto ${width}`}>
       <img src={image} height={220} alt="Card image" className="sm:h-[240px] rounded w-full object-cover"/>
       <div className="flex flex-col gap-2 sm:p-4 p-3 w-full">
       <div className="mb-2 md:mb-4 leading-6">

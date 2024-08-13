@@ -1,5 +1,7 @@
 import { defaultImage } from "../assets";
 
+export const star = [1, 2, 3, 4, 5];
+
 export const ProductCardData = [
   {
     id: 1,
@@ -17,6 +19,51 @@ export const ProductCardData = [
   },
   {
     id: 3,
+    title: "Artisanal Soaps",
+    about: "Handcrafted with natural ingradients",
+    price: 1299,
+    image: defaultImage,
+  }
+];
+
+export const ProductCardCategoty = [
+  {
+    id: 1,
+    title: "Artisanal Candles",
+    about: "Handmade with natural wax",
+    price: 2499,
+    image: defaultImage,
+  },
+  {
+    id: 2,
+    title: "Handmade Pottery",
+    about: "Unique ceramic pieces",
+    price: 3999,
+    image: defaultImage,
+  },
+  {
+    id: 3,
+    title: "Artisanal Soaps",
+    about: "Handcrafted with natural ingradients",
+    price: 1299,
+    image: defaultImage,
+  },
+  {
+    id: 4,
+    title: "Artisanal Soaps",
+    about: "Handcrafted with natural ingradients",
+    price: 1299,
+    image: defaultImage,
+  },
+  {
+    id: 5,
+    title: "Artisanal Soaps",
+    about: "Handcrafted with natural ingradients",
+    price: 1299,
+    image: defaultImage,
+  },
+  {
+    id: 6,
     title: "Artisanal Soaps",
     about: "Handcrafted with natural ingradients",
     price: 1299,
@@ -47,6 +94,114 @@ export const CategoryCardData = [
   }
 ];
 
+export const CategoryNav = [
+  {
+    id:1,
+    title:'Jackets & Coats',
+    href:'#'
+  },
+  {
+    id:2,
+    title:'Hoodies',
+    href:'#'
+  },
+  {
+    id:3,
+    title:'T-shirts & Vests',
+    href:'#'
+  },
+  {
+    id:4,
+    title:'Shirts',
+    href:'#'
+  },
+  {
+    id:5,
+    title:'Blazers & Suits',
+    href:'#'
+  },
+  {
+    id:6,
+    title:'Jeans',
+    href:'#'
+  },
+  {
+    id:7,
+    title:'Trousers',
+    href:'#'
+  },
+  {
+    id:8,
+    title:'Shorts',
+    href:'#'
+  },
+  {
+    id:9,
+    title:'Underwear',
+    href:'#'
+  }
+];
+
+export const CategoryDropdown = [
+  {
+    id:1,
+    title:'Recommended',
+    href:'#'
+  },
+  {
+    id:2,
+    title:'Size',
+    href:'#'
+  },
+  {
+    id:3,
+    title:'Price',
+    href:'#'
+  }
+];
+
+export const detailColors = [
+  {
+    id:1,
+    class:'w-10 h-10 bg-black border-2 border-white hover:border-gray-500 rounded shrink-0'
+  },
+  {
+    id:2,
+    class:'w-10 h-10 bg-gray-400 border-2 border-white hover:border-gray-500 rounded shrink-0'
+  },
+  {
+    id:3,
+    class:'w-10 h-10 bg-blue-500 border-2 border-white hover:border-gray-500 rounded shrink-0'
+  },
+  {
+    id:4,
+    class:'w-10 h-10 bg-green-400 border-2 border-white hover:border-gray-500 rounded shrink-0'
+  },
+];
+
+export const detailImages = [
+  {
+    id:1,
+    image:'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg'
+  },
+  {
+    id:2,
+    image:'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg'
+  },
+  {
+    id:3,
+    image:'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg'
+  },
+  {
+    id:4,
+    image:'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg'
+  },
+  {
+    id:4,
+    image:'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg'
+  },
+];
+
 export const clients = [
   {
     id:1,
@@ -66,4 +221,4 @@ export const clients = [
     title:'Project',
     description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia inventore a sed, quos"
   }
-]
+];
