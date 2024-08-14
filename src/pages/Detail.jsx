@@ -9,14 +9,14 @@ function Detail() {
 
   return (
     <>
-      <div className="font-sans tracking-wide p-4 lg:max-w-6xl max-w-2xl max-lg:mx-auto">
-        <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-8">
+      <div className=" container mx-auto font-sans tracking-wide py-4 px-6 max-w-xs xs:max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl">
+        <div className="grid items-start grid-cols-1 lg:grid-cols-6 gap-8">
           <div className="lg:col-span-3 text-center">
             <div>
               <img
-                className="h-auto max-w-full rounded-lg object-cover"
+                className="h-auto lg:h-[420px] lg:w-full max-w-full rounded-lg object-cover"
                 src={mainImage}
-                alt=""
+                alt="main image"
               />
             </div>
 
@@ -36,14 +36,14 @@ function Detail() {
             </div>
           </div>
 
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <div className="flex flex-wrap items-start gap-4">
               <div>
                 <h2 className="text-2xl font-extrabold text-gray-800">
                   White Lens Glass
                 </h2>
 
-                <div className="flex space-x-1 mt-4">
+                <div className="flex space-x-1 mt-2 xs:mt-4 ">
                   {star.map((item) => (
                     <svg
                       key={item}
@@ -118,7 +118,7 @@ function Detail() {
 
             <div>
               <h3 className="text-xl font-bold text-gray-700">Price</h3>
-              <p className="text-gray-700 text-2xl md:text-3xl font-bold flex items-center gap-3 mt-4">
+              <p className="text-gray-700 text-2xl md:text-3xl font-bold flex items-center gap-3 mt-2 xs:mt-4 ">
                 <span className="line-through text-2xl text-gray-300">
                   $140
                 </span>
@@ -212,13 +212,13 @@ function Detail() {
             <div className="flex flex-wrap gap-4">
               <button
                 type="button"
-                className="min-w-[200px] px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold rounded"
+                className="min-w-[200px] px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white text-xs xs:text-sm font-semibold rounded"
               >
                 Buy now
               </button>
               <button
                 type="button"
-                className="min-w-[200px] px-4 py-2.5 border border-blue-500 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded"
+                className="min-w-[200px] px-4 py-2.5 border border-blue-500 bg-transparent hover:bg-gray-50 text-gray-800 text-xs xs:text-sm font-semibold rounded"
               >
                 Add to cart
               </button>
@@ -227,10 +227,10 @@ function Detail() {
         </div>
 
         <div className="mt-6 max-w-2xl">
-          <h3 className="text-xl font-bold text-gray-800">Product Features</h3>
+          <h3 className="text-lg md:text-xl font-bold text-gray-800">Product Features</h3>
 
           <ul className="grid sm:grid-cols-2 gap-3 mt-4">
-            <li className="flex items-center text-sm text-gray-600">
+            <li className="flex items-center text-xs xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -244,7 +244,7 @@ function Detail() {
               </svg>
               UV Protection
             </li>
-            <li className="flex items-center text-sm text-gray-600">
+            <li className="flex items-center text-xs xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -258,7 +258,7 @@ function Detail() {
               </svg>
               Stylish Design
             </li>
-            <li className="flex items-center text-sm text-gray-600">
+            <li className="flex items-center text-xs xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -272,7 +272,7 @@ function Detail() {
               </svg>
               Lightweight Frame
             </li>
-            <li className="flex items-center text-sm text-gray-600">
+            <li className="flex items-center text-xs xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -286,7 +286,7 @@ function Detail() {
               </svg>
               Scratch-Resistant Lenses
             </li>
-            <li className="flex items-center text-sm text-gray-600">
+            <li className="flex items-center text-xs xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -300,7 +300,7 @@ function Detail() {
               </svg>
               Polarized Lenses
             </li>
-            <li className="flex items-center text-sm text-gray-600">
+            <li className="flex items-center text-xs xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -317,10 +317,10 @@ function Detail() {
           </ul>
 
           <div className="mt-6">
-            <h3 className="text-xl font-bold text-gray-800">
+            <h3 className="text-lg md:text-xl font-bold text-gray-800">
               Product Description
             </h3>
-            <p className="text-sm text-gray-600 mt-4">
+            <p className="text-xs xs:text-sm text-gray-600 mt-2 xs:mt-4 ">
               Step up your style game with our premium white lens sunglasses.
               Crafted for both fashion and function, these sunglasses offer UV
               protection, a stylish design, and a lightweight frame. The

@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { CategoryCardData } from "../../util/contants";
 import { styles } from "../../util/style";
 
 function ShopCategory() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div
@@ -9,8 +12,11 @@ function ShopCategory() {
       >
         {CategoryCardData.map((item) => (
           <div
+            onClick={() => {
+              navigate("/detail");
+            }}
             key={item.id}
-            className={`relative flex ${
+            className={`relative flex transition-all duration-700 hover:scale-[1.02] cursor-pointer ${
               item.id % 2 == 0 ? "mx-auto" : "mx-auto sm:mx-0"
             } md:inline-block md:w-[24%]`}
           >
