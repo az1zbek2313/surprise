@@ -16,7 +16,7 @@ function ShopCategory() {
               navigate("/detail");
             }}
             key={item.id}
-            className={`relative flex transition-all duration-700 hover:scale-[1.02] cursor-pointer ${
+            className={`relative flex transition-all duration-700 hover:scale-[1.03]  cursor-pointer ${
               item.id % 2 == 0 ? "mx-auto" : "mx-auto sm:mx-0"
             } md:inline-block md:w-[24%]`}
           >

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Footer from "../components/Footer";
 import { detailColors, star, detailImages } from "../util/contants";
+import { styles } from "../util/style";
 
 function Detail() {
   const defaltimg = "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg";
@@ -9,20 +10,20 @@ function Detail() {
 
   return (
     <>
-      <div className=" container mx-auto font-sans tracking-wide py-4 px-6 max-w-xs xs:max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl">
+      <div className={`${styles.container} px-4 xs:px-16 mx-auto font-sans tracking-wide py-4`}>
         <div className="grid items-start grid-cols-1 lg:grid-cols-6 gap-8">
           <div className="lg:col-span-3 text-center">
             <div>
               <img
-                className="h-auto lg:h-[420px] lg:w-full max-w-full rounded-lg object-cover"
+                className="h-auto lg:h-[410px] lg:w-full max-w-full rounded-lg object-cover"
                 src={mainImage}
                 alt="main image"
               />
             </div>
 
-            <div className="grid grid-cols-5 mt-3 gap-4">
+            <div className="flex mt-3 justify-between ">
               {detailImages.map((item) => (
-                <div key={item.id}>
+                <div key={item.id} className="w-[18%]">
                   <img
                     className="h-auto max-w-full rounded-lg cursor-pointer transition-all duration-300 hover:scale-[1.06]"
                     src={item.image}
@@ -230,7 +231,7 @@ function Detail() {
           <h3 className="text-lg md:text-xl font-bold text-gray-800">Product Features</h3>
 
           <ul className="grid sm:grid-cols-2 gap-3 mt-4">
-            <li className="flex items-center text-xs xs:text-sm text-gray-600">
+            <li className="flex items-center text-[13px] xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -244,7 +245,7 @@ function Detail() {
               </svg>
               UV Protection
             </li>
-            <li className="flex items-center text-xs xs:text-sm text-gray-600">
+            <li className="flex items-center text-[13px] xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -258,7 +259,7 @@ function Detail() {
               </svg>
               Stylish Design
             </li>
-            <li className="flex items-center text-xs xs:text-sm text-gray-600">
+            <li className="flex items-center text-[13px] xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -272,7 +273,7 @@ function Detail() {
               </svg>
               Lightweight Frame
             </li>
-            <li className="flex items-center text-xs xs:text-sm text-gray-600">
+            <li className="flex items-center text-[13px] xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -286,7 +287,7 @@ function Detail() {
               </svg>
               Scratch-Resistant Lenses
             </li>
-            <li className="flex items-center text-xs xs:text-sm text-gray-600">
+            <li className="flex items-center text-[13px] xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -300,7 +301,7 @@ function Detail() {
               </svg>
               Polarized Lenses
             </li>
-            <li className="flex items-center text-xs xs:text-sm text-gray-600">
+            <li className="flex items-center text-[13px] xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -320,7 +321,7 @@ function Detail() {
             <h3 className="text-lg md:text-xl font-bold text-gray-800">
               Product Description
             </h3>
-            <p className="text-xs xs:text-sm text-gray-600 mt-2 xs:mt-4 ">
+            <p className="text-[13px] xs:text-sm text-gray-600 mt-2 xs:mt-4 ">
               Step up your style game with our premium white lens sunglasses.
               Crafted for both fashion and function, these sunglasses offer UV
               protection, a stylish design, and a lightweight frame. The

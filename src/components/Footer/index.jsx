@@ -1,13 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import { styles } from "../../util/style";
 import FooterLink from "./FooterLink";
 
 function Footer() {
+  const navigate = useNavigate();
+
   const toStart=()=>{
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
+
+    navigate('/');
   }
+  
   return (
    <>
     <FooterLink />

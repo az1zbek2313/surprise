@@ -3,11 +3,11 @@ import { styles } from "../../util/style";
 function FooterLink() {
   return (
     <div className="border-t-[1.5px] py-2 border-gray-300">
-      <div className={`${styles.container} flex justify-between items-start flex-wrap gap-3`}>
+      <div className={`${styles.container} px-8 xs:px-16 flex justify-between items-start flex-wrap gap-3`}>
         <ul className="w-[47%] sm:w-auto">
           <li className="font-semibold text-xs ss:text-sm md:text-base mb-2">About</li>
           <li className="text-xs md:text-sm text-gray-500">
-            <a className="transition-all duration-500 hover:underline" href="#">Pick-up Points</a>
+            <a className="transition-all duration-500 hover:underline" href="/about">About us</a>
           </li>
           <li className="text-xs md:text-sm text-gray-500">
             <a className="transition-all duration-500 hover:underline" href="#">Vakansiya</a>
@@ -16,13 +16,13 @@ function FooterLink() {
         <ul className="w-[47%] sm:w-auto">
           <li className="font-semibold text-xs ss:text-sm md:text-base mb-2">Category</li>
           <li className="text-xs md:text-sm text-gray-500">
-            <a className="transition-all duration-500 hover:underline" href="#">Shop</a>
+            <a className="transition-all duration-500 hover:underline" href="/category">Shop</a>
           </li>
           <li className="text-xs md:text-sm text-gray-500">
-            <a className="transition-all duration-500 hover:underline" href="#">Featured</a>
+            <a className="transition-all duration-500 hover:underline" href="/category">Featured</a>
           </li>
           <li className="text-xs md:text-sm text-gray-500">
-            <a className="transition-all duration-500 hover:underline" href="#">Popular</a>
+            <a className="transition-all duration-500 hover:underline" href="/category">Popular</a>
           </li>
         </ul>
         <ul className="w-[47%] sm:w-auto">

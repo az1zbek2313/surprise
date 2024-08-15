@@ -78,7 +78,7 @@ function Category() {
                   {dropdown && (
                     <div
                       id="dropdownHover"
-                      className="z-10 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-gray-700"
+                      className="z-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-gray-700"
                     >
                       <ul
                         className="py-2 text-xs md:text-sm text-gray-700 dark:text-gray-200"

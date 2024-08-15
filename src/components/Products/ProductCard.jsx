@@ -12,7 +12,7 @@ function ProductCard({ image, title, about, price, width }) {
       id="productCard"
       className={`card cursor-pointer shadow-lg rounded  md:w-[48%] md:mx-0 mx-auto ${width} transition-all duration-500 hover:scale-[1.03]`}
     >
-      <div className="relative flex sm:h-[240px] rounded w-full object-cover flex-col justify-center overflow-hidden bg-gray-50">
+      <div className="relative flex h-[240px] rounded w-full object-cover flex-col justify-center overflow-hidden bg-gray-50">
         <div className="absolute inset-0 bg-center dark:bg-black"></div>
         <div className="group relative m-0 flex h-72 w-full rounded shadow-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg">
           <div className="z-10 h-full w-full overflow-hidden rounded border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
