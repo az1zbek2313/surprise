@@ -231,7 +231,7 @@ function Detail() {
           <h3 className="text-lg md:text-xl font-bold text-gray-800">Product Features</h3>
 
           <ul className="grid sm:grid-cols-2 gap-3 mt-4">
-            <li className="flex items-center text-[13px] xs:text-sm text-gray-600">
+            <li className="flex items-center text-xs xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -245,7 +245,7 @@ function Detail() {
               </svg>
               UV Protection
             </li>
-            <li className="flex items-center text-[13px] xs:text-sm text-gray-600">
+            <li className="flex items-center text-xs xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -259,7 +259,7 @@ function Detail() {
               </svg>
               Stylish Design
             </li>
-            <li className="flex items-center text-[13px] xs:text-sm text-gray-600">
+            <li className="flex items-center text-xs xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -273,7 +273,7 @@ function Detail() {
               </svg>
               Lightweight Frame
             </li>
-            <li className="flex items-center text-[13px] xs:text-sm text-gray-600">
+            <li className="flex items-center text-xs xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -287,7 +287,7 @@ function Detail() {
               </svg>
               Scratch-Resistant Lenses
             </li>
-            <li className="flex items-center text-[13px] xs:text-sm text-gray-600">
+            <li className="flex items-center text-xs xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -301,7 +301,7 @@ function Detail() {
               </svg>
               Polarized Lenses
             </li>
-            <li className="flex items-center text-[13px] xs:text-sm text-gray-600">
+            <li className="flex items-center text-xs xs:text-sm text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
