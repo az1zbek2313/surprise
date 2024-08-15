@@ -321,7 +321,7 @@ function Detail() {
             <h3 className="text-lg md:text-xl font-bold text-gray-800">
               Product Description
             </h3>
-            <p className="text-[13px] xs:text-sm text-gray-600 mt-2 xs:mt-4 ">
+            <p className="text-xs xs:text-sm text-gray-600 mt-2 xs:mt-4 ">
               Step up your style game with our premium white lens sunglasses.
               Crafted for both fashion and function, these sunglasses offer UV
               protection, a stylish design, and a lightweight frame. The
