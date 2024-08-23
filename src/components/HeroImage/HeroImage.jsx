@@ -1,8 +1,17 @@
-// Initialization for ES Users
-import { Carousel, initTWE } from "tw-elements";
+import { Autoplay, Pagination } from "swiper/modules";
 import { heroImages } from "../../util/contants";
-initTWE({ Carousel });
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useRef } from "react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import "./style.css";
+
 function HeroImage() {
+  const swiperRef = useRef(null);
 
   return (
     <div
@@ -11,67 +20,43 @@ function HeroImage() {
       data-carousel="slide"
     >
       {/* <!-- Carousel wrapper --> */}
-      <div className="relative h-[180px] overflow-hidden md:h-[260px]">
-        {
-            heroImages.map(item => (
-                <div key={item.id} className="duration-700 ease-in-out" data-carousel-item>
-                <img
-                  src={item.image}
-                  className={`absolute object-cover block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2`}
-                  alt="..."
-                />
-              </div>
-            ))
-        }
+      <div className="relative h-[180px] overflow-hidden md:h-[300px]">
+        <Swiper
+          ref={swiperRef}
+          spaceBetween={30}
+          centeredSlides={true}
+          loop={true}
+          autoplay={{
+            delay: 7000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Autoplay, Pagination]}
+          className="mySwiper"
+        >
+          {heroImages.map((item) => (
+            <SwiperSlide key={item.id}>
+              <img
+                src={item.image}
+                className={`absolute object-cover block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2`}
+                alt="..."
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
-      {/* <!-- Slider indicators --> */}
-      <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-        <button
-          type="button"
-          className="w-3 h-3 rounded-full"
-          aria-current="true"
-          aria-label="Slide 1"
-          data-carousel-slide-to="0"
-        ></button>
-        <button
-          type="button"
-          className="w-3 h-3 rounded-full"
-          aria-current="false"
-          aria-label="Slide 2"
-          data-carousel-slide-to="1"
-        ></button>
-        <button
-          type="button"
-          className="w-3 h-3 rounded-full"
-          aria-current="false"
-          aria-label="Slide 3"
-          data-carousel-slide-to="2"
-        ></button>
-        <button
-          type="button"
-          className="w-3 h-3 rounded-full"
-          aria-current="false"
-          aria-label="Slide 4"
-          data-carousel-slide-to="3"
-        ></button>
-        <button
-          type="button"
-          className="w-3 h-3 rounded-full"
-          aria-current="false"
-          aria-label="Slide 5"
-          data-carousel-slide-to="4"
-        ></button>
-      </div>
       {/* <!-- Slider controls --> */}
       <button
         type="button"
-        className="absolute top-0 start-6 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-        data-carousel-prev
+        className="hidden xs:flex absolute top-0 start-6 z-30 items-center justify-center h-full px-0 md:px-4 cursor-pointer group focus:outline-none"
+        onClick={() => swiperRef.current.swiper.slidePrev()}
       >
-        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/10 dark:bg-gray-800/30 group-hover:bg-black/25 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+        <span className="inline-flex items-center justify-center w-8 md:w-10 h-8 md:h-10 rounded-full bg-white/30 hover:bg-white/40 group-focus:outline-none">
           <svg
-            className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
+            className="w-2 h-2 md:w-4 md:h-4 text-white dark:text-gray-800 rtl:rotate-180"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -88,14 +73,15 @@ function HeroImage() {
           <span className="sr-only">Previous</span>
         </span>
       </button>
+
       <button
         type="button"
-        className="absolute top-0 end-6 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-        data-carousel-next
+        className="hidden xs:flex absolute top-0 end-6 z-30 items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        onClick={() => swiperRef.current.swiper.slideNext()}
       >
-        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/10 dark:bg-gray-800/30 group-hover:bg-black/25 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+        <span className="inline-flex items-center justify-center w-8 md:w-10 h-8 md:h-10  rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/40 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
           <svg
-            className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
+            className="w-2 h-2 md:w-4 md:h-4 text-white dark:text-gray-800 rtl:rotate-180"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
