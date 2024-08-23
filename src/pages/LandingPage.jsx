@@ -1,8 +1,9 @@
-import { Products, ShopCategory, Footer, CategoryNames } from "../components";
+import { Products, ShopCategory, HeroImage, CategoryNames } from "../components";
 
 function LandingPage() {
   return (
     <div>
+      <HeroImage />
       <Products /> <br />
       <CategoryNames name={"Shop by Category"} to={"category"} />
       <ShopCategory /> <br />
@@ -10,7 +11,6 @@ function LandingPage() {
       <Products /> <br />
       <CategoryNames name={"Popular Products"} to={"category"} />
       <Products /> <br />
-      <Footer />
     </div>
   );
 }

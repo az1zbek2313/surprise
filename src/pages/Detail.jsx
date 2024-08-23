@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Footer from "../components/Footer";
 import { detailColors, star, detailImages } from "../util/contants";
 import { styles } from "../util/style";
 
@@ -333,8 +332,6 @@ function Detail() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

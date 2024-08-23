@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { styles } from "../../util/style";
 import FooterLink from "./FooterLink";
+import { surpriseLogo } from "../../assets";
 
 function Footer() {
   const navigate = useNavigate();
@@ -18,10 +19,12 @@ function Footer() {
    <>
     <FooterLink />
     
-    <div className="border-t-[1.5px] shadow-lg border-black border-opacity-20 py-2">
-      <div className={`${styles.container} ${styles.flexBetween}`}>
+    <div className="border-t-[1.5px] shadow-lg border-black border-opacity-20 py-4">
+      <div className={`${styles.container} my-0 md:my-0 ${styles.flexBetween}`}>
         <div className="w-full ss:w-auto text-center ss:text-start mb-2 ss:mb-0">
-          <p onClick={toStart} className="text-sm xs:text-base font-bold delay-100 duration-500 cursor-pointer">🍀Artisian Marketplace</p>
+          <a onClick={toStart} className="text-sm xs:text-base font-bold delay-100 duration-500 cursor-pointer">
+            <img src={surpriseLogo} className="h-6 md:h-8 mx-auto" alt="surprise logo" />
+          </a>
         </div>
         <ul className="inline-block lg:hidden mx-auto ss:mx-0">
           <li className="flex gap-2 items-center flex-wrap">
@@ -40,7 +43,7 @@ function Footer() {
           </li>
         </ul>
         <div className="lg:inline-block hidden mx-auto sm:mx-0">
-          <span className="opacity-50 text-center block sm:text-end sm:inline-block text-xs sm:text-sm">©️ 2024 Artisian Marketplace.All right reserved.</span>
+          <span className="opacity-50 text-center block sm:text-end sm:inline-block text-xs sm:text-sm">©️ 2024 Surprise Marketplace.All right reserved.</span>
         </div>
       </div>
     </div>

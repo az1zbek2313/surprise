@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProductCard, Footer } from "../components";
+import { ProductCard } from "../components";
 import {
   ProductCardCategoty,
   CategoryNav,
@@ -53,7 +53,7 @@ function Category() {
                       setDropdown(!dropdown);
                     }}
                     data-dropdown-trigger="hover"
-                    className="text-white w-44 mb-0 bg-pink-600 dark:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs md:text-sm py-2 text-center justify-center inline-flex items-center  dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                    className="text-white w-44 mb-0 bg-red-600 dark:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs md:text-sm py-2 text-center justify-center inline-flex items-center  dark:hover:bg-gray-600 dark:focus:ring-gray-700"
                     type="button"
                   >
                     {checkDropdown}
@@ -119,7 +119,6 @@ function Category() {
           </div>
         </div>
       </div>
-      <Footer />
     </section>
   );
 }

@@ -1,3 +1,5 @@
+import Header from "./Header";
+import HeaderTop from "./HeaderTop";
 import Products from "./Products";
 import ProductCard from "./Products/ProductCard";
 import ShopCategory from './ShopCategory';
@@ -8,5 +10,6 @@ import Hero from "./Hero";
 import Clients from "./Clients";
 import About from "./About";
 import Testimonial from "./Testimonial";
+import HeroImage from "./HeroImage/HeroImage";
 
-export { Products, ShopCategory, Footer, CategoryNames, Hero, Clients, About, Testimonial, ProductCard };
+export { Header, HeaderTop, HeroImage, Products, ShopCategory, Footer, CategoryNames, Hero, Clients, About, Testimonial, ProductCard };
