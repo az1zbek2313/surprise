@@ -1,6 +1,5 @@
-import { butsa, defaultImage } from "../assets";
-import { carousel1, carousel2, carousel3 } from "../assets";
-
+import { defaultImage } from "../assets";
+import { carousel1, carousel2, carousel3, uzbFlag, rusFlag, engFlag } from "../assets";
 
 export const star = [1, 2, 3, 4, 5];
 
@@ -316,3 +315,21 @@ export const shoppingCart = [
     count:1
   },
 ];
+
+export const flagLanguage = [
+  {
+    id:"uz",
+    title:"O'zbekcha",
+    image: uzbFlag
+  },
+  {
+    id:"ru",
+    title:"Русский",
+    image: rusFlag
+  },
+  {
+    id:"en",
+    title:"English",
+    image: engFlag
+  },
+]

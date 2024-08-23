@@ -1,9 +1,10 @@
+import { flagLanguage } from "../../util/contants";
 import { styles } from "../../util/style";
-import { uzbFlag, rusFlag, engFlag } from "../../assets";
 import { useState } from "react";
 
 function HeaderTop() {
   const [language, setLanguage] = useState(false);
+  const [flagLang, setflagLang] = useState("uz");
 
   return (
     <div className="hidden lg:block bg-[#f0f2f5]">
@@ -39,23 +40,42 @@ function HeaderTop() {
             onClick={() => {
               setLanguage(!language);
             }}
-            className="flex items-center gap-2 cursor-pointer"
           >
-            <img src={uzbFlag} alt="" className="w-4" />
-            <p className="text-sm">O'zbekcha</p>
+            {flagLanguage.map((item) => {
+              if (item.id == flagLang) {
+                return (
+                  <div
+                    className="flex items-center w-20 gap-2 cursor-pointer"
+                    key={item.id}
+                  >
+                    <img src={item.image} alt="" className="w-4" />
+                    <p className="text-sm">{item.title}</p>
+                  </div>
+                );
+              }
+            })}
           </div>
 
           {/* dropdown language */}
           {language && (
             <ul className="absolute z-[1000] top-6 left-0 list-none">
-              <li className="flex items-center gap-2 cursor-pointer w-[104px] bg-gray-100 p-1 hover:bg-gray-200 transition-all duration-200">
-                <img src={rusFlag} alt="" className="w-4" />
-                <p className="text-sm">Русский</p>
-              </li>
-              <li className="flex rounded-b-md items-center gap-2 cursor-pointer w-[104px] bg-gray-100 p-1 hover:bg-gray-200 transition-all duration-200">
-                <img src={engFlag} alt="" className="w-4" />
-                <p className="text-sm">English</p>
-              </li>
+              {flagLanguage.map((item) => {
+                if (item.id != flagLang) {
+                  return (
+                    <li
+                      key={item.id}
+                      onClick={() => {
+                        setflagLang(item.id);
+                        setLanguage(false);
+                      }}
+                      className="flex items-center gap-2 cursor-pointer w-[104px] bg-gray-100 p-1 hover:bg-gray-200 transition-all duration-200"
+                    >
+                      <img src={item.image} alt="" className="w-4" />
+                      <p className="text-sm">{item.title}</p>
+                    </li>
+                  );
+                }
+              })}
             </ul>
           )}
         </div>

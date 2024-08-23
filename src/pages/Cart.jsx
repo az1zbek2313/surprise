@@ -5,9 +5,7 @@ function Cart() {
   return (
     <section className="bg-white pb-8 antialiased dark:bg-gray-900 pt-4">
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-          Shopping Cart
-        </h2>
+      <h1 className="text-2xl font-semibold text-primary-800  border-b-[1px] border-gray-500/65 py-2">Shopping Cart</h1>
 
         <div className="mt-6 md:gap-6 lg:flex lg:items-start xl:gap-8">
           <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
@@ -236,7 +234,7 @@ function Cart() {
                   or{" "}
                 </span>
                 <a
-                  href="#"
+                  href="/"
                   title=""
                   className="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500"
                 >

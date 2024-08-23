@@ -6,7 +6,7 @@ function MyFavourites() {
 
   return (
     <div className={`${styles.container}`}>
-        <h1 className="text-2xl font-semibold text-blue-900 border-b-[1px] border-gray-500/65 py-2">My Favourites</h1>
+        <h1 className="text-2xl font-semibold text-primary-800 border-b-[1px] border-gray-500/65 py-2">My Favourites</h1>
         <div className={`${styles.flexBetween} gap-6 lg:gap-0 my-4`}>
       {
       ProductCardData.map(item => (
