@@ -175,7 +175,6 @@ function Header() {
                       setAccountDropdown(!accountDropdown);
                     }}
                     className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
-                    href="#"
                     id="dropdownMenuButton2"
                     role="button"
                     aria-expanded="false"
@@ -200,7 +199,7 @@ function Header() {
                       <li>
                         <a
                           className="flex items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                          href="#"
+                          href="account"
                           data-twe-dropdown-item-ref
                         >
                           <svg
@@ -221,7 +220,7 @@ function Header() {
                       <li>
                         <a
                           className="flex items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                          href="#"
+                          href="account/orders"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -241,7 +240,7 @@ function Header() {
                       <li>
                         <a
                           className="flex items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                          href="#"
+                          href="/account/commit"
                           data-twe-dropdown-item-ref
                         >
                           <svg
