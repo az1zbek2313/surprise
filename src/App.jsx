@@ -1,7 +1,7 @@
-import { LandingPage, AboutUs, Detail, Category, Cart, SignIn, SignUp, MyFavourites } from "./pages";
+import { LandingPage, AboutUs, Detail, Category, Cart, SignIn, SignUp, MyFavourites, MyData, MyCommit, MyOrders, Location } from "./pages";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Layout from "./components/Layout";
+import { SidebarAccount, Layout } from "./components";
 
 export default function App() {
   return (
@@ -16,7 +16,13 @@ export default function App() {
           <Route path="/category" element={<Category />}></Route>
           <Route path="/detail" element={<Detail />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
-          <Route path="/account/favourites" element={<MyFavourites />}></Route>
+          <Route path="/account" element={<SidebarAccount/>}>
+            <Route index element={<MyData />}></Route>
+            <Route path="likes" element={<MyFavourites />}></Route>
+            <Route path="orders" element={<MyOrders />}></Route>
+            <Route path="adress" element={<Location />}></Route>
+            <Route path="commit" element={<MyCommit />}></Route>
+          </Route>
         </Route>
       </Routes>
     </>

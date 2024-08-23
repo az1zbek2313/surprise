@@ -5,16 +5,18 @@ import { styles } from "../util/style"
 function MyFavourites() {
 
   return (
-    <div className={`${styles.container}`}>
-        <h1 className="text-2xl font-semibold text-primary-800 border-b-[1px] border-gray-500/65 py-2">My Favourites</h1>
-        <div className={`${styles.flexBetween} gap-6 lg:gap-0 my-4`}>
+    <>
+      <div className={`container mx-auto md:px-0 border-r-[1.6px] border-l-[1.6px] sm:border-l-0`}>
+        <h1 className="px-4 text-2xl font-semibold text-primary-800 border-b-[1.6px] py-2">My Favourites</h1>
+        <div className={`${styles.flexBetween} gap-6 px-4 lg:gap-4 my-4`}>
       {
       ProductCardData.map(item => (
-        <ProductCard width={"lg:w-[32%]"} key={item.id} {...item}/>
+        <ProductCard width={"lg:w-[48%]"} key={item.id} {...item}/>
       ))
       }
     </div>
     </div>
+    </>
   )
 }
 

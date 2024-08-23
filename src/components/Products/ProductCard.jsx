@@ -10,7 +10,7 @@ function ProductCard({ image, title, about, price, width }) {
         navigate("/detail");
       }}
       id="productCard"
-      className={`card relative cursor-pointer shadow-lg rounded  md:w-[48%] md:mx-0 mx-auto ${width} transition-all duration-500 hover:scale-[1.03]`}
+      className={`card relative cursor-pointer shadow-lg rounded  md:w-[47.5%] md:mx-0 mx-auto ${width} transition-all duration-500 hover:scale-[1.03]`}
     >
       <div className="relative flex h-[240px] rounded w-full object-cover flex-col justify-center overflow-hidden bg-gray-50">
         <div className="absolute inset-0 bg-center dark:bg-black"></div>
