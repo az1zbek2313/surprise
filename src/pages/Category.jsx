@@ -14,9 +14,9 @@ function Category() {
 
   return (
     <section className="bg-white dark:bg-gray-900">
-      <div className="container px-6 py-8 mx-auto">
-        <div className="lg:flex lg:-mx-2">
-          <div className="space-y-2 md:space-y-3 text-sm md:text-base lg:w-1/5 lg:px-2 lg:space-y-4">
+      <div className="container px-6 py-0 md:py-0 mx-auto">
+        <div className="md:flex md:-mx-2 justify-between">
+          <div className="md:w-[20%] space-y-0 flex md:inline-block flex-wrap items-center gap-10 md:space-y-3 text-sm md:text-base lg:w-1/5 lg:px-2 lg:space-y-4 leading-[0] mt-6 md:mt-0">
             {CategoryNav.map((item) => (
               <a
                 href={item.href}
@@ -28,15 +28,15 @@ function Category() {
                   checkNav == item.id
                     ? "text-blue-600 dark:text-blue-500"
                     : "text-gray-500 dark:text-gray-300"
-                } hover:underline`}
+                } hover:underline mt-0 md:mt-2`}
               >
                 {item.title}
               </a>
             ))}
           </div>
 
-          <div className="mt-6 lg:mt-0 lg:px-2 lg:w-4/5 ">
-            <div className="flex items-center justify-between text-sm tracking-widest uppercase ">
+          <div className="mt-6 md:mt-0 md:px-2 md:w-[80%] ">
+            <div className="flex items-center md:px-6 justify-between text-sm tracking-widest uppercase ">
               <p className="text-gray-500 text-xs md:text-sm dark:text-gray-300">
                 6 Items
               </p>
@@ -106,11 +106,11 @@ function Category() {
             </div>
 
             <div
-              className={`${styles.flexBetween} gap-6 lg:gap-4 pr-0 pl-0 ${styles.container}`}
+              className={`${styles.flexBetween} gap-6 md:gap-4 pr-0 pl-0 ${styles.container}`}
             >
               {ProductCardCategoty.map((item) => (
                 <ProductCard
-                  width={"xl:w-[32%] lg:w-[48%]"}
+                  width={"xl:w-[32%] md:w-[48%]"}
                   key={item.id}
                   {...item}
                 />
