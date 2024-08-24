@@ -2,7 +2,6 @@ import { useState } from "react";
 import cartCommit from "../assets/pngwing.com.png";
 
 function MyCommit() {
-  const [dropdown, setDropdown] = useState(false);
   const [data, setData] = useState([]);
 
   return (
