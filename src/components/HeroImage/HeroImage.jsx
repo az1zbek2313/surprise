@@ -19,7 +19,7 @@ function HeroImage() {
       data-carousel="slide"
     >
       {/* <!-- Carousel wrapper --> */}
-      <div className="relative overflow-hidden h-[300px]">
+      <div className="relative overflow-hidden h-[240px] md:h-[300px]">
         <Swiper
           ref={swiperRef}
           spaceBetween={30}
@@ -39,7 +39,7 @@ function HeroImage() {
             <SwiperSlide key={item.id}>
               <img
                 src={item.image}
-                className={`absolute scale-90 xs:scale-100 object-cover block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2`}
+                className={`absolute scale-95 xs:scale-100 object-cover block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2`}
                 alt="..."
               />
             </SwiperSlide>
