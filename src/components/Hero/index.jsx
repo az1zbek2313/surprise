@@ -17,7 +17,7 @@ function Hero() {
         </div>
         {/* Hero image */}
         <div className="relative my-4 lg:my-12">
-          <img src={defaultImage} alt="hero image" className="w-full h-[160px] sm:h-[240px] lg:h-[400px] object-cover" />
+          <img src={defaultImage} alt="hero image" className="w-full h-[200px] sm:h-[320px] lg:h-[400px] object-cover" />
           {/* Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-white to-black opacity-40 "></div>
         </div>
