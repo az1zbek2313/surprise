@@ -204,6 +204,49 @@ export const CategoryDropdown = [
   },
 ];
 
+export const OrdersDropdown = [
+  {
+    id: 1,
+    title: "Barcha buyurtmalar",
+    href: "#",
+  },
+  {
+    id: 2,
+    title: "Kutish jarayonida",
+    href: "#",
+  },
+  {
+    id: 3,
+    title: "Tasdiqlangan",
+    href: "#",
+  },
+  {
+    id: 4,
+    title: "To'lanagan",
+    href: "#",
+  },
+  {
+    id: 5,
+    title: "Yetkazish jarayonida",
+    href: "#",
+  },
+  {
+    id: 6,
+    title: "Yetkazib berildi",
+    href: "#",
+  },
+  {
+    id: 7,
+    title: "Bekor qilingan",
+    href: "#",
+  },
+  {
+    id: 8,
+    title: "Ta'mirlash",
+    href: "#",
+  },
+];
+
 export const detailColors = [
   {
     id: 1,
