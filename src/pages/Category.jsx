@@ -13,7 +13,7 @@ function Category() {
   const [checkDropdown, setCheckDropdown] = useState("Recommended");
 
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-white">
       <div className="container px-6 py-0 md:py-0 mx-auto">
         <div className="md:flex md:-mx-2 justify-between">
           <div className="md:w-[20%] space-y-0 flex md:inline-block flex-wrap items-center gap-10 md:space-y-3 text-sm md:text-base lg:w-1/5 lg:px-2 lg:space-y-4 leading-[0] mt-6 md:mt-0">
@@ -26,8 +26,8 @@ function Category() {
                 }}
                 className={`block font-medium ${
                   checkNav == item.id
-                    ? "text-blue-600 dark:text-blue-500"
-                    : "text-gray-500 dark:text-gray-300"
+                    ? "text-blue-600"
+                    : "text-gray-500"
                 } hover:underline mt-0 md:mt-2`}
               >
                 {item.title}
@@ -37,11 +37,11 @@ function Category() {
 
           <div className="mt-6 md:mt-0 md:px-2 md:w-[80%] ">
             <div className="flex items-center md:px-6 justify-between text-sm tracking-widest uppercase ">
-              <p className="text-gray-500 text-xs md:text-sm dark:text-gray-300">
+              <p className="text-gray-500 text-xs md:text-sm">
                 6 Items
               </p>
               <div className="flex items-center gap-1 md:gap-4">
-                <p className="hidden md:inline-block text-gray-500 text-xs md:text-sm dark:text-gray-300">
+                <p className="hidden md:inline-block text-gray-500 text-xs md:text-sm">
                   Sort
                 </p>
 
@@ -53,7 +53,7 @@ function Category() {
                       setDropdown(!dropdown);
                     }}
                     data-dropdown-trigger="hover"
-                    className="text-white w-44 mb-0 bg-red-600 dark:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs md:text-sm py-2 text-center justify-center inline-flex items-center  dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                    className="text-white w-44 mb-0 bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs md:text-sm py-2 text-center justify-center inline-flex items-center"
                     type="button"
                   >
                     {checkDropdown}
@@ -78,10 +78,10 @@ function Category() {
                   {dropdown && (
                     <div
                       id="dropdownHover"
-                      className="z-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-gray-700"
+                      className="z-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-full"
                     >
                       <ul
-                        className="py-2 text-xs md:text-sm text-gray-700 dark:text-gray-200"
+                        className="py-2 text-xs md:text-sm text-gray-700"
                         aria-labelledby="dropdownHoverButton"
                       >
                         {CategoryDropdown.map((item) => (
@@ -92,7 +92,7 @@ function Category() {
                                 setCheckDropdown(item.title);
                                 setDropdown(false)
                               }}
-                              className="block px-2 py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                              className="block px-2 py-1 md:px-4 md:py-2 hover:bg-gray-100"
                             >
                               {item.title}
                             </a>

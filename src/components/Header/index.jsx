@@ -28,11 +28,11 @@ function Header() {
         {/* <!--Main Navigation--> */}
         <header className={`${styles.container} my-0 md:!my-0`}>
           {/* <!-- Main navigation container --> */}
-          <nav className="flex-no-wrap relative flex w-full items-center justify-between dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start">
+          <nav className="flex-no-wrap relative flex w-full items-center justify-between lg:flex-wrap lg:justify-start">
             <div className="flex justify-between items-center w-full flex-wrap">
               {/* <!-- Hamburger button for mobile view --> */}
               <button
-                className="block border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
+                className="block border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 lg:hidden"
                 type="button"
                 data-twe-collapse-init
                 data-twe-target="#navbarSupportedContent1"
@@ -44,7 +44,7 @@ function Header() {
                 {/* <!-- Logo --> */}
                 <a
                   onClick={toStart}
-                  className="mb-3 me-2 mt-1 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-2 lg:mt-0"
+                  className="mb-3 me-2 mt-1 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 lg:mb-2 lg:mt-0"
                   href="#"
                 >
                   <img
@@ -65,7 +65,7 @@ function Header() {
                 {/* <!-- Logo --> */}
                 <a
                   onClick={toStart}
-                  className="mb-4 me-2 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-2 lg:mt-0"
+                  className="mb-4 me-2 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 lg:mb-2 lg:mt-0"
                   href="#"
                 >
                   <img
@@ -130,7 +130,7 @@ function Header() {
                 <div className="relative">
                   {/* <!-- First dropdown trigger --> */}
                   <a
-                    className="hidden-arrow me-2 ss:me-4 flex items-center text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
+                    className="hidden-arrow me-2 ss:me-4 flex items-center text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
                     href="account/likes"
                     id="dropdownMenuButton1"
                     role="button"
@@ -151,7 +151,7 @@ function Header() {
                 </div>
 
                 {/* <!-- Cart Icon --> */}
-                <a href="/cart" className="me-3 ss:me-4 relative text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 [&.active]:text-black/90 dark:[&.active]:text-neutral-400">
+                <a href="/cart" className="me-3 ss:me-4 relative text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90">
                   <span className="ss:[&>svg]:w-5">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -192,13 +192,13 @@ function Header() {
 
                   {accountDropdown && (
                     <ul
-                      className="absolute left-auto right-0 z-[1000] top-5 ss:top-6 lg:top-8 float-left m-0 mt-1 min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg data-[twe-dropdown-show]:block dark:bg-neutral-700"
+                      className="absolute left-auto right-0 z-[1000] top-5 ss:top-6 lg:top-8 float-left m-0 mt-1 min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg data-[twe-dropdown-show]:block"
                       aria-labelledby="dropdownMenuButton2"
                     >
                       {/* <!-- Second dropdown menu items --> */}
                       <li>
                         <a
-                          className="flex items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+                          className="flex items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 :text-neutral-200"
                           href="/account"
                           data-twe-dropdown-item-ref
                         >
@@ -219,7 +219,7 @@ function Header() {
                       </li>
                       <li>
                         <a
-                          className="flex items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+                          className="flex items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
                           href="account/orders"
                         >
                           <svg
@@ -239,7 +239,7 @@ function Header() {
                       </li>
                       <li>
                         <a
-                          className="flex items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+                          className="flex items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 "
                           href="/account/commit"
                           data-twe-dropdown-item-ref
                         >
@@ -260,7 +260,7 @@ function Header() {
                       </li>
                       <li>
                         <a
-                          className="flex  items-center gap-2 w-full whitespace-nowrap bg-transparent px-5 py-2 text-sm font-normal text-red-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+                          className="flex  items-center gap-2 w-full whitespace-nowrap bg-transparent px-5 py-2 text-sm font-normal text-red-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
                           href="#"
                           data-twe-dropdown-item-ref
                         >

@@ -21,7 +21,7 @@ function Location() {
               setDropdown(!dropdown);
             }}
             data-dropdown-trigger="hover"
-            className="text-white  w-44 mb-0 bg-red-600 dark:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs md:text-sm py-2 text-center justify-center inline-flex items-center  dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+            className="text-white  w-44 mb-0 bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs md:text-sm py-2 text-center justify-center inline-flex items-center"
             type="button"
           >
             <span className="scale-150 mr-1 pb-0.5">+</span> &nbsp;
@@ -42,7 +42,7 @@ function Location() {
           </p>
           <a
             href="/"
-            className="text-white w-44 md:w-64 mb-0 bg-red-600 hover:bg-red-700 transition-all duration-300 dark:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-base py-2 md:py-3 text-center justify-center inline-flex items-center  dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+            className="text-white w-44 md:w-64 mb-0 bg-red-600 hover:bg-red-700 transition-all duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-base py-2 md:py-3 text-center justify-center inline-flex items-center"
           >
             <span className="scale-150 mr-1 pb-0.5">+</span> &nbsp;
             <p>Manzil qo'shish</p>

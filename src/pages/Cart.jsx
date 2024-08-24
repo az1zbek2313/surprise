@@ -3,7 +3,7 @@ import { ProductCardData, shoppingCart } from "../util/contants";
 
 function Cart() {
   return (
-    <section className="bg-white pb-8 antialiased dark:bg-gray-900 pt-4">
+    <section className="bg-white pb-8 antialiased pt-4">
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
       <h1 className="text-2xl font-semibold text-primary-800  border-b-[1px] border-gray-500/65 py-2">Shopping Cart</h1>
 
@@ -12,11 +12,11 @@ function Cart() {
             <div className="space-y-6">
               {
                 shoppingCart.map(item => (
-                  <div key={item.id} className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+                  <div key={item.id} className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:p-6">
                 <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                   <a href="/detail" className="shrink-0 md:order-1">
                     <img
-                      className=" h-20 w-20 dark:block"
+                      className=" h-20 w-20"
                       src={item.image}
                       alt="imac image"
                     />
@@ -31,10 +31,10 @@ function Cart() {
                         type="button"
                         id="decrement-button"
                         data-input-counter-decrement="counter-input"
-                        className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                        className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100"
                       >
                         <svg
-                          className="h-2.5 w-2.5 text-gray-900 dark:text-white"
+                          className="h-2.5 w-2.5 text-gray-900 "
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -53,7 +53,7 @@ function Cart() {
                         type="text"
                         id="counter-input"
                         data-input-counter
-                        className="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
+                        className="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 "
                         placeholder=""
                         value={item.count}
                         required
@@ -62,10 +62,10 @@ function Cart() {
                         type="button"
                         id="increment-button"
                         data-input-counter-increment="counter-input"
-                        className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                        className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100"
                       >
                         <svg
-                          className="h-2.5 w-2.5 text-gray-900 dark:text-white"
+                          className="h-2.5 w-2.5 text-gray-900 "
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -82,7 +82,7 @@ function Cart() {
                       </button>
                     </div>
                     <div className="text-end md:order-4 md:w-32">
-                      <p className="text-base font-bold text-gray-900 dark:text-white">
+                      <p className="text-base font-bold text-gray-900 ">
                         {item.price.toLocaleString('en-US', {
                           style:'currency',
                           currency:'usd'
@@ -94,7 +94,7 @@ function Cart() {
                   <div className="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
                     <a
                       href="/detail"
-                      className="text-base font-medium text-gray-900 hover:underline dark:text-white"
+                      className="text-base font-medium text-gray-900 hover:underline "
                     >
                       {item.title}
                     </a>
@@ -102,7 +102,7 @@ function Cart() {
                     <div className="flex items-center gap-4">
                       <button
                         type="button"
-                        className="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 hover:underline dark:text-gray-400 dark:hover:text-white"
+                        className="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 hover:underline"
                       >
                         <svg
                           className="me-1.5 h-5 w-5"
@@ -126,7 +126,7 @@ function Cart() {
 
                       <button
                         type="button"
-                        className="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500"
+                        className="inline-flex items-center text-sm font-medium text-red-600 hover:underline"
                       >
                         <svg
                           className="me-1.5 h-5 w-5"
@@ -155,7 +155,7 @@ function Cart() {
               }
             </div>
             <div className="xl:mt-8 xl:block">
-              <h3 className="text-2xl font-semibold mt-2 text-gray-900 dark:text-white">
+              <h3 className="text-2xl font-semibold mt-2 text-gray-900">
                 People also bought
               </h3>
               <div className="flex mt-4 gap-4 flex-wrap md:flex-nowrap">
@@ -167,24 +167,24 @@ function Cart() {
           </div>
 
           <div className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
-            <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
-              <p className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+              <p className="text-xl font-semibold text-gray-900">
                 Order summary
               </p>
 
               <div className="space-y-4">
                 <div className="space-y-2">
                   <dl className="flex items-center justify-between gap-4">
-                    <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
+                    <dt className="text-base font-normal text-gray-500">
                       Original price
                     </dt>
-                    <dd className="text-base font-medium text-gray-900 dark:text-white">
+                    <dd className="text-base font-medium text-gray-900">
                       $7,592.00
                     </dd>
                   </dl>
 
                   <dl className="flex items-center justify-between gap-4">
-                    <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
+                    <dt className="text-base font-normal text-gray-500">
                       Savings
                     </dt>
                     <dd className="text-base font-medium text-green-600">
@@ -193,29 +193,29 @@ function Cart() {
                   </dl>
 
                   <dl className="flex items-center justify-between gap-4">
-                    <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
+                    <dt className="text-base font-normal text-gray-500">
                       Store Pickup
                     </dt>
-                    <dd className="text-base font-medium text-gray-900 dark:text-white">
+                    <dd className="text-base font-medium text-gray-900">
                       $99
                     </dd>
                   </dl>
 
                   <dl className="flex items-center justify-between gap-4">
-                    <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
+                    <dt className="text-base font-normal text-gray-500">
                       Tax
                     </dt>
-                    <dd className="text-base font-medium text-gray-900 dark:text-white">
+                    <dd className="text-base font-medium text-gray-900">
                       $799
                     </dd>
                   </dl>
                 </div>
 
-                <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
-                  <dt className="text-base font-bold text-gray-900 dark:text-white">
+                <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-2">
+                  <dt className="text-base font-bold text-gray-900">
                     Total
                   </dt>
-                  <dd className="text-base font-bold text-gray-900 dark:text-white">
+                  <dd className="text-base font-bold text-gray-900">
                     $8,191.00
                   </dd>
                 </dl>
@@ -223,20 +223,20 @@ function Cart() {
 
               <a
                 href="#"
-                className="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300"
               >
                 Proceed to Checkout
               </a>
 
               <div className="flex items-center justify-center gap-2">
-                <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                <span className="text-sm font-normal text-gray-500">
                   {" "}
                   or{" "}
                 </span>
                 <a
                   href="/"
                   title=""
-                  className="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline"
                 >
                   Continue Shopping
                   <svg
@@ -258,12 +258,12 @@ function Cart() {
               </div>
             </div>
 
-            <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+            <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
               <form className="space-y-4">
                 <div>
                   <label
                     for="voucher"
-                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                    className="mb-2 block text-sm font-medium text-gray-900"
                   >
                     {" "}
                     Do you have a voucher or gift card?{" "}
@@ -271,14 +271,14 @@ function Cart() {
                   <input
                     type="text"
                     id="voucher"
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
                     placeholder=""
                     required
                   />
                 </div>
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300"
                 >
                   Apply Code
                 </button>

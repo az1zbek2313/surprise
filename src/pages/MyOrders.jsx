@@ -23,7 +23,7 @@ function MyOrders() {
               setDropdown(!dropdown);
             }}
             data-dropdown-trigger="hover"
-            className="text-white w-44 mb-0 bg-red-600 dark:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs md:text-sm py-2 text-center justify-center inline-flex items-center  dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+            className="text-white w-44 mb-0 bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs md:text-sm py-2 text-center justify-center inline-flex items-center"
             type="button"
           >
             {checkDropdown}
@@ -48,10 +48,10 @@ function MyOrders() {
           {dropdown && (
             <div
               id="dropdownHover"
-              className="z-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-gray-700"
+              className="z-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-full"
             >
               <ul
-                className="py-2 text-xs md:text-sm text-gray-700 dark:text-gray-200"
+                className="py-2 text-xs md:text-sm text-gray-700"
                 aria-labelledby="dropdownHoverButton"
               >
                 {OrdersDropdown.map((item) => (
@@ -62,7 +62,7 @@ function MyOrders() {
                         setCheckDropdown(item.title);
                         setDropdown(false);
                       }}
-                      className="block px-2 py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="block px-2 py-1 md:px-4 md:py-2 hover:bg-gray-100"
                     >
                       {item.title}
                     </a>
@@ -81,7 +81,7 @@ function MyOrders() {
           </div>
           <h2 className="font-semibold text-xl">Hali buyurtmalar mavjud emas</h2>
           <p className="opacity-55 font-medium text-sm md:text-base text-center">Hozirda buyurtmalar mavjud emas. Iltimos, <br /> hozir xarid qiling.</p>
-          <a href="/" className="text-white w-44 md:w-64 mb-0 bg-red-600 hover:bg-red-700 transition-all duration-300 dark:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-base py-2 md:py-3 text-center justify-center inline-flex items-center  dark:hover:bg-gray-600 dark:focus:ring-gray-700">Xarid qilish</a>
+          <a href="/" className="text-white w-44 md:w-64 mb-0 bg-red-600 hover:bg-red-700 transition-all duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-base py-2 md:py-3 text-center justify-center inline-flex items-center">Xarid qilish</a>
         </div>
       ) : (
         <div className=""></div>

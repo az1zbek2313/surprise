@@ -55,7 +55,7 @@ function HeroImage() {
       >
         <span className="inline-flex items-center justify-center w-8 md:w-10 h-8 md:h-10 rounded-full bg-white/30 hover:bg-white/40 group-focus:outline-none">
           <svg
-            className="w-2 h-2 md:w-4 md:h-4 text-white dark:text-gray-800 rtl:rotate-180"
+            className="w-2 h-2 md:w-4 md:h-4 text-white rtl:rotate-180"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -78,9 +78,9 @@ function HeroImage() {
         className="hidden xs:flex absolute top-0 end-6 z-30 items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
         onClick={() => swiperRef.current.swiper.slideNext()}
       >
-        <span className="inline-flex items-center justify-center w-8 md:w-10 h-8 md:h-10  rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/40 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+        <span className="inline-flex items-center justify-center w-8 md:w-10 h-8 md:h-10  rounded-full bg-white/30 group-hover:bg-white/40 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
           <svg
-            className="w-2 h-2 md:w-4 md:h-4 text-white dark:text-gray-800 rtl:rotate-180"
+            className="w-2 h-2 md:w-4 md:h-4 text-white rtl:rotate-180"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

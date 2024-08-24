@@ -18,13 +18,13 @@ function SidebarAccount() {
             className="hidden lg:block sticky top-[-10px] left-0 z-40 w-[36%] h-full transition-transform -translate-x-full lg:translate-x-0"
             aria-label="Sidebar"
           >
-            <div className="h-[100vh] px-3 py-4 overflow-y-auto border-x-[1.6px] dark:bg-gray-800">
+            <div className="h-[100vh] px-3 py-4 overflow-y-auto border-x-[1.6px]">
               <ul className="space-y-2 font-medium">
                 {SidebarData.map((item) => (
                   <li key={item.id}>
                     <a
                       href={item.href}
-                      className={`flex items-center ${item.id == active && "bg-gray-100"} p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}
+                      className={`flex items-center ${item.id == active && "bg-gray-100"} p-2 text-gray-900 rounded-lg hover:bg-gray-100 group`}
                     >
                       <img src={item.image} alt={item.alt} width={20}/>
                       <span className="ms-3">{item.title}</span>
