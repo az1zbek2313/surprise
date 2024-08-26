@@ -251,22 +251,22 @@ export const detailColors = [
   {
     id: 1,
     class:
-      "w-10 h-10 bg-black border-2 border-white hover:border-gray-500 rounded shrink-0",
+      "w-10 h-10 bg-black border-2 border-white hover:border-primary-700 rounded shrink-0",
   },
   {
     id: 2,
     class:
-      "w-10 h-10 bg-gray-400 border-2 border-white hover:border-gray-500 rounded shrink-0",
+      "w-10 h-10 bg-gray-400 border-2 border-white hover:border-primary-700 rounded shrink-0",
   },
   {
     id: 3,
     class:
-      "w-10 h-10 bg-blue-500 border-2 border-white hover:border-gray-500 rounded shrink-0",
+      "w-10 h-10 bg-blue-500 border-2 border-white hover:border-primary-700 rounded shrink-0",
   },
   {
     id: 4,
     class:
-      "w-10 h-10 bg-green-400 border-2 border-white hover:border-gray-500 rounded shrink-0",
+      "w-10 h-10 bg-green-400 border-2 border-white hover:border-primary-700 rounded shrink-0",
   },
 ];
 
@@ -286,10 +286,6 @@ export const detailImages = [
   {
     id: 4,
     image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg",
-  },
-  {
-    id: 4,
-    image: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg",
   },
 ];
 

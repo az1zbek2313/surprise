@@ -18,7 +18,7 @@ function Detail() {
           <div className="lg:col-span-3 text-center">
             <div>
               <img
-                className="h-auto lg:h-[410px] lg:w-full max-w-full rounded-lg object-cover"
+                className="h-[240px] lg:h-[384px] w-full max-w-full rounded-lg object-cover"
                 src={mainImage}
                 alt="main image"
               />
@@ -26,9 +26,9 @@ function Detail() {
 
             <div className="flex mt-3 justify-between ">
               {detailImages.map((item) => (
-                <div key={item.id} className="w-[18%]">
+                <div key={item.id} className="w-[24%]">
                   <img
-                    className="h-auto max-w-full rounded-lg cursor-pointer transition-all duration-300 hover:scale-[1.06]"
+                    className={`${item.image == mainImage ? "border-[1.6px] border-gray-500" : ""} hover:border-[1.6px] hover:border-gray-500 h-auto max-w-full rounded-lg cursor-pointer transition-all duration-300`}
                     src={item.image}
                     onClick={() => {
                       setMainImage(item.image);
@@ -159,7 +159,7 @@ function Detail() {
                       setDefaultColor(item.id);
                     }}
                     className={`${item.class} ${
-                      defaultColor == item.id ? "border-gray-500" : ""
+                      defaultColor == item.id ? "border-primary-700" : ""
                     }`}
                   ></button>
                 ))}
