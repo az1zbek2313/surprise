@@ -6,6 +6,7 @@ import ShopCategory from './ShopCategory';
 import CategoryNames from './CategoryNames';
 import Footer from './Footer';
 import SidebarAccount from "./SidebarAccount";
+import SidebarBottom from "./SidebarBottom";
 import Layout from "./Layout";
 // About Us Page 
 import Hero from "./Hero";
@@ -14,4 +15,4 @@ import About from "./About";
 import Testimonial from "./Testimonial";
 import HeroImage from "./HeroImage/HeroImage";
 
-export { Header, HeaderTop, HeroImage, Products, ShopCategory, Footer, CategoryNames, Hero, Clients, About, Testimonial, ProductCard, SidebarAccount, Layout };
+export { Header, HeaderTop, HeroImage, Products, ShopCategory, Footer, CategoryNames, Hero, Clients, About, Testimonial, ProductCard, SidebarAccount, Layout, SidebarBottom };

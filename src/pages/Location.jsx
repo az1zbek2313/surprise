@@ -7,7 +7,7 @@ function Location() {
 
   return (
     <div
-      className={`container min-h-[100vh] mx-auto md:px-0 border-r-[1.6px] border-l-[1.6px] lg:border-l-0`}
+      className={`container min-h-[100vh] mx-auto md:px-0 lg:border-r-[1.6px]`}
     >
       <div className="flex flex-wrap gap-1 xs:gap-0 justify-between items-center px-4 border-b-[1.6px] py-2">
         <h1 className="text-2xl mx-auto xs:mx-0 font-semibold text-primary-800">

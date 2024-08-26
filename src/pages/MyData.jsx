@@ -6,7 +6,7 @@ function MyData() {
   
   return (
     <div
-      className={`container min-h-[100vh] mx-auto md:px-0 border-r-[1.6px] border-l-[1.6px] lg:border-l-0`}
+      className={`container mx-auto lg:px-0 lg:border-x-[1.6px] lg:border-l-0 mb-4 lg:mb-0`}
     >
       <h1 className="px-4 text-2xl font-semibold text-primary-800 border-b-[1.6px] py-2">
         Ma'lumotlarim

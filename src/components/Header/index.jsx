@@ -2,12 +2,14 @@ import { HeaderTop } from "../";
 import { styles } from "../../util/style";
 import { surpriseLogo, user } from "../../assets";
 import { uzbFlag, rusFlag, engFlag } from "../../assets";
+import { flagLanguage } from "../../util/contants";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
   const [accountDropdown, setAccountDropdown] = useState(false);
   const [language, setLanguage] = useState(false);
+  const [flagLang, setflagLang] = useState("uz");
   const navigate = useNavigate();
 
   const toStart = () => {
@@ -41,18 +43,12 @@ function Header() {
                 aria-label="Toggle navigation"
               >
                 {/* <!-- Hamburger icon --> */}
-                {/* <!-- Logo --> */}
                 <a
                   onClick={toStart}
                   className="mb-3 me-2 mt-1 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 lg:mb-2 lg:mt-0"
                   href="#"
                 >
-                  <img
-                    src={surpriseLogo}
-                    style={{ height: "24px" }}
-                    alt=""
-                    loading="lazy"
-                  />
+                  <img src={surpriseLogo} className="h-6" alt="" loading="lazy" />
                 </a>
               </button>
 
@@ -65,12 +61,12 @@ function Header() {
                 {/* <!-- Logo --> */}
                 <a
                   onClick={toStart}
-                  className="mb-4 me-2 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 lg:mb-2 lg:mt-0"
+                  className="mb-4 me-2 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 lg:mb-3 lg:mt-0"
                   href="#"
                 >
                   <img
+                    className="h-9"
                     src={surpriseLogo}
-                    style={{ height: "32px" }}
                     alt=""
                     loading="lazy"
                   />
@@ -100,29 +96,45 @@ function Header() {
               {/* <!-- Right elements --> */}
               <div className="relative flex items-center">
                 <div className="lg:hidden block relative mr-1 ss:mr-4">
-                  <div
+                {flagLanguage.map((item) => {
+              if (item.id == flagLang) {
+                return (
+                <div
+                key={item.id}
                     onClick={() => {
                       setLanguage(!language);
                     }}
                     className="flex items-center gap-1 ss:gap-2 cursor-pointer"
                   >
-                    <img src={uzbFlag} alt="" className="w-4" />
+                    <img src={item.image} alt="" className="w-4" />
                     <p className="text-xs ss:text-sm">
-                      <span className="hidden ss:block">O'zbekcha</span>
+                      <span className="hidden ss:block">{item.title}</span>
                     </p>
                   </div>
+                  );
+                }
+              })}
 
                   {/* dropdown language */}
                   {language && (
-                    <ul className="absolute z-[1000000] top-6 left-0 list-none">
-                      <li className="flex items-center gap-2 cursor-pointer w-[104px] bg-gray-100 p-1 hover:bg-gray-200 transition-all duration-200">
-                        <img src={rusFlag} alt="" className="w-4" />
-                        <p className="text-sm">Русский</p>
-                      </li>
-                      <li className="flex rounded-b-md items-center gap-2 cursor-pointer w-[104px] bg-gray-100 p-1 hover:bg-gray-200 transition-all duration-200">
-                        <img src={engFlag} alt="" className="w-4" />
-                        <p className="text-sm">English</p>
-                      </li>
+                    <ul className="absolute z-[1000] top-6 left-0 list-none">
+                      {flagLanguage.map((item) => {
+                        if (item.id != flagLang) {
+                          return (
+                            <li
+                              key={item.id}
+                              onClick={() => {
+                                setflagLang(item.id);
+                                setLanguage(false);
+                              }}
+                              className="flex items-center gap-2 cursor-pointer w-[104px] bg-gray-100 p-1 hover:bg-gray-200 transition-all duration-200"
+                            >
+                              <img src={item.image} alt="" className="w-4" />
+                              <p className="text-sm">{item.title}</p>
+                            </li>
+                          );
+                        }
+                      })}
                     </ul>
                   )}
                 </div>
@@ -131,17 +143,17 @@ function Header() {
                   {/* <!-- First dropdown trigger --> */}
                   <a
                     className="hidden-arrow me-2 ss:me-4 flex items-center text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
-                    href="account/likes"
+                    href="/account/likes"
                     id="dropdownMenuButton1"
                     role="button"
                     aria-expanded="false"
                   >
                     {/* <!-- Dropdown trigger icon --> */}
-                    <span className="ss:[&>svg]:w-5">
+                    <span className="ss:[&>svg]:w-5 lg:[&>svg]:w-7">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
-                        className="h4 ss:h-5 w-4 ss:w-5"
+                        className="h4 ss:h-5 lg:h-7 w-4 ss:w-5 lg:w-7"
                         viewBox="0 0 16 16"
                       >
                         <path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.6 7.6 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z" />
@@ -151,13 +163,16 @@ function Header() {
                 </div>
 
                 {/* <!-- Cart Icon --> */}
-                <a href="/cart" className="me-3 ss:me-4 relative text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90">
-                  <span className="ss:[&>svg]:w-5">
+                <a
+                  href="/cart"
+                  className="me-3 ss:me-4 relative text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
+                >
+                  <span className="ss:[&>svg]:w-5 lg:[&>svg]:w-7">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      className="h4 ss:h-5 w-4 ss:w-5"
+                      clalgName="h4 ss:h-5 lg:h-7 w-4 ss:w-5 lg:w-7"
                     >
                       <path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
                     </svg>
@@ -182,7 +197,7 @@ function Header() {
                     {/* <!-- User avatar --> */}
                     <img
                       src={user}
-                      className="rounded-full h4 ss:h-6 w-4 ss:w-6"
+                      className="rounded-full h4 lg:h-8 lg:w-8 ss:h-6 w-4 ss:w-6"
                       alt=""
                       loading="lazy"
                     />
@@ -291,6 +306,7 @@ function Header() {
             </div>
           </nav>
         </header>
+
         {/* <!--Main Navigation--> */}
       </div>
       <div className={`${styles.container} mt-2`}>

@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { SidebarData } from "../../util/contants";
+import { SidebarBottom } from "..";
 
 function SidebarAccount() {
   const pathname = window.location.pathname;
@@ -11,7 +12,7 @@ function SidebarAccount() {
 
   return (
     <>
-      <div className={`container mx-auto px-4 md:px-6 mt-[-8px]`}>
+      <div className={`hidden lg:block container mx-auto px-4 md:px-6 mt-[-8px]`}>
         <div className="flex justify-between items-start w-full">
           <aside
             id="default-sidebar"
@@ -40,6 +41,8 @@ function SidebarAccount() {
           </div>
         </div>
       </div>
+
+      <SidebarBottom />
     </>
   );
 }
