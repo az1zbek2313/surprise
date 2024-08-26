@@ -24,7 +24,7 @@ function SidebarBottom() {
                   <li className="mt-0" key={item.id}>
                     <a
                       href={item.href}
-                      className={`flex items-center ${item.id == active ? "scale-105 shadow-xl border-[1px]" : "shadow-sm bg-gray-50 blur-[0.6px]"} p-2 text-gray-900 rounded-md hover:bg-gray-100 group`}
+                      className={`flex items-center ${item.id == active ? "scale-105 shadow-xl border-[1px]" : "shadow-sm bg-gray-50"} p-2 text-gray-900 rounded-md hover:bg-gray-100 group`}
                     >
                       <img src={item.image} alt={item.alt} className="w-5 h-5 md:w-6 md:h-6"/>
                     </a>
