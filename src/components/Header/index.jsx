@@ -167,7 +167,7 @@ function Header() {
                   href="/cart"
                   className="me-3 ss:me-4 relative text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
                 >
-                  <span className="ss:[&>svg]:w-5 lg:[&>svg]:w-7">
+                  <span className="[&>svg]:w-5 lg:[&>svg]:w-7">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"

@@ -12,7 +12,7 @@ function Detail() {
   return (
     <>
       <div
-        className={`${styles.container} px-4 xs:px-16 mx-auto font-sans tracking-wide py-4`}
+        className={`container px-4 mx-auto font-sans tracking-wide py-4`}
       >
         <div className="grid items-start grid-cols-1 lg:grid-cols-6 gap-8">
           <div className="lg:col-span-3 text-center">
@@ -344,10 +344,10 @@ function Detail() {
           </h3>
 
           <div
-            className={`flex gap-6 container w-full mx-auto mt-4 overflow-x-scroll overflow-y-hidden pb-4`}
+            className={`flex gap-2 xs:gap-5 md:gap-6 container w-full mx-auto mt-4 overflow-x-scroll overflow-y-hidden pb-4`}
           >
             {PopularCardData.map((item) => (
-              <ProductCard width={"lg:w-[32%] flex-shrink-0"} key={item.id} {...item} />
+              <ProductCard width={"lg:w-[32%] flex-shrink-0 w-full xs:w-[47.5%]"} key={item.id} {...item} />
             ))}
           </div>
         </div>
