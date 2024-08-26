@@ -1,15 +1,19 @@
 import { useState } from "react";
-import { detailColors, star, detailImages } from "../util/contants";
+import { detailColors, star, detailImages, ProductCardData, PopularCardData } from "../util/contants";
 import { styles } from "../util/style";
+import ProductCard from "../components/Products/ProductCard";
 
 function Detail() {
-  const defaltimg = "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg";
+  const defaltimg =
+    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg";
   const [defaultColor, setDefaultColor] = useState(1);
   const [mainImage, setMainImage] = useState(defaltimg);
 
   return (
     <>
-      <div className={`${styles.container} px-4 xs:px-16 mx-auto font-sans tracking-wide py-4`}>
+      <div
+        className={`${styles.container} px-4 xs:px-16 mx-auto font-sans tracking-wide py-4`}
+      >
         <div className="grid items-start grid-cols-1 lg:grid-cols-6 gap-8">
           <div className="lg:col-span-3 text-center">
             <div>
@@ -227,7 +231,9 @@ function Detail() {
         </div>
 
         <div className="mt-6 max-w-2xl">
-          <h3 className="text-lg md:text-xl font-bold text-gray-800">Product Features</h3>
+          <h3 className="text-lg md:text-xl font-bold text-gray-800">
+            Product Features
+          </h3>
 
           <ul className="grid sm:grid-cols-2 gap-3 mt-4">
             <li className="flex items-center text-xs xs:text-sm text-gray-600">
@@ -329,6 +335,20 @@ function Detail() {
               wear. Elevate your look with these must-have accessories for any
               occasion.
             </p>
+          </div>
+        </div>
+
+        <div className="mt-6">
+          <h3 className="text-lg md:text-xl font-bold text-gray-800">
+            Similar Products
+          </h3>
+
+          <div
+            className={`flex gap-6 container w-full mx-auto mt-4 overflow-x-scroll overflow-y-hidden pb-4`}
+          >
+            {PopularCardData.map((item) => (
+              <ProductCard width={"lg:w-[32%] flex-shrink-0"} key={item.id} {...item} />
+            ))}
           </div>
         </div>
       </div>

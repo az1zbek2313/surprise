@@ -6,3 +6,26 @@
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 14px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    background:#fff;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #dbdbdb; 
+    cursor: pointer;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(169, 169, 169); 
+  }
