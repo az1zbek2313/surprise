@@ -26,16 +26,16 @@ function ProductCard({ image, title, about, price, width }) {
       </div>
       <div className="flex flex-col gap-2 sm:p-4 p-3 w-full">
         <div className="mb-2 md:mb-4 leading-6">
-          <h2 className="font-bold text-sm sm:text-[15px]">{title}</h2>
-          <p className="opacity-50 font-semibold text-[12px] sm:text-sm">
+          <h2 className="font-bold text-base">{title}</h2>
+          <p className="opacity-50 font-semibold text-sm">
             {about}
           </p>
         </div>
         <div className={`${styles.flexBetween}`}>
-          <b className="text-[12px] sm:text-sm">
+          <b className="text-sm">
             ${Math.trunc(price / 100) + "," + Math.trunc(price % 100)}
           </b>
-          <a href="#" className={`${styles.button} bg-red-600 hover:bg-red-500 text-[12px] sm:text-sm`}>
+          <a href="#" className={`${styles.button} block bg-red-600 hover:bg-red-500 p-2 text-sm`}>
             Add to Cart
           </a>
         </div>

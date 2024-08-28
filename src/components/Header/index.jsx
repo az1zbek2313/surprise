@@ -106,7 +106,7 @@ function Header() {
                     }}
                     className="flex items-center gap-1 ss:gap-2 cursor-pointer"
                   >
-                    <img src={item.image} alt="" className="w-4" />
+                    <img src={item.image} alt="" className="w-5" />
                     <p className="text-xs ss:text-sm">
                       <span className="hidden ss:block">{item.title}</span>
                     </p>
@@ -153,7 +153,7 @@ function Header() {
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
-                        className="h4 ss:h-5 lg:h-7 w-4 ss:w-5 lg:w-7"
+                        className="h-5 lg:h-7 w-5 lg:w-7"
                         viewBox="0 0 16 16"
                       >
                         <path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.6 7.6 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z" />
@@ -172,7 +172,7 @@ function Header() {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      className="h4 ss:h-5 lg:h-7 w-4 ss:w-5 lg:w-7"
+                      className="h-5 lg:h-7 w-5 lg:w-7"
                     >
                       <path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
                     </svg>
@@ -197,7 +197,7 @@ function Header() {
                     {/* <!-- User avatar --> */}
                     <img
                       src={user}
-                      className="rounded-full h4 lg:h-8 lg:w-8 ss:h-6 w-4 ss:w-6"
+                      className="rounded-full lg:h-8 lg:w-8 h-5 w-5"
                       alt=""
                       loading="lazy"
                     />
