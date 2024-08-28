@@ -250,23 +250,27 @@ export const OrdersDropdown = [
 export const detailColors = [
   {
     id: 1,
+    image:"https://pagedone.io/asset/uploads/1700472379.png",
+    title:"Black",
+    active:"border-primary-600 border-dashed",
     class:
-      "w-10 h-10 bg-black border-2 border-white hover:border-primary-700 rounded shrink-0",
+      "cursor-pointer min-[400px]:h-[100px] aspect-square border-2 border-gray-100 rounded-xl transition-all duration-500 group-hover:border-primary-600 group-hover:border-dashed",
   },
   {
     id: 2,
+    image:"https://pagedone.io/asset/uploads/1700472379.png",
+    title:"Brown",
+    active:"border-primary-600 border-dashed",
     class:
-      "w-10 h-10 bg-gray-400 border-2 border-white hover:border-primary-700 rounded shrink-0",
+      "cursor-pointer min-[400px]:h-[100px] aspect-square border-2 border-gray-100 rounded-xl transition-all duration-500 group-hover:border-primary-600 group-hover:border-dashed",
   },
   {
     id: 3,
+    image:"https://pagedone.io/asset/uploads/1700472529.png",
+    title:"Beige",
+    active:"border-primary-600 border-dashed",
     class:
-      "w-10 h-10 bg-blue-500 border-2 border-white hover:border-primary-700 rounded shrink-0",
-  },
-  {
-    id: 4,
-    class:
-      "w-10 h-10 bg-green-400 border-2 border-white hover:border-primary-700 rounded shrink-0",
+      "cursor-pointer min-[400px]:h-[100px] aspect-square border-2 border-gray-100 rounded-xl transition-all duration-500 group-hover:border-primary-600 group-hover:border-dashed",
   },
 ];
 

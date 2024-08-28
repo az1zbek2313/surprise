@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { CityForm } from "../../util/contants";
 import { addedMyAdress, editMyAdress } from "../../Redux/Actions/actions";
 
-function LocationModal({ setModal, newMessage, setNewMessage }) {
+function LocationModal({ setModal, newMessage }) {
   const [regions, setRegions] = useState([]);
   const dispatch = useDispatch();
   const [error, setError] = useState("");
@@ -56,7 +56,7 @@ function LocationModal({ setModal, newMessage, setNewMessage }) {
     if (isValid) {
       setError("");
       const myAdress = {
-        id: newMessage.id || Date.now(), 
+        id: newMessage.id || Date.now(),
         city: cityRef.current.value,
         region: regionRef.current.value,
         street: streetRef.current.value,
@@ -166,9 +166,7 @@ function LocationModal({ setModal, newMessage, setNewMessage }) {
                       error == "Mintaqani tanlang!" && "border-red-600"
                     } bg-gray-50 border cursor-pointer outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5`}
                   >
-                    {
-                      !newMessage && <option selected>Mintaqani tanlang</option>
-                    }
+                    {!newMessage && <option selected>Mintaqani tanlang</option>}
                     {regions.length > 0 &&
                       regions.map((item, index) => (
                         <option key={index} value={item}>

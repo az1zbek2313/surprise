@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { detailColors, star, detailImages, ProductCardData, PopularCardData } from "../util/contants";
-import { styles } from "../util/style";
+import {
+  detailColors,
+  detailImages,
+  PopularCardData,
+} from "../util/contants";
 import ProductCard from "../components/Products/ProductCard";
 
 function Detail() {
@@ -11,10 +14,8 @@ function Detail() {
 
   return (
     <>
-      <div
-        className={`container px-4 mx-auto font-sans tracking-wide py-4`}
-      >
-        <div className="grid items-start grid-cols-1 lg:grid-cols-6 gap-8">
+      <div className={`container px-4 mx-auto font-sans tracking-wide py-4`}>
+        <div className="grid items-start grid-cols-1 lg:grid-cols-6">
           <div className="lg:col-span-3 text-center">
             <div>
               <img
@@ -28,7 +29,11 @@ function Detail() {
               {detailImages.map((item) => (
                 <div key={item.id} className="w-[24%]">
                   <img
-                    className={`${item.image == mainImage ? "border-[1.6px] border-gray-500" : ""} hover:border-[1.6px] hover:border-gray-500 h-auto max-w-full rounded-lg cursor-pointer transition-all duration-300`}
+                    className={`${
+                      item.image == mainImage
+                        ? "border-[1.6px] border-gray-500"
+                        : ""
+                    } hover:border-[1.6px] hover:border-gray-500 h-auto max-w-full rounded-lg cursor-pointer transition-all duration-300`}
                     src={item.image}
                     onClick={() => {
                       setMainImage(item.image);
@@ -41,191 +46,206 @@ function Detail() {
           </div>
 
           <div className="lg:col-span-3">
-            <div className="flex flex-wrap items-start gap-4">
-              <div>
-                <h2 className="text-2xl font-extrabold text-gray-800">
-                  White Lens Glass
-                </h2>
-
-                <div className="flex space-x-1 mt-2 xs:mt-4 ">
-                  {star.map((item) => (
+            <div className="flex justify-center items-center">
+              <div className="pro-detail w-full max-lg:max-w-[608px] lg:pl-8 xl:pl-16 max-lg:mx-auto max-lg:mt-8">
+                <div className="flex items-center justify-between gap-6 mb-6">
+                  <div className="text">
+                    <h2 className="font-manrope font-bold text-3xl leading-10 text-gray-900 mb-2">
+                      Yellow Summer Travel Bag
+                    </h2>
+                  </div>
+                  <button className="group transition-all duration-500 p-0.5">
                     <svg
-                      key={item}
-                      className={`w-5 ${
-                        item == 5 ? "fill-[#CED5D8]" : "fill-orange-400"
-                      }`}
-                      viewBox="0 0 14 13"
+                      width="60"
+                      height="60"
+                      viewBox="0 0 60 60"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+                      <circle
+                        className="fill-primary-50 transition-all duration-500 group-hover:fill-primary-100"
+                        cx="30"
+                        cy="30"
+                        r="30"
+                        fill=""
+                      />
+                      <path
+                        className="stroke-primary-600 transition-all duration-500 group-hover:stroke-primary-700"
+                        d="M21.4709 31.3196L30.0282 39.7501L38.96 30.9506M30.0035 22.0789C32.4787 19.6404 36.5008 19.6404 38.976 22.0789C41.4512 24.5254 41.4512 28.4799 38.9842 30.9265M29.9956 22.0789C27.5205 19.6404 23.4983 19.6404 21.0231 22.0789C18.548 24.5174 18.548 28.4799 21.0231 30.9184M21.0231 30.9184L21.0441 30.939M21.0231 30.9184L21.4628 31.3115"
+                        stroke=""
+                        stroke-width="1.6"
+                        stroke-miterlimit="10"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
                     </svg>
+                  </button>
+                </div>
+
+                <div className="flex flex-col min-[400px]:flex-row min-[400px]:items-center mb-8 gap-y-3">
+                  <div className="flex items-center">
+                    <h5 className="font-manrope font-semibold text-2xl leading-9 text-gray-900 ">
+                      $ 199.00{" "}
+                    </h5>
+                    <span className="ml-3 font-semibold text-lg text-primary-600">
+                      30% off
+                    </span>
+                  </div>
+                  <svg
+                    className="mx-5 max-[400px]:hidden"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="2"
+                    height="36"
+                    viewBox="0 0 2 36"
+                    fill="none"
+                  >
+                    <path d="M1 0V36" stroke="#E5E7EB" />
+                  </svg>
+                  <button className="flex items-center gap-1 rounded-lg bg-amber-400 py-1.5 px-2.5 w-max">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clip-path="url(#clip0_12657_16865)">
+                        <path
+                          d="M8.10326 2.26718C8.47008 1.52393 9.52992 1.52394 9.89674 2.26718L11.4124 5.33818C11.558 5.63332 11.8396 5.83789 12.1653 5.88522L15.5543 6.37768C16.3746 6.49686 16.7021 7.50483 16.1086 8.08337L13.6562 10.4738C13.4205 10.7035 13.313 11.0345 13.3686 11.3589L13.9475 14.7343C14.0877 15.5512 13.2302 16.1742 12.4966 15.7885L9.46534 14.1948C9.17402 14.0417 8.82598 14.0417 8.53466 14.1948L5.5034 15.7885C4.76978 16.1742 3.91235 15.5512 4.05246 14.7343L4.63137 11.3589C4.68701 11.0345 4.57946 10.7035 4.34378 10.4738L1.89144 8.08337C1.29792 7.50483 1.62543 6.49686 2.44565 6.37768L5.8347 5.88522C6.16041 5.83789 6.44197 5.63332 6.58764 5.33818L8.10326 2.26718Z"
+                          fill="white"
+                        />
+                        <g clip-path="url(#clip1_12657_16865)">
+                          <path
+                            d="M8.10326 2.26718C8.47008 1.52393 9.52992 1.52394 9.89674 2.26718L11.4124 5.33818C11.558 5.63332 11.8396 5.83789 12.1653 5.88522L15.5543 6.37768C16.3746 6.49686 16.7021 7.50483 16.1086 8.08337L13.6562 10.4738C13.4205 10.7035 13.313 11.0345 13.3686 11.3589L13.9475 14.7343C14.0877 15.5512 13.2302 16.1742 12.4966 15.7885L9.46534 14.1948C9.17402 14.0417 8.82598 14.0417 8.53466 14.1948L5.5034 15.7885C4.76978 16.1742 3.91235 15.5512 4.05246 14.7343L4.63137 11.3589C4.68701 11.0345 4.57946 10.7035 4.34378 10.4738L1.89144 8.08337C1.29792 7.50483 1.62543 6.49686 2.44565 6.37768L5.8347 5.88522C6.16041 5.83789 6.44197 5.63332 6.58764 5.33818L8.10326 2.26718Z"
+                            fill="white"
+                          />
+                        </g>
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_12657_16865">
+                          <rect width="18" height="18" fill="white" />
+                        </clipPath>
+                        <clipPath id="clip1_12657_16865">
+                          <rect width="18" height="18" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                    <span className="text-base font-medium text-white">
+                      4.8
+                    </span>
+                  </button>
+                </div>
+                <p className="font-medium text-lg text-gray-900 mb-2">Color</p>
+                <div className="grid grid-cols-3 gap-3 mb-6 max-w-sm">
+                  {detailColors.map((item) => (
+                    <div key={item.id} className="color-box group">
+                      <div>
+                        <img
+                          src={item.image}
+                          onClick={() => {setDefaultColor(item.id)}}
+                          alt="Summer Travel Bag image"
+                          className={`${item.class} ${defaultColor == item.id && item.active}`}
+                        />
+                        <p className="font-normal text-sm leading-6 text-gray-400 text-center mt-2 group-hover:text-primary-600 ">
+                          {item.title}
+                        </p>
+                      </div>
+                    </div>
                   ))}
                 </div>
-              </div>
-
-              <div className="ml-auto flex flex-wrap gap-4">
-                <button
-                  type="button"
-                  className="px-2.5 py-1.5 bg-pink-100 text-xs text-pink-600 rounded flex items-center"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12px"
-                    fill="currentColor"
-                    className="mr-1"
-                    viewBox="0 0 64 64"
-                  >
-                    <path
-                      d="M45.5 4A18.53 18.53 0 0 0 32 9.86 18.5 18.5 0 0 0 0 22.5C0 40.92 29.71 59 31 59.71a2 2 0 0 0 2.06 0C34.29 59 64 40.92 64 22.5A18.52 18.52 0 0 0 45.5 4ZM32 55.64C26.83 52.34 4 36.92 4 22.5a14.5 14.5 0 0 1 26.36-8.33 2 2 0 0 0 3.27 0A14.5 14.5 0 0 1 60 22.5c0 14.41-22.83 29.83-28 33.14Z"
-                      data-original="#000000"
-                    ></path>
-                  </svg>
-                  100
-                </button>
-                <button
-                  type="button"
-                  className="px-2.5 py-1.5 bg-gray-100 text-xs text-gray-800 rounded flex items-center"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12px"
-                    fill="currentColor"
-                    viewBox="0 0 512 512"
-                  >
-                    <path
-                      d="M453.332 85.332c0 38.293-31.039 69.336-69.332 69.336s-69.332-31.043-69.332-69.336C314.668 47.043 345.707 16 384 16s69.332 31.043 69.332 69.332zm0 0"
-                      data-original="#000000"
+                <div className="flex items-center flex-col min-[400px]:flex-row gap-3 mb-3 min-[400px]:mb-8">
+                  <div className=" flex items-center justify-center border border-gray-400 rounded-full">
+                    <button className="group py-[14px] px-3 w-full border-r border-gray-400 rounded-l-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300">
+                      <svg
+                        className="stroke-black group-hover:stroke-black"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 22 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M16.5 11H5.5"
+                          stroke=""
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                        />
+                        <path
+                          d="M16.5 11H5.5"
+                          stroke=""
+                          stroke-opacity="0.2"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                        />
+                        <path
+                          d="M16.5 11H5.5"
+                          stroke=""
+                          stroke-opacity="0.2"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </button>
+                    <input
+                      type="text"
+                      className="font-semibold text-gray-900 text-lg py-3 px-2 w-full min-[400px]:min-w-[75px] h-full bg-transparent placeholder:text-gray-900 text-center hover:text-primary-600 outline-0 hover:placeholder:text-primary-600"
+                      placeholder="1"
                     />
-                    <path
-                      d="M384 170.668c-47.063 0-85.332-38.273-85.332-85.336C298.668 38.273 336.938 0 384 0s85.332 38.273 85.332 85.332c0 47.063-38.27 85.336-85.332 85.336zM384 32c-29.418 0-53.332 23.938-53.332 53.332 0 29.398 23.914 53.336 53.332 53.336s53.332-23.938 53.332-53.336C437.332 55.938 413.418 32 384 32zm69.332 394.668C453.332 464.957 422.293 496 384 496s-69.332-31.043-69.332-69.332c0-38.293 31.039-69.336 69.332-69.336s69.332 31.043 69.332 69.336zm0 0"
-                      data-original="#000000"
-                    />
-                    <path
-                      d="M384 512c-47.063 0-85.332-38.273-85.332-85.332 0-47.063 38.27-85.336 85.332-85.336s85.332 38.273 85.332 85.336c0 47.059-38.27 85.332-85.332 85.332zm0-138.668c-29.418 0-53.332 23.938-53.332 53.336C330.668 456.063 354.582 480 384 480s53.332-23.938 53.332-53.332c0-29.398-23.914-53.336-53.332-53.336zM154.668 256c0 38.293-31.043 69.332-69.336 69.332C47.043 325.332 16 294.293 16 256s31.043-69.332 69.332-69.332c38.293 0 69.336 31.039 69.336 69.332zm0 0"
-                      data-original="#000000"
-                    />
-                    <path
-                      d="M85.332 341.332C38.273 341.332 0 303.062 0 256s38.273-85.332 85.332-85.332c47.063 0 85.336 38.27 85.336 85.332s-38.273 85.332-85.336 85.332zm0-138.664C55.914 202.668 32 226.602 32 256s23.914 53.332 53.332 53.332c29.422 0 53.336-23.934 53.336-53.332s-23.914-53.332-53.336-53.332zm0 0"
-                      data-original="#000000"
-                    />
-                    <path
-                      d="M135.703 245.762c-7.426 0-14.637-3.864-18.562-10.774-5.825-10.218-2.239-23.254 7.98-29.101l197.95-112.852c10.218-5.867 23.253-2.281 29.1 7.977 5.825 10.218 2.24 23.254-7.98 29.101L146.238 242.965a21.195 21.195 0 0 1-10.535 2.797zm197.93 176c-3.586 0-7.211-.899-10.54-2.797L125.142 306.113c-10.22-5.824-13.801-18.86-7.977-29.101 5.8-10.239 18.856-13.844 29.098-7.977l197.953 112.852c10.219 5.824 13.8 18.86 7.976 29.101-3.945 6.91-11.156 10.774-18.558 10.774zm0 0"
-                      data-original="#000000"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            <hr className="my-4" />
-
-            <div>
-              <h3 className="text-xl font-bold text-gray-700">Price</h3>
-              <p className="text-gray-700 text-2xl md:text-3xl font-bold flex items-center gap-3 mt-2 xs:mt-4 ">
-                <span className="line-through text-2xl text-gray-300">
-                  $140
-                </span>
-                <div className="flex items-center gap-1">
-                  <span>$130</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="28"
-                    height="28"
-                    fill="currentColor"
-                    color="green"
-                    className="bi bi-check2-all"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0" />
-                    <path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708" />
-                  </svg>
+                    <button className="group py-[14px] px-3 w-full border-l border-gray-400 rounded-r-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300">
+                      <svg
+                        className="stroke-black group-hover:stroke-black"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 22 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M11 5.5V16.5M16.5 11H5.5"
+                          stroke="#9CA3AF"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                        />
+                        <path
+                          d="M11 5.5V16.5M16.5 11H5.5"
+                          stroke="black"
+                          stroke-opacity="0.2"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                        />
+                        <path
+                          d="M11 5.5V16.5M16.5 11H5.5"
+                          stroke="black"
+                          stroke-opacity="0.2"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <button className="group py-3 px-5 rounded-full bg-primary-50 text-primary-600 font-semibold text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-primary-300 hover:bg-primary-100">
+                    <svg
+                      className="stroke-primary-600 transition-all duration-500 group-hover:stroke-primary-600"
+                      width="22"
+                      height="22"
+                      viewBox="0 0 22 22"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M10.7394 17.875C10.7394 18.6344 10.1062 19.25 9.32511 19.25C8.54402 19.25 7.91083 18.6344 7.91083 17.875M16.3965 17.875C16.3965 18.6344 15.7633 19.25 14.9823 19.25C14.2012 19.25 13.568 18.6344 13.568 17.875M4.1394 5.5L5.46568 12.5908C5.73339 14.0221 5.86724 14.7377 6.37649 15.1605C6.88573 15.5833 7.61377 15.5833 9.06984 15.5833H15.2379C16.6941 15.5833 17.4222 15.5833 17.9314 15.1605C18.4407 14.7376 18.5745 14.0219 18.8421 12.5906L19.3564 9.84059C19.7324 7.82973 19.9203 6.8243 19.3705 6.16215C18.8207 5.5 17.7979 5.5 15.7522 5.5H4.1394ZM4.1394 5.5L3.66797 2.75"
+                        stroke=""
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                    Add to cart
+                  </button>
                 </div>
-              </p>
-            </div>
-
-            <hr className="my-4" />
-
-            <div>
-              <h3 className="text-xl font-bold text-gray-800">
-                Choose a Color
-              </h3>
-              <div className="flex flex-wrap gap-2 mt-4">
-                {detailColors.map((item) => (
-                  <button
-                    type="button"
-                    key={item.id}
-                    onClick={() => {
-                      setDefaultColor(item.id);
-                    }}
-                    className={`${item.class} ${
-                      defaultColor == item.id ? "border-primary-700" : ""
-                    }`}
-                  ></button>
-                ))}
-              </div>
-            </div>
-
-            <hr className="my-4" />
-
-            <div>
-              <h3 className="text-xl font-bold text-gray-800">Quantity</h3>
-
-              <div className="flex divide-x border w-max mt-4 rounded overflow-hidden">
-                <button
-                  type="button"
-                  className="bg-gray-100 w-12 h-10 font-semibold"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-3 fill-current inline"
-                    viewBox="0 0 124 124"
-                  >
-                    <path
-                      d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z"
-                      data-original="#000000"
-                    ></path>
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  className="bg-transparent w-12 h-10 font-semibold text-gray-800 text-lg"
-                >
-                  1
-                </button>
-                <button
-                  type="button"
-                  className="bg-gray-800 text-white w-12 h-10 font-semibold"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-3 fill-current inline"
-                    viewBox="0 0 42 42"
-                  >
-                    <path
-                      d="M37.059 16H26V4.941C26 2.224 23.718 0 21 0s-5 2.224-5 4.941V16H4.941C2.224 16 0 18.282 0 21s2.224 5 4.941 5H16v11.059C16 39.776 18.282 42 21 42s5-2.224 5-4.941V26h11.059C39.776 26 42 23.718 42 21s-2.224-5-4.941-5z"
-                      data-original="#000000"
-                    ></path>
-                  </svg>
+                <button className="text-center w-full px-5 py-4 rounded-[100px] bg-primary-600 flex items-center justify-center font-semibold text-lg text-white shadow-sm shadow-transparent transition-all duration-500 hover:bg-primary-700 hover:shadow-primary-300">
+                  Buy Now
                 </button>
               </div>
-            </div>
-
-            <hr className="my-6" />
-
-            <div className="flex flex-wrap gap-4">
-              <button
-                type="button"
-                className="min-w-[200px] px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white text-xs xs:text-sm font-semibold rounded"
-              >
-                Buy now
-              </button>
-              <button
-                type="button"
-                className="min-w-[200px] px-4 py-2.5 border border-blue-500 bg-transparent hover:bg-gray-50 text-gray-800 text-xs xs:text-sm font-semibold rounded"
-              >
-                Add to cart
-              </button>
             </div>
           </div>
         </div>
@@ -347,7 +367,11 @@ function Detail() {
             className={`flex gap-2 xs:gap-5 md:gap-6 container w-full mx-auto mt-4 overflow-x-scroll overflow-y-hidden pb-4`}
           >
             {PopularCardData.map((item) => (
-              <ProductCard width={"lg:w-[32%] flex-shrink-0 w-full xs:w-[47.5%]"} key={item.id} {...item} />
+              <ProductCard
+                width={"lg:w-[32%] flex-shrink-0 w-full xs:w-[47.5%]"}
+                key={item.id}
+                {...item}
+              />
             ))}
           </div>
         </div>
