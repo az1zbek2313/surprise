@@ -368,7 +368,6 @@ function Detail() {
           >
             {PopularCardData.map((item) => (
               <ProductCard
-                width={"lg:w-[32%] flex-shrink-0 w-full xs:w-[47.5%]"}
                 key={item.id}
                 {...item}
               />

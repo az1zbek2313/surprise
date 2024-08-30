@@ -8,7 +8,7 @@ function Products() {
       <div className={`${styles.flexBetween} gap-6 lg:gap-0 ${styles.container}`}>
       {
       ProductCardData.map(item => (
-        <ProductCard width={"lg:w-[32%]"} key={item.id} {...item}/>
+        <ProductCard heart={item.like} width={"lg:w-[32%]"} key={item.id} {...item}/>
       ))
       }
     </div>

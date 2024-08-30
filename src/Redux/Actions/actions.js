@@ -24,3 +24,23 @@ export function editMyAdress(data) {
     };
   }
   
+export function addedMyFavourites(data) {
+  return {
+      type:actionTypes.DATA_ADDED_MYFAVOURITES,
+      payload:data
+  }
+}
+
+export function deletedMyFavourites(data) {
+  return {
+      type:actionTypes.DATA_REMOVE_MYFAVOURITES,
+      payload:data
+  }
+}
+
+export function changeHeartMyFavourites(data) {
+  return {
+      type:actionTypes.DATA_CHANGEHEART_MYFAVOURITES,
+      payload:data
+  }
+}

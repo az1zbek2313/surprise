@@ -5,12 +5,27 @@ import { uzbFlag, rusFlag, engFlag } from "../../assets";
 import { flagLanguage } from "../../util/contants";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Header() {
   const [accountDropdown, setAccountDropdown] = useState(false);
+  const languageDefault = JSON.parse(localStorage.getItem("lang"));
   const [language, setLanguage] = useState(false);
-  const [flagLang, setflagLang] = useState("uz");
+  const [flagLang, setflagLang] = useState(
+    languageDefault ? languageDefault : "uz"
+  );
+  const { t, i18n } = useTranslation();
+  const changeLang = (value) => {
+    i18n.changeLanguage(value);
+  };
   const navigate = useNavigate();
+  
+  function handleLanguage(id) {
+    changeLang(id);
+    localStorage.setItem("lang", JSON.stringify(id));
+    setLanguage(false);
+    setflagLang(id);
+  }
 
   const toStart = () => {
     window.scrollTo({
@@ -48,7 +63,7 @@ function Header() {
                   className="mb-3 me-2 mt-0 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 lg:mb-2 lg:mt-0"
                   href="#"
                 >
-                  <img src={surpriseLogo} className="h-7" alt="" loading="lazy" />
+                  <img src={surpriseLogo} className="h-10" alt="" loading="lazy" />
                 </a>
               </button>
 
@@ -124,8 +139,7 @@ function Header() {
                             <li
                               key={item.id}
                               onClick={() => {
-                                setflagLang(item.id);
-                                setLanguage(false);
+                                handleLanguage(item.id)
                               }}
                               className="flex items-center gap-2 cursor-pointer w-[104px] bg-gray-100 p-1 hover:bg-gray-200 transition-all duration-200"
                             >

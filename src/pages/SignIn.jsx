@@ -3,7 +3,7 @@ import { surpriseLogo } from "../assets";
 function SignIn() {
 
   return (
-    <section className="bg-gray-50">
+    <section className="bg-gray-50 min-h-screen pt-4">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-full lg:py-0">
         <a
           href="/"

@@ -18,6 +18,7 @@ export const star = [1, 2, 3, 4, 5];
 export const ProductCardData = [
   {
     id: 1,
+    like:false,
     title: "Artisanal Candles",
     about: "Handmade with natural wax",
     price: 2499,
@@ -25,6 +26,7 @@ export const ProductCardData = [
   },
   {
     id: 2,
+    like:false,
     title: "Handmade Pottery",
     about: "Unique ceramic pieces",
     price: 3999,
@@ -32,6 +34,7 @@ export const ProductCardData = [
   },
   {
     id: 3,
+    like:false,
     title: "Artisanal Soaps",
     about: "Handcrafted with natural ingradients",
     price: 1299,
@@ -42,6 +45,7 @@ export const ProductCardData = [
 export const PopularCardData = [
   {
     id: 1,
+    like:false,
     title: "Artisanal Candles",
     about: "Handmade with natural wax",
     price: 2499,
@@ -49,6 +53,7 @@ export const PopularCardData = [
   },
   {
     id: 2,
+    like:false,
     title: "Handmade Pottery",
     about: "Unique ceramic pieces",
     price: 3999,
@@ -56,6 +61,7 @@ export const PopularCardData = [
   },
   {
     id: 3,
+    like:false,
     title: "Artisanal Soaps",
     about: "Handcrafted with natural ingradients",
     price: 1299,
@@ -63,6 +69,7 @@ export const PopularCardData = [
   },
   {
     id: 4,
+    like:false,
     title: "Artisanal Candles",
     about: "Handmade with natural wax",
     price: 2499,

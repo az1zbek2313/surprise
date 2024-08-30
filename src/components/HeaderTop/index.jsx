@@ -1,10 +1,25 @@
+import { useTranslation } from "react-i18next";
 import { flagLanguage } from "../../util/contants";
 import { styles } from "../../util/style";
 import { useState } from "react";
 
 function HeaderTop() {
+  const languageDefault = JSON.parse(localStorage.getItem("lang"));
   const [language, setLanguage] = useState(false);
-  const [flagLang, setflagLang] = useState("uz");
+  const [flagLang, setflagLang] = useState(
+    languageDefault ? languageDefault : "uz"
+  );
+  const { t, i18n } = useTranslation();
+  const changeLang = (value) => {
+    i18n.changeLanguage(value);
+  };
+
+  function handleLanguage(id) {
+    changeLang(id);
+    localStorage.setItem("lang", JSON.stringify(id));
+    setLanguage(false);
+    setflagLang(id);
+  }
 
   return (
     <div className="hidden lg:block bg-[#f0f2f5]">
@@ -29,7 +44,7 @@ function HeaderTop() {
               <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
             </svg>
             <p>
-              <span className="font-ligh text-sm opacity-80">Shahar:</span>
+              <span className="font-ligh text-sm opacity-80">{t("city")}:</span>
               &nbsp;
               <span className="underline text-sm">Tashkent</span>
             </p>
@@ -65,8 +80,7 @@ function HeaderTop() {
                     <li
                       key={item.id}
                       onClick={() => {
-                        setflagLang(item.id);
-                        setLanguage(false);
+                        handleLanguage(item.id);
                       }}
                       className="flex items-center gap-2 cursor-pointer w-[104px] bg-gray-100 p-1 hover:bg-gray-200 transition-all duration-200"
                     >

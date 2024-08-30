@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { ProductCard } from "../components";
-import { ProductCardData } from "../util/contants";
 import { styles } from "../util/style";
 import cartCommit from "../assets/pngwing.com.png";
+import { useSelector } from "react-redux";
 
 function MyFavourites() {
-  const [data, setData] = useState(ProductCardData);
+  const data = useSelector(state => state.myFavourites);
 
   return (
     <>
@@ -23,7 +23,7 @@ function MyFavourites() {
           </div>
         ) : (
           <div className="">
-            <div className={`${styles.flexBetween} gap-6 px-4 lg:gap-4 my-4`}>
+            <div className={`${styles.flexBetween} gap-6 px-4 lg:gap-4  my-4`}>
               {data.map((item) => (
                 <ProductCard width={"lg:w-[48%]"} key={item.id} {...item} />
               ))}
