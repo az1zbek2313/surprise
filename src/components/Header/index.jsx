@@ -1,7 +1,6 @@
 import { HeaderTop } from "../";
 import { styles } from "../../util/style";
 import { surpriseLogo, user } from "../../assets";
-import { uzbFlag, rusFlag, engFlag } from "../../assets";
 import { flagLanguage } from "../../util/contants";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -61,9 +60,9 @@ function Header() {
                 <a
                   onClick={toStart}
                   className="mb-3 me-2 mt-0 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 lg:mb-2 lg:mt-0"
-                  href="#"
+                  href="/"
                 >
-                  <img src={surpriseLogo} className="h-10" alt="" loading="lazy" />
+                  <img src={surpriseLogo} className="h-9 md:h-11" alt="" loading="lazy" />
                 </a>
               </button>
 
@@ -80,7 +79,7 @@ function Header() {
                   href="#"
                 >
                   <img
-                    className="h-9"
+                    className="h-9 md:h-11"
                     src={surpriseLogo}
                     alt=""
                     loading="lazy"
@@ -89,10 +88,10 @@ function Header() {
               </div>
 
               {/* Search Logo */}
-              <div className="hidden md:flex items-center bg-gray-100 rounded-lg h-8 lg:h-10 mb-1 lg:mb-2">
+              <div className="hidden md:flex items-center bg-gray-100 rounded-lg h-9 lg:h-11 mb-1 lg:mb-2">
                 <input
                   type="text"
-                  placeholder="Katalog bo'yicha qidirish"
+                  placeholder={t("searchHeader")}
                   className="h-full pr-0 lg:pr-72 placeholder:text-xs lg:placeholder:text-sm bg-gray-100 rounded-lg px-2 lg:px-4 outline-none text-gray-500"
                 />
                 <div className="bg-red-600 h-full w-12 lg:w-16 flex justify-center items-center rounded-xl cursor-pointer hover:bg-red-600 transition-all duration-200">
@@ -156,7 +155,7 @@ function Header() {
                 <div className="relative">
                   {/* <!-- First dropdown trigger --> */}
                   <a
-                    className="hidden-arrow me-2 ss:me-4 flex items-center text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
+                    className="hidden-arrow me-2 ss:me-4 flex items-center text-black/80 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
                     href="/account/likes"
                     id="dropdownMenuButton1"
                     role="button"
@@ -179,7 +178,7 @@ function Header() {
                 {/* <!-- Cart Icon --> */}
                 <a
                   href="/cart"
-                  className="me-3 ss:me-4 relative text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
+                  className="me-3 ss:me-4 relative text-black/80 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
                 >
                   <span className="[&>svg]:w-5 lg:[&>svg]:w-7">
                     <svg
@@ -269,7 +268,7 @@ function Header() {
                       <li>
                         <a
                           className="flex items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 "
-                          href="/account/commit"
+                          href="/account/notifications"
                           data-twe-dropdown-item-ref
                         >
                           <svg
@@ -290,7 +289,7 @@ function Header() {
                       <li>
                         <a
                           className="flex  items-center gap-2 w-full whitespace-nowrap bg-transparent px-5 py-2 text-sm font-normal text-red-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
-                          href="#"
+                          href="/login"
                           data-twe-dropdown-item-ref
                         >
                           <svg
@@ -339,7 +338,7 @@ function Header() {
           </div>
           <input
             type="search"
-            placeholder="Katalog bo'yicha qidirish"
+            placeholder={t("searchHeader")}
             className="h-full w-full placeholder:text-sm bg-gray-200 rounded-lg px-3 lg:px-4 outline-none text-gray-500"
           />
         </div>

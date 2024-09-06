@@ -15,7 +15,7 @@ function HeroImage() {
   return (
     <div
       id="default-carousel"
-      className={`mt-2 md:mt-3 max-w-[1280px] mx-auto relative w-full`}
+      className={`mt-2 md:mt-3 max-w-[1280px] mx-auto relative w-full xl:px-6`}
       data-carousel="slide"
     >
       {/* <!-- Carousel wrapper --> */}

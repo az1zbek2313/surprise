@@ -1,16 +1,18 @@
 import { useState } from "react";
 import cartCommit from "../assets/pngwing.com.png";
+import { useTranslation } from "react-i18next";
 
 function MyCommit() {
   const [data, setData] = useState([]);
+  const { t } = useTranslation();
 
   return (
     <div
       className={`container min-h-[100vh] mx-auto md:px-0 lg:border-r-[1.6px]`}
     >
       <div className="flex flex-wrap gap-1 xs:gap-0 justify-between items-center px-4 border-b-[1.6px] py-2">
-        <h1 className="text-2xl mx-auto xs:mx-0 font-semibold text-primary-800">
-          Mening sharhlarim
+        <h1 className="text-2xl mx-auto xs:mx-0 font-semibold">
+          {t("mycommit")}
         </h1>
       </div>
 

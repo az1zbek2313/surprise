@@ -1,4 +1,4 @@
-import { LandingPage, AboutUs, Detail, Category, Cart, SignIn, SignUp, MyFavourites, MyData, MyCommit, MyOrders, Location } from "./pages";
+import { LandingPage, AboutUs, Detail, Category, Cart, SignIn, SignUp, MyFavourites, MyData, MyCommit, MyOrders, Location, Notifications } from "./pages";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { SidebarAccount, Layout } from "./components";
@@ -22,6 +22,7 @@ export default function App() {
             <Route path="orders" element={<MyOrders />}></Route>
             <Route path="adress" element={<Location />}></Route>
             <Route path="commit" element={<MyCommit />}></Route>
+            <Route path="notifications" element={<Notifications />}></Route>
           </Route>
         </Route>
       </Routes>

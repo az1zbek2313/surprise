@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { styles } from "../util/style";
+import { useTranslation } from "react-i18next";
 
 function MyData() {
   const [formDisabled, setFormDisabled] = useState(true);
-  
+  const { t } = useTranslation();
+
   return (
     <div
       className={`container mx-auto lg:px-0 lg:border-x-[1.6px] lg:border-l-0 mb-4 lg:mb-0`}
     >
-      <h1 className="px-4 text-2xl font-semibold text-primary-800 border-b-[1.6px] py-2">
-        Ma'lumotlarim
+      <h1 className="px-4 text-2xl font-semibold border-b-[1.6px] py-2">
+        {t("myinformations")}
       </h1>
       <div
         className={`${styles.flexBetween} w-full gap-6 px-4 lg:gap-4 mt-8 min-h-auto`}

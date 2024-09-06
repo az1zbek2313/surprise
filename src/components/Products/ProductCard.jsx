@@ -53,12 +53,12 @@ function ProductCard(data) {
           <p className="opacity-50 font-semibold text-sm">{data.about}</p>
         </div>
         <div className={`${styles.flexBetween}`}>
-          <b className="text-sm">
+          <b className="text-lg">
             ${Math.trunc(data.price / 100) + "," + Math.trunc(data.price % 100)}
           </b>
           <a
             href="#"
-            className={`${styles.button} block bg-red-600 hover:bg-red-500 p-2 text-sm`}
+            className={`${styles.button} block bg-red-600 hover:bg-red-500 p-2 text-base`}
           >
             Add to Cart
           </a>

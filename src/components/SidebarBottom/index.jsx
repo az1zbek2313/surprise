@@ -7,7 +7,8 @@ function SidebarBottom() {
   (pathname == '/account/likes') && 2 ||                    
   (pathname == '/account/orders') && 3 ||                    
   (pathname == '/account/adress') && 4 ||                    
-  (pathname == '/account/commit') && 5 
+  (pathname == '/account/commit') && 5 ||
+  (pathname == '/account/notifications') && 6
 
   return (
     <>

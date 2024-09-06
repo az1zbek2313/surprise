@@ -3,6 +3,7 @@ import geo from "../assets/geo.svg";
 import { LocationModal } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { deletedMyAdress } from "../Redux/Actions/actions";
+import { useTranslation } from "react-i18next";
 
 function Location() {
   const [dropdown, setDropdown] = useState(false);
@@ -10,6 +11,7 @@ function Location() {
   const [newMessage, setNewMessage] = useState(0);
   const dispatch = useDispatch();
   const data = useSelector((state) => state.myAdress);
+  const { t } = useTranslation();
 
   function handleDelete(item) {
     const deleted = confirm("Rostdan ham o'chirmoqchimisiz?");
@@ -28,8 +30,8 @@ function Location() {
         className={`container min-h-[100vh] mx-auto md:px-0 lg:border-r-[1.6px]`}
       >
         <div className="flex flex-wrap gap-1 xs:gap-0 justify-between items-center px-4 border-b-[1.6px] py-2">
-          <h1 className="text-2xl mx-auto xs:mx-0 font-semibold text-primary-800">
-            Manzillar
+          <h1 className="text-2xl mx-auto xs:mx-0 font-semibold">
+            {t("locations")}
           </h1>
           <div className="relative mx-auto xs:mx-0">
             <button

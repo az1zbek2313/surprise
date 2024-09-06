@@ -1,19 +1,21 @@
 import { useState } from "react";
 import { OrdersDropdown } from "../util/contants";
 import searchBox from "../assets/search-box.svg";
+import { useTranslation } from "react-i18next";
 
 function MyOrders() {
   const [dropdown, setDropdown] = useState(false);
   const [checkDropdown, setCheckDropdown] = useState("Barcha buyurtmalar");
   const [data, setData] = useState([]);
+  const { t } = useTranslation();
 
   return (
     <div
       className={`container min-h-[100vh] mx-auto md:px-0 lg:border-r-[1.6px]`}
     >
       <div className="flex flex-wrap gap-1 xs:gap-0 justify-between items-center px-4 border-b-[1.6px] py-2">
-        <h1 className="text-2xl mx-auto xs:mx-0 font-semibold text-primary-800">
-          Buyurtmalarim
+        <h1 className="text-2xl mx-auto xs:mx-0 font-semibold">
+        {t("allorders")}
         </h1>
         <div className="relative mx-auto xs:mx-0">
           <button

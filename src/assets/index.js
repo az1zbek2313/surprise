@@ -14,8 +14,10 @@ import chat from "./chat.svg";
 import heart from "./likes.svg";
 import geo from "./geo.svg";
 import bag from "./bag.svg";
+import notification from "./bell.svg"
 
 export {
+  notification,
   chat,
   geo,
   bag,

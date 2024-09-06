@@ -44,3 +44,22 @@ export function changeHeartMyFavourites(data) {
       payload:data
   }
 }
+
+export function decrement() {
+  return {
+      type:actionTypes.DECREMENT,
+  }
+}
+
+export function incerement() {
+  return {
+      type:actionTypes.INCEREMENT,
+  }
+}
+
+export function inputAmount(data) {
+  return {
+      type:actionTypes.INPUTAMOUNT,
+      payload:data
+  }
+}

@@ -1,11 +1,15 @@
+import { useDispatch, useSelector } from "react-redux";
 import { ProductCard } from "../components";
 import { ProductCardData, shoppingCart } from "../util/contants";
 
 function Cart() {
+  const counter = useSelector(state => state.countChange);
+  const dispatch = useDispatch();
+
   return (
-    <section className="bg-white pb-8 antialiased pt-4">
+    <section className="bg-white pb-8 antialiased">
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
-      <h1 className="text-2xl font-semibold text-primary-800  border-b-[1px] border-gray-500/65 py-2">Shopping Cart</h1>
+      <h1 className="text-3xl font-semibold text-center  border-b-[1px] border-gray-500/65 py-2 pb-4">Shopping Cart</h1>
 
         <div className="mt-6 md:gap-6 lg:flex lg:items-start xl:gap-8">
           <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
@@ -52,10 +56,9 @@ function Cart() {
                       <input
                         type="text"
                         id="counter-input"
-                        data-input-counter
                         className="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 "
                         placeholder=""
-                        value={item.count}
+                        defaultValue={item.count}
                         required
                       />
                       <button

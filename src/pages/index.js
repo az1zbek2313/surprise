@@ -10,5 +10,6 @@ import MyData from "./MyData";
 import MyCommit from "./MyCommit";
 import MyOrders from "./MyOrders";
 import Location from "./Location";
+import Notifications from "./Notifications";
 
-export { LandingPage, AboutUs, Detail, Category, Cart, SignIn, SignUp, MyFavourites, MyData, MyCommit, MyOrders, Location };
+export { LandingPage, AboutUs, Detail, Category, Cart, SignIn, SignUp, MyFavourites, MyData, MyCommit, MyOrders, Location, Notifications };
