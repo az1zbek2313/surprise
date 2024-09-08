@@ -1,5 +1,5 @@
 import { Autoplay, Pagination } from "swiper/modules";
-import { heroImages } from "../../util/contants";
+import { heroImages, heroImagesMobile } from "../../util/contants";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useRef } from "react";
 
@@ -11,6 +11,7 @@ import "./style.css";
 
 function HeroImage() {
   const swiperRef = useRef(null);
+  const width = window.screen.availWidth;
 
   return (
     <div
@@ -19,7 +20,7 @@ function HeroImage() {
       data-carousel="slide"
     >
       {/* <!-- Carousel wrapper --> */}
-      <div className="relative overflow-hidden h-[200px] sm:h-[220px] w-full md:h-[280px]">
+      <div className="relative overflow-hidden h-[200px] sm:h-[220px] w-full md:h-[280px] shadow-lg cursor-pointer">
         <Swiper
           ref={swiperRef}
           spaceBetween={30}
@@ -35,15 +36,28 @@ function HeroImage() {
           modules={[Autoplay, Pagination]}
           className="mySwiper"
         >
-          {heroImages.map((item) => (
-            <SwiperSlide key={item.id}>
-              <img
-                src={item.image}
-                className={`absolute xs:scale-100 object-cover block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2`}
-                alt="..."
-              />
-            </SwiperSlide>
-          ))}
+          {
+            width > 640 ? 
+            heroImages.map((item) => (
+              <SwiperSlide key={item.id}>
+                <img
+                  src={item.image}
+                  className={`absolute xs:scale-100 object-cover block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2`}
+                  alt="..."
+                />
+              </SwiperSlide>
+            )) :
+            heroImagesMobile.map((item) => (
+              <SwiperSlide key={item.id}>
+                <img
+                  src={item.image}
+                  className={`absolute xs:scale-100 object-cover block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2`}
+                  alt="..."
+                />
+              </SwiperSlide>
+            ))
+          }
+          
         </Swiper>
       </div>
 
@@ -63,9 +77,9 @@ function HeroImage() {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M5 1 1 5l4 4"
             />
           </svg>
@@ -88,9 +102,9 @@ function HeroImage() {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m1 9 4-4-4-4"
             />
           </svg>

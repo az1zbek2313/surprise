@@ -8,7 +8,7 @@ function ShopCategory() {
   return (
     <div>
       <div
-        className={`${styles.flexBetween} ${styles.container} w-full mx-auto gap-6 md:gap-0`}
+        className={`${styles.flexBetween} ${styles.container} w-full mx-auto gap-6 md:gap-4 lg:gap-0`}
       >
         {CategoryCardData.map((item) => (
           <div
@@ -18,7 +18,7 @@ function ShopCategory() {
             key={item.id}
             className={`relative flex transition-all duration-700 hover:scale-[1.03]  cursor-pointer ${
               item.id % 2 == 0 ? "mx-auto" : "mx-auto sm:mx-0"
-            } md:inline-block md:w-[24%]`}
+            } lg:inline-block sm:w-[48%] lg:w-[24%]`}
           >
             <img
               src={item.image}

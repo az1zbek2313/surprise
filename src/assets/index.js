@@ -15,6 +15,9 @@ import heart from "./likes.svg";
 import geo from "./geo.svg";
 import bag from "./bag.svg";
 import notification from "./bell.svg"
+import carouselMobile1 from "./carousel-1-mobile.jpg"
+import carouselMobile2 from "./carousel-2-mobile.jpg"
+import carouselMobile3 from "./carousel-3-mobile.jpg"
 
 export {
   notification,
@@ -34,4 +37,7 @@ export {
   carousel2,
   carousel3,
   butsa,
+  carouselMobile1,
+  carouselMobile2,
+  carouselMobile3,
 };

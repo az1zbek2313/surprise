@@ -11,7 +11,10 @@ import {
   geo,
   heart,
   bag,
-  notification
+  notification,
+  carouselMobile1,
+  carouselMobile2,
+  carouselMobile3
 } from "../assets";
 
 export const star = [1, 2, 3, 4, 5];
@@ -330,6 +333,29 @@ export const clients = [
     title: "Project",
     description:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia inventore a sed, quos",
+  },
+];
+
+export const heroImagesMobile = [
+  {
+    id: 1,
+    image: carouselMobile1,
+  },
+  {
+    id: 2,
+    image: carouselMobile2,
+  },
+  {
+    id: 3,
+    image: carouselMobile3,
+  },
+  {
+    id: 4,
+    image: carousel1,
+  },
+  {
+    id: 5,
+    image: carousel2,
   },
 ];
 

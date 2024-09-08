@@ -28,6 +28,11 @@ function ProductCard(data) {
   return (
     <div
       onClick={() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+    
         navigate("/detail");
       }}
       id="productCard"
@@ -53,7 +58,7 @@ function ProductCard(data) {
           <p className="opacity-50 font-semibold text-sm">{data.about}</p>
         </div>
         <div className={`${styles.flexBetween}`}>
-          <b className="text-lg">
+          <b className="text-[24px] font-semibold opacity-80">
             ${Math.trunc(data.price / 100) + "," + Math.trunc(data.price % 100)}
           </b>
           <a

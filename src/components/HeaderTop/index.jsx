@@ -27,7 +27,7 @@ function HeaderTop() {
         className={`${styles.container} py-[2px] flex items-center justify-between my-0 md:!my-0`}
       >
         <div className="">
-          <a
+          <a  
             href="https://www.google.com/maps/@41.2827379,69.114552,11z?entry=ttu"
             target="_blank"
             className="flex items-center gap-2 w-fit"
@@ -50,7 +50,7 @@ function HeaderTop() {
             </p>
           </a>
         </div>
-        <div className="relative">
+        <div className="relative right-4 md:right-6">
           <div
             onClick={() => {
               setLanguage(!language);
