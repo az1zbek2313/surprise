@@ -20,7 +20,7 @@ function HeroImage() {
       data-carousel="slide"
     >
       {/* <!-- Carousel wrapper --> */}
-      <div className="relative overflow-hidden h-[200px] sm:h-[220px] w-full md:h-[280px] shadow-lg cursor-pointer">
+      <div className="relative overflow-hidden my-4 h-[200px] sm:h-[220px] w-full md:h-[280px] shadow-lg shadow-black/40 cursor-pointer">
         <Swiper
           ref={swiperRef}
           spaceBetween={30}
