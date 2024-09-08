@@ -10,9 +10,33 @@ function MyData() {
     <div
       className={`container mx-auto lg:px-0 lg:border-x-[1.6px] lg:border-l-0 mb-4 lg:mb-0`}
     >
-      <h1 className="px-4 text-2xl font-semibold border-b-[1.6px] py-2">
-        {t("myinformations")}
-      </h1>
+      <div className="flex justify-between items-center px-4 border-b-[1.6px] py-2">
+        <h1 className="text-2xl font-semibold">{t("myinformations")}</h1>
+        <div className="flex gap-4 items-center justify-end">
+              <button
+                type="submit"
+                onClick={() => {
+                  setFormDisabled(false);
+                }}
+                className=" text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base p-3 text-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  className="bi bi-pencil-square"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                  <path
+                    fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
+                  />
+                </svg>
+              </button>
+            </div>
+      </div>
       <div
         className={`${styles.flexBetween} w-full gap-6 px-4 lg:gap-4 mt-8 min-h-auto`}
       >
@@ -140,26 +164,22 @@ function MyData() {
             </div>
           </div>
 
-          {formDisabled ? (
-            <button
-              type="submit"
-              onClick={() => {setFormDisabled(false)}}
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-1/4 px-5 py-2.5 text-center"
-            >
-              Tahrirlash
-            </button>
-          ) : (
-            <div className="flex gap-4 items-center">
+          {!formDisabled && (
+            <div className="flex gap-4 items-center justify-end">
               <button
                 type="submit"
-                onClick={() => {setFormDisabled(true)}}
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-1/4 px-5 py-2.5 text-center"
+                onClick={() => {
+                  setFormDisabled(true);
+                }}
+                className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-1/4 px-5 py-2.5 text-center"
               >
                 Saqlash
               </button>
               <button
                 type="submit"
-                onClick={() => {setFormDisabled(true)}}
+                onClick={() => {
+                  setFormDisabled(true);
+                }}
                 className="text-black bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-1/4 px-5 py-2.5 text-center"
               >
                 Bekor qilish
