@@ -18,8 +18,12 @@ import notification from "./bell.svg"
 import carouselMobile1 from "./carousel-1-mobile.jpg"
 import carouselMobile2 from "./carousel-2-mobile.jpg"
 import carouselMobile3 from "./carousel-3-mobile.jpg"
+import signIn from "./signIn.svg";
+import signUp from "./signUp.svg";
 
 export {
+  signIn,
+  signUp,
   notification,
   chat,
   geo,

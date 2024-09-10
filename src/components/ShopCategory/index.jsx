@@ -18,7 +18,7 @@ function ShopCategory() {
             key={item.id}
             className={`relative flex transition-all duration-700 hover:scale-[1.03]  cursor-pointer ${
               item.id % 2 == 0 ? "mx-auto" : "mx-auto sm:mx-0"
-            } lg:inline-block sm:w-[48%] lg:w-[24%]`}
+            } lg:inline-block w-full ss:w-[80%] sm:w-[48%] lg:w-[24%]`}
           >
             <img
               src={item.image}

@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import "./style.css";
 import { styles } from "../../util/style";
+import { Toaster, toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addedMyFavourites,
@@ -16,11 +18,13 @@ function ProductCard(data) {
 
   function handleSave(e) {
     e.stopPropagation();
+    toast.success("Yoqtirgan Mahsulotlaringizga saqlandi");
     dispatch(addedMyFavourites(data));
     dispatch(changeHeartMyFavourites(data));
   }
   function handleRemove(e) {
     e.stopPropagation();
+    toast.error("Yoqtirgan Mahsulotlaringizdan o'chirildi");
     dispatch(deletedMyFavourites(data.id));
     dispatch(changeHeartMyFavourites(data));
   }
@@ -30,17 +34,31 @@ function ProductCard(data) {
       onClick={() => {
         window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: "smooth",
         });
-    
+
         navigate("/detail");
       }}
       id="productCard"
-      className={`card relative cursor-pointer shadow-lg rounded  md:w-[47.5%] md:mx-0 mx-auto ${
-        location == "/account/likes" ? "lg:w-[48%]" : location == "/detail" ? "lg:w-[32%] flex-shrink-0 w-full xs:w-[47.5%]" : "lg:w-[32%]"
+      className={`card relative cursor-pointer shadow-lg rounded h-full  w-[49%] ss:w-[48%] mb-2 md:mx-0 mx-auto ${
+        location == "/account/likes"
+          ? "lg:w-[48%]"
+          : location == "/detail"
+          ? location == "/category"
+            ? "xl:w-[32%] md:w-[48%]"
+            : "lg:w-[32%] flex-shrink-0 w-full xs:w-[47.5%]"
+          : "lg:w-[32%]"
       } transition-all duration-500 hover:scale-[1.03]`}
     >
-      <div className="relative flex h-[240px] rounded w-full object-cover flex-col justify-center overflow-hidden bg-gray-50">
+      <Toaster
+        toastOptions={{
+          classNames: {
+            error: "bg-red-400 text-white",
+            success: "text-green-400"
+          },
+        }}
+      />
+      <div className="relative flex h-[160px] sm:h-[240px] rounded w-full object-cover flex-col justify-center overflow-hidden bg-gray-50">
         <div className="absolute inset-0 bg-center"></div>
         <div className="group relative m-0 flex h-72 w-full rounded shadow-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg">
           <div className="z-10 h-full w-full overflow-hidden rounded border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100">
@@ -54,16 +72,16 @@ function ProductCard(data) {
       </div>
       <div className="flex flex-col gap-2 sm:p-4 p-3 w-full">
         <div className="mb-2 md:mb-4 leading-6">
-          <h2 className="font-bold text-base">{data.title}</h2>
-          <p className="opacity-50 font-semibold text-sm">{data.about}</p>
+          <h2 className="font-bold title text-sm sm:text-base">{data.title}</h2>
+          <p className="opacity-50 text font-semibold text-sm">{data.about}</p>
         </div>
         <div className={`${styles.flexBetween}`}>
-          <b className="text-[24px] font-semibold opacity-80">
+          <b className="text-[20px] sm:text-[24px] font-semibold opacity-80">
             ${Math.trunc(data.price / 100) + "," + Math.trunc(data.price % 100)}
           </b>
           <a
             href="#"
-            className={`${styles.button} block bg-red-600 hover:bg-red-500 p-2 text-base`}
+            className={`${styles.button} block bg-red-600 w-full text-center sm:text-start sm:w-fit mt-2 sm:mt-0 hover:bg-red-500 text-sm sm:text-base`}
           >
             Add to Cart
           </a>
@@ -72,7 +90,7 @@ function ProductCard(data) {
 
       {/* Like Save */}
       {!someLike ? (
-        <span className="absolute top-3 right-3 [&>svg]:w-6 z-50">
+        <span className="absolute top-3 right-3 w-5 sm:[&>svg]:w-6 z-50">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             color="white"
@@ -85,7 +103,7 @@ function ProductCard(data) {
           </svg>
         </span>
       ) : (
-        <span className="absolute top-3 right-3 [&>svg]:w-6 z-50">
+        <span className="absolute top-3 right-3 w-5 sm:[&>svg]:w-6 z-50">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"

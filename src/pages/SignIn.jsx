@@ -1,13 +1,19 @@
-import { surpriseLogo } from "../assets";
+import { useNavigate } from "react-router-dom";
+import { surpriseLogo, signIn } from "../assets";
 
 function SignIn() {
+const navigate = useNavigate();
 
   return (
-    <section className="bg-gray-50 min-h-screen pt-4">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-full lg:py-0">
+    <section className="flex flex-col md:flex-row w-full flex-wrap h-full min-h-screen pb-4 md:pb-0">
+      <div className="bg-primary-700 w-full md:w-[50%] flex justify-center items-center py-8 sm:py-0">
+        <img src={signIn} alt="sign in" className="w-[80%] xs:w-[50%] md:w-[80%]"/>
+      </div>
+      <div className="w-full md:w-[50%] flex justify-center items-center bg-white pt-2 md:pt-[5%]">
+        <div className="w-full">
         <a
           href="/"
-          className="flex items-center mb-6 text-2xl font-semibold text-gray-900"
+          className="flex items-center justify-center text-2xl font-semibold text-gray-900"
         >
           <img
             className="h-10 mr-2"
@@ -15,31 +21,27 @@ function SignIn() {
             alt="logo"
           />
         </a>
-        <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-              Sign in to your account
-            </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+          <div className=" md:space-y-6 md:p-12 mt-6 md:mt-0">
+            <form className="space-y-4 md:space-y-6 w-[80%] xs:w-[68%] sm:w-[56%] md:w-full lg:w-[80%] mx-auto" action="#">
               <div>
                 <label
-                  for="email"
+                  htmlFor="number"
                   className="block mb-2 text-sm font-medium text-gray-900"
                 >
-                  Your email
+                  Phone Number
                 </label>
                 <input
-                  type="email"
-                  name="email"
-                  id="email"
+                  type="text"
+                  name="number"
+                  id="number"
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  placeholder="name@company.com"
+                  placeholder="+998 88 969-23-13"
                   required=""
                 />
               </div>
               <div>
                 <label
-                  for="password"
+                  htmlFor="password"
                   className="block mb-2 text-sm font-medium text-gray-900"
                 >
                   Password
@@ -53,7 +55,7 @@ function SignIn() {
                   required=""
                 />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center flex-wrap justify-between">
                 <div className="flex items-start">
                   <div className="flex items-center h-5">
                     <input
@@ -66,7 +68,7 @@ function SignIn() {
                   </div>
                   <div className="ml-3 text-sm">
                     <label
-                      for="remember"
+                      htmlFor="remember"
                       className="text-gray-500"
                     >
                       Remember me
@@ -89,8 +91,17 @@ function SignIn() {
               <p className="text-sm font-light text-gray-500">
                 Don’t have an account yet?{" "}
                 <a
-                  href="/signup"
-                  className="font-medium text-red-600 hover:underline"
+                  className="font-medium text-red-600 hover:underline cursor-pointer"
+                  onClick={() => {
+                    setTimeout(() => {
+                      window.scrollTo({
+                        top: 40,
+                        behavior: "smooth",
+                      });
+                    }, 0);
+            
+                    navigate("/signup");
+                  }}
                 >
                   Sign up
                 </a>
@@ -98,7 +109,7 @@ function SignIn() {
             </form>
           </div>
         </div>
-      </div>
+        </div>
     </section>
   );
 }

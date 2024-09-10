@@ -16,7 +16,7 @@ function Category() {
     <section className="bg-white">
       <div className="container px-6 py-0 md:py-0 mx-auto">
         <div className="md:flex md:-mx-2 justify-between">
-          <div className="md:w-[20%] space-y-0 flex md:inline-block flex-wrap items-center gap-10 md:space-y-3 text-sm md:text-base lg:w-1/5 lg:px-2 lg:space-y-4 leading-[0] mt-6 md:mt-0">
+          <div className="md:w-[20%] space-y-0 flex md:inline-block flex-wrap items-center gap-2 md:gap-10 md:space-y-3 text-sm md:text-base lg:w-1/5 lg:px-2 lg:space-y-4 leading-[0] mt-6 md:mt-0">
             {CategoryNav.map((item) => (
               <a
                 href={item.href}
@@ -24,11 +24,11 @@ function Category() {
                 onClick={() => {
                   setCheckNav(item.id);
                 }}
-                className={`block font-medium ${
+                className={`block font-medium border-[1.5px] border-gray-300 rounded-full text-center  ${
                   checkNav == item.id
-                    ? "text-blue-600"
+                    ? "text-blue-600 border-blue-600"
                     : "text-gray-500"
-                } hover:underline mt-0 md:mt-2`}
+                } hover:text-blue-600 hover:border-blue-600 p-3 md:p-0 mt-0 md:mt-2`}
               >
                 {item.title}
               </a>
@@ -66,9 +66,9 @@ function Category() {
                     >
                       <path
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="m1 1 4 4 4-4"
                       />
                     </svg>
@@ -78,7 +78,7 @@ function Category() {
                   {dropdown && (
                     <div
                       id="dropdownHover"
-                      className="z-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-full"
+                      className="z-[1000] absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-full"
                     >
                       <ul
                         className="py-2 text-xs md:text-sm text-gray-700"
@@ -106,11 +106,10 @@ function Category() {
             </div>
 
             <div
-              className={`${styles.flexBetween} gap-6 md:gap-4 pr-0 pl-0 ${styles.container}`}
+              className={`${styles.flexBetween} gap-0 md:gap-0 pr-0 pl-0 ${styles.container}`}
             >
               {ProductCardCategoty.map((item) => (
                 <ProductCard
-                  width={"xl:w-[32%] md:w-[48%]"}
                   key={item.id}
                   {...item}
                 />
