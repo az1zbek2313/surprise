@@ -5,11 +5,15 @@ import { flagLanguage } from "../../util/contants";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { userId } from "../../Redux/Actions/actions";
 
 function Header() {
   const [accountDropdown, setAccountDropdown] = useState(false);
+  const token = useSelector((state) => state.userIdReducer.uid);
   const languageDefault = JSON.parse(localStorage.getItem("lang"));
   const [language, setLanguage] = useState(false);
+  const dispatch = useDispatch();
   const [flagLang, setflagLang] = useState(
     languageDefault ? languageDefault : "uz"
   );
@@ -34,6 +38,11 @@ function Header() {
 
     navigate("/");
   };
+
+  const logout = () => {
+    dispatch(userId(""))
+    navigate("/login")
+  }
 
   return (
     <>
@@ -156,7 +165,7 @@ function Header() {
                   {/* <!-- First dropdown trigger --> */}
                   <a
                     className="hidden-arrow me-2 ss:me-4 flex items-center text-black/80 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
-                    href="/account/likes"
+                    href={token ? "/account/likes" : "/likes"}
                     id="dropdownMenuButton1"
                     role="button"
                     aria-expanded="false"
@@ -226,8 +235,14 @@ function Header() {
                       {/* <!-- Second dropdown menu items --> */}
                       <li>
                         <a
-                          className="flex items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 :text-neutral-200"
-                          href="/account"
+                          className="flex cursor-pointer items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 :text-neutral-200"
+                          onClick={() => {
+                            if (token) {
+                              navigate("/account")
+                            } else {
+                              navigate("/login")
+                            }
+                          }}
                           data-twe-dropdown-item-ref
                         >
                           <svg
@@ -247,8 +262,14 @@ function Header() {
                       </li>
                       <li>
                         <a
-                          className="flex items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
-                          href="account/orders"
+                          className="flex cursor-pointer items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
+                          onClick={() => {
+                            if (token) {
+                              navigate("/account/orders")
+                            } else {
+                              navigate("/login")
+                            }
+                          }}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -267,8 +288,14 @@ function Header() {
                       </li>
                       <li>
                         <a
-                          className="flex items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 "
-                          href="/account/notifications"
+                          className="flex cursor-pointer items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 "
+                          onClick={() => {
+                            if (token) {
+                              navigate("/account/notifications")
+                            } else {
+                              navigate("/login")
+                            }
+                          }}
                           data-twe-dropdown-item-ref
                         >
                           <svg
@@ -288,9 +315,9 @@ function Header() {
                       </li>
                       <li>
                         <a
-                          className="flex  items-center gap-2 w-full whitespace-nowrap bg-transparent px-5 py-2 text-sm font-normal text-red-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
-                          href="/login"
+                          className="flex cursor-pointer  items-center gap-2 w-full whitespace-nowrap bg-transparent px-5 py-2 text-sm font-normal text-red-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
                           data-twe-dropdown-item-ref
+                          onClick={logout}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

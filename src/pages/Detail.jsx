@@ -7,6 +7,7 @@ import {
 import ProductCard from "../components/Products/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, incerement, inputAmount } from "../Redux/Actions/actions";
+import { useNavigate } from "react-router-dom";
 
 function Detail() {
   const defaltimg =
@@ -15,6 +16,16 @@ function Detail() {
   const [mainImage, setMainImage] = useState(defaltimg);
   const counter = useSelector(state => state.countChange);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = useSelector((state) => state.userIdReducer.uid);
+
+  function handleBuy() {
+    if (token) {
+      
+    } else {
+      navigate("/login")
+    }
+  }
 
   return (
     <>
@@ -249,7 +260,7 @@ function Detail() {
                     Add to cart
                   </button>
                 </div>
-                <button className="text-center w-full px-5 py-4 rounded-[100px] bg-primary-600 flex items-center justify-center font-semibold text-lg text-white shadow-sm shadow-transparent transition-all duration-500 hover:bg-primary-700 hover:shadow-primary-300">
+                <button onClick={handleBuy} className="text-center w-full px-5 py-4 rounded-[100px] bg-primary-600 flex items-center justify-center font-semibold text-lg text-white shadow-sm shadow-transparent transition-all duration-500 hover:bg-primary-700 hover:shadow-primary-300">
                   Buy Now
                 </button>
               </div>

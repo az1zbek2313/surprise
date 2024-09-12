@@ -43,10 +43,10 @@ function ProductCard(data) {
       className={`card relative cursor-pointer shadow-lg rounded h-full  w-[49%] ss:w-[48%] mb-2 md:mx-0 mx-auto ${
         location == "/account/likes"
           ? "lg:w-[48%]"
+          : location == "/likes"
+          ? "w-[48%] lg:w-[32%]"
           : location == "/detail"
-          ? location == "/category"
-            ? "xl:w-[32%] md:w-[48%]"
-            : "lg:w-[32%] flex-shrink-0 w-full xs:w-[47.5%]"
+          ? "lg:w-[32%] flex-shrink-0 w-full xs:w-[47.5%]"
           : "lg:w-[32%]"
       } transition-all duration-500 hover:scale-[1.03]`}
     >
@@ -54,7 +54,7 @@ function ProductCard(data) {
         toastOptions={{
           classNames: {
             error: "bg-red-400 text-white",
-            success: "text-green-400"
+            success: "text-green-400",
           },
         }}
       />

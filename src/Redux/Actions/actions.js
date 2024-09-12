@@ -1,4 +1,4 @@
-import * as actionTypes from "../Actions/action_types";
+import * as actionTypes from "./action_types";
 
 export function addedMyAdress(data) {
     return {
@@ -60,6 +60,13 @@ export function incerement() {
 export function inputAmount(data) {
   return {
       type:actionTypes.INPUTAMOUNT,
+      payload:data
+  }
+}
+
+export function userId(data) {
+  return {
+      type:actionTypes.USER_ID,
       payload:data
   }
 }
