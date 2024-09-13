@@ -5,7 +5,7 @@ import { styles } from "../../util/style";
 function Products() {
   return (
     <div className="">
-      <div className={`${styles.flexBetween} gap-0 sm:gap-4 lg:gap-0 ${styles.container}`}>
+      <div className={`${styles.flexBetween} justify-start gap-0 sm:gap-4 lg:gap-0 ${styles.container}`}>
       {
       ProductCardData.map(item => (
         <ProductCard heart={item.like} width={"lg:w-[32%]"} key={item.id} {...item}/>

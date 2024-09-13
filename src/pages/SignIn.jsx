@@ -59,15 +59,15 @@ function SignIn() {
   }
 
   return (
-    <section className="flex flex-col md:flex-row w-full flex-wrap h-full min-h-screen pb-4 md:pb-0">
-      <div className="bg-primary-700 w-full md:w-[50%] flex justify-center items-center py-8 sm:py-0">
+    <section className="flex flex-col pt-4 md:pt-0 bg-primary-50  md:flex-row w-full flex-wrap h-full min-h-screen pb-4 md:pb-0">
+      <div className="hidden bg-primary-800 w-full md:w-[50%] md:flex justify-center items-center py-8 sm:py-0">
         <img
           src={signIn}
           alt="sign in"
           className="w-[80%] xs:w-[50%] md:w-[80%]"
         />
       </div>
-      <div className="w-full md:w-[50%] flex justify-center items-center bg-white pt-2 md:pt-[5%]">
+      <div className="w-full bg-primary-50 md:w-[50%] flex justify-center items-center pt-2 md:pt-[5%]">
         <div className="w-full">
           <a
             href="/"
@@ -102,8 +102,8 @@ function SignIn() {
                   name="number"
                   id="number"
                   ref={phoneNumberRef}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  placeholder="+998 88 969-23-13"
+                  className=" border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  placeholder="+998 00 000 00 00"
                   required=""
                 />
               </div>
@@ -120,7 +120,7 @@ function SignIn() {
                   id="password"
                   placeholder="••••••••"
                   ref={passwordRef}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  className="border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   required=""
                 />
               </div>
@@ -152,7 +152,7 @@ function SignIn() {
               <button
                 type="submit"
                 onClick={handleLogin}
-                className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 Sign in
               </button>

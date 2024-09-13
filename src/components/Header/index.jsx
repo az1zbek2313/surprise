@@ -22,7 +22,7 @@ function Header() {
     i18n.changeLanguage(value);
   };
   const navigate = useNavigate();
-  
+
   function handleLanguage(id) {
     changeLang(id);
     localStorage.setItem("lang", JSON.stringify(id));
@@ -40,9 +40,9 @@ function Header() {
   };
 
   const logout = () => {
-    dispatch(userId(""))
-    navigate("/login")
-  }
+    dispatch(userId(""));
+    navigate("/login");
+  };
 
   return (
     <>
@@ -71,7 +71,12 @@ function Header() {
                   className="mb-3 me-2 mt-0 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 lg:mb-2 lg:mt-0"
                   href="/"
                 >
-                  <img src={surpriseLogo} className="h-9 md:h-11" alt="" loading="lazy" />
+                  <img
+                    src={surpriseLogo}
+                    className="h-9 md:h-11"
+                    alt=""
+                    loading="lazy"
+                  />
                 </a>
               </button>
 
@@ -119,24 +124,26 @@ function Header() {
               {/* <!-- Right elements --> */}
               <div className="relative flex items-center">
                 <div className="lg:hidden block relative mr-1 ss:mr-4">
-                {flagLanguage.map((item) => {
-              if (item.id == flagLang) {
-                return (
-                <div
-                key={item.id}
-                    onClick={() => {
-                      setLanguage(!language);
-                    }}
-                    className="flex items-center gap-1 ss:gap-2 cursor-pointer"
-                  >
-                    <img src={item.image} alt="" className="w-5" />
-                    <p className="text-xs ss:text-sm">
-                      <span className="hidden ss:block">{item.title}</span>
-                    </p>
-                  </div>
-                  );
-                }
-              })}
+                  {flagLanguage.map((item) => {
+                    if (item.id == flagLang) {
+                      return (
+                        <div
+                          key={item.id}
+                          onClick={() => {
+                            setLanguage(!language);
+                          }}
+                          className="flex items-center gap-1 ss:gap-2 cursor-pointer"
+                        >
+                          <img src={item.image} alt="" className="w-5" />
+                          <p className="text-xs ss:text-sm">
+                            <span className="hidden ss:block">
+                              {item.title}
+                            </span>
+                          </p>
+                        </div>
+                      );
+                    }
+                  })}
 
                   {/* dropdown language */}
                   {language && (
@@ -147,7 +154,7 @@ function Header() {
                             <li
                               key={item.id}
                               onClick={() => {
-                                handleLanguage(item.id)
+                                handleLanguage(item.id);
                               }}
                               className="flex items-center gap-2 cursor-pointer w-[104px] bg-gray-100 p-1 hover:bg-gray-200 transition-all duration-200"
                             >
@@ -207,24 +214,32 @@ function Header() {
                 {/* <!-- Second dropdown container --> */}
                 <div className="relative" data-twe-dropdown-ref>
                   {/* <!-- Second dropdown trigger --> */}
-                  <a
-                    onClick={() => {
-                      setAccountDropdown(!accountDropdown);
-                    }}
-                    className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
-                    id="dropdownMenuButton2"
-                    role="button"
-                    aria-expanded="false"
-                  >
-                    {/* <!-- User avatar --> */}
-                    <img
-                      src={user}
-                      className="rounded-full lg:h-8 lg:w-8 h-6 w-6"
-                      alt=""
-                      loading="lazy"
-                    />
-                  </a>
-
+                  {token ? (
+                    <a
+                      onClick={() => {
+                        setAccountDropdown(!accountDropdown);
+                      }}
+                      className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
+                      id="dropdownMenuButton2"
+                      role="button"
+                      aria-expanded="false"
+                    >
+                      {/* <!-- User avatar --> */}
+                      <img
+                        src={user}
+                        className="rounded-full lg:h-8 lg:w-8 h-6 w-6"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </a>
+                  ) : (
+                    <a
+                      href="/login"
+                      className="px-2 py-[6px] text-sm md:px-4 md:py-2 md:text-base bg-primary-600 rounded-lg hover:bg-primary-700 text-white transition-all duration-300"
+                    >
+                      Login
+                    </a>
+                  )}
                   {/* <!-- Second dropdown menu --> */}
 
                   {accountDropdown && (
@@ -236,13 +251,7 @@ function Header() {
                       <li>
                         <a
                           className="flex cursor-pointer items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 :text-neutral-200"
-                          onClick={() => {
-                            if (token) {
-                              navigate("/account")
-                            } else {
-                              navigate("/login")
-                            }
-                          }}
+                          href="/account"
                           data-twe-dropdown-item-ref
                         >
                           <svg
@@ -263,13 +272,7 @@ function Header() {
                       <li>
                         <a
                           className="flex cursor-pointer items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
-                          onClick={() => {
-                            if (token) {
-                              navigate("/account/orders")
-                            } else {
-                              navigate("/login")
-                            }
-                          }}
+                          href="/account/orders"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -289,13 +292,7 @@ function Header() {
                       <li>
                         <a
                           className="flex cursor-pointer items-center gap-2 w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 "
-                          onClick={() => {
-                            if (token) {
-                              navigate("/account/notifications")
-                            } else {
-                              navigate("/login")
-                            }
-                          }}
+                          href="/account/notifications"
                           data-twe-dropdown-item-ref
                         >
                           <svg
