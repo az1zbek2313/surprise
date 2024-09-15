@@ -32,9 +32,16 @@ function MyFavouritesLogout() {
           </div>
         ) : (
           <div className="">
-            <div className={`flex flex-wrap justify-start gap-[4%] lg:gap-[2%] items-start px-4  my-4`}>
+            <div
+              className={`${styles.flexBetween} justify-start gap-0 sm:gap-4 lg:gap-0 ${styles.container}`}
+            >
               {data.map((item) => (
-                <ProductCard width={"lg:w-[48%]"} key={item.id} {...item} />
+                <ProductCard
+                  heart={item.like}
+                  width={"lg:w-[32%]"}
+                  key={item.id}
+                  {...item}
+                />
               ))}
             </div>
           </div>

@@ -44,7 +44,7 @@ function ProductCard(data) {
         location == "/account/likes"
           ? "lg:w-[48%]"
           : location == "/likes"
-          ? "w-[80%] xs:w-[48%] lg:w-[32%]"
+          ? "w-[48%] lg:w-[32%]"
           : location == "/detail"
           ? "lg:w-[32%] flex-shrink-0 w-full xs:w-[47.5%]"
           : "lg:w-[32%]"
