@@ -15,7 +15,7 @@ function SignIn() {
   const validate = (phoneNumber, password) => {
     if (!phoneNumber?.current?.value) {
       phoneNumber.current.focus();
-      setError("Telefon raqamingizni kiriting! (+998 88 123-45-67)");
+      setError("Telefon raqamingizni kiriting! (+998 00 000 00 00)");
       return false;
     }
     if (password?.current?.value.length < 4) {
@@ -47,7 +47,7 @@ function SignIn() {
           if (result.message) {
             setError(result.message)
           } else {
-            dispatch(userId(result.token))
+            dispatch(userId(result))
             setError("");
             phoneNumberRef.current.value = "";
             passwordRef.current.value = "";

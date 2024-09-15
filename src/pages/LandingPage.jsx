@@ -1,5 +1,4 @@
 import { Products, ShopCategory, HeroImage, CategoryNames } from "../components";
-import { styles } from "../util/style";
 
 function LandingPage() {
   return (
@@ -7,9 +6,7 @@ function LandingPage() {
       <HeroImage />
       <CategoryNames name={"Shop by Category"} to={"category"} />
       <ShopCategory /> <br />
-      <div className={`${styles.container} ${styles.flexBetween} md:pt-4 md:pb-2 pb-1 pt-2`}>
-        <h2 className={`${styles.headingName}`}>All Products</h2>
-      </div>
+      <CategoryNames name={"All Products"} to={"category"} />
       <Products /><br />
       <CategoryNames name={"Featured Products"} to={"category"} />
       <Products /> <br />
