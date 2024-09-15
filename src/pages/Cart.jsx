@@ -1,19 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ProductCard } from "../components";
-import { ProductCardData, shoppingCart } from "../util/contants";
-import { Toaster, toast } from 'sonner'
-
+import { PopularCardData, shoppingCart } from "../util/contants";
+import { Toaster, toast } from "sonner";
 
 function Cart() {
   const counter = useSelector((state) => state.countChange);
   const dispatch = useDispatch();
 
   function handleClick() {
-    toast.error("Mahsulot o'chirildi")
+    toast.error("Mahsulot o'chirildi");
   }
 
   return (
-    <section className="bg-white pb-8 antialiased">
+    <section className="bg-white pb-8 antialiased container mx-auto">
       <Toaster />
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <h1 className="text-3xl font-semibold text-center  border-b-[1px] border-gray-500/65 py-2 pb-4">
@@ -231,13 +230,19 @@ function Cart() {
           </div>
         </div>
 
-        <div className="mt-4 xl:mt-8 xl:block">
-          <h3 className="text-2xl font-semibold mt-2 text-gray-900">
-            People also bought
+        <div className="mt-6">
+          <h3 className="text-lg md:text-xl font-bold text-gray-800">
+            People also bought 
           </h3>
-          <div className="flex mt-4 gap-4 flex-wrap md:flex-nowrap">
-            {ProductCardData.slice(0, 3).map((item) => (
-              <ProductCard width={"lg:w-[32%]"} key={item.id} {...item} />
+
+          <div
+            className={`flex gap-2 xs:gap-5 md:gap-6 container w-full mx-auto mt-4 overflow-x-scroll overflow-y-hidden pb-4`}
+          >
+            {PopularCardData.map((item) => (
+              <ProductCard
+                key={item.id}
+                {...item}
+              />
             ))}
           </div>
         </div>

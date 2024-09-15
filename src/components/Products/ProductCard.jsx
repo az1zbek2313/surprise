@@ -45,8 +45,10 @@ function ProductCard(data) {
           ? "lg:w-[48%]"
           : location == "/likes"
           ? "w-[48%] lg:w-[32%]"
+          : location == "/cart"
+          ? "w-[48%] lg:w-[32%] flex-shrink-0 xs:w-[47.5%]"
           : location == "/detail"
-          ? "lg:w-[32%] flex-shrink-0 w-full xs:w-[47.5%]"
+          ? "w-[48%] lg:w-[32%] flex-shrink-0 xs:w-[47.5%]"
           : "lg:w-[32%]"
       } transition-all duration-500 hover:scale-[1.03]`}
     >
