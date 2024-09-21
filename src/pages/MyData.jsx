@@ -1,8 +1,7 @@
 import { useRef, useState } from "react";
 import { styles } from "../util/style";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { userId } from "../Redux/Actions/actions";
+import { useSelector } from "react-redux";
 import { debounce } from "lodash";
 
 function MyData() {
@@ -10,7 +9,6 @@ function MyData() {
   const allData = useSelector((state) => state.userIdReducer.uid);
   const [myData, setMyData] = useState({});
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
   const { t } = useTranslation();
   const nameRef = useRef();
   const numberRef = useRef();
@@ -44,7 +42,7 @@ function MyData() {
 
         var formdata = new FormData();
         formdata.append("name", nameRef.current.value);
-        formdata.append("number", numberRef.current.value);
+        formdata.append("phone", numberRef.current.value);
         formdata.append("password", passwordRef.current.value);
 
         var requestOptions = {
@@ -181,7 +179,7 @@ function MyData() {
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 disabled={formDisabled}
-                defaultValue={myData?.number}
+                defaultValue={myData?.phone}
                 ref={numberRef}
                 required
               />
@@ -201,7 +199,7 @@ function MyData() {
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 disabled={formDisabled}
-                defaultValue={myData?.password}
+                defaultValue={myData?.password?.slice(0, 4)}
                 ref={passwordRef}
                 required
               />
