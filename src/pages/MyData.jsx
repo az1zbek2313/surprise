@@ -1,21 +1,29 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { styles } from "../util/style";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userId } from "../Redux/Actions/actions";
+import { debounce } from "lodash";
 
 function MyData() {
   const [formDisabled, setFormDisabled] = useState(true);
   const allData = useSelector((state) => state.userIdReducer.uid);
   const [myData, setMyData] = useState({});
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
   const { t } = useTranslation();
+  const nameRef = useRef();
+  const numberRef = useRef();
+  const passwordRef = useRef();
 
+  // GET USER
   let requestOptions = {
     method: "GET",
     redirect: "follow",
   };
 
   fetch(
-    `${import.meta.env.VITE_DEFAULT_HOST}users/${allData.data._id}`,
+    `${import.meta.env.VITE_DEFAULT_HOST}users/${allData.data?._id}`,
     requestOptions
   )
     .then((response) => response.json())
@@ -24,8 +32,41 @@ function MyData() {
     })
     .catch((error) => console.log("error", error));
 
-  function handleSave() {
-    
+  // PUT USER DATA
+  function handleSave(e) {
+    e.preventDefault();
+
+    setLoading(true);
+    debounce(async () => {
+      try {
+        var myHeaders = new Headers();
+        myHeaders.append("token", allData.token);
+
+        var formdata = new FormData();
+        formdata.append("name", nameRef.current.value);
+        formdata.append("number", numberRef.current.value);
+        formdata.append("password", passwordRef.current.value);
+
+        var requestOptions = {
+          method: "PUT",
+          headers: myHeaders,
+          body: formdata,
+          redirect: "follow",
+        };
+
+        let response = await fetch(
+          `${import.meta.env.VITE_DEFAULT_HOST}users/${allData.data?._id}`,
+          requestOptions
+        );
+        let result = await response.json();
+        console.log(result);
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setFormDisabled(true); // formni bekiting
+        setLoading(false);
+      }
+    }, 300)();
   }
 
   return (
@@ -75,6 +116,7 @@ function MyData() {
                 placeholder=" "
                 disabled={formDisabled}
                 defaultValue={myData?.name}
+                ref={nameRef}
                 required
               />
               <label
@@ -132,7 +174,7 @@ function MyData() {
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-5 group">
               <input
-                type="tel"
+                type="number"
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 name="floating_phone"
                 id="floating_phone"
@@ -140,6 +182,7 @@ function MyData() {
                 placeholder=" "
                 disabled={formDisabled}
                 defaultValue={myData?.number}
+                ref={numberRef}
                 required
               />
               <label
@@ -159,6 +202,7 @@ function MyData() {
                 placeholder=" "
                 disabled={formDisabled}
                 defaultValue={myData?.password}
+                ref={passwordRef}
                 required
               />
               <label
@@ -174,23 +218,27 @@ function MyData() {
             <div className="flex gap-4 items-center justify-end">
               <button
                 type="submit"
-                onClick={() => {
-                  handleSave();
-                  setFormDisabled(true);
-                }}
-                className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-1/4 px-5 py-2.5 text-center"
+                disabled={loading}
+                onClick={handleSave}
+                className={`text-white ${
+                  !loading
+                    ? "bg-red-600 hover:bg-red-700"
+                    : "bg-gray-600 cursor-not-allowed"
+                } focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-1/4 px-5 py-2.5 text-center`}
               >
-                Saqlash
+                {loading ? "Saqlanmoqda..." : "Saqlash"}
               </button>
-              <button
-                type="submit"
-                onClick={() => {
-                  setFormDisabled(true);
-                }}
-                className="text-black bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-1/4 px-5 py-2.5 text-center"
-              >
-                Bekor qilish
-              </button>
+              {!loading && (
+                <button
+                  type="submit"
+                  onClick={() => {
+                    setFormDisabled(true);
+                  }}
+                  className="text-black bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-1/4 px-5 py-2.5 text-center"
+                >
+                  Bekor qilish
+                </button>
+              )}
             </div>
           )}
         </form>

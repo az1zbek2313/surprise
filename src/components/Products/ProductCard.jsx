@@ -42,7 +42,7 @@ function ProductCard(data) {
       id="productCard"
       className={`card relative cursor-pointer shadow-lg rounded h-full  w-[49%] ss:w-[48%] mb-2 md:mx-0 mx-auto ${
         location == "/account/likes"
-          ? "lg:w-[48%]"
+          ? "w-[48%]"
           : location == "/likes"
           ? "w-[48%] lg:w-[32%]"
           : location == "/cart"
@@ -74,8 +74,8 @@ function ProductCard(data) {
       </div>
       <div className="flex flex-col gap-2 sm:p-4 p-3 w-full">
         <div className="mb-2 md:mb-4 leading-6">
-          <h2 className="font-bold title text-sm sm:text-base">{data.title}</h2>
-          <p className="opacity-50 text font-semibold text-sm">{data.about}</p>
+          <h2 className="font-bold title text-sm sm:text-base">{data.name?.uz ? data.name?.uz : data.title}</h2>
+          <p className="opacity-50 text font-semibold text-sm">{data.description?.uz ? data.description?.uz : data.about}</p>
         </div>
         <div className={`${styles.flexBetween}`}>
           <b className="text-[20px] sm:text-[24px] font-semibold opacity-80">

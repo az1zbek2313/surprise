@@ -12,7 +12,7 @@ function Cart() {
   }
 
   return (
-    <section className="bg-white pb-8 antialiased container mx-auto">
+    <section className="bg-white pb-8 antialiased container mx-autoc">
       <Toaster />
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <h1 className="text-3xl font-semibold text-center  border-b-[1px] border-gray-500/65 py-2 pb-4">

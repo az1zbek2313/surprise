@@ -41,9 +41,8 @@ function SignIn() {
       };
 
       fetch(`${import.meta.env.VITE_DEFAULT_HOST}users/login`, requestOptions)
-        .then((response) => response.text())
-        .then((res) => {
-          const result = JSON.parse(res);
+        .then((response) => response.json())
+        .then((result) => {
           if (result.message) {
             setError(result.message)
           } else {
