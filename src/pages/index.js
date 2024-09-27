@@ -13,8 +13,10 @@ import MyOrders from "./MyOrders";
 import Location from "./Location";
 import Notifications from "./Notifications";
 import NotFound from "./NotFound";
+import Code from "./Code";
 
 export {
+  Code,
   LandingPage,
   NotFound,
   AboutUs,

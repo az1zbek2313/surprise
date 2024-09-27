@@ -14,6 +14,7 @@ import {
   Notifications,
   NotFound,
   MyFavouritesLogout,
+  Code
 } from "./pages";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -28,6 +29,7 @@ export default function App() {
       <Routes>
         <Route path="/login" element={<SignIn />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/code" element={<Code />}></Route>
 
         <Route path="/" element={<Layout />}>
           <Route index element={<LandingPage />}></Route>
