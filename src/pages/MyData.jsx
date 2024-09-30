@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { styles } from "../util/style";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -7,28 +7,32 @@ import { debounce } from "lodash";
 function MyData() {
   const [formDisabled, setFormDisabled] = useState(true);
   const allData = useSelector((state) => state.userIdReducer.uid);
-  const [myData, setMyData] = useState({});
+  const [myData, setMyData] = useState({
+    name: "Firstname Lastname",
+    phone: "000000000000",
+    password: "0000",
+  });
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
-  const nameRef = useRef();
-  const numberRef = useRef();
-  const passwordRef = useRef();
 
-  // GET USER
-  let requestOptions = {
-    method: "GET",
-    redirect: "follow",
-  };
+  useEffect(() => {
+    if (allData?.data?._id) {
+      let requestOptions = {
+        method: "GET",
+        redirect: "follow",
+      };
 
-  fetch(
-    `${import.meta.env.VITE_DEFAULT_HOST}users/${allData.data?._id}`,
-    requestOptions
-  )
-    .then((response) => response.json())
-    .then((result) => {
-      setMyData(result);
-    })
-    .catch((error) => console.log("error", error));
+      fetch(
+        `${import.meta.env.VITE_DEFAULT_HOST}users/${allData.data._id}`,
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          setMyData(result);
+        })
+        .catch((error) => console.log("error", error));
+    }
+  }, [allData?.data?._id]);
 
   // PUT USER DATA
   function handleSave(e) {
@@ -41,9 +45,9 @@ function MyData() {
         myHeaders.append("token", allData.token);
 
         var formdata = new FormData();
-        formdata.append("name", nameRef.current.value);
-        formdata.append("phone", numberRef.current.value);
-        formdata.append("password", passwordRef.current.value);
+        formdata.append("name", myData.name);
+        formdata.append("phone", myData.phone);
+        formdata.append("password", myData.password);
 
         var requestOptions = {
           method: "PUT",
@@ -61,16 +65,23 @@ function MyData() {
       } catch (error) {
         console.error("Error:", error);
       } finally {
-        setFormDisabled(true); // formni bekiting
+        setFormDisabled(true); // Disable the form
         setLoading(false);
       }
     }, 300)();
   }
 
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setMyData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   return (
-    <div
-      className={`container mx-auto lg:px-0 lg:border-x-[1.6px] lg:border-l-0 mb-4 lg:mb-0`}
-    >
+    <div className="container mx-auto lg:px-0 lg:border-x-[1.6px] lg:border-l-0 mb-4 lg:mb-0">
       <div className="flex flex-wrap gap-2 justify-center ss:justify-between items-center px-4 border-b-[1.6px] py-2">
         <h1 className="text-2xl font-semibold">{t("myinformations")}</h1>
         <div className="flex gap-4 items-center justify-end">
@@ -83,7 +94,7 @@ function MyData() {
               });
               setFormDisabled(false);
             }}
-            className=" text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base p-2 sm:p-3 text-center"
+            className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base p-2 sm:p-3 text-center"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -100,47 +111,26 @@ function MyData() {
           </button>
         </div>
       </div>
-      <div
-        className={`${styles.flexBetween} w-full gap-6 px-4 lg:gap-4 mt-8 min-h-auto`}
-      >
+      <div className={`${styles.flexBetween} w-full gap-6 px-4 lg:gap-4 mt-8 min-h-auto`}>
         <form className="w-full flex flex-col gap-4">
-          <div className="grid md:grid-cols-2 md:gap-6">
+          <div className="grid md:grid-cols-1 md:gap-6">
             <div className="relative z-0 w-full mb-5 group">
               <input
+                onChange={handleInputChange}
                 type="text"
-                name="floating_full_name"
+                name="name"
                 id="floating_full_name"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 disabled={formDisabled}
-                defaultValue={myData?.name.split(" ")[1]}
-                ref={nameRef}
+                value={myData.name}
                 required
               />
               <label
                 htmlFor="floating_full_name"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Firstname
-              </label>
-            </div>
-            <div className="relative z-0 w-full mb-5 group">
-              <input
-                type="text"
-                name="floating_full_name"
-                id="floating_full_name"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                disabled={formDisabled}
-                defaultValue={myData?.name.split(" ")[0]}
-                ref={nameRef}
-                required
-              />
-              <label
-                htmlFor="floating_full_name"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Lastname
+                Fullname
               </label>
             </div>
           </div>
@@ -148,15 +138,14 @@ function MyData() {
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-5 group">
               <input
+                onChange={handleInputChange}
                 type="number"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                name="floating_phone"
+                name="phone"
                 id="floating_phone"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 disabled={formDisabled}
-                defaultValue={myData?.phone}
-                ref={numberRef}
+                value={myData.phone}
                 required
               />
               <label
@@ -168,15 +157,14 @@ function MyData() {
             </div>
             <div className="relative z-0 w-full mb-5 group">
               <input
+                onChange={handleInputChange}
                 type="password"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                name="floating_password"
+                name="password"
                 id="floating_password"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 disabled={formDisabled}
-                defaultValue={myData?.password?.slice(0, 4)}
-                ref={passwordRef}
+                value={myData.password.slice(0, 4)}
                 required
               />
               <label
