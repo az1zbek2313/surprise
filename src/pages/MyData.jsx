@@ -32,7 +32,7 @@ function MyData() {
         })
         .catch((error) => console.log("error", error));
     }
-  }, [allData?.data?._id]);
+  }, [allData?.data?._id, formDisabled]);
 
   // PUT USER DATA
   function handleSave(e) {
