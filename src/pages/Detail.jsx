@@ -1,9 +1,5 @@
 import { useState } from "react";
-import {
-  detailColors,
-  detailImages,
-  PopularCardData,
-} from "../util/contants";
+import { detailColors, detailImages, PopularCardData } from "../util/contants";
 import ProductCard from "../components/Products/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, incerement, inputAmount } from "../Redux/Actions/actions";
@@ -14,16 +10,15 @@ function Detail() {
     "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg";
   const [defaultColor, setDefaultColor] = useState(1);
   const [mainImage, setMainImage] = useState(defaltimg);
-  const counter = useSelector(state => state.countChange);
+  const counter = useSelector((state) => state.countChange);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.userIdReducer.uid);
 
   function handleBuy() {
     if (token) {
-      
     } else {
-      navigate("/login")
+      navigate("/login");
     }
   }
 
@@ -40,15 +35,18 @@ function Detail() {
               />
             </div>
 
-            <div className="flex mt-3 justify-between w-full gap-1 sm:gap-2 overflow-x-scroll pb-3">
+            <div className="flex mt-3 justify-between w-full gap-1 sm:gap-2 overflow-x-hidden transition-all duration-1000 hover:overflow-x-scroll pb-3">
               {detailImages.map((item) => (
-                <div key={item.id} className="min-w-[24%] xs:min-w-[24.4%] sm:min-w-[24%]">
+                <div
+                  key={item.id}
+                  className="min-w-[24%] xs:min-w-[24.4%] sm:min-w-[24%]"
+                >
                   <img
                     className={`${
-                      item.image == mainImage
+                      item.image === mainImage
                         ? "border-[1.6px] border-gray-500"
                         : ""
-                    } hover:border-[1.6px] hover:border-gray-500  rounded-lg cursor-pointer transition-all duration-300`}
+                    } hover:border-[1.6px] hover:border-gray-500 rounded-lg cursor-pointer transition-all duration-300`}
                     src={item.image}
                     onClick={() => {
                       setMainImage(item.image);
@@ -157,9 +155,13 @@ function Detail() {
                       <div>
                         <img
                           src={item.image}
-                          onClick={() => {setDefaultColor(item.id)}}
+                          onClick={() => {
+                            setDefaultColor(item.id);
+                          }}
                           alt="Summer Travel Bag image"
-                          className={`${item.class} ${defaultColor == item.id && item.active}`}
+                          className={`${item.class} ${
+                            defaultColor == item.id && item.active
+                          }`}
                         />
                         <p className="font-normal text-sm leading-6 text-gray-400 text-center mt-2 group-hover:text-primary-600 ">
                           {item.title}
@@ -170,7 +172,12 @@ function Detail() {
                 </div>
                 <div className="flex items-center flex-col min-[400px]:flex-row gap-3 mb-3 min-[400px]:mb-8">
                   <div className=" flex items-center justify-center border border-gray-400 rounded-full">
-                    <button onClick={() => {dispatch(incerement())}} className="group py-[14px] px-3 w-full border-r border-gray-400 rounded-l-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300">
+                    <button
+                      onClick={() => {
+                        dispatch(incerement());
+                      }}
+                      className="group py-[14px] px-3 w-full border-r border-gray-400 rounded-l-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300"
+                    >
                       <svg
                         className="stroke-black group-hover:stroke-black"
                         width="22"
@@ -204,12 +211,17 @@ function Detail() {
                     <input
                       type="text"
                       onChange={(e) => {
-                        dispatch(inputAmount(e.target.value))
+                        dispatch(inputAmount(e.target.value));
                       }}
                       className="font-semibold text-gray-900 text-lg py-3 px-2 w-full min-[400px]:min-w-[75px] h-full bg-transparent placeholder:text-gray-900 text-center hover:text-primary-600 outline-0 hover:placeholder:text-primary-600"
                       placeholder={counter}
                     />
-                    <button onClick={() => {dispatch(decrement())}} className="group py-[14px] px-3 w-full border-l border-gray-400 rounded-r-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300">
+                    <button
+                      onClick={() => {
+                        dispatch(decrement());
+                      }}
+                      className="group py-[14px] px-3 w-full border-l border-gray-400 rounded-r-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300"
+                    >
                       <svg
                         className="stroke-black group-hover:stroke-black"
                         width="22"
@@ -260,7 +272,10 @@ function Detail() {
                     Add to cart
                   </button>
                 </div>
-                <button onClick={handleBuy} className="text-center w-full px-5 py-4 rounded-[100px] bg-primary-600 flex items-center justify-center font-semibold text-lg text-white shadow-sm shadow-transparent transition-all duration-500 hover:bg-primary-700 hover:shadow-primary-300">
+                <button
+                  onClick={handleBuy}
+                  className="text-center w-full px-5 py-4 rounded-[100px] bg-primary-600 flex items-center justify-center font-semibold text-lg text-white shadow-sm shadow-transparent transition-all duration-500 hover:bg-primary-700 hover:shadow-primary-300"
+                >
                   Buy Now
                 </button>
               </div>
@@ -382,13 +397,10 @@ function Detail() {
           </h3>
 
           <div
-            className={`flex gap-2 xs:gap-5 md:gap-6 container w-full mx-auto mt-4 overflow-x-scroll overflow-y-hidden pb-4`}
+            className={`flex gap-2 xs:gap-5 md:gap-6 container w-full mx-auto mt-4 overflow-x-scroll pb-4`}
           >
             {PopularCardData.map((item) => (
-              <ProductCard
-                key={item.id}
-                {...item}
-              />
+              <ProductCard key={item.id} {...item} />
             ))}
           </div>
         </div>

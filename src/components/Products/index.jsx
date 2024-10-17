@@ -5,10 +5,10 @@ import { styles } from "../../util/style";
 function Products() {
   return (
     <div className="">
-      <div className={`${styles.flexBetween} justify-start gap-0 sm:gap-4 lg:gap-0 ${styles.container}`}>
+      <div className={`flex items-center overflow-x-auto justify-start gap-4 pb-3 ${styles.container}`}>
       {
       ProductCardData.map(item => (
-        <ProductCard heart={item.like} width={"lg:w-[32%]"} key={item.id} {...item}/>
+        <ProductCard heart={item.like} key={item.id} {...item}/>
       ))
       }
     </div>

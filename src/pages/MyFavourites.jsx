@@ -32,9 +32,9 @@ function MyFavourites() {
           </div>
         ) : (
           <div className="">
-            <div className={`${styles.flexBetween} gap-0 px-4 lg:gap-4  my-4`}>
+            <div className={`flex justify-start items-center flex-wrap px-4 gap-4  my-4`}>
               {data.map((item) => (
-                <ProductCard width={"lg:w-[48%]"} key={item.id} {...item} />
+                <ProductCard key={item.id} {...item} />
               ))}
             </div>
           </div>
