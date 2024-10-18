@@ -166,10 +166,10 @@ function Category() {
 
           <form className="mt-4 border-t border-gray-200">
             <h3 className="sr-only">Categories</h3>
-            <ul role="list" className="px-2 py-1 space-y-[-8px] font-medium text-gray-900">
+            <ul role="list" className="px-2 py-1 space-y-[-12px] font-medium text-gray-900">
             {CategoryNav.map((item) => (
               <li key={item.id}>
-              <a href="#" onClick={() => {setCheckNav(item.id)}} className={`block hover:text-primary-600 transition-all text-base font-medium duration-500 px-2 py-3 ${checkNav == item.id ? "text-primary-600" : ""}`}>{item.title}</a>
+              <a href="#" onClick={() => {setCheckNav(item.id)}} className={`block hover:text-primary-600 transition-all text-sm font-medium duration-500 px-2 py-3 ${checkNav == item.id ? "text-primary-600" : ""}`}>{item.title}</a>
             </li>
             ))}
             </ul>
