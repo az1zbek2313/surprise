@@ -169,7 +169,7 @@ function Category() {
             <ul role="list" className="px-2 py-1 space-y-[-12px] font-medium text-gray-900">
             {CategoryNav.map((item) => (
               <li key={item.id}>
-              <a href="#" onClick={() => {setCheckNav(item.id)}} className={`block hover:text-primary-600 transition-all font-medium duration-500 px-2 py-3 ${checkNav == item.id ? "text-primary-600" : ""}`}>{item.title}</a>
+              <a href="#" onClick={() => {setCheckNav(item.id)}} className={`block hover:text-primary-600 transition-all text-sm font-medium duration-500 px-2 py-3 ${checkNav == item.id ? "text-primary-600" : ""}`}>{item.title}</a>
             </li>
             ))}
             </ul>
@@ -177,7 +177,7 @@ function Category() {
             <div className="border-t border-gray-200 px-4 py-6">
               <h3 className="-mx-2 -my-3 flow-root">
                 <button type="button" className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500" aria-controls="filter-section-mobile-0" aria-expanded="false">
-                  <span className="font-medium text-gray-900">Color</span>
+                  <span className="font-medium text-gray-900 text-sm">Color</span>
                   <span className="ml-6 flex items-center">
                     {!colorDropdown ? <svg onClick={() => {setColorDropdown(!colorDropdown)}} className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
                       <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
