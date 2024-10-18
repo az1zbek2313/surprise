@@ -130,16 +130,16 @@ function ProductCard(data) {
       }}
       className={`max-w-sm bg-white border relative hover:scale-[1.02] transition-all duration-500 border-gray-200 rounded-lg shadow w-full ss:w-[80%] ${
         location == "/account/likes"
-          ? "w-full mx-auto sm:mx-0 sm:w-[47.5%] lg:w-[40%] xl:w-[32%]"
+          ? "w-[49.1%] flex-shrink-0 ss:w-[49.1%] sm:w-[31%] md:w-[32%]"
           : location == "/likes"
-          ? "w-[48%] lg:w-[24%]"
+          ? "lg:w-[24%] flex-shrink-0 ss:w-[49.1%] sm:w-[32%]"
           : location == "/cart"
-          ? "w-[48%] lg:w-[24%] flex-shrink-0 xs:w-[47.5%]"
+          ? "w-[50%] lg:w-[24%] flex-shrink-0 ss:w-[50%] sm:w-1/3"
           : location == "/detail"
-          ? "w-full lg:w-[24%] flex-shrink-0 sm:w-[47.5%]"
+          ? "w-[50%] lg:w-[24%] flex-shrink-0 ss:w-[50%] sm:w-1/3"
           : location == "/"
-          ? "w-full lg:w-[24%] flex-shrink-0 sm:w-[47.5%]"
-          : "w-full mx-auto sm:mx-0 sm:w-[47.5%] lg:w-[32%]"
+          ? "w-[50%] lg:w-[24%] flex-shrink-0 ss:w-[50%] sm:w-1/3"
+          : "w-[48.1%] flex-shrink-0 ss:w-[48.1%] sm:w-[31%] md:w-[32%]"
       }`}
     >
       <Toaster
@@ -157,18 +157,18 @@ function ProductCard(data) {
           alt="product image"
         />
       </a>
-      <div className="px-5 pb-5">
+      <div className="ss:px-3 sm:px-5 px-2 ss:pb-3 sm:pb-5 pb-2">
         <a href="#">
-          <h5 className="text-xl title font-semibold tracking-tight text-gray-900">
+          <h5 className="text-md sm:text-xl title font-semibold tracking-tight text-gray-900">
             {data.name?.uz ? data.name?.uz : data.title}
           </h5>
         </a>
         <a href="#">
-          <p className="text-lg text text-gray-900">
+          <p className="text-sm lg:text-md text text-gray-900">
             {data.description?.uz ? data.description?.uz : data.about}
           </p>
         </a>
-        <div className="flex items-center mt-2.5 mb-5">
+        <div className="flex items-center gap-2 mt-2.5 mb-5">
           <div className="flex items-center space-x-1 rtl:space-x-reverse">
             <svg
               className="w-4 h-4 text-yellow-300"
@@ -220,13 +220,13 @@ function ProductCard(data) {
             5.0
           </span>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between">
           <span className="text-3xl font-bold text-gray-900">
             ${Math.trunc(data.price / 100) + "," + Math.trunc(data.price % 100)}
           </span>
           <a
             href="#"
-            className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            className="text-white w-full mt-2 xl:mt-0 xl:w-auto bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3  md:px-5 py-2 md:py-2.5 text-center"
           >
             Add to cart
           </a>

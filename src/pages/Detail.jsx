@@ -397,7 +397,7 @@ function Detail() {
           </h3>
 
           <div
-            className={`flex gap-2 xs:gap-5 md:gap-6 container w-full mx-auto mt-4 overflow-x-scroll pb-4`}
+            className={`flex gap-2 xs:gap-2 md:gap-4 container w-full mx-auto mt-4 overflow-x-scroll pb-4`}
           >
             {PopularCardData.map((item) => (
               <ProductCard key={item.id} {...item} />

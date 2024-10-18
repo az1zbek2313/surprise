@@ -32,7 +32,7 @@ function MyFavourites() {
           </div>
         ) : (
           <div className="">
-            <div className={`flex justify-start items-center flex-wrap px-4 gap-4  my-4`}>
+            <div className={`flex justify-start items-center flex-wrap px-4 gap-1 xl:gap-4  my-4`}>
               {data.map((item) => (
                 <ProductCard key={item.id} {...item} />
               ))}

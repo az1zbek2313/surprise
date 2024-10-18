@@ -33,7 +33,7 @@ function MyFavouritesLogout() {
         ) : (
           <div className="">
             <div
-              className={`${styles.flexBetween} justify-start gap-0 sm:gap-4 lg:gap-0 ${styles.container}`}
+              className={`flex items-center flex-wrap justify-start gap-1 sm:gap-2 ${styles.container}`}
             >
               {data.map((item) => (
                 <ProductCard
