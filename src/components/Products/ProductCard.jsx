@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import "./style.css";
-import { styles } from "../../util/style";
 import { Toaster, toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import {
