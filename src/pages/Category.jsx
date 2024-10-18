@@ -510,7 +510,7 @@ function Category() {
 
           <div className="lg:col-span-3">
         <div
-    className={`${styles.flexBetween} gap-2 xl:gap-4 pr-0 pl-0 ${styles.container}`}
+    className={`${styles.flexBetween} gap-1 xl:gap-4 pr-0 pl-0 ${styles.container}`}
   >
     {ProductCardCategoty.map((item) => (
       <ProductCard
