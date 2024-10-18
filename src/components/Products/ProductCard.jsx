@@ -127,18 +127,10 @@ function ProductCard(data) {
 
         navigate("/detail");
       }}
-      className={`max-w-sm bg-white border relative hover:scale-[1.02] transition-all duration-500 border-gray-200 rounded-lg shadow w-full ss:w-[80%] ${
-        location == "/account/likes"
-          ? "w-[49.1%] flex-shrink-0 ss:w-[49.1%] sm:w-[31%] md:w-[32%]"
-          : location == "/likes"
-          ? "lg:w-[24%] flex-shrink-0 ss:w-[49.1%] sm:w-[32%]"
-          : location == "/cart"
-          ? "w-[50%] lg:w-[24%] flex-shrink-0 ss:w-[50%] sm:w-1/3"
-          : location == "/detail"
-          ? "w-[50%] lg:w-[24%] flex-shrink-0 ss:w-[50%] sm:w-1/3"
-          : location == "/"
-          ? "w-[50%] lg:w-[24%] flex-shrink-0 ss:w-[50%] sm:w-1/3"
-          : "w-[48.1%] flex-shrink-0 ss:w-[48.1%] sm:w-[31%] md:w-[32%]"
+      className={`max-w-sm bg-white border relative hover:scale-[1.02] transition-all duration-500 border-gray-200 rounded-lg shadow ${
+        location.includes("category") || location.includes("account/likes")? 
+        "w-full ss:w-[48%] flex-shrink-0 sm:w-[32%]"
+        : "w-full ss:w-[49%] flex-shrink-0 sm:w-[33%] lg:w-[24%]"
       }`}
     >
       <Toaster
