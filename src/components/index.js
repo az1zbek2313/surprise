@@ -1,6 +1,7 @@
 import Header from "./Header";
 import HeaderTop from "./HeaderTop";
 import Products from "./Products";
+import CategoryPruducts from "./Products/CategoryPruducts";
 import ProductCard from "./Products/ProductCard";
 import ShopCategory from "./ShopCategory";
 import CategoryNames from "./CategoryNames";
@@ -21,6 +22,7 @@ export {
   HeaderTop,
   HeroImage,
   Products,
+  CategoryPruducts,
   ShopCategory,
   Footer,
   CategoryNames,

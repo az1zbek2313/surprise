@@ -1,4 +1,4 @@
-import { Products, ShopCategory, HeroImage, CategoryNames } from "../components";
+import { Products, ShopCategory, HeroImage, CategoryNames, CategoryPruducts } from "../components";
 
 function LandingPage() {
   return (
@@ -6,6 +6,7 @@ function LandingPage() {
       <HeroImage />
       <CategoryNames name={"Shop by Category"} to={"category"} />
       <ShopCategory /> <br />
+      <CategoryPruducts />
       <CategoryNames name={"All Products"} to={"category"} />
       <Products /><br />
       <CategoryNames name={"Featured Products"} to={"category"} />
