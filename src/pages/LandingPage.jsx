@@ -1,18 +1,15 @@
 import { Products, ShopCategory, HeroImage, CategoryNames, CategoryPruducts } from "../components";
+import { ProductCategoryData } from "../util/contants";
 
 function LandingPage() {
   return (
     <div>
       <HeroImage />
-      <CategoryNames name={"Shop by Category"} to={"category"} />
-      <ShopCategory /> <br />
-      <CategoryPruducts />
-      <CategoryNames name={"All Products"} to={"category"} />
-      <Products /><br />
-      <CategoryNames name={"Featured Products"} to={"category"} />
-      <Products /> <br />
-      <CategoryNames name={"Popular Products"} to={"category"} />
-      <Products /> <br />
+      {
+        ProductCategoryData.map((items) => (
+          <CategoryPruducts key={items.id} data={items}/>
+        ))
+      }      
     </div>
   );
 }

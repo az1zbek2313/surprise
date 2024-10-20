@@ -9,23 +9,25 @@ import {
 } from "../../Redux/Actions/actions";
 import { useNavigate } from "react-router-dom";
 
-function Card(data) {
+function Card({product}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const likes = useSelector((state) => state.myFavourites);
-  const someLike = likes.some((el) => el.id == data.id);
+  const someLike = likes.some((el) => el.id == product.id);
+
+  console.log(product);
 
   function handleSave(e) {
     e.stopPropagation();
     toast.success("Yoqtirgan Mahsulotlaringizga saqlandi");
-    dispatch(addedMyFavourites(data));
-    dispatch(changeHeartMyFavourites(data));
+    dispatch(addedMyFavourites(product));
+    dispatch(changeHeartMyFavourites(product));
   }
   function handleRemove(e) {
     e.stopPropagation();
     toast.error("Yoqtirgan Mahsulotlaringizdan o'chirildi");
-    dispatch(deletedMyFavourites(data.id));
-    dispatch(changeHeartMyFavourites(data));
+    dispatch(deletedMyFavourites(product.id));
+    dispatch(changeHeartMyFavourites(product));
   }
   return (
     <>
@@ -51,7 +53,7 @@ function Card(data) {
         <div className="group relative bg-[rgb(121, 121, 121)]">
           {/* Like Save */}
           {!someLike ? (
-            <span className="absolute cursor-pointer top-3 right-3 w-5 sm:[&>svg]:w-6 z-50">
+            <span className="absolute cursor-pointer top-2 right-2 sm:top-3 sm:right-3 w-[18px] sm:[&>svg]:w-6 z-50">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 color="red"
@@ -64,7 +66,7 @@ function Card(data) {
               </svg>
             </span>
           ) : (
-            <span className="absolute cursor-pointer top-3 right-3 w-5 sm:[&>svg]:w-6 z-50">
+            <span className="absolute cursor-pointer top-2 right-2 sm:top-3 sm:right-3 w-[18px] sm:[&>svg]:w-6 z-50">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -78,31 +80,31 @@ function Card(data) {
           )}
           <div className="overflow-hidden rounded-md sm:rounded-[10px] border-gray-200 opacity-90 transition duration-500 ease-in-out group-hover:opacity-100">
             <img
-              src={cardImage9}
+              src={product?.image}
               alt="card image"
               className="animate-fade-in block h-full w-full scale-100 transform object-cover object-center opacity-100 transition duration-500 group-hover:scale-110"
             />
           </div>
         </div>
         <div className="flex flex-col gap-1 md:gap-[8px]">
-          <div className="flex justify-between items-start md:items-end flex-wrap">
-            <h4 className="text-qoramtir-600 text-xl title md:text-2xl font-medium">
-              Teddy bear
+          <div className="flex flex-col items-start">
+            <h4 className="text-qoramtir-600 title text-lg md:text-2xl font-medium leading-6">
+              {product.title}
             </h4>
-            <p className="text-qoramtir-600 text-xs lg:text-sm text">
-              Unique Present Store
+            <p className="text-qoramtir-600 text-xs lg:text-sm title">
+              {product.about}
             </p>
           </div>
           <div className="flex justify-between items-center flex-wrap">
             <p className="flex flex-wrap items-center gap-[6px]">
               <span className="text-base md:text-xl text-qoramtir-qizil">
-                $ 1800
+                $ {product?.price}
               </span>
               <span className="text-sm md:text-base text-qoramtir-600 line-through opacity-80">
-                $ 2200
+                $ {product?.newprice}
               </span>
             </p>
-            <div className="flex items-center space-x-1 rtl:space-x-reverse">
+            <div className="flex items-center space-x-1 rtl:space-x-reverse mr-2">
               {[1, 2, 3, 4, 5].map((item) => (
                 <svg
                   key={item}

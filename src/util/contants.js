@@ -14,67 +14,216 @@ import {
   notification,
   carouselMobile1,
   carouselMobile2,
-  carouselMobile3
+  carouselMobile3,
+  cardImage1,
+  cardImage2,
+  cardImage3,
+  cardImage4,
+  cardImage5,
+  cardImage6,
+  cardImage7,
+  cardImage8,
+  cardImage9,
 } from "../assets";
 
 export const star = [1, 2, 3, 4, 5];
 
+export const ProductCategoryData = [
+  {
+    id:1,
+    categoryName:"Happy Birthday!",
+    categoryText:"Make the day bright",
+    bg:"rgb(244, 254, 255)",
+    categoryCards:[
+      {
+        id: 1,
+        like: false,
+        title: "Teddy bear",
+        about: "Unique Present Store",
+        price: 2499,
+        newprice: 2099,
+        image: cardImage9,
+      },
+      {
+        id: 2,
+        like: false,
+        title: "Handmade Pottery",
+        about: "Unique ceramic pieces",
+        price: 3999,
+        newprice: 3099,
+        image: cardImage8,
+      },
+      {
+        id: 3,
+        like: false,
+        title: "Artisanal Soaps",
+        about: "Handcrafted with natural ingradients",
+        price: 1299,
+        newprice: 1099,
+        image: cardImage7,
+      },
+      {
+        id: 4,
+        like: false,
+        title: "Artisanal Soaps",
+        about: "Handcrafted with natural ingradients",
+        price: 1299,
+        newprice: 1099,
+        image: cardImage2,
+      }
+    ]
+  },
+  {
+    id:2,
+    categoryName:"Anniversary Celebrate Lasting Love",
+    categoryText:"Celebrate the happy couple with a gift they’ll love, but never expect.",
+    bg:"rgb(255, 241, 241)",
+    categoryCards:[
+      {
+        id: 1,
+        like: false,
+        title: "Teddy bear",
+        about: "Unique Present Store",
+        price: 2499,
+        newprice: 2099,
+        image: cardImage6,
+      },
+      {
+        id: 2,
+        like: false,
+        title: "Handmade Pottery",
+        about: "Unique ceramic pieces",
+        price: 3999,
+        newprice: 3099,
+        image: cardImage5,
+      },
+      {
+        id: 3,
+        like: false,
+        title: "Artisanal Soaps",
+        about: "Handcrafted with natural ingradients",
+        price: 1299,
+        newprice: 1099,
+        image: cardImage4,
+      },
+      {
+        id: 4,
+        like: false,
+        title: "Artisanal Soaps",
+        about: "Handcrafted with natural ingradients",
+        price: 1299,
+        newprice: 1099,
+        image: cardImage9,
+      }
+    ]
+  },
+  {
+    id:3,
+    categoryName:"Special day!",
+    categoryText:"Georgeous surprize is waiting for you",
+    bg:"rgb(236, 255, 205)",
+    categoryCards:[
+      {
+        id: 1,
+        like: false,
+        title: "Teddy bear",
+        about: "Unique Present Store",
+        price: 2499,
+        newprice: 2099,
+        image: cardImage3,
+      },
+      {
+        id: 2,
+        like: false,
+        title: "Handmade Pottery",
+        about: "Unique ceramic pieces",
+        price: 3999,
+        newprice: 3099,
+        image: cardImage2,
+      },
+      {
+        id: 3,
+        like: false,
+        title: "Artisanal Soaps",
+        about: "Handcrafted with natural ingradients",
+        price: 1299,
+        newprice: 1099,
+        image: cardImage1,
+      },
+      {
+        id: 4,
+        like: false,
+        title: "Artisanal Soaps",
+        about: "Handcrafted with natural ingradients",
+        price: 1299,
+        newprice: 1099,
+        image: cardImage8,
+      }
+    ]
+  }
+];
+
 export const ProductCardData = [
   {
     id: 1,
-    like:false,
-    title: "Artisanal Candles",
-    about: "Handmade with natural wax",
+    like: false,
+    title: "Teddy bear",
+    about: "Unique Present Store",
     price: 2499,
+    newprice: 2099,
     image: defaultImage,
   },
   {
     id: 2,
-    like:false,
+    like: false,
     title: "Handmade Pottery",
     about: "Unique ceramic pieces",
     price: 3999,
+    newprice: 3099,
     image: defaultImage,
   },
   {
     id: 3,
-    like:false,
+    like: false,
     title: "Artisanal Soaps",
     about: "Handcrafted with natural ingradients",
     price: 1299,
+    newprice: 1099,
     image: defaultImage,
   },
   {
-    id:4,
-    like:false,
-    title: "Artisanal Soaps",
-    about: "Handcrafted with natural ingradients",
+    id: 4,
+    like: false,
+    title: "Jewelery",
+    about: "Unique Present Store",
     price: 1299,
+    newprice: 1099,
     image: defaultImage,
   },
   {
-    id:5,
-    like:false,
+    id: 5,
+    like: false,
     title: "Artisanal Soaps",
     about: "Handcrafted with natural ingradients",
     price: 1299,
+    newprice: 1099,
     image: defaultImage,
   },
   {
-    id:6,
-    like:false,
+    id: 6,
+    like: false,
     title: "Artisanal Soaps",
     about: "Handcrafted with natural ingradients",
     price: 1299,
+    newprice: 1099,
     image: defaultImage,
   },
-
 ];
 
 export const PopularCardData = [
   {
     id: 1,
-    like:false,
+    like: false,
     title: "Artisanal Candles",
     about: "Handmade with natural wax",
     price: 2499,
@@ -82,7 +231,7 @@ export const PopularCardData = [
   },
   {
     id: 2,
-    like:false,
+    like: false,
     title: "Handmade Pottery",
     about: "Unique ceramic pieces",
     price: 3999,
@@ -90,7 +239,7 @@ export const PopularCardData = [
   },
   {
     id: 3,
-    like:false,
+    like: false,
     title: "Artisanal Soaps",
     about: "Handcrafted with natural ingradients",
     price: 1299,
@@ -98,7 +247,7 @@ export const PopularCardData = [
   },
   {
     id: 4,
-    like:false,
+    like: false,
     title: "Artisanal Candles",
     about: "Handmade with natural wax",
     price: 2499,
@@ -286,25 +435,25 @@ export const OrdersDropdown = [
 export const detailColors = [
   {
     id: 1,
-    image:"https://pagedone.io/asset/uploads/1700472379.png",
-    title:"Black",
-    active:"border-primary-600 border-dashed",
+    image: "https://pagedone.io/asset/uploads/1700472379.png",
+    title: "Black",
+    active: "border-primary-600 border-dashed",
     class:
       "cursor-pointer min-[400px]:h-[100px] aspect-square border-2 border-gray-100 rounded-xl transition-all duration-500 group-hover:border-primary-600 group-hover:border-dashed",
   },
   {
     id: 2,
-    image:"https://pagedone.io/asset/uploads/1700472379.png",
-    title:"Brown",
-    active:"border-primary-600 border-dashed",
+    image: "https://pagedone.io/asset/uploads/1700472379.png",
+    title: "Brown",
+    active: "border-primary-600 border-dashed",
     class:
       "cursor-pointer min-[400px]:h-[100px] aspect-square border-2 border-gray-100 rounded-xl transition-all duration-500 group-hover:border-primary-600 group-hover:border-dashed",
   },
   {
     id: 3,
-    image:"https://pagedone.io/asset/uploads/1700472529.png",
-    title:"Beige",
-    active:"border-primary-600 border-dashed",
+    image: "https://pagedone.io/asset/uploads/1700472529.png",
+    title: "Beige",
+    active: "border-primary-600 border-dashed",
     class:
       "cursor-pointer min-[400px]:h-[100px] aspect-square border-2 border-gray-100 rounded-xl transition-all duration-500 group-hover:border-primary-600 group-hover:border-dashed",
   },

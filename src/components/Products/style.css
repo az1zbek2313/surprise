@@ -1,14 +1,13 @@
 .title {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  -o-text-overflow: ellipsis;
-  text-overflow: ellipsis;
+  width: 100%; 
+  text-align: start;
+  overflow: hidden; 
+  white-space: nowrap; 
+  text-overflow:ellipsis; 
 }
 .text {
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   -o-text-overflow: ellipsis;

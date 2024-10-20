@@ -5,23 +5,25 @@ import "swiper/css";
 import "swiper/css/navigation"; // Faqat navigatsiya uchun
 import "./style.css";
 import { useRef } from "react";
-import { ProductCardData } from "../../util/contants";
 import { Swiper, SwiperSlide } from "swiper/react";
+import CategoryNames from "../CategoryNames";
 
-function CategoryPruducts() {
+function CategoryPruducts({data}) {
   const swiperRef = useRef(null);
 
   return (
-    <div className="bg-primary-50">
+    <div style={{background:data.bg}}>
+        <CategoryNames name={data.categoryName} to={"category"} />
       <div
-        className={`w-full ${styles.container} flex items-center justify-between pb-[30px] gap-[6px]`}
+        className={`w-full ${styles.container} flex items-center justify-between pb-[30px] gap-3`}
       >
+
         <div className="hidden md:inline-block">
-          <h2 className="text-4xl font-medium lg:font-normal lg:text-5xl text-qoramtir-50 max-w-[304px]">
-            Happy Birthday!
+          <h2 className="text-4xl font-medium text lg:font-normal lg:text-5xl text-qoramtir-50 max-w-[304px]">
+            {data?.categoryName}
           </h2>
-          <p className="text-xl lg:text-2xl text-qoramtir-50 lg:mt-[30px] my-2 lg:mb-5">
-            Make the day bright
+          <p className="text-xl lg:text-2xl text text-qoramtir-50 lg:mt-5 my-2 lg:mb-5">
+            {data?.categoryText}
           </p>
           <a
             href="/category"
@@ -34,7 +36,7 @@ function CategoryPruducts() {
 
         <div className="flex flex-col items-end w-full md:w-3/4">
           {/* Navigatsiya tugmalari */}
-          <div className="flex gap-2 items-center justify-center my-2">
+          <div className="flex gap-2 items-center justify-center mb-2 md:my-2">
             <div
               onClick={() => swiperRef.current.swiper.slidePrev()}
               className="rounded-full shadow-lg px-2 sm:px-3 sm:py-1 cursor-pointer transition-all duration-300 hover:bg-gray-200 bg-white"
@@ -61,7 +63,7 @@ function CategoryPruducts() {
                 backgroundColor: "transparent",
               }}
             >
-              {ProductCardData.map((product, index) => (
+              {data?.categoryCards.map((product, index) => (
                 <SwiperSlide
                   key={index}
                   style={{
