@@ -20,6 +20,16 @@ import carouselMobile2 from "./carousel-2-mobile.jpg"
 import carouselMobile3 from "./carousel-3-mobile.jpg"
 import signIn from "./signIn.svg";
 import signUp from "./signUp.svg";
+// Card Images 
+import cardImage1 from "./CardImages/Rectangle 31.png"
+import cardImage2 from "./CardImages/Rectangle 31-1.png"
+import cardImage3 from "./CardImages/Rectangle 31-2.png"
+import cardImage4 from "./CardImages/Rectangle 31-3.png"
+import cardImage5 from "./CardImages/Rectangle 31-4.png"
+import cardImage6 from "./CardImages/Rectangle 31-5.png"
+import cardImage7 from "./CardImages/Rectangle 31-6.png"
+import cardImage8 from "./CardImages/Rectangle 31-7.png"
+import cardImage9 from "./CardImages/Rectangle 31-8.png"
 
 export {
   signIn,
@@ -44,4 +54,13 @@ export {
   carouselMobile1,
   carouselMobile2,
   carouselMobile3,
+  cardImage1,
+  cardImage2,
+  cardImage3,
+  cardImage4,
+  cardImage5,
+  cardImage6,
+  cardImage7,
+  cardImage8,
+  cardImage9
 };

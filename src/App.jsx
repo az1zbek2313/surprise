@@ -31,7 +31,7 @@ export default function App() {
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/code" element={<Code />}></Route>
 
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout />}> 
           <Route index element={<LandingPage />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
           <Route path="/category" element={<Category />}></Route>

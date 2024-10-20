@@ -52,14 +52,7 @@ export const ProductCardData = [
     price: 1299,
     image: defaultImage,
   },
-  {
-    id: 5,
-    like:false,
-    title: "Artisanal Soaps",
-    about: "Handcrafted with natural ingradients",
-    price: 1299,
-    image: defaultImage,
-  },
+
 ];
 
 export const PopularCardData = [
