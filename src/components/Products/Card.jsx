@@ -1,5 +1,5 @@
 import { cardImage9 } from "../../assets";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import {
@@ -31,14 +31,6 @@ function Card({product}) {
   }
   return (
     <>
-      <Toaster
-        toastOptions={{
-          classNames: {
-            error: "bg-red-400 text-white",
-            success: "text-green-400",
-          },
-        }}
-      />
       <div
         onClick={() => {
           window.scrollTo({
