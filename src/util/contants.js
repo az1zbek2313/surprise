@@ -24,6 +24,14 @@ import {
   cardImage7,
   cardImage8,
   cardImage9,
+  TrendingSurprizes1,
+  TrendingSurprizes2,
+  TrendingSurprizes3,
+  TrendingSurprizes4,
+  TrendingSurprizes5,
+  TrendingSurprizes6,
+  TrendingSurprizes7,
+  TrendingSurprizes8
 } from "../assets";
 
 export const star = [1, 2, 3, 4, 5];
@@ -43,6 +51,7 @@ export const ProductCategoryData = [
         price: 2499,
         newprice: 2099,
         image: cardImage9,
+        star:5
       },
       {
         id: 2,
@@ -52,6 +61,7 @@ export const ProductCategoryData = [
         price: 3999,
         newprice: 3099,
         image: cardImage8,
+        star:5
       },
       {
         id: 3,
@@ -61,6 +71,7 @@ export const ProductCategoryData = [
         price: 1299,
         newprice: 1099,
         image: cardImage7,
+        star:5
       },
       {
         id: 4,
@@ -70,6 +81,7 @@ export const ProductCategoryData = [
         price: 1299,
         newprice: 1099,
         image: cardImage2,
+        star:5
       }
     ]
   },
@@ -87,6 +99,7 @@ export const ProductCategoryData = [
         price: 2499,
         newprice: 2099,
         image: cardImage6,
+        star:5
       },
       {
         id: 2,
@@ -96,6 +109,7 @@ export const ProductCategoryData = [
         price: 3999,
         newprice: 3099,
         image: cardImage5,
+        star:5
       },
       {
         id: 3,
@@ -105,6 +119,7 @@ export const ProductCategoryData = [
         price: 1299,
         newprice: 1099,
         image: cardImage4,
+        star:5
       },
       {
         id: 4,
@@ -114,6 +129,7 @@ export const ProductCategoryData = [
         price: 1299,
         newprice: 1099,
         image: cardImage9,
+        star:5
       }
     ]
   },
@@ -131,6 +147,7 @@ export const ProductCategoryData = [
         price: 2499,
         newprice: 2099,
         image: cardImage3,
+        star:5
       },
       {
         id: 2,
@@ -140,6 +157,7 @@ export const ProductCategoryData = [
         price: 3999,
         newprice: 3099,
         image: cardImage2,
+        star:5
       },
       {
         id: 3,
@@ -149,6 +167,7 @@ export const ProductCategoryData = [
         price: 1299,
         newprice: 1099,
         image: cardImage1,
+        star:5
       },
       {
         id: 4,
@@ -158,10 +177,78 @@ export const ProductCategoryData = [
         price: 1299,
         newprice: 1099,
         image: cardImage8,
+        star:5
       }
     ]
   }
 ];
+
+export const trandingSurPrizes = [
+  {
+    id:1,
+    title:"Gold ring",
+    price:2200,
+    newprice:1800,
+    star:5,
+    image:TrendingSurprizes1
+  },
+  {
+    id:2,
+    title:"Gold ring",
+    price:2200,
+    newprice:1800,
+    star:5,
+    image:TrendingSurprizes2
+  },
+  {
+    id:3,
+    title:"Gold ring",
+    price:2200,
+    newprice:1800,
+    star:5,
+    image:TrendingSurprizes3
+  },
+  {
+    id:4,
+    title:"Gold ring",
+    price:2200,
+    newprice:1800,
+    star:5,
+    image:TrendingSurprizes4
+  },
+  {
+    id:5,
+    title:"Gold ring",
+    price:2200,
+    newprice:1800,
+    star:5,
+    image:TrendingSurprizes5
+  },
+  {
+    id:6,
+    title:"Gold ring",
+    price:2200,
+    newprice:1800,
+    star:5,
+    image:TrendingSurprizes6
+  },
+  {
+    id:7,
+    title:"Gold ring",
+    price:2200,
+    newprice:1800,
+    star:5,
+    image:TrendingSurprizes7
+  },
+  {
+    id:8,
+    title:"Gold ring",
+    price:2200,
+    newprice:1800,
+    star:5,
+    image:TrendingSurprizes8
+  },
+]
 
 export const categoryHeader = [
   {
@@ -285,48 +372,60 @@ export const PopularCardData = [
   },
 ];
 
-export const ProductCardCategoty = [
+export const ProductCardCategory = [
   {
     id: 1,
     title: "Artisanal Candles",
     about: "Handmade with natural wax",
     price: 2499,
-    image: defaultImage,
+    newprice: 1099,
+    star: 5,
+    image: cardImage9,
   },
   {
     id: 2,
     title: "Handmade Pottery",
     about: "Unique ceramic pieces",
     price: 3999,
-    image: defaultImage,
+    newprice: 1099,
+    star: 5,
+    image: cardImage9,
   },
   {
     id: 3,
     title: "Artisanal Soaps",
     about: "Handcrafted with natural ingradients",
     price: 1299,
-    image: defaultImage,
+    newprice: 1099,
+    star: 5,
+    image: cardImage9,
   },
   {
     id: 4,
     title: "Artisanal Soaps",
     about: "Handcrafted with natural ingradients",
     price: 1299,
-    image: defaultImage,
+    newprice: 1099,
+    star: 5,
+    image: cardImage9,
   },
   {
     id: 5,
     title: "Artisanal Soaps",
     about: "Handcrafted with natural ingradients",
     price: 1299,
-    image: defaultImage,
+    newprice: 1099,
+    star: 5,
+    image: cardImage9,
   },
   {
     id: 6,
     title: "Artisanal Soaps",
     about: "Handcrafted with natural ingradients",
     price: 1299,
-    image: defaultImage,
+    newprice: 1099,
+    star: 5,
+    image: cardImage9,
   },
 ];
 

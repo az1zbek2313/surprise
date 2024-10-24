@@ -31,6 +31,15 @@ import cardImage6 from "./CardImages/Rectangle 31-5.png"
 import cardImage7 from "./CardImages/Rectangle 31-6.png"
 import cardImage8 from "./CardImages/Rectangle 31-7.png"
 import cardImage9 from "./CardImages/Rectangle 31-8.png"
+// Trending Images 
+import TrendingSurprizes1 from "./TrendingSurprizes/Rectangle 31.png"
+import TrendingSurprizes2 from "./TrendingSurprizes/Rectangle 31-1.png"
+import TrendingSurprizes3 from "./TrendingSurprizes/Rectangle 31-2.png"
+import TrendingSurprizes4 from "./TrendingSurprizes/Rectangle 31-3.png"
+import TrendingSurprizes5 from "./TrendingSurprizes/Rectangle 31-4.png"
+import TrendingSurprizes6 from "./TrendingSurprizes/Rectangle 31-5.png"
+import TrendingSurprizes7 from "./TrendingSurprizes/Rectangle 31-6.png"
+import TrendingSurprizes8 from "./TrendingSurprizes/Rectangle 31-7.png"
 
 export {
   signIn,
@@ -64,5 +73,13 @@ export {
   cardImage6,
   cardImage7,
   cardImage8,
-  cardImage9
+  cardImage9,
+  TrendingSurprizes1,
+  TrendingSurprizes2,
+  TrendingSurprizes3,
+  TrendingSurprizes4,
+  TrendingSurprizes5,
+  TrendingSurprizes6,
+  TrendingSurprizes7,
+  TrendingSurprizes8
 };

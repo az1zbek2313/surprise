@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { ProductCard } from "../components";
+import { ProductCard, RemeberProducts } from "../components";
 import { PopularCardData, shoppingCart } from "../util/contants";
 import { Toaster, toast } from "sonner";
 
@@ -230,22 +230,7 @@ function Cart() {
           </div>
         </div>
 
-        <div className="mt-6">
-          <h3 className="text-lg md:text-xl font-bold text-gray-800">
-            People also bought 
-          </h3>
-
-          <div
-            className={`flex gap-2 xs:gap-5 md:gap-4 container w-full mx-auto mt-4 overflow-x-scroll overflow-y-hidden pb-4`}
-          >
-            {PopularCardData.map((item) => (
-              <ProductCard
-                key={item.id}
-                {...item}
-              />
-            ))}
-          </div>
-        </div>
+       <RemeberProducts />
       </div>
     </section>
   );

@@ -1,4 +1,3 @@
-import { star } from "../../assets";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
@@ -9,7 +8,7 @@ import {
 } from "../../Redux/Actions/actions";
 import { useNavigate } from "react-router-dom";
 
-function Card({product}) {
+function Card({product, height}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const likes = useSelector((state) => state.myFavourites);
@@ -40,7 +39,7 @@ function Card({product}) {
 
           navigate("/detail");
         }}
-        className="flex flex-col gap-2 sm:gap-[10px] md:gap-[12px] cursor-pointer"
+        className="flex flex-col gap-2 sm:gap-[10px] cursor-pointer"
       >
         <div className="group relative bg-[rgb(121, 121, 121)]">
           {/* Like Save */}
@@ -70,7 +69,7 @@ function Card({product}) {
               </svg>
             </span>
           )}
-          <div className="overflow-hidden rounded-md sm:rounded-[10px] border-gray-200 opacity-90 transition duration-500 ease-in-out group-hover:opacity-100">
+          <div className={`overflow-hidden rounded-md sm:rounded-[10px] border-gray-200 opacity-90 transition duration-500 ease-in-out group-hover:opacity-100 ${height ? height : ""}`}>
             <img
               src={product?.image}
               alt="card image"
@@ -78,9 +77,9 @@ function Card({product}) {
               />
           </div>
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col">
           <div className="flex flex-col items-start">
-            <h4 className="text-qoramtir-600 title text-lg md:text-2xl font-medium leading-6">
+            <h4 className="text-qoramtir-600 title text-lg md:text-xl font-medium leading-6">
               {product.title}
             </h4>
             {/* <p className="text-qoramtir-600 text-xs lg:text-sm title">
@@ -89,15 +88,15 @@ function Card({product}) {
           </div>
           <div className="flex justify-between flex-row items-center flex-wrap">
             <p className="flex flex-wrap items-center gap-[6px]">
-              <span className="text-base md:text-xl text-black">
-                $ {product?.newprice}
+              <span className="text-base md:text-lgl text-black">
+                {product?.newprice}$
               </span>
-              <span className="text-sm md:text-base text-qoramtir-qizil line-through opacity-80">
-                $ {product?.price}
+              <span className="text-sm text-qoramtir-qizil line-through opacity-80">
+                {product?.price}$
               </span>
             </p>
-            <div className="flex items-center rtl:space-x-reverse mr-2">
-              <span className="text-base opacity-70">5</span>
+            <div className="flex items-center rtl:space-x-reverse md:mr-2">
+              <span className="text-base opacity-70">{product.star}</span>
                 <span className="text-base">⭐️</span>
             </div>
           </div>

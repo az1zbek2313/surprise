@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { ProductCard } from "../components";
 import {
-  ProductCardCategoty,
+  ProductCardCategory,
   CategoryNav,
   CategoryDropdown,
 } from "../util/contants";
 import { styles } from "../util/style";
+import Card from "../components/Products/Card";
 
 function Category() {
   const [checkNav, setCheckNav] = useState(1);
@@ -133,7 +134,7 @@ function Category() {
     //         <div
     //           className={`${styles.flexBetween} gap-4 md:gap-2 xl:gap-4 pr-0 pl-0 ${styles.container}`}
     //         >
-    //           {ProductCardCategoty.map((item) => (
+    //           {ProductCardCategory.map((item) => (
     //             <ProductCard
     //               key={item.id}
     //               {...item}
@@ -512,11 +513,12 @@ function Category() {
         <div
     className={`${styles.flexBetween} gap-1 xl:gap-4 pr-0 pl-0 ${styles.container}`}
   >
-    {ProductCardCategoty.map((item) => (
-      <ProductCard
-        key={item.id}
-        {...item}
+    {ProductCardCategory.map((item) => (
+     <li key={item.id} className="w-[49%] xs:w-[32%] list-none my-2 md:my-4">
+       <Card
+        product={item}
       />
+     </li>
     ))}
   </div>
           </div>

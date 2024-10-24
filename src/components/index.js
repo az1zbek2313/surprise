@@ -4,6 +4,7 @@ import HeaderFilter from "./Header/HeaderFilter";
 import Products from "./Products";
 import CategoryPruducts from "./Products/CategoryPruducts";
 import ProductCard from "./Products/ProductCard";
+import TrendingSurprize from "./TrendingSurprize";
 import ShopCategory from "./ShopCategory";
 import CategoryNames from "./CategoryNames";
 import Footer from "./Footer";
@@ -17,17 +18,20 @@ import Clients from "./Clients";
 import About from "./About";
 import Testimonial from "./Testimonial";
 import HeroImage from "./HeroImage/HeroImage";
+import RemeberProducts from "./RememberProducts";
 
 export {
   Header,
   HeaderTop,
   HeaderFilter,
+  TrendingSurprize,
   HeroImage,
   Products,
   CategoryPruducts,
   ShopCategory,
   Footer,
   CategoryNames,
+  RemeberProducts,
   Hero,
   Clients,
   About,

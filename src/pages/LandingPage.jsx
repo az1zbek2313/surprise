@@ -1,4 +1,4 @@
-import { HeroImage, CategoryPruducts, HeaderFilter } from "../components";
+import { HeroImage, CategoryPruducts, HeaderFilter, TrendingSurprize } from "../components";
 import { ProductCategoryData } from "../util/contants";
 import { Toaster } from "sonner";
 
@@ -20,6 +20,9 @@ function LandingPage() {
 
       {/* Hero Images Carousel */}
       <HeroImage />
+
+      {/* Trending Surprizes */}
+      <TrendingSurprize />
 
       {/* Categor Cards */}
       {ProductCategoryData.map((items) => (

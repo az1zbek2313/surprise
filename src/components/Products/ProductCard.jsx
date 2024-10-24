@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./style.css";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addedMyFavourites,
@@ -133,14 +133,6 @@ function ProductCard(data) {
         : "w-[49%] flex-shrink-0 sm:w-[33%] lg:w-[24%]"
       }`}
     >
-      <Toaster
-        toastOptions={{
-          classNames: {
-            error: "bg-red-400 text-white",
-            success: "text-green-400",
-          },
-        }}
-      />
       <a href="#">
         <img
           className="p-8 hover:scale-[1.03] transition-all duration-500 rounded-t-lg"

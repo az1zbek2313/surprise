@@ -1,13 +1,14 @@
-import { useState } from "react";
 import { ProductCard } from "../components";
-import { styles } from "../util/style";
 import cartCommit from "../assets/pngwing.com.png";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import Card from "../components/Products/Card";
 
 function MyFavourites() {
   const data = useSelector((state) => state.myFavourites);
   const { t } = useTranslation();
+
+  console.log(10, data);
 
   return (
     <>
@@ -32,9 +33,16 @@ function MyFavourites() {
           </div>
         ) : (
           <div className="">
-            <div className={`flex justify-start items-center flex-wrap px-4 gap-1 xl:gap-4  my-4`}>
+            <div
+              className={`flex justify-start items-center flex-wrap px-4 gap-1 xl:gap-4  my-4`}
+            >
               {data.map((item) => (
-                <ProductCard key={item.id} {...item} />
+                <li
+                  key={item.id}
+                  className="w-[49%] xs:w-[32%] my-1 md:my-2 list-none"
+                >
+                  <Card product={item} height={"h-[200px] sm:h-[240px]"}/>
+                </li>
               ))}
             </div>
           </div>

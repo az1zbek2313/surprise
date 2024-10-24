@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { detailColors, detailImages, PopularCardData } from "../util/contants";
-import ProductCard from "../components/Products/ProductCard";
+import { detailColors, detailImages } from "../util/contants";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, incerement, inputAmount } from "../Redux/Actions/actions";
 import { useNavigate } from "react-router-dom";
+import { RemeberProducts } from "../components";
 
 function Detail() {
+
   const defaltimg =
     "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg";
   const [defaultColor, setDefaultColor] = useState(1);
@@ -391,19 +392,7 @@ function Detail() {
           </div>
         </div>
 
-        <div className="mt-6">
-          <h3 className="text-lg md:text-xl font-bold text-gray-800">
-            Similar Products
-          </h3>
-
-          <div
-            className={`flex gap-2 xs:gap-2 md:gap-4 container w-full mx-auto mt-4 overflow-x-scroll pb-4`}
-          >
-            {PopularCardData.map((item) => (
-              <ProductCard key={item.id} {...item} />
-            ))}
-          </div>
-        </div>
+        <RemeberProducts />
       </div>
     </>
   );

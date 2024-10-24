@@ -20,12 +20,21 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { SidebarAccount, Layout } from "./components";
 import { useSelector } from "react-redux";
+import { Toaster } from "sonner";
 
 export default function App() {
   const token = useSelector((state) => state.userIdReducer.uid);
 
   return (
     <>
+          <Toaster
+        toastOptions={{
+          classNames: {
+            error: "bg-red-400 text-white",
+            success: "text-green-400",
+          },
+        }}
+      />
       <Routes>
         <Route path="/login" element={<SignIn />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
