@@ -5,6 +5,7 @@ import uzbFlag from "./uz-circle-01.png";
 import rusFlag from "./rus.png";
 import engFlag from "./eng.png";
 import user from "./user.png";
+import star from "./star.png";
 import carousel1 from "./carousel-1.jpg";
 import carousel2 from "./carousel-2.jpg";
 import carousel3 from "./carousel-3.jpg";
@@ -37,6 +38,7 @@ export {
   notification,
   chat,
   geo,
+  star,
   bag,
   heart,
   user128,

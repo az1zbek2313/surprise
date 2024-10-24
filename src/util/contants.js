@@ -163,6 +163,36 @@ export const ProductCategoryData = [
   }
 ];
 
+export const categoryHeader = [
+  {
+    id:1,
+    categoryName:"Flowers",
+    categoryProducts:["Tulip", "Rose", "Lily", "Iris", "Begonia", "Orchid", "Violet", "Peonies"]
+  },
+  {
+    id:2,
+    categoryName:"Accessories",
+    categoryProducts:["Belt", "Handbags", "Hats & caps", "Hair accessories", "Sunglasses & Eyewear", "Scarves & Wraps", "Wallets, Card Cases"]
+  },
+  {
+    id:3,
+    categoryName:"Jeweleries",
+    categoryProducts:["Brooches", "Rings", "Necklaces, Earrings", "Pendants", "Bracelets cufflinks", "Diamond solitaires"]
+  },
+  {
+    id:4,
+    categoryName:"Souvenirs",
+    categoryProducts:["Ornaments ", "T-Shirts", "Postcards", "Sand in a Bottle", "Fridge Magnets.", "Tea Towels.", "Books"]
+  },
+  {
+    id:5,
+    categoryName:"Sweets",
+    categoryProducts:["Birthday cake", "Choco-locma", "Chocolate", "Lorem", "Lorem", "Lorem", "Lorem"]
+  },
+]
+
+export const categoryHeaderNames = ["All people", "Men", "Women", "Children"];
+
 export const ProductCardData = [
   {
     id: 1,

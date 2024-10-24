@@ -1,4 +1,4 @@
-import { cardImage9 } from "../../assets";
+import { star } from "../../assets";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
@@ -40,7 +40,7 @@ function Card({product}) {
 
           navigate("/detail");
         }}
-        className="flex flex-col gap-2 sm:gap-[10px] md:gap-[18px] cursor-pointer"
+        className="flex flex-col gap-2 sm:gap-[10px] md:gap-[12px] cursor-pointer"
       >
         <div className="group relative bg-[rgb(121, 121, 121)]">
           {/* Like Save */}
@@ -74,41 +74,31 @@ function Card({product}) {
             <img
               src={product?.image}
               alt="card image"
-              className="animate-fade-in block h-full w-full scale-100 transform object-cover object-center opacity-100 transition duration-500 group-hover:scale-110"
-            />
+                className="animate-fade-in block h-full w-full scale-100 transform object-cover object-center opacity-100 transition duration-500 group-hover:scale-110"
+              />
           </div>
         </div>
-        <div className="flex flex-col gap-1 md:gap-[8px]">
+        <div className="flex flex-col gap-1">
           <div className="flex flex-col items-start">
             <h4 className="text-qoramtir-600 title text-lg md:text-2xl font-medium leading-6">
               {product.title}
             </h4>
-            <p className="text-qoramtir-600 text-xs lg:text-sm title">
+            {/* <p className="text-qoramtir-600 text-xs lg:text-sm title">
               {product.about}
-            </p>
+            </p> */}
           </div>
-          <div className="flex justify-between items-center flex-wrap">
+          <div className="flex justify-between flex-row items-center flex-wrap">
             <p className="flex flex-wrap items-center gap-[6px]">
-              <span className="text-base md:text-xl text-qoramtir-qizil">
-                $ {product?.price}
-              </span>
-              <span className="text-sm md:text-base text-qoramtir-600 line-through opacity-80">
+              <span className="text-base md:text-xl text-black">
                 $ {product?.newprice}
               </span>
+              <span className="text-sm md:text-base text-qoramtir-qizil line-through opacity-80">
+                $ {product?.price}
+              </span>
             </p>
-            <div className="flex items-center space-x-1 rtl:space-x-reverse mr-2">
-              {[1, 2, 3, 4, 5].map((item) => (
-                <svg
-                  key={item}
-                  className={`w-3 h-3 md:w-4 md:h-4 ${item == 5 || item == 4 ? "text-gray-300" : "text-yellow-300"}`}
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 22 20"
-                >
-                  <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                </svg>
-              ))}
+            <div className="flex items-center rtl:space-x-reverse mr-2">
+              <span className="text-base opacity-70">5</span>
+                <span className="text-base">⭐️</span>
             </div>
           </div>
         </div>

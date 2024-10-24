@@ -1,5 +1,6 @@
 import Header from "./Header";
 import HeaderTop from "./HeaderTop";
+import HeaderFilter from "./Header/HeaderFilter";
 import Products from "./Products";
 import CategoryPruducts from "./Products/CategoryPruducts";
 import ProductCard from "./Products/ProductCard";
@@ -20,6 +21,7 @@ import HeroImage from "./HeroImage/HeroImage";
 export {
   Header,
   HeaderTop,
+  HeaderFilter,
   HeroImage,
   Products,
   CategoryPruducts,

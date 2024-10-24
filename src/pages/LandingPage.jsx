@@ -1,7 +1,4 @@
-import {
-  HeroImage,
-  CategoryPruducts,
-} from "../components";
+import { HeroImage, CategoryPruducts, HeaderFilter } from "../components";
 import { ProductCategoryData } from "../util/contants";
 import { Toaster } from "sonner";
 
@@ -18,14 +15,16 @@ function LandingPage() {
         }}
       />
 
-        {/* Hero Images Carousel */}
+      {/* Header filter category */}
+      <HeaderFilter />
+
+      {/* Hero Images Carousel */}
       <HeroImage />
 
-        {/* Categor Cards */}
+      {/* Categor Cards */}
       {ProductCategoryData.map((items) => (
         <CategoryPruducts key={items.id} data={items} />
       ))}
-
     </div>
   );
 }

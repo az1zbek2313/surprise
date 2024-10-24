@@ -1,4 +1,4 @@
-import { HeaderTop } from "../";
+import { HeaderTop, HeaderFilter } from "../";
 import { styles } from "../../util/style";
 import { surpriseLogo, user } from "../../assets";
 import { flagLanguage } from "../../util/contants";
@@ -102,16 +102,16 @@ function Header() {
               </div>
 
               {/* Search Logo */}
-              <div className="hidden md:flex items-center bg-gray-100 rounded-lg h-9 lg:h-11 mb-1 lg:mb-2">
+              <div className="hidden md:flex items-center border-[1.5px] rounded-full h-9 lg:h-11 mb-1 lg:mb-2">
                 <input
                   type="text"
                   placeholder={t("searchHeader")}
-                  className="h-full pr-0 lg:pr-72 placeholder:text-xs lg:placeholder:text-sm bg-gray-100 rounded-lg px-2 lg:px-4 outline-none text-gray-500"
+                  className="h-full pr-0 lg:pr-72 placeholder:text-xs lg:placeholder:text-sm  rounded-l-full px-2 lg:px-4 outline-none text-gray-500"
                 />
-                <div className="bg-red-600 h-full w-12 lg:w-16 flex justify-center items-center rounded-xl cursor-pointer hover:bg-red-600 transition-all duration-200">
+                <div className="h-full w-12 lg:w-16 flex justify-center items-center rounded-r-full cursor-pointer transition-all duration-200">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    color="white"
+                    color="gray"
                     fill="currentColor"
                     className="w-4 h-4 lg:w-5 lg:h-5"
                     viewBox="0 0 16 16"
@@ -228,7 +228,7 @@ function Header() {
                       <img
                         src={user}
                         className="rounded-full lg:h-8 lg:w-8 h-6 w-6"
-                        alt=""
+                        alt="user icon"
                         loading="lazy"
                       />
                     </a>
@@ -347,7 +347,7 @@ function Header() {
         {/* <!--Main Navigation--> */}
       </div>
       <div className={`${styles.container} mt-2`}>
-        <div className="md:hidden w-full flex items-center bg-gray-200 rounded-lg h-8 lg:h-10 mb-1 lg:mb-2">
+        <div className="md:hidden w-full flex items-center border-[1.5px] rounded-full h-8 lg:h-10 mb-1 lg:mb-2">
           <div className="pl-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -363,7 +363,7 @@ function Header() {
           <input
             type="search"
             placeholder={t("searchHeader")}
-            className="h-full w-full placeholder:text-sm bg-gray-200 rounded-lg px-3 lg:px-4 outline-none text-gray-500"
+            className="h-full w-full placeholder:text-sm rounded-full px-3 lg:px-4 outline-none text-gray-500"
           />
         </div>
       </div>
