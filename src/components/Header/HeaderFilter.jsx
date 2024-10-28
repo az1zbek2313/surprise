@@ -8,22 +8,14 @@ function HeaderFilter() {
   return (
     <>
       <div className=" w-full hidden sm:block">
-        <ul
-          onMouseLeave={() => {
-            setDropdown(false);
-          }}
-          
+        <ul          
           className=" w-fit bg-qoramtir-gray px-2 md:py-1 md:px-4 gap-2 rounded-full flex mx-auto"
         >
           {categoryHeaderNames.map((item, index) => (
             <li
               key={index}
-              onMouseEnter={() => {
-                setDropdown(true);
-                setCheck(item)
-              }}
               onClick={() => {
-                setDropdown(!dropdown);
+                setDropdown(true);
                 setCheck(item)
               }}
               className={`cursor-pointer transition-all duration-300 ${check == item ? "text-blue-600 bg-white" :"hover:text-blue-600 hover:bg-white"} rounded-full px-2 md:px-4 py-1 md:py-2 text-xs md:text-base`}
