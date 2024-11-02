@@ -1,5 +1,6 @@
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
+import { cardImage9 } from "../../assets";
 import "./style.css";
 import {
   addedMyFavourites,
@@ -71,7 +72,7 @@ function Card({product, height}) {
           )}
           <div className={`overflow-hidden rounded-md sm:rounded-[10px] border-gray-200 opacity-90 transition duration-500 ease-in-out group-hover:opacity-100 ${height ? height : ""}`}>
             <img
-              src={product?.image}
+              src={product?.image || product?.images.length ? product?.image || cardImage9 : cardImage9}
               alt="card image"
                 className="animate-fade-in block h-full w-full scale-100 transform object-cover object-center opacity-100 transition duration-500 group-hover:scale-110"
               />
@@ -80,7 +81,7 @@ function Card({product, height}) {
         <div className="flex flex-col">
           <div className="flex flex-col items-start">
             <h4 className="text-qoramtir-600 title text-lg md:text-xl font-medium leading-6">
-              {product.title}
+              {product.title || product.name.uz ? product.title || product.name.uz : "Product not found"}
             </h4>
             {/* <p className="text-qoramtir-600 text-xs lg:text-sm title">
               {product.about}
@@ -89,14 +90,14 @@ function Card({product, height}) {
           <div className="flex justify-between flex-row items-center flex-wrap">
             <p className="flex flex-wrap items-center gap-[6px]">
               <span className="text-base md:text-lgl text-black">
-                {product?.newprice}$
+                {product?.newprice ? product.newprice : product.price}$
               </span>
               <span className="text-sm text-qoramtir-qizil line-through opacity-80">
                 {product?.price}$
               </span>
             </p>
             <div className="flex items-center rtl:space-x-reverse md:mr-2">
-              <span className="text-base opacity-70">{product.star}</span>
+              <span className="text-base opacity-70">{product.star || product.rating}</span>
                 <span className="text-base">⭐️</span>
             </div>
           </div>

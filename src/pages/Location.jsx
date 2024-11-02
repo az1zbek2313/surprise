@@ -27,7 +27,7 @@ function Location() {
   return (
     <>
       <div
-        className={`container min-h-[100vh] mx-auto md:px-0 lg:border-r-[1.6px]`}
+        className={`container mx-auto md:px-0`}
       >
         <div className="flex flex-wrap gap-1 xs:gap-0 justify-between items-center px-4 border-b-[1.6px] py-2">
           <h1 className="text-2xl mx-auto xs:mx-0 font-semibold">
@@ -53,7 +53,8 @@ function Location() {
         </div>
 
         {data.length <= 0 ? (
-          <div className="flex flex-col gap-2 md:gap-4 justify-center items-center mt-[16vh]">
+          <div className="min-h-[50vh] sm:h-[60vh] lg:min-h-[70vh] flex justify-center items-center">
+          <div className="flex flex-col gap-2 md:gap-4 justify-center items-center">
             <div className="bg-gray-100 rounded-2xl md:rounded-3xl p-5 md:p-6 w-fit h-fit">
               <img src={geo} alt="search box icon" className="w-8 h-8" />
             </div>
@@ -73,6 +74,7 @@ function Location() {
               <span className="scale-150 mr-1 pb-0.5">+</span> &nbsp;
               <p>Manzil qo'shish</p>
             </a>
+          </div>
           </div>
         ) : (
           <div className="p-4 flex justify-between gap-4 flex-wrap">

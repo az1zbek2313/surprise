@@ -454,49 +454,19 @@ export const CategoryCardData = [
 
 export const CategoryNav = [
   {
-    id: 1,
-    title: "Jackets & Coats",
-    href: "#",
+    id: '671e24116f6dc9123f123b1f',
+    title: "Flowers",
+    href: "/category/671e24116f6dc9123f123b1f",
   },
   {
-    id: 2,
+    id: '671fbdd45598a83c8350431e',
     title: "Hoodies",
-    href: "#",
+    href: "/category/671fbdd45598a83c8350431e",
   },
   {
-    id: 3,
+    id: '67250bd454cb259e656edecd',
     title: "T-shirts & Vests",
-    href: "#",
-  },
-  {
-    id: 4,
-    title: "Shirts",
-    href: "#",
-  },
-  {
-    id: 5,
-    title: "Blazers & Suits",
-    href: "#",
-  },
-  {
-    id: 6,
-    title: "Jeans",
-    href: "#",
-  },
-  {
-    id: 7,
-    title: "Trousers",
-    href: "#",
-  },
-  {
-    id: 8,
-    title: "Shorts",
-    href: "#",
-  },
-  {
-    id: 9,
-    title: "Underwear",
-    href: "#",
+    href: "/category/67250bd454cb259e656edecd",
   },
 ];
 

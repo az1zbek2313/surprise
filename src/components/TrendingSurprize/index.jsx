@@ -1,7 +1,27 @@
+import { useEffect, useState } from "react"
 import { trandingSurPrizes } from "../../util/contants"
 import Card from "../Products/Card"
 
 function TrendingSurprize() {
+    const [loader, setLoader] = useState(false);
+    const [trandingSurPrizes, setTranding] = useState([]);
+
+    useEffect(() => {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+          };
+          
+          fetch(`${import.meta.env.VITE_DEFAULT_HOST}product`, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                setTranding(result)
+            })
+            .catch(error => console.log('error', error))
+            .finally(_ => {
+              setLoader(false);
+            });
+    }, [])
   return (
     <div className="max-w-[1280px] mx-auto xl:px-6">
         <div className="shadow-xl rounded-[10px] px-4 md:px-8 lg:px-12 py-4 md:py-6 border ">

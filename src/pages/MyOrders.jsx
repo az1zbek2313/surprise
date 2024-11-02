@@ -11,7 +11,7 @@ function MyOrders() {
 
   return (
     <div
-      className={`container min-h-[100vh] mx-auto md:px-0 lg:border-r-[1.6px]`}
+      className={`container mx-auto md:px-0`}
     >
       <div className="flex flex-wrap gap-1 xs:gap-0 justify-between items-center px-4 border-b-[1.6px] py-2">
         <h1 className="text-2xl mx-auto xs:mx-0 font-semibold">
@@ -77,13 +77,15 @@ function MyOrders() {
       </div>
 
       {data ? (
-        <div className="flex flex-col gap-2 md:gap-4 justify-center items-center mt-[16vh]">
+        <div className="min-h-[50vh] sm:h-[60vh] lg:min-h-[70vh] flex justify-center items-center">
+        <div className="flex flex-col gap-2 md:gap-4 justify-center items-center">
           <div className="bg-gray-100 rounded-2xl md:rounded-3xl p-5 md:p-6 w-fit h-fit">
             <img src={searchBox} alt="search box icon" className="w-8 h-8" />
           </div>
           <h2 className="font-semibold text-xl">Hali buyurtmalar mavjud emas</h2>
           <p className="opacity-55 font-medium text-sm md:text-base text-center">Hozirda buyurtmalar mavjud emas. Iltimos, <br /> hozir xarid qiling.</p>
           <a href="/" className="text-white w-44 md:w-64 mb-0 bg-red-600 hover:bg-red-700 transition-all duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-base py-2 md:py-3 text-center justify-center inline-flex items-center">Xarid qilish</a>
+        </div>
         </div>
       ) : (
         <div className=""></div>

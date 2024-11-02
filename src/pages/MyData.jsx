@@ -3,9 +3,11 @@ import { styles } from "../util/style";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { debounce } from "lodash";
+import { useNavigate } from "react-router-dom";
 
 function MyData() {
   const [formDisabled, setFormDisabled] = useState(true);
+  const navigate = useNavigate();
   const allData = useSelector((state) => state.userIdReducer.uid);
   const [myData, setMyData] = useState({
     name: "Firstname Lastname",
@@ -29,6 +31,9 @@ function MyData() {
         .then((response) => response.json())
         .then((result) => {
           setMyData(result);
+          if (result.error == "User not found") {
+            navigate("/login")
+          }
         })
         .catch((error) => console.log("error", error));
     }
@@ -45,9 +50,9 @@ function MyData() {
         myHeaders.append("token", allData.token);
 
         var formdata = new FormData();
-        formdata.append("name", myData.name);
-        formdata.append("phone", myData.phone);
-        formdata.append("password", myData.password);
+        formdata.append("name", myData?.name);
+        formdata.append("phone", myData?.phone);
+        formdata.append("password", myData?.password);
 
         var requestOptions = {
           method: "PUT",
@@ -123,7 +128,7 @@ function MyData() {
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 disabled={formDisabled}
-                value={myData.name}
+                value={myData?.name}
                 required
               />
               <label
@@ -145,7 +150,7 @@ function MyData() {
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 disabled={formDisabled}
-                value={myData.phone}
+                value={myData?.phone}
                 required
               />
               <label
@@ -164,7 +169,7 @@ function MyData() {
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 disabled={formDisabled}
-                value={myData.password.slice(0, 4)}
+                value={myData?.password.slice(0, 4)}
                 required
               />
               <label

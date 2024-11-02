@@ -13,13 +13,14 @@ function MyFavourites() {
   return (
     <>
       <div
-        className={`container min-h-[100vh] mx-auto md:px-0 lg:border-r-[1.6px]`}
+        className={`container mx-auto md:px-0`}
       >
         <h1 className="px-4 text-2xl font-semibold border-b-[1.6px] py-2">
           {t("myfavourites")}
         </h1>
         {data.length == 0 ? (
-          <div className="flex flex-col gap-2 md:gap-4 justify-center items-center mt-[16vh]">
+          <div className="min-h-[50vh] sm:h-[60vh] lg:min-h-[70vh] flex justify-center items-center">
+            <div className="flex flex-col gap-2 md:gap-4 justify-center items-center">
             <img src={cartCommit} alt="search box icon" className="w-40 h-40" />
             <h2 className="font-semibold text-xl">
               Sizda hali saralanganlar yo'q
@@ -30,6 +31,7 @@ function MyFavourites() {
             >
               Mahsulotingizni tanlang
             </a>
+          </div>
           </div>
         ) : (
           <div className="">

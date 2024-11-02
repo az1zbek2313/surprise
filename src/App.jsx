@@ -43,7 +43,7 @@ export default function App() {
         <Route path="/" element={<Layout />}> 
           <Route index element={<LandingPage />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
-          <Route path="/category" element={<Category />}></Route>
+          <Route path="/category/:id" element={<Category />}></Route>
           <Route path="/detail" element={<Detail />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           {token ? (

@@ -1,22 +1,44 @@
 import { useEffect, useState } from "react";
-import { ProductCard } from "../components";
+import cartCommit from "../assets/pngwing.com.png";
 import {
-  ProductCardCategory,
   CategoryNav,
-  CategoryDropdown,
 } from "../util/contants";
 import { styles } from "../util/style";
 import Card from "../components/Products/Card";
+import { useParams } from "react-router-dom";
 
 function Category() {
-  const [checkNav, setCheckNav] = useState(1);
+  const params = useParams();
+  const [ProductCardCategory, setProductCardCategory] = useState([]);
+  const [loader, setLoader] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [checkDropdown, setCheckDropdown] = useState(false);
   const [colorDropdown, setColorDropdown] = useState(false);
   const [categoryDrop, setCategoryDrop] = useState(false);
   const [sizeDropdown, setSizeDropdown] = useState(false);
 
+  console.log(21, String(params.id));
+
   useEffect(() => {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    
+    fetch(`${import.meta.env.VITE_DEFAULT_HOST}category/${params.id}`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        setLoader(true)
+        if (result) {
+          console.log(28, result);
+          setProductCardCategory(result?.products)
+        }
+      })
+      .catch(error => console.log('error', error))
+      .finally(_ => {
+        setLoader(false);
+      });
+
     const handleGlobalClick = (event) => {
       const filterBar = event.target.closest('#filterBar');
       const filterButton = event.target.closest('#filterButton');
@@ -39,112 +61,6 @@ function Category() {
   
 
   return (
-    // <section className="bg-white">
-    //   <div className="container px-6 py-0 md:py-0 mx-auto">
-    //     <div className="md:flex md:-mx-2 justify-between">
-    //       <div className="md:w-[20%] space-y-0 flex md:inline-block flex-wrap items-center gap-2 md:gap-10 md:space-y-3 text-sm md:text-base lg:w-1/5 lg:px-2 lg:space-y-4 leading-[0] mt-6 md:mt-0">
-    //         {CategoryNav.map((item) => (
-    //           <a
-    //             href={item.href}
-    //             key={item.id}
-    //             onClick={() => {
-    //               setCheckNav(item.id);
-    //             }}
-    //             className={`block font-medium border-[1.5px] border-gray-300 rounded-full text-center  ${
-    //               checkNav == item.id
-    //                 ? "text-blue-600 border-blue-600"
-    //                 : "text-gray-500"
-    //             } hover:text-blue-600 hover:border-blue-600 p-3 md:p-0 mt-0 md:mt-2`}
-    //           >
-    //             {item.title}
-    //           </a>
-    //         ))}
-    //       </div>
-
-    //       <div className="mt-6 md:mt-0 md:px-2 md:w-[80%] ">
-    //         <div className="flex items-center md:px-6 justify-between text-sm tracking-widest uppercase ">
-    //           <p className="text-gray-500 text-xs md:text-sm">
-    //             6 Items
-    //           </p>
-    //           <div className="flex items-center gap-1 md:gap-4">
-    //             <p className="hidden md:inline-block text-gray-500 text-xs md:text-sm">
-    //               Sort
-    //             </p>
-
-    //             <div className="relative">
-    //               <button
-    //                 id="dropdownHoverButton"
-    //                 data-dropdown-toggle="dropdownHover"
-    //                 onClick={() => {
-    //                   setDropdown(!dropdown);
-    //                 }}
-    //                 data-dropdown-trigger="hover"
-    //                 className="text-white w-44 mb-0 bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs md:text-sm py-2 text-center justify-center inline-flex items-center"
-    //                 type="button"
-    //               >
-    //                 {checkDropdown}
-    //                 <svg
-    //                   className="w-2.5 h-2.5 ms-3"
-    //                   aria-hidden="true"
-    //                   xmlns="http://www.w3.org/2000/svg"
-    //                   fill="none"
-    //                   viewBox="0 0 10 6"
-    //                 >
-    //                   <path
-    //                     stroke="currentColor"
-    //                     strokeLinecap="round"
-    //                     strokeLinejoin="round"
-    //                     strokeWidth="2"
-    //                     d="m1 1 4 4 4-4"
-    //                   />
-    //                 </svg>
-    //               </button>
-
-    //               {/* <!-- Dropdown menu --> */}
-    //               {dropdown && (
-    //                 <div
-    //                   id="dropdownHover"
-    //                   className="z-[1000] absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-full"
-    //                 >
-    //                   <ul
-    //                     className="py-2 text-xs md:text-sm text-gray-700"
-    //                     aria-labelledby="dropdownHoverButton"
-    //                   >
-    //                     {CategoryDropdown.map((item) => (
-    //                       <li key={item.id}>
-    //                         <a
-    //                           href={item.href}
-    //                           onClick={() => {
-    //                             setCheckDropdown(item.title);
-    //                             setDropdown(false)
-    //                           }}
-    //                           className="block px-2 py-1 md:px-4 md:py-2 hover:bg-gray-100"
-    //                         >
-    //                           {item.title}
-    //                         </a>
-    //                       </li>
-    //                     ))}
-    //                   </ul>
-    //                 </div>
-    //               )}
-    //             </div>
-    //           </div>
-    //         </div>
-
-    //         <div
-    //           className={`${styles.flexBetween} gap-4 md:gap-2 xl:gap-4 pr-0 pl-0 ${styles.container}`}
-    //         >
-    //           {ProductCardCategory.map((item) => (
-    //             <ProductCard
-    //               key={item.id}
-    //               {...item}
-    //             />
-    //           ))}
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </section> 
     <div className={`bg-white ${styles.container} py-0`}>
   <div>
     {
@@ -170,7 +86,7 @@ function Category() {
             <ul role="list" className="px-2 py-1 space-y-[-12px] font-medium text-gray-900">
             {CategoryNav.map((item) => (
               <li key={item.id}>
-              <a href="#" onClick={() => {setCheckNav(item.id)}} className={`block hover:text-primary-600 transition-all text-[13px] font-medium duration-500 px-2 py-3 ${checkNav == item.id ? "text-primary-600" : ""}`}>{item.title}</a>
+              <a href={item.href} className={`block hover:text-primary-600 transition-all text-[13px] font-medium duration-500 px-2 py-3 ${params.id == item.id ? "text-primary-600" : ""}`}>{item.title}</a>
             </li>
             ))}
             </ul>
@@ -200,22 +116,6 @@ function Category() {
                   <div className="flex items-center">
                     <input id="filter-mobile-color-1" name="color[]" value="beige" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
                     <label for="filter-mobile-color-1" className="ml-3 min-w-0 flex-1 text-gray-500">Beige</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-mobile-color-2" name="color[]" value="blue" type="checkbox" checked className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-mobile-color-2" className="ml-3 min-w-0 flex-1 text-gray-500">Blue</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-mobile-color-3" name="color[]" value="brown" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-mobile-color-3" className="ml-3 min-w-0 flex-1 text-gray-500">Brown</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-mobile-color-4" name="color[]" value="green" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-mobile-color-4" className="ml-3 min-w-0 flex-1 text-gray-500">Green</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-mobile-color-5" name="color[]" value="purple" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-mobile-color-5" className="ml-3 min-w-0 flex-1 text-gray-500">Purple</label>
                   </div>
                 </div>
               </div>
@@ -247,18 +147,6 @@ function Category() {
                     <input id="filter-mobile-category-1" name="category[]" value="sale" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
                     <label for="filter-mobile-category-1" className="ml-3 min-w-0 flex-1 text-gray-500">Sale</label>
                   </div>
-                  <div className="flex items-center">
-                    <input id="filter-mobile-category-2" name="category[]" value="travel" type="checkbox" checked className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-mobile-category-2" className="ml-3 min-w-0 flex-1 text-gray-500">Travel</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-mobile-category-3" name="category[]" value="organization" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-mobile-category-3" className="ml-3 min-w-0 flex-1 text-gray-500">Organization</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-mobile-category-4" name="category[]" value="accessories" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-mobile-category-4" className="ml-3 min-w-0 flex-1 text-gray-500">Accessories</label>
-                  </div>
                 </div>
               </div>
               }
@@ -288,22 +176,6 @@ function Category() {
                   <div className="flex items-center">
                     <input id="filter-mobile-size-1" name="size[]" value="6l" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
                     <label for="filter-mobile-size-1" className="ml-3 min-w-0 flex-1 text-gray-500">6L</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-mobile-size-2" name="size[]" value="12l" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-mobile-size-2" className="ml-3 min-w-0 flex-1 text-gray-500">12L</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-mobile-size-3" name="size[]" value="18l" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-mobile-size-3" className="ml-3 min-w-0 flex-1 text-gray-500">18L</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-mobile-size-4" name="size[]" value="20l" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-mobile-size-4" className="ml-3 min-w-0 flex-1 text-gray-500">20L</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-mobile-size-5" name="size[]" value="40l" type="checkbox" checked className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-mobile-size-5" className="ml-3 min-w-0 flex-1 text-gray-500">40L</label>
                   </div>
                 </div>
               </div>
@@ -368,7 +240,7 @@ function Category() {
             <ul role="list" className="p-2 border-b border-gray-200 pb-2 text-sm font-medium text-gray-900">
             {CategoryNav.map((item) => (
               <li key={item.id}>
-              <a href="#" onClick={() => {setCheckNav(item.id)}} className={`block hover:text-primary-600 transition-all duration-500 py-1 ${checkNav == item.id ? "text-primary-600" : ""}`}>{item.title}</a>
+              <a href={item.href} className={`block hover:text-primary-600 transition-all duration-500 py-1 ${params.id == item.id ? "text-primary-600" : ""}`}>{item.title}</a>
             </li>
             ))}
             </ul>
@@ -398,22 +270,6 @@ function Category() {
                   <div className="flex items-center">
                     <input id="filter-color-1" name="color[]" value="beige" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
                     <label for="filter-color-1" className="ml-3 text-sm text-gray-600">Beige</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-color-2" name="color[]" value="blue" type="checkbox" checked className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-color-2" className="ml-3 text-sm text-gray-600">Blue</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-color-3" name="color[]" value="brown" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-color-3" className="ml-3 text-sm text-gray-600">Brown</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-color-4" name="color[]" value="green" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-color-4" className="ml-3 text-sm text-gray-600">Green</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-color-5" name="color[]" value="purple" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-color-5" className="ml-3 text-sm text-gray-600">Purple</label>
                   </div>
                 </div>
               </div>
@@ -445,18 +301,6 @@ function Category() {
                     <input id="filter-category-1" name="category[]" value="sale" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
                     <label for="filter-category-1" className="ml-3 text-sm text-gray-600">Sale</label>
                   </div>
-                  <div className="flex items-center">
-                    <input id="filter-category-2" name="category[]" value="travel" type="checkbox" checked className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-category-2" className="ml-3 text-sm text-gray-600">Travel</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-category-3" name="category[]" value="organization" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-category-3" className="ml-3 text-sm text-gray-600">Organization</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-category-4" name="category[]" value="accessories" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-category-4" className="ml-3 text-sm text-gray-600">Accessories</label>
-                  </div>
                 </div>
               </div>
               }
@@ -487,22 +331,6 @@ function Category() {
                     <input id="filter-size-1" name="size[]" value="6l" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
                     <label for="filter-size-1" className="ml-3 text-sm text-gray-600">6L</label>
                   </div>
-                  <div className="flex items-center">
-                    <input id="filter-size-2" name="size[]" value="12l" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-size-2" className="ml-3 text-sm text-gray-600">12L</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-size-3" name="size[]" value="18l" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-size-3" className="ml-3 text-sm text-gray-600">18L</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-size-4" name="size[]" value="20l" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-size-4" className="ml-3 text-sm text-gray-600">20L</label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="filter-size-5" name="size[]" value="40l" type="checkbox" checked className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                    <label for="filter-size-5" className="ml-3 text-sm text-gray-600">40L</label>
-                  </div>
                 </div>
               </div>
               }
@@ -520,6 +348,16 @@ function Category() {
       />
      </li>
     ))}
+    {
+      ProductCardCategory.length == 0 &&
+      <div className="min-h-[50vh] sm:h-[60vh] lg:min-h-[70vh] flex w-full justify-center items-center">
+      <div className="flex flex-col gap-2 md:gap-4 justify-center items-center">
+        <img src={cartCommit} alt="search box icon" className="w-40 h-40" />
+        <h2 className="font-semibold text-xl text-center">Bu kategoriyada mahsulot <br /> mavjud emas</h2>
+        <a href="/" className="text-white w-44 md:w-64 mb-0 bg-red-600 hover:bg-red-700 transition-all duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-base py-2 md:py-3 text-center justify-center inline-flex items-center">Xarid qilish</a>
+      </div>
+      </div>
+    }
   </div>
           </div>
         </div>

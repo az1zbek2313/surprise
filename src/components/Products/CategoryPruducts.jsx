@@ -13,7 +13,7 @@ function CategoryPruducts({data}) {
 
   return (
     <div style={{background:data.bg}}>
-        <CategoryNames name={data.categoryName} to={"category"} />
+        <CategoryNames name={data.categoryName} to={`category/${import.meta.env.VITE_CATEGORY_ID}`} />
       <div
         className={`w-full ${styles.container} flex items-center justify-between pb-[30px] gap-3`}
       >
@@ -26,7 +26,7 @@ function CategoryPruducts({data}) {
             {data?.categoryText}
           </p>
           <a
-            href="/category"
+            href={`/category/${import.meta.env.VITE_CATEGORY_ID}`}
             className="flex items-center transition-all duration-300 gap-1 lg:gap-3 hover:text-primary-600"
           >
             <span className="text-xs lg:text-sm pt-[4px]">Shop these unique gifts</span>{" "}
