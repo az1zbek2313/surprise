@@ -15,8 +15,6 @@ function Card({product, height}) {
   const likes = useSelector((state) => state.myFavourites);
   const someLike = likes.some((el) => el.id == product.id);
 
-  console.log(product);
-
   function handleSave(e) {
     e.stopPropagation();
     toast.success("Yoqtirgan Mahsulotlaringizga saqlandi");
@@ -72,9 +70,9 @@ function Card({product, height}) {
           )}
           <div className={`overflow-hidden rounded-md sm:rounded-[10px] border-gray-200 opacity-90 transition duration-500 ease-in-out group-hover:opacity-100 ${height ? height : ""}`}>
             <img
-              src={product?.image || product?.images.length ? product?.image || cardImage9 : cardImage9}
+              src={product?.image && cardImage9 || product?.images.length && `https://surprize.uz${product.images[0]}` }
               alt="card image"
-                className="animate-fade-in block h-full w-full scale-100 transform object-cover object-center opacity-100 transition duration-500 group-hover:scale-110"
+                className={`animate-fade-in block w-full scale-100 transform object-cover object-center opacity-100 transition duration-500 group-hover:scale-110 ${height ? height : 'h-auto'}`}
               />
           </div>
         </div>
