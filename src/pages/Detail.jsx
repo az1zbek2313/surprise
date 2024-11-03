@@ -3,10 +3,9 @@ import { detailColors, detailImages } from "../util/contants";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, incerement, inputAmount } from "../Redux/Actions/actions";
 import { useNavigate } from "react-router-dom";
-import { RemeberProducts } from "../components";
+import { CommentSection, RemeberProducts } from "../components";
 
 function Detail() {
-
   const defaltimg =
     "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg";
   const [defaultColor, setDefaultColor] = useState(1);
@@ -60,21 +59,20 @@ function Detail() {
           </div>
 
           <div className="lg:col-span-3">
-            <div className="flex justify-center items-center">
-              <div className="pro-detail w-full max-lg:max-w-[608px] lg:pl-8 xl:pl-16 max-lg:mx-auto max-lg:mt-8">
-                <div className="flex items-center justify-between gap-6 mb-6">
+            <div className="flex justify-start items-center">
+              <div className="pro-detail w-full max-lg:max-w-[608px] lg:pl-8 xl:pl-16 lg:mx-auto mt-2 lg:mt-8">
+                <div className="flex items-center justify-between gap-6 mb-4 md:mb-6">
                   <div className="text">
-                    <h2 className="font-manrope font-bold text-3xl leading-10 text-gray-900 mb-2">
+                    <h2 className="font-manrope font-bold text-lg xs:text-2xl lg:text-3xl leading-10 text-gray-900">
                       Yellow Summer Travel Bag
                     </h2>
                   </div>
                   <button className="group transition-all duration-500 p-0.5">
                     <svg
-                      width="60"
-                      height="60"
                       viewBox="0 0 60 60"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
+                      className="w-8 xs:w-10 sm:w-12"
                     >
                       <circle
                         className="fill-primary-50 transition-all duration-500 group-hover:fill-primary-100"
@@ -96,17 +94,17 @@ function Detail() {
                   </button>
                 </div>
 
-                <div className="flex flex-col min-[400px]:flex-row min-[400px]:items-center mb-8 gap-y-3">
+                <div className="flex min-[400px]:flex-row min-[400px]:items-center mb-4 md:mb-4">
                   <div className="flex items-center">
-                    <h5 className="font-manrope font-semibold text-2xl leading-9 text-gray-900 ">
+                    <h5 className="font-manrope font-semibold text-base md:text-lg xl:text-2xl leading-9 text-gray-900 ">
                       $ 199.00{" "}
                     </h5>
-                    <span className="ml-3 font-semibold text-lg text-primary-600">
-                      30% off
+                    <span className="ml-3 font-semibold text-base md:text-lg line-through text-red-600">
+                      $ 219.00
                     </span>
                   </div>
                   <svg
-                    className="mx-5 max-[400px]:hidden"
+                    className="mx-5 max-[400px]:flex"
                     xmlns="http://www.w3.org/2000/svg"
                     width="2"
                     height="36"
@@ -214,7 +212,7 @@ function Detail() {
                       onChange={(e) => {
                         dispatch(inputAmount(e.target.value));
                       }}
-                      className="font-semibold text-gray-900 text-lg py-3 px-2 w-full min-[400px]:min-w-[75px] h-full bg-transparent placeholder:text-gray-900 text-center hover:text-primary-600 outline-0 hover:placeholder:text-primary-600"
+                      className="font-semibold text-gray-900 text-sm md:text-base lg:text-lg py-3 px-2 w-full min-[400px]:min-w-[75px] h-full bg-transparent placeholder:text-gray-900 text-center hover:text-primary-600 outline-0 hover:placeholder:text-primary-600"
                       placeholder={counter}
                     />
                     <button
@@ -254,7 +252,7 @@ function Detail() {
                       </svg>
                     </button>
                   </div>
-                  <button className="group py-3 px-5 rounded-full bg-primary-50 text-primary-600 font-semibold text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-primary-300 hover:bg-primary-100">
+                  <button className="group py-3 px-5 rounded-full bg-primary-50 text-primary-600 font-semibold text-sm md:text-base lg:text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-primary-300 hover:bg-primary-100">
                     <svg
                       className="stroke-primary-600 transition-all duration-500 group-hover:stroke-primary-600"
                       width="22"
@@ -275,7 +273,7 @@ function Detail() {
                 </div>
                 <button
                   onClick={handleBuy}
-                  className="text-center w-full px-5 py-4 rounded-[100px] bg-primary-600 flex items-center justify-center font-semibold text-lg text-white shadow-sm shadow-transparent transition-all duration-500 hover:bg-primary-700 hover:shadow-primary-300"
+                  className="text-center w-full px-5 py-4 rounded-[100px] bg-primary-600 flex items-center justify-center font-semibold text-sm md:text-base lg:text-lg text-white shadow-sm shadow-transparent transition-all duration-500 hover:bg-primary-700 hover:shadow-primary-300"
                 >
                   Buy Now
                 </button>
@@ -392,6 +390,8 @@ function Detail() {
           </div>
         </div>
 
+        <CommentSection />
+        
         <RemeberProducts />
       </div>
     </>

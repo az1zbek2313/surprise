@@ -19,6 +19,7 @@ import About from "./About";
 import Testimonial from "./Testimonial";
 import HeroImage from "./HeroImage/HeroImage";
 import RemeberProducts from "./RememberProducts";
+import CommentSection from "./CommentSection";
 
 export {
   Header,
@@ -40,5 +41,6 @@ export {
   SidebarAccount,
   Layout,
   SidebarBottom,
-  LocationModal
+  LocationModal,
+  CommentSection
 };
