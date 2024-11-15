@@ -38,68 +38,33 @@ import { styles } from "../../util/style";
              {
               loader ? 
               <h3>Loading...</h3> :
-              <div className="relative flex flex-col items-end w-full">
-              {/* Navigatsiya tugmalari */}
-              <div className="flex absolute z-50 top-[40%] justify-between w-full items-center">
-                <div className="w-full justify-between flex gap-2 items-center mb-2 md:my-2">
-                  <div
-                    onClick={() => swiperRef.current.swiper.slidePrev()}
-                    className="rounded-full shadow-lg px-2 sm:px-3 sm:py-1 cursor-pointer transition-all duration-300 hover:bg-gray-200 bg-white"
-                  >
-                    <span className="w-2 h-2 text-lg">{`<`}</span>
-                  </div>
-                  <div
-                    onClick={() => swiperRef.current.swiper.slideNext()}
-                    className=" rounded-full shadow-lg px-2 sm:px-3 sm:py-1 cursor-pointer transition-all duration-300 hover:bg-gray-200 bg-white"
-                  >
-                    <span className="w-2 h-2 text-lg">{`>`}</span>
-                  </div>
-                </div>
-              </div>
 
-              <div className="w-full px-4 mt-4">
-                <Swiper
-                  ref={swiperRef}
-                  centeredSlides={false}
-                  slidesPerView={
-                    window.screen.availWidth >= "640"
-                      ? 4
-                      : window.screen.availWidth <= "480"
-                      ? 2
-                      : 3
-                  }
-                  spaceBetween={8}
-                  modules={[]}
-                  className="mySwiper"
-                  style={{
-                    backgroundColor: "transparent",
-                  }}
-                >
-                  {trandingSurPrizes?.map((product, index) => (
-                    <SwiperSlide
-                      key={index}
-                      style={{
-                        backgroundColor: "transparent",
-                        border: "none",
-                        borderRadius: "0",
-                        overflow: "hidden",
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: "400px",
-                          borderRadius: "0",
-                          overflow: "hidden",
-                        }}
-                      >
-                        <Card product={product} height="h-[9em] ss:h-[10em] md:h-[12em] lg:h-[16em]" />
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+              // Desktop 
+              window.screen.availWidth >= 768 ?
+              <div className="flex flex-wrap gap-[2px] xs:gap-1 md:gap-1 lg:gap-2 xl:gap-3 w-full">
+                {trandingSurPrizes?.map((product, index) => (
+                     <Card key={index} product={product} width="w-[32%] md:w-[24.5%] lg:w-[24%] my-3 " height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]" />
+                  )).slice(0, 4).reverse()}
+                {trandingSurPrizes?.map((product, index) => (
+                     <Card key={index} product={product} width="w-[32%] md:w-[24.4%] lg:w-[24%] my-3" height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]" />
+                  )).slice(0, 4)} 
+              </div> :
+              // Mobile 
+              <div className="flex flex-wrap gap-[2px] xs:gap-1 w-full">
+                {trandingSurPrizes?.map((product, index) => (
+                     <Card key={index} product={product} width="w-[32%] md:w-[24.5%] lg:w-[24%] my-3" height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]" />
+                  )).slice(2, 5)}
+                {trandingSurPrizes?.map((product, index) => (
+                     <Card key={index} product={product} width="w-[32%] md:w-[24.5%] lg:w-[24%] my-3" height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]" />
+                  )).slice(0, 4)} 
               </div>
-            </div>
              }
+
+
+             {/* absolute More button */}
+             <h5 className="w-full flex justify-end">
+              <span className="shadow rounded-full cursor-pointer transition-all duration-500 hover:bg-gray-100 active:bg-gray-200 px-4 xs:py-1 md:text-lg border">More</span>
+             </h5>
               </div>
           </div>
           

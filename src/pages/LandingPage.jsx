@@ -25,10 +25,14 @@ function LandingPage() {
       {/* Trending Surprizes */}
       <TrendingSurprize />
 
-      <StepCards />
-
       {/* Categor Cards */}
       {ProductCategoryData.map((items) => (
+        items?.id == 2 ?
+       <>
+         <StepCards />
+         <CategoryPruducts key={items.id} data={items} />
+       </>
+        : 
         <CategoryPruducts key={items.id} data={items} />
       ))}
     </div>

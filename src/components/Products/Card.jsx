@@ -9,7 +9,7 @@ import {
 } from "../../Redux/Actions/actions";
 import { useNavigate } from "react-router-dom";
 
-function Card({product, height}) {
+function Card({product, height, width}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const likes = useSelector((state) => state.myFavourites);
@@ -38,7 +38,7 @@ function Card({product, height}) {
 
           navigate("/detail");
         }}
-        className="flex flex-col gap-2 sm:gap-[10px] cursor-pointer"
+        className={`flex flex-col gap-2 sm:gap-[10px] cursor-pointer ${width}`}
       >
         <div className="group relative bg-[rgb(121, 121, 121)]">
           {/* Like Save */}
@@ -68,7 +68,7 @@ function Card({product, height}) {
               </svg>
             </span>
           )}
-          <div className={`overflow-hidden rounded-md sm:rounded-[10px] border-gray-200 opacity-90 transition duration-500 ease-in-out group-hover:opacity-100 ${height ? height : ""}`}>
+          <div className={`overflow-hidden border shadow rounded-md sm:rounded-[10px] border-gray-200 opacity-90 transition duration-500 ease-in-out group-hover:opacity-100 ${height ? height : ""}`}>
             <img
               src={product?.image && cardImage9 || product?.images.length && `https://surprize.uz${product.images[0]}` }
               alt="card image"
@@ -78,7 +78,7 @@ function Card({product, height}) {
         </div>
         <div className="flex flex-col">
           <div className="flex flex-col items-start">
-            <h4 className="text-qoramtir-600 title text-lg md:text-xl font-medium leading-6">
+            <h4 className="text-qoramtir-600 title text-base md:text-xl font-medium leading-6">
               {product.title || product.name.uz ? product.title || product.name.uz : "Product not found"}
             </h4>
             {/* <p className="text-qoramtir-600 text-xs lg:text-sm title">
@@ -87,16 +87,16 @@ function Card({product, height}) {
           </div>
           <div className="flex justify-between flex-row items-center flex-wrap">
             <p className="flex flex-wrap items-center gap-[6px]">
-              <span className="text-base md:text-lgl text-black">
+              <span className="text-sm md:text-lg text-black">
                 {product?.newprice ? product.newprice : product.price}$
               </span>
-              <span className="text-sm text-qoramtir-qizil line-through opacity-80">
+              <span className="text-xs hidden xs:inline-block text-qoramtir-qizil line-through opacity-80">
                 {product?.price}$
               </span>
             </p>
             <div className="flex items-center rtl:space-x-reverse md:mr-2">
-              <span className="text-base opacity-70">{product.star || product.rating}</span>
-                <span className="text-base">⭐️</span>
+              <span className="text-sm opacity-70">{product.star || product.rating}</span>
+                <span className="text-sm">⭐️</span>
             </div>
           </div>
         </div>

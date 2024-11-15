@@ -13,3 +13,22 @@
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
+
+/* style.css */
+.mySwiper::-webkit-scrollbar {
+  height: 10px; /* Skrollbar balandligi */
+}
+.mySwiper::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(#e66465, #9198e5, #e66465); /* Skrollbarning rangi */
+}
+
+.mySwiper::-webkit-scrollbar-thumb {
+  transition: all 0.5s;
+  background: linear-gradient(#9198e5, rgb(230, 100, 101), #9198e5); /* Skrollbarning rangi */
+  border-radius: 8px; /* Skrollbarning yumaloq burchaklari */
+}
+
+.mySwiper::-webkit-scrollbar-track {
+  background: rgba(230, 100, 101, 0.3); /* Skrollbarning izi */
+  border-radius: 8px; /* Skrollbarning yumaloq burchaklari */
+}
