@@ -31,8 +31,32 @@ import {
   TrendingSurprizes5,
   TrendingSurprizes6,
   TrendingSurprizes7,
-  TrendingSurprizes8
+  TrendingSurprizes8,
+  Stepcard1,
+  Stepcard2,
+  Stepcard3
 } from "../assets";
+
+export const StepCardsData = [
+  {
+    id:1,
+    title:"Step 1",
+    text:"Select your favorite surprise item and add it to your cart for a delightful shoppping journey.",
+    image:Stepcard1
+  },
+  {
+    id:2,
+    title:"Step 2",
+    text:"Select your favorite surprise item and add it to your cart for a delightful shoppping journey.",
+    image:Stepcard2
+  },
+  {
+    id:3,
+    title:"Step 3",
+    text:"Complete the checkout and get ready to be amazed by our surprise, fast and reliable delivery!",
+    image:Stepcard3
+  },
+]
 
 export const star = [1, 2, 3, 4, 5];
 

@@ -5,6 +5,7 @@
   import "swiper/css/navigation"; // Faqat navigatsiya uchun
   import { useRef } from "react";
   import { Swiper, SwiperSlide } from "swiper/react";
+import { styles } from "../../util/style";
 
 
   function TrendingSurprize() {
@@ -30,7 +31,7 @@
       }, [])
     return (
       trandingSurPrizes.length > 0 && 
-      <div className="max-w-[1280px] mx-auto xl:px-6">
+      <div className={styles.container}>
           <div className="shadow-xl rounded-[10px] px-4 md:px-8 lg:px-12 py-4 md:py-6 border ">
               <h2 className="text-lg xs:text-xl md:text-3xl font-medium">Trending Surprizes</h2>
               <div className="flex flex-wrap gap-2 ss:gap-3 lg:gap-4">

@@ -17,6 +17,9 @@ export default {
         },
         backgroundColor:{
           category:{"aqua":"rgb(244, 254, 255)"}
+        },
+        boxShadow:{
+          '3xl':"0px 9px 19.3px 0px #0000001F"
         }
       }
     },

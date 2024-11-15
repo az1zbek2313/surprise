@@ -40,6 +40,10 @@ import TrendingSurprizes5 from "./TrendingSurprizes/Rectangle 31-4.png"
 import TrendingSurprizes6 from "./TrendingSurprizes/Rectangle 31-5.png"
 import TrendingSurprizes7 from "./TrendingSurprizes/Rectangle 31-6.png"
 import TrendingSurprizes8 from "./TrendingSurprizes/Rectangle 31-7.png"
+// Step images 
+import Stepcard1 from "./StepCardImages/truck with gifts.png"
+import Stepcard2 from "./StepCardImages/truck with gifts-1.png"
+import Stepcard3 from "./StepCardImages/truck with gifts-2.png"
 
 export {
   signIn,
@@ -81,5 +85,8 @@ export {
   TrendingSurprizes5,
   TrendingSurprizes6,
   TrendingSurprizes7,
-  TrendingSurprizes8
+  TrendingSurprizes8,
+  Stepcard1,
+  Stepcard2,
+  Stepcard3
 };

@@ -12,6 +12,7 @@ import SidebarAccount from "./SidebarAccount";
 import SidebarBottom from "./SidebarBottom";
 import Layout from "./Layout";
 import LocationModal from "./LocationModal";
+import StepCards from "./StepCard/StepCards";
 // About Us Page
 import Hero from "./Hero";
 import Clients from "./Clients";
@@ -42,5 +43,6 @@ export {
   Layout,
   SidebarBottom,
   LocationModal,
-  CommentSection
+  CommentSection,
+  StepCards
 };
