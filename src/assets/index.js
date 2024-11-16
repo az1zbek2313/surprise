@@ -41,9 +41,9 @@ import TrendingSurprizes6 from "./TrendingSurprizes/Rectangle 31-5.png"
 import TrendingSurprizes7 from "./TrendingSurprizes/Rectangle 31-6.png"
 import TrendingSurprizes8 from "./TrendingSurprizes/Rectangle 31-7.png"
 // Step images 
-import Stepcard1 from "./StepCardImages/truck with gifts.png"
-import Stepcard2 from "./StepCardImages/truck with gifts-1.png"
-import Stepcard3 from "./StepCardImages/truck with gifts-2.png"
+import Stepcard1 from "./StepCardImages/truck with gifts.svg"
+import Stepcard2 from "./StepCardImages/truck with gifts-1.svg"
+import Stepcard3 from "./StepCardImages/truck with gifts-2.svg"
 
 export {
   signIn,
