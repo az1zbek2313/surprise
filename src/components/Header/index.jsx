@@ -123,7 +123,7 @@ function Header() {
 
               {/* <!-- Right elements --> */}
               <div className="relative flex items-center">
-                <div className="lg:hidden block relative mr-1 ss:mr-4">
+                <div className="lg:hidden block relative mr-1 ss:mr-2 xs:mr-4">
                   {flagLanguage.map((item) => {
                     if (item.id == flagLang) {
                       return (
@@ -132,11 +132,11 @@ function Header() {
                           onClick={() => {
                             setLanguage(!language);
                           }}
-                          className="flex items-center gap-1 ss:gap-2 cursor-pointer"
+                          className="flex items-center gap-1 xs:gap-2 cursor-pointer"
                         >
                           <img src={item.image} alt="" className="w-5" />
-                          <p className="text-xs ss:text-sm">
-                            <span className="hidden ss:block">
+                          <p className="text-xs xs:text-sm">
+                            <span className="hidden xs:block">
                               {item.title}
                             </span>
                           </p>
@@ -171,14 +171,14 @@ function Header() {
                 <div className="relative">
                   {/* <!-- First dropdown trigger --> */}
                   <a
-                    className="hidden-arrow me-2 ss:me-4 flex items-center text-black/80 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
+                    className="hidden-arrow me-2 xs:me-4 flex items-center text-black/80 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
                     href={token ? "/account/likes" : "/likes"}
                     id="dropdownMenuButton1"
                     role="button"
                     aria-expanded="false"
                   >
                     {/* <!-- Dropdown trigger icon --> */}
-                    <span className="ss:[&>svg]:w-6 lg:[&>svg]:w-7">
+                    <span className="xs:[&>svg]:w-6 lg:[&>svg]:w-7">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
@@ -194,7 +194,7 @@ function Header() {
                 {/* <!-- Cart Icon --> */}
                 <a
                   href="/cart"
-                  className="me-3 ss:me-4 relative text-black/80 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
+                  className="me-3 xs:me-4 relative text-black/80 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
                 >
                   <span className="[&>svg]:w-6 lg:[&>svg]:w-7">
                     <svg
@@ -235,7 +235,7 @@ function Header() {
                   ) : (
                     <a
                       href="/login"
-                      className="px-2 py-[6px] text-sm md:px-4 md:py-2 md:text-base bg-primary-600 rounded-lg hover:bg-primary-700 text-white transition-all duration-300"
+                      className="px-1 py-[3px] text-sm md:px-4 md:py-2 md:text-base bg-primary-600 rounded-lg hover:bg-primary-700 text-white transition-all duration-300"
                     >
                       Login
                     </a>

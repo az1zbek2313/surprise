@@ -44,12 +44,12 @@ function CategoryPruducts({data}) {
     spaceBetween={8}
     modules={[Scrollbar]}
     scrollbar={{
-      hide: false, // Control the scrollbar's visibility
+      hide: true, 
     }}
     className="mySwiper"
     style={{
       backgroundColor: "transparent",
-      overflowX: "auto", // Ensure horizontal scrolling
+      // overflowX: "auto",
     }}
   >
     {data?.categoryCards.map((product, index) => (
