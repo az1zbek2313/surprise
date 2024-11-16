@@ -235,7 +235,7 @@ function Header() {
                   ) : (
                     <a
                       href="/login"
-                      className="px-1 py-[3px] text-sm md:px-4 md:py-2 md:text-base bg-primary-600 rounded-lg hover:bg-primary-700 text-white transition-all duration-300"
+                      className="p-[6px] text-sm md:px-4 md:py-2 md:text-base bg-primary-600 rounded-lg hover:bg-primary-700 text-white transition-all duration-300"
                     >
                       Login
                     </a>
