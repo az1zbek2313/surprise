@@ -10,7 +10,6 @@ import { styles } from "../../util/style";
 
   function TrendingSurprize() {
       const [loader, setLoader] = useState(false);
-      const swiperRef = useRef(null);
       const [trandingSurPrizes, setTranding] = useState([]);
 
       useEffect(() => {

@@ -28,7 +28,7 @@ function Cart() {
                   className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:p-6"
                 >
                   <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-                    <a href="/detail" className="shrink-0 md:order-1">
+                    <a href="/detail/1" className="shrink-0 md:order-1">
                       <img
                         className=" h-20 w-20"
                         src={item.image}
@@ -106,7 +106,7 @@ function Cart() {
 
                     <div className="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
                       <a
-                        href="/detail"
+                        href="/detail/1"
                         className="text-base font-medium text-gray-900 hover:underline "
                       >
                         {item.title}

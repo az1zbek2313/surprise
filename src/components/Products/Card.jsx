@@ -36,7 +36,7 @@ function Card({product, height, width}) {
             behavior: "smooth",
           });
 
-          navigate("/detail");
+          navigate(`/detail/${product?._id ? product._id : product?.id}`);
         }}
         className={`flex flex-col gap-2 sm:gap-[10px] cursor-pointer ${width}`}
       >

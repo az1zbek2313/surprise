@@ -36,7 +36,7 @@ function ProductCard(data) {
           behavior: "smooth",
         });
 
-        navigate("/detail");
+        navigate("/detail/1");
       }}
       className={`max-w-sm bg-white border relative hover:scale-[1.02] transition-all duration-500 border-gray-200 rounded-lg shadow ${
         location.includes("category") || location.includes("account/likes")? 

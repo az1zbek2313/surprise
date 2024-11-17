@@ -21,6 +21,7 @@ import Testimonial from "./Testimonial";
 import HeroImage from "./HeroImage/HeroImage";
 import RemeberProducts from "./RememberProducts";
 import CommentSection from "./CommentSection";
+import SearchModal from "./SearchModal";
 
 export {
   Header,
@@ -44,5 +45,6 @@ export {
   SidebarBottom,
   LocationModal,
   CommentSection,
-  StepCards
+  StepCards,
+  SearchModal
 };

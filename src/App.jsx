@@ -25,6 +25,8 @@ import { Toaster } from "sonner";
 export default function App() {
   const token = useSelector((state) => state.userIdReducer.uid);
 
+  console.log();
+
   return (
     <>
           <Toaster
@@ -44,7 +46,7 @@ export default function App() {
           <Route index element={<LandingPage />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
           <Route path="/category/:id" element={<Category />}></Route>
-          <Route path="/detail" element={<Detail />}></Route>
+          <Route path="/detail/:id" element={<Detail />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           {token ? (
             <Route path="/account" element={<SidebarAccount />}>

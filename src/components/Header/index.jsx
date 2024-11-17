@@ -1,14 +1,16 @@
-import { HeaderTop, HeaderFilter } from "../";
+import { HeaderTop, SearchModal } from "../";
 import { styles } from "../../util/style";
 import { surpriseLogo, user } from "../../assets";
 import { flagLanguage } from "../../util/contants";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { userId } from "../../Redux/Actions/actions";
 
 function Header() {
+  const searchInput = useRef();
+  const [handleFocus, setHandleFocus] = useState(false);
   const [accountDropdown, setAccountDropdown] = useState(false);
   const token = useSelector((state) => state.userIdReducer.uid);
   const languageDefault = JSON.parse(localStorage.getItem("lang"));
@@ -43,6 +45,8 @@ function Header() {
     dispatch(userId(""));
     navigate("/login");
   };
+
+  // Search Product 
 
   return (
     <>
@@ -102,10 +106,12 @@ function Header() {
               </div>
 
               {/* Search Logo */}
-              <div className="hidden md:flex items-center border-[1.5px] rounded-full h-9 lg:h-11 mb-1 lg:mb-2">
+              <div className={`hidden ${!handleFocus ? "md:flex" : "md:absolute z-[1000000]" } items-center border-[1.5px] rounded-full h-9 lg:h-11 mb-1 lg:mb-2`}>
                 <input
                   type="text"
                   placeholder={t("searchHeader")}
+                  onFocus={() => {setHandleFocus(true)}}
+                  ref={searchInput}
                   className="h-full pr-0 lg:pr-72 placeholder:text-xs lg:placeholder:text-sm  rounded-l-full px-2 lg:px-4 outline-none text-gray-500"
                 />
                 <div className="h-full w-12 lg:w-16 flex justify-center items-center rounded-r-full cursor-pointer transition-all duration-200">
@@ -363,10 +369,16 @@ function Header() {
           <input
             type="search"
             placeholder={t("searchHeader")}
+            onFocus={() => {setHandleFocus(true)}}
             className="h-full w-full placeholder:text-sm rounded-full px-3 lg:px-4 outline-none text-gray-500"
           />
         </div>
       </div>
+
+      {
+        handleFocus && 
+        <SearchModal setHandleFocus={setHandleFocus}/>
+      }
     </>
   );
 }

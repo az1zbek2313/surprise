@@ -1,9 +1,26 @@
+import { useEffect, useState } from "react";
 import { HeroImage, CategoryPruducts, HeaderFilter, TrendingSurprize, StepCards } from "../components";
 import { ProductCategoryData } from "../util/contants";
 import { Toaster } from "sonner";
 
 
 function LandingPage() {
+  const [sections, setSections] = useState([]);
+
+  useEffect(() => {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    
+    fetch(`${import.meta.env.VITE_DEFAULT_HOST}sections`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        setSections(result);
+      })
+      .catch(error => console.log('error', error));
+  }, [])
+
   return (
     <div>
       {/* Toaster */}
@@ -26,14 +43,14 @@ function LandingPage() {
       <TrendingSurprize />
 
       {/* Categor Cards */}
-      {ProductCategoryData.map((items) => (
-        items?.id == 2 ?
-       <>
+      {sections && sections.map((items, index) => (
+        index == 1 ?
+       <div key={index}>
          <StepCards />
-         <CategoryPruducts key={items.id} data={items} />
-       </>
+         <CategoryPruducts data={items} index={index+1}/>
+       </div>
         : 
-        <CategoryPruducts key={items.id} data={items} />
+        <CategoryPruducts key={index} data={items} index={index+1}/>
       ))}
     </div>
   );

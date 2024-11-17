@@ -10,22 +10,24 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import CategoryNames from "../CategoryNames";
 import { Scrollbar } from "swiper/modules";
 
-function CategoryPruducts({data}) {
+function CategoryPruducts({data, index}) {
   const swiperRef = useRef(null);
 
+  console.log(16, data);
+
   return (
-    <div style={{background:data.bg}}>
-        <CategoryNames name={data.categoryName} to={`category/${import.meta.env.VITE_CATEGORY_ID}`} />
+    <div style={index ==1 ? {background:"rgb(244, 254, 255)"} : index == 2 ? {background:"rgb(255, 241, 241)"} : {background:"rgb(236, 255, 205)"}}>
+        <CategoryNames name={data?.name?.uz} to={`category/${import.meta.env.VITE_CATEGORY_ID}`} />
       <div
         className={`w-full ${styles.container} flex items-center justify-between py-[30px] gap-3`}
       >
 
         <div className="hidden md:inline-block md:w-[24%]">
           <h2 className="text-3xl font-medium text lg:font-medium lg:text-4xl text-qoramtir-50 max-w-[304px]">
-            {data?.categoryName}
+            {data?.name?.uz}
           </h2>
           <p className="text-lg lg:text-xl text text-qoramtir-50 my-2 lg:my-4">
-            {data?.categoryText}
+            {data?.description?.uz}
           </p>
           <a
             href={`/category/${import.meta.env.VITE_CATEGORY_ID}`}
@@ -52,7 +54,7 @@ function CategoryPruducts({data}) {
       // overflowX: "auto",
     }}
   >
-    {data?.categoryCards.map((product, index) => (
+    {data?.products && data?.products.map((product, index) => (
       <SwiperSlide
         key={index}
         style={{
@@ -63,7 +65,7 @@ function CategoryPruducts({data}) {
         }}
       >
         <div className="pb-4" style={{ width: "400px", height: "auto", borderRadius: "0", overflow: "hidden" }}>
-          <Card product={product} />
+          <Card height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[16em]" product={product} />
         </div>
       </SwiperSlide>
     ))}

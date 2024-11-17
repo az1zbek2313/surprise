@@ -1,6 +1,9 @@
 import React from 'react'
+import { useParams } from 'react-router-dom';
 
 function CommentSection() {
+  const params = useParams();
+
   return (
             <section className="py-8">
             <div className="container mx-auto px-4">
