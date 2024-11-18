@@ -7,11 +7,7 @@ function CommentSection() {
   const commentRef = useRef();
   const [review, setReview] = useState([]);
   const [number, setNumber] = useState(2);
-  const userId = useSelector((state) => state.userIdReducer.uid.data._id);
   const token = useSelector((state) => state.userIdReducer.uid.token);
-
-  console.log(token);
-
 
   useEffect(() => {
     var requestOptions = {
@@ -109,11 +105,9 @@ function CommentSection() {
                         <p>Rating:</p>
                         <span>5</span>
                       </button>
-                      {items.user == userId && (
                         <button className="text-gray-500 text-sm hover:text-gray-600">
                           Edit
                         </button>
-                      )}
                     </div>
                   </div>
                 ))

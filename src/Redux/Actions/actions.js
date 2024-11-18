@@ -38,6 +38,13 @@ export function deletedMyFavourites(data) {
   }
 }
 
+export function getMyFavourites(data) {
+  return {
+      type:actionTypes.GET_MYFAVOURITES,
+      payload:data
+  }
+}
+
 export function changeHeartMyFavourites(data) {
   return {
       type:actionTypes.DATA_CHANGEHEART_MYFAVOURITES,

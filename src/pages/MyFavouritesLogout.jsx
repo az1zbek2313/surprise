@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { ProductCard } from "../components";
 import { styles } from "../util/style";
 import cartCommit from "../assets/pngwing.com.png";
 import { useSelector } from "react-redux";
@@ -36,9 +34,9 @@ function MyFavouritesLogout() {
             <div
               className={`flex items-center flex-wrap justify-start gap-1 sm:gap-2 ${styles.container}`}
             >
-              {data.map((item) => (
+              {data.map((item, index) => (
                 <li
-                key={item.id}
+                key={index}
                 className="w-[49%] xs:w-[32%] lg:w-[24%] my-2 list-none"
               >
                 <Card product={item} height={"h-[190px] sm:h-[240px]"}/>

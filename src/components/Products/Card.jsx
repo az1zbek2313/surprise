@@ -9,22 +9,70 @@ import {
 } from "../../Redux/Actions/actions";
 import { useNavigate } from "react-router-dom";
 
-function Card({product, height, width}) {
+function Card({ product, height, width }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.userIdReducer.uid.token);
   const likes = useSelector((state) => state.myFavourites);
-  const someLike = likes.some((el) => el.id == product.id);
+  const someLike = likes.some((el) => el._id == product._id);
+
+  console.log(18, token);
 
   function handleSave(e) {
     e.stopPropagation();
     toast.success("Yoqtirgan Mahsulotlaringizga saqlandi");
+
+    var myHeaders = new Headers();
+    myHeaders.append("token", token);
+
+    var formdata = new FormData();
+    formdata.append("productId", product._id);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
+
+    fetch(`${import.meta.env.VITE_DEFAULT_HOST}users/favorite`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.message == "Product added to favorites") {
+          dispatch(addedMyFavourites(product));
+          dispatch(changeHeartMyFavourites(product));
+        }
+      })
+      .catch((error) => console.log("error", error));
     dispatch(addedMyFavourites(product));
     dispatch(changeHeartMyFavourites(product));
   }
   function handleRemove(e) {
     e.stopPropagation();
     toast.error("Yoqtirgan Mahsulotlaringizdan o'chirildi");
-    dispatch(deletedMyFavourites(product.id));
+    var myHeaders = new Headers();
+    myHeaders.append("token", token);
+
+    var formdata = new FormData();
+    formdata.append("productId", product._id);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
+
+    fetch(`${import.meta.env.VITE_DEFAULT_HOST}users/favorite`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.message == "Product removed from favorites") {
+          dispatch(deletedMyFavourites(product._id));
+          dispatch(changeHeartMyFavourites(product));
+        }
+      })
+      .catch((error) => console.log("error", error));
+    dispatch(deletedMyFavourites(product._id));
     dispatch(changeHeartMyFavourites(product));
   }
   return (
@@ -68,18 +116,30 @@ function Card({product, height, width}) {
               </svg>
             </span>
           )}
-          <div className={`overflow-hidden border shadow rounded-md sm:rounded-[10px] border-gray-200 opacity-90 transition duration-500 ease-in-out group-hover:opacity-100 ${height ? height : ""}`}>
+          <div
+            className={`overflow-hidden border shadow rounded-md sm:rounded-[10px] border-gray-200 opacity-90 transition duration-500 ease-in-out group-hover:opacity-100 ${
+              height ? height : ""
+            }`}
+          >
             <img
-              src={product?.image && cardImage9 || product?.images.length && `https://surprize.uz${product.images[0]}` }
+              src={
+                (product?.image && cardImage9) ||
+                (product?.images.length &&
+                  `https://surprize.uz${product.images[0]}`)
+              }
               alt="card image"
-                className={`animate-fade-in block w-full scale-100 transform object-cover object-center opacity-100 transition duration-500 group-hover:scale-110 ${height ? height : 'h-auto'}`}
-              />
+              className={`animate-fade-in block w-full scale-100 transform object-cover object-center opacity-100 transition duration-500 group-hover:scale-110 ${
+                height ? height : "h-auto"
+              }`}
+            />
           </div>
         </div>
         <div className="flex flex-col">
           <div className="flex flex-col items-start">
             <h4 className="text-qoramtir-600 title text-base md:text-xl font-medium leading-6">
-              {product.title || product.name.uz ? product.title || product.name.uz : "Product not found"}
+              {product.title || product.name.uz
+                ? product.title || product.name.uz
+                : "Product not found"}
             </h4>
             {/* <p className="text-qoramtir-600 text-xs lg:text-sm title">
               {product.about}
@@ -95,8 +155,10 @@ function Card({product, height, width}) {
               </span>
             </p>
             <div className="flex items-center rtl:space-x-reverse md:mr-2">
-              <span className="text-sm opacity-70">{product.star || product.rating}</span>
-                <span className="text-sm">⭐️</span>
+              <span className="text-sm opacity-70">
+                {product.star || product.rating}
+              </span>
+              <span className="text-sm">⭐️</span>
             </div>
           </div>
         </div>
