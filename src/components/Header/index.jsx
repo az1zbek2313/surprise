@@ -377,7 +377,7 @@ function Header() {
 
       {
         handleFocus && 
-        <SearchModal setHandleFocus={setHandleFocus}/>
+        <SearchModal handleFocus={handleFocus} setHandleFocus={setHandleFocus}/>
       }
     </>
   );

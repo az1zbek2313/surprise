@@ -1,25 +1,43 @@
 import { useEffect, useRef, useState } from "react";
 
-function SearchModal({ setHandleFocus }) {
+function SearchModal({ setHandleFocus, handleFocus }) {
   const [list, setList] = useState(false);
   const searchInput = useRef();
   const [productList, setProductList] = useState([]);
   const [filteredProductList, setFilteredProductList] = useState([]);
 
   useEffect(() => {
-    var requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
     };
-    
+
+    // Fetch product list
     fetch(`${import.meta.env.VITE_DEFAULT_HOST}product`, requestOptions)
-      .then(response => response.json())
-      .then(result => {
+      .then((response) => response.json())
+      .then((result) => {
         setProductList(result);
         console.log(result);
       })
-      .catch(error => console.log('error', error));
-  }, [])
+      .catch((error) => console.log("error", error));
+
+    // Handle clicks outside the modal
+    // const handleGlobalClick = (event) => {
+    //   if (
+    //     !event.target.closest("#listProducts") &&
+    //     !event.target.closest("#searchForm")
+    //   ) {
+    //     setHandleFocus(false);
+    //     setList(false);
+    //   }
+    // };
+
+    // document.addEventListener("click", handleGlobalClick);
+
+    // return () => {
+    //   document.removeEventListener("click", handleGlobalClick);
+    // };
+  }, []);
 
   const search = () => {
     const searchTerm = searchInput.current.value.toUpperCase();
@@ -33,24 +51,31 @@ function SearchModal({ setHandleFocus }) {
     }
   }
 
+  function handleGlobalClick(e) {
+    if (e.target === e.currentTarget) {
+      setHandleFocus(false);
+    }
+  }
+
 
   return (
     <div>
       {/* <!-- Main modal --> */}
       <div
         id="crypto-modal"
+        onClick={handleGlobalClick}
         tabindex="-1"
         aria-hidden="true"
         className="overflow-y-auto overflow-x-hidden fixed mx-auto top-0 z-[10000] justify-center items-center w-full bg-black/40 md:inset-0 h-[calc(100%-1rem)] max-h-full"
       >
-        <form className="flex  relative top-16 md:top-12 w-[90%] xs:w-[80%] md:w-[50%] items-center mx-auto">
+        <form id="searchForm" className="flex  relative top-16 md:top-12 w-[90%] xs:w-[80%] md:w-[50%] items-center mx-auto">
           <label htmlFor="simple-search" className="sr-only">
             Search
           </label>
           <div className="relative w-full">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                className="w-4 h-4 text-gray-500"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -71,7 +96,7 @@ function SearchModal({ setHandleFocus }) {
               ref={searchInput}
               onFocus={() => setList(true)}
               id="simple-search"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
               placeholder="Search branch name..."
               required
             />
@@ -81,7 +106,7 @@ function SearchModal({ setHandleFocus }) {
               setHandleFocus(false);
             }}
             type="submit"
-            className="p-3 ms-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="p-3 ms-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
           >
             <svg
               className="w-4 h-4"
@@ -102,14 +127,14 @@ function SearchModal({ setHandleFocus }) {
           </button>
         </form>
 
-        <div className="py-4 relative w-[90%] xs:w-[80%] md:w-[50%] mx-auto top-16 md:top-12">
+        <div id="listProducts" className="py-4 relative w-[90%] xs:w-[80%] md:w-[50%] mx-auto top-16 md:top-12">
           {/* <!-- Modal content --> */}
-          <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <div className="relative bg-white rounded-lg shadow">
             {/* <!-- Modal header --> */}
-            <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+            <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
               {list && (
                 <>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-lg font-semibold text-gray-900">
                     Search Products
                   </h3>
                   <button
@@ -117,7 +142,7 @@ function SearchModal({ setHandleFocus }) {
                       setList(false);
                     }}
                     type="button"
-                    className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center"
                     data-modal-toggle="crypto-modal"
                   >
                     <svg
@@ -148,7 +173,7 @@ function SearchModal({ setHandleFocus }) {
                     <li key={index}>
                       <a
                         href={`/detail/${items?._id}`}
-                        className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+                        className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow"
                       >
                         <img
                           src={`${import.meta.env.VITE_IMAGE}${items?.images[0]}`}
@@ -158,7 +183,7 @@ function SearchModal({ setHandleFocus }) {
                         <span className="flex-1 ms-3 whitespace-nowrap">
                           {items?.name?.uz}
                         </span>
-                        <span className="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
+                        <span className="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded">
                           {items?.rating}
                         </span>
                       </a>
