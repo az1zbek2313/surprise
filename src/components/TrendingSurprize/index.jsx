@@ -2,9 +2,7 @@
   import Card from "../Products/Card"
   // Import Swiper styles
   import "swiper/css";
-  import "swiper/css/navigation"; // Faqat navigatsiya uchun
-  import { useRef } from "react";
-  import { Swiper, SwiperSlide } from "swiper/react";
+  import "swiper/css/navigation";
 import { styles } from "../../util/style";
 
 
