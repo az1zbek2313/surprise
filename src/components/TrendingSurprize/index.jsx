@@ -60,7 +60,7 @@ import { styles } from "../../util/style";
 
              {/* absolute More button */}
              <h5 className="w-full flex justify-end">
-              <span className="shadow rounded-full cursor-pointer transition-all duration-500 hover:bg-gray-100 active:bg-gray-200 px-4 xs:py-1 md:text-lg border">More</span>
+              <a href="/tranding" className="shadow rounded-full cursor-pointer transition-all duration-500 hover:bg-gray-100 active:bg-gray-200 px-4 xs:py-1 md:text-lg border">More</a>
              </h5>
               </div>
           </div>

@@ -14,7 +14,9 @@ import {
   Notifications,
   NotFound,
   MyFavouritesLogout,
-  Code
+  Code,
+  TrandingSurprizes,
+  Section
 } from "./pages";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -47,6 +49,8 @@ export default function App() {
           <Route path="/about" element={<AboutUs />}></Route>
           <Route path="/category/:id" element={<Category />}></Route>
           <Route path="/detail/:id" element={<Detail />}></Route>
+          <Route path="/tranding" element={<TrandingSurprizes />}></Route>
+          <Route path="/section/:id" element={<Section />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           {token ? (
             <Route path="/account" element={<SidebarAccount />}>

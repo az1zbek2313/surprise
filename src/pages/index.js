@@ -14,8 +14,12 @@ import Location from "./Location";
 import Notifications from "./Notifications";
 import NotFound from "./NotFound";
 import Code from "./Code";
+import Section from "./Section";
+import TrandingSurprizes from "./TrandingSurprizes";
 
 export {
+  Section, 
+  TrandingSurprizes,
   Code,
   LandingPage,
   NotFound,

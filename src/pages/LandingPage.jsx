@@ -8,18 +8,22 @@ function LandingPage() {
   const [sections, setSections] = useState([]);
 
   useEffect(() => {
+    fetchProducts();
+}, [])
+
+const fetchProducts = () => {
     var requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
-    
-    fetch(`${import.meta.env.VITE_DEFAULT_HOST}sections`, requestOptions)
-      .then(response => response.json())
-      .then(result => {
-        setSections(result);
-      })
-      .catch(error => console.log('error', error));
-  }, [])
+        method: 'GET',
+        redirect: 'follow'
+      };
+      
+      fetch(`${import.meta.env.VITE_DEFAULT_HOST}sections`, requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          setSections(result);
+        })
+        .catch(error => console.log('error', error));
+}
 
   return (
     <div>

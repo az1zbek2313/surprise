@@ -28,7 +28,7 @@ function CategoryPruducts({data, index}) {
             {data?.description?.uz}
           </p>
           <a
-            href={`/category/${import.meta.env.VITE_CATEGORY_ID}`}
+            href={`/section/${data._id}`}
             className="flex items-center transition-all duration-300 gap-1 lg:gap-3 hover:text-primary-600"
           >
             <span className="text-xs lg:text-sm pt-[4px]">Shop these unique gifts</span>{" "}
