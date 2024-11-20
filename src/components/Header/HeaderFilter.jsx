@@ -47,7 +47,7 @@ function HeaderFilter() {
                 {item.categoryProducts.map((el, index) => (
                   <li key={index} className="text-xs md:text-base leading-6">
                     <a
-                      href="/category"
+                      href="category/67376dca7e5fe332e94ae413"
                       className="hover:text-primary-600 transition-all duration-300"
                     >
                       {el}

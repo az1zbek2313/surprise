@@ -1,7 +1,7 @@
 import { Autoplay, Pagination } from "swiper/modules";
 import { heroImages, heroImagesMobile } from "../../util/contants";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -11,7 +11,22 @@ import "./style.css";
 
 function HeroImage() {
   const swiperRef = useRef(null);
+  const [banner, setBanner] = useState([]);
   const width = window.screen.availWidth;
+
+  useEffect(() => {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    
+    fetch(`${import.meta.env.VITE_DEFAULT_HOST}banner`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        setBanner(result)
+      })
+      .catch(error => console.log('error', error));
+  }, [])
 
   return (
     <div
@@ -38,10 +53,10 @@ function HeroImage() {
         >
           {
             width > 640 ? 
-            heroImages.map((item) => (
-              <SwiperSlide key={item.id}>
+            banner.map((item) => (
+              <SwiperSlide key={item._id}>
                 <img
-                  src={item.image}
+                  src={`${import.meta.env.VITE_IMAGE}${item?.img}`}
                   className={`absolute xs:scale-100 object-cover block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2`}
                   alt="..."
                 />

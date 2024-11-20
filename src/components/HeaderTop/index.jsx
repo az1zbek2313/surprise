@@ -9,6 +9,7 @@ function HeaderTop() {
   const [flagLang, setflagLang] = useState(
     languageDefault ? languageDefault : "uz"
   );
+  const [city, setCity] = useState("Tashkent"); // Default shahar
   const { t, i18n } = useTranslation();
   const changeLang = (value) => {
     i18n.changeLanguage(value);
@@ -21,16 +22,35 @@ function HeaderTop() {
     setflagLang(id);
   }
 
+  // Geolocation API orqali joylashuvni aniqlash
+  const handleLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          // Google Maps API yoki boshqa xizmat orqali shaharni aniqlash
+          const url = `https://www.google.com/maps/@${latitude},${longitude},11z?entry=ttu`;
+          window.open(url, "_blank");
+        },
+        (error) => {
+          console.error("Joylashuvni aniqlash xatosi:", error);
+          alert(t("location_error")); // Foydalanuvchiga xabar berish
+        }
+      );
+    } else {
+      alert(t("location_not_supported")); // Geolocation qo'llab-quvvatlanmasa
+    }
+  };
+
   return (
     <div className="hidden lg:block bg-[#f0f2f5]">
       <div
         className={`${styles.container} py-[2px] flex items-center justify-between my-0 md:!my-0`}
       >
         <div className="">
-          <a  
-            href="https://www.google.com/maps/@41.2827379,69.114552,11z?entry=ttu"
-            target="_blank"
-            className="flex items-center gap-2 w-fit"
+          <a
+            onClick={handleLocation}
+            className="flex items-center gap-2 w-fit cursor-pointer"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -44,9 +64,9 @@ function HeaderTop() {
               <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
             </svg>
             <p>
-              <span className="font-ligh text-sm opacity-80">{t("city")}:</span>
+              <span className="font-light text-sm opacity-80">{t("city")}:</span>
               &nbsp;
-              <span className="underline text-sm">Tashkent</span>
+              <span className="underline text-sm">{city}</span>
             </p>
           </a>
         </div>
@@ -57,7 +77,7 @@ function HeaderTop() {
             }}
           >
             {flagLanguage.map((item) => {
-              if (item.id == flagLang) {
+              if (item.id === flagLang) {
                 return (
                   <div
                     className="flex items-center w-20 gap-2 cursor-pointer"
@@ -75,7 +95,7 @@ function HeaderTop() {
           {language && (
             <ul className="absolute z-[1000] top-6 left-0 list-none">
               {flagLanguage.map((item) => {
-                if (item.id != flagLang) {
+                if (item.id !== flagLang) {
                   return (
                     <li
                       key={item.id}

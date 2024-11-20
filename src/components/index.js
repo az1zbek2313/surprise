@@ -22,8 +22,14 @@ import HeroImage from "./HeroImage/HeroImage";
 import RemeberProducts from "./RememberProducts";
 import CommentSection from "./CommentSection";
 import SearchModal from "./SearchModal";
+import CheckDropdown from "./Category/Dropdowns/checkDropdown";
+import MobileForm from "./Category/Form/MobileForm";
+import DesktopForm from "./Category/Form/DesktopForm";
 
 export {
+  CheckDropdown,
+  MobileForm,
+  DesktopForm,
   Header,
   HeaderTop,
   HeaderFilter,
