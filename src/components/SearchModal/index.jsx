@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-function SearchModal({ setHandleFocus, handleFocus }) {
+function SearchModal({ setHandleFocus }) {
   const [list, setList] = useState(false);
   const searchInput = useRef();
   const [productList, setProductList] = useState([]);
@@ -17,26 +17,8 @@ function SearchModal({ setHandleFocus, handleFocus }) {
       .then((response) => response.json())
       .then((result) => {
         setProductList(result);
-        console.log(result);
       })
       .catch((error) => console.log("error", error));
-
-    // Handle clicks outside the modal
-    // const handleGlobalClick = (event) => {
-    //   if (
-    //     !event.target.closest("#listProducts") &&
-    //     !event.target.closest("#searchForm")
-    //   ) {
-    //     setHandleFocus(false);
-    //     setList(false);
-    //   }
-    // };
-
-    // document.addEventListener("click", handleGlobalClick);
-
-    // return () => {
-    //   document.removeEventListener("click", handleGlobalClick);
-    // };
   }, []);
 
   const search = () => {

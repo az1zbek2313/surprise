@@ -7,7 +7,7 @@ function CommentSection() {
   const commentRef = useRef();
   const [review, setReview] = useState([]);
   const [number, setNumber] = useState(2);
-  const token = useSelector((state) => state.userIdReducer.uid.token);
+  const token = useSelector((state) => state.userIdReducer.uid);
 
   useEffect(() => {
     var requestOptions = {
@@ -19,7 +19,6 @@ function CommentSection() {
       .then((response) => response.json())
       .then((result) => {
         setReview(result);
-        console.log(18, result);
       })
       .catch((error) => console.log("error", error));
   }, []);
@@ -58,7 +57,6 @@ function CommentSection() {
     fetch(`${import.meta.env.VITE_DEFAULT_HOST}review`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         const newReview = JSON.parse(JSON.stringify(review))
         newReview.unshift()
         setReview(newReview)

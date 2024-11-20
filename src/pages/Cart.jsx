@@ -1,38 +1,68 @@
 import { useDispatch, useSelector } from "react-redux";
-import { ProductCard, RemeberProducts } from "../components";
-import { PopularCardData, shoppingCart } from "../util/contants";
-import { Toaster, toast } from "sonner";
+import { RemeberProducts } from "../components";
+import { toast } from "sonner";
+import cartCommit from "../assets/pngwing.com.png";
+import { decrement, deletedMyCart, incerement, inputAmount } from "../Redux/Actions/actions";
+import { useRef } from "react";
 
 function Cart() {
-  const counter = useSelector((state) => state.countChange);
   const dispatch = useDispatch();
+  const inputNumberRef = useRef()
+  const cartProducts = useSelector(state => state.myCart);
 
-  function handleClick() {
+  console.log(10, cartProducts);
+
+  function handleClick(id) {
     toast.error("Mahsulot o'chirildi");
+    dispatch(deletedMyCart(id))
   }
+
+  function HandleIncrement(data) {
+    dispatch(incerement(data))
+  }
+
+  function HandleDecrement(data) {
+    dispatch(decrement(data))
+  }
+
+  function HandleInputAmount(data, inputNumber) {
+    dispatch(inputAmount(data, inputNumber))
+  }
+
+  const handleKeyDown = (event, inputRef) => {
+    if (event.key === "Enter") {
+      inputRef.current.blur(); 
+    }
+  };
+
+  const generalPrice = () => {
+    return cartProducts.reduce((accumulator, item) => {
+      return accumulator + item.price * item.count;
+    }, 0);
+  };
+  
 
   return (
     <section className="bg-white pb-8 antialiased container mx-auto">
-      <Toaster />
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <h1 className="text-3xl font-semibold text-center  border-b-[1px] border-gray-500/65 py-2 pb-4">
-          Shopping Cart <span className="text-red-600">(7)</span>
+          Shopping Cart <span className="text-red-600">({cartProducts.length})</span>
         </h1>
 
         <div className="mt-6 md:gap-6 lg:flex lg:items-start xl:gap-8">
           <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
-            <div className="space-y-6">
-              {shoppingCart.map((item) => (
+            <div className="space-y-6 flex flex-wrap justify-between">
+              {cartProducts.length > 0 ? cartProducts.map((item) => (
                 <div
-                  key={item.id}
-                  className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:p-6"
+                  key={item._id}
+                  className="rounded-lg mt-0 cursor-pointer border w-full xs:w-[48%] md:w-full border-gray-200 bg-white p-4 shadow-sm"
                 >
                   <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-                    <a href="/detail/1" className="shrink-0 md:order-1">
+                    <a href={`/detail/${item._id}`} className="shrink-0 md:order-1">
                       <img
-                        className=" h-20 w-20"
-                        src={item.image}
-                        alt="imac image"
+                        className="w-full rounded-lg h-[10rem] md:h-28 md:w-28"
+                        src={`${import.meta.env.VITE_IMAGE}${item.images[0]}`}
+                        alt="image"    
                       />
                     </a>
 
@@ -42,6 +72,7 @@ function Cart() {
                     <div className="sm:flex items-center flex-wrap justify-between md:order-3 md:justify-end">
                       <div className="flex items-center">
                         <button
+                          onClick={() => {HandleDecrement(item)}}
                           type="button"
                           id="decrement-button"
                           data-input-counter-decrement="counter-input"
@@ -65,14 +96,18 @@ function Cart() {
                         </button>
                         <input
                           type="text"
+                          ref={inputNumberRef}
+                          onChange={() => {HandleInputAmount(item, inputNumberRef.current.value)}}
+                          onKeyDown={(e) => handleKeyDown(e, inputNumberRef)} 
                           id="counter-input"
                           className="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 "
                           placeholder=""
-                          defaultValue={item.count}
+                          value={item.count ? item.count : ""}
                           required
                         />
                         <button
                           type="button"
+                          onClick={() => {HandleIncrement(item)}}
                           id="increment-button"
                           data-input-counter-increment="counter-input"
                           className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100"
@@ -106,17 +141,18 @@ function Cart() {
 
                     <div className="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
                       <a
-                        href="/detail/1"
-                        className="text-base font-medium text-gray-900 hover:underline "
+                        href={`/detail/${item._id}`}
+                        className="text-base font-medium flex cursor-pointer flex-col text-gray-900 hover:underline "
                       >
-                        {item.title}
+                        <span className="font-bold">{item.name.uz}</span>
+                        <span>{item.description.uz}</span>
                       </a>
 
                       <div className="flex items-center gap-4">
                         <button
                           type="button"
-                          onClick={handleClick}
-                          className="inline-flex items-center text-sm font-medium bg-red-600 px-4 py-1 rounded-md text-white hover:bg-red-700 transition-all duration-300"
+                          onClick={() => {handleClick(item._id)}}
+                          className="inline-flex items-center text-sm font-medium border border-red-600 px-2 py-[2px] rounded-md text-red-600 hover:bg-red-600 hover:text-white active:bg-red-700 transition-all duration-300"
                         >
                           <svg
                             className="me-1.5 h-5 w-5"
@@ -141,7 +177,26 @@ function Cart() {
                     </div>
                   </div>
                 </div>
-              ))}
+              )) :
+              <div className="w-full h-full lg:mt-4 flex justify-center items-center">
+              <div className="flex flex-col gap-2 md:gap-4 justify-center items-center">
+                <img
+                  src={cartCommit}
+                  alt="search box icon"
+                  className="w-40 h-40"
+                />
+                <h2 className="font-semibold text-xl">
+                  Sizda hali saralanganlar yo'q
+                </h2>
+                <a
+                  href="/"
+                  className="text-white w-44 md:w-64 mb-0 bg-red-600 hover:bg-red-700 transition-all duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-base py-2 md:py-3 text-center justify-center inline-flex items-center"
+                >
+                  Mahsulotingizni tanlang
+                </a>
+              </div>
+            </div>
+              }
             </div>
           </div>
 
@@ -158,7 +213,10 @@ function Cart() {
                       Original price
                     </dt>
                     <dd className="text-base font-medium text-gray-900">
-                      $7,592.00
+                    {generalPrice().toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "usd",
+                          })}
                     </dd>
                   </dl>
 

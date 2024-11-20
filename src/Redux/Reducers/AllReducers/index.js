@@ -1,6 +1,6 @@
 import myAdress from "./myAdress";
 import myFavourites from "./myFavourites";
-import countChange from "./countChange";
 import userIdReducer from "./userId";
+import myCart from "./myCart";
 
-export { myAdress, myFavourites, countChange, userIdReducer };
+export { myAdress, myFavourites, userIdReducer, myCart };

@@ -10,6 +10,7 @@ import { userId } from "../../Redux/Actions/actions";
 
 function Header() {
   const searchInput = useRef();
+  const cartProducts = useSelector(state => state.myCart);
   const [handleFocus, setHandleFocus] = useState(false);
   const [accountDropdown, setAccountDropdown] = useState(false);
   const token = useSelector((state) => state.userIdReducer.uid);
@@ -213,7 +214,7 @@ function Header() {
                     </svg>
                   </span>
                   <span className="absolute bg-red-500 px-1 top-[-5px] right-[-7px] text-[8px] ss:text-[9px] rounded-full text-white">
-                    0
+                    {cartProducts.length}
                   </span>
                 </a>
 

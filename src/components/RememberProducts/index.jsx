@@ -8,8 +8,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 function RemeberProducts({data}) {
     const swiperRef = useRef(null);
-
-    console.log(12, data);
   return (
     <div className="mt-6">
           <div className="flex flex-col items-end w-full">

@@ -1,24 +1,77 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { detailColors, detailImages } from "../util/contants";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, incerement, inputAmount } from "../Redux/Actions/actions";
-import { useNavigate } from "react-router-dom";
+import {
+  addedMyCart,
+  decrement,
+  incerement,
+} from "../Redux/Actions/actions";
+import { useNavigate, useParams } from "react-router-dom";
 import { CommentSection, RemeberProducts } from "../components";
+import { toast } from "sonner";
 
 function Detail() {
   const defaltimg =
     "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg";
   const [defaultColor, setDefaultColor] = useState(1);
   const [mainImage, setMainImage] = useState(defaltimg);
-  const counter = useSelector((state) => state.countChange);
+  const [detail, setDetail] = useState({});
+  const cartProducts = useSelector((state) => state.myCart);
+  const params = useParams();
+  const exists = cartProducts.some((item) => item._id === params.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.userIdReducer.uid);
+
+  function fetchProductDetail() {
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(
+      `${import.meta.env.VITE_DEFAULT_HOST}product/${params.id}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        setDetail(result);
+      })
+      .catch((error) => console.log("error", error));
+  }
+
+  useEffect(() => {
+    fetchProductDetail();
+  }, []);
+
+  const cartProduct = cartProducts.find((item) => item._id === detail._id);
+
+  console.log(cartProduct?.count);
+
+  console.log(39, detail);
 
   function handleBuy() {
     if (token) {
     } else {
       navigate("/login");
+    }
+  }
+
+  function HandleIncrement(data) {
+    dispatch(incerement(data));
+  }
+
+  function HandleDecrement(data) {
+    dispatch(decrement(data));
+  }
+
+  function handleToCart() {
+    dispatch(addedMyCart(detail));
+
+    if (exists) {
+      navigate("/cart");
+    } else {
+      toast.success("Mahsulot cartga qo'shildi");
     }
   }
 
@@ -85,10 +138,10 @@ function Detail() {
                         className="stroke-primary-600 transition-all duration-500 group-hover:stroke-primary-700"
                         d="M21.4709 31.3196L30.0282 39.7501L38.96 30.9506M30.0035 22.0789C32.4787 19.6404 36.5008 19.6404 38.976 22.0789C41.4512 24.5254 41.4512 28.4799 38.9842 30.9265M29.9956 22.0789C27.5205 19.6404 23.4983 19.6404 21.0231 22.0789C18.548 24.5174 18.548 28.4799 21.0231 30.9184M21.0231 30.9184L21.0441 30.939M21.0231 30.9184L21.4628 31.3115"
                         stroke=""
-                        stroke-width="1.6"
-                        stroke-miterlimit="10"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.6"
+                        strokeMiterlimit="10"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </button>
@@ -121,12 +174,12 @@ function Detail() {
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <g clip-path="url(#clip0_12657_16865)">
+                      <g clipath="url(#clip0_12657_16865)">
                         <path
                           d="M8.10326 2.26718C8.47008 1.52393 9.52992 1.52394 9.89674 2.26718L11.4124 5.33818C11.558 5.63332 11.8396 5.83789 12.1653 5.88522L15.5543 6.37768C16.3746 6.49686 16.7021 7.50483 16.1086 8.08337L13.6562 10.4738C13.4205 10.7035 13.313 11.0345 13.3686 11.3589L13.9475 14.7343C14.0877 15.5512 13.2302 16.1742 12.4966 15.7885L9.46534 14.1948C9.17402 14.0417 8.82598 14.0417 8.53466 14.1948L5.5034 15.7885C4.76978 16.1742 3.91235 15.5512 4.05246 14.7343L4.63137 11.3589C4.68701 11.0345 4.57946 10.7035 4.34378 10.4738L1.89144 8.08337C1.29792 7.50483 1.62543 6.49686 2.44565 6.37768L5.8347 5.88522C6.16041 5.83789 6.44197 5.63332 6.58764 5.33818L8.10326 2.26718Z"
                           fill="white"
                         />
-                        <g clip-path="url(#clip1_12657_16865)">
+                        <g clipath="url(#clip1_12657_16865)">
                           <path
                             d="M8.10326 2.26718C8.47008 1.52393 9.52992 1.52394 9.89674 2.26718L11.4124 5.33818C11.558 5.63332 11.8396 5.83789 12.1653 5.88522L15.5543 6.37768C16.3746 6.49686 16.7021 7.50483 16.1086 8.08337L13.6562 10.4738C13.4205 10.7035 13.313 11.0345 13.3686 11.3589L13.9475 14.7343C14.0877 15.5512 13.2302 16.1742 12.4966 15.7885L9.46534 14.1948C9.17402 14.0417 8.82598 14.0417 8.53466 14.1948L5.5034 15.7885C4.76978 16.1742 3.91235 15.5512 4.05246 14.7343L4.63137 11.3589C4.68701 11.0345 4.57946 10.7035 4.34378 10.4738L1.89144 8.08337C1.29792 7.50483 1.62543 6.49686 2.44565 6.37768L5.8347 5.88522C6.16041 5.83789 6.44197 5.63332 6.58764 5.33818L8.10326 2.26718Z"
                             fill="white"
@@ -173,7 +226,7 @@ function Detail() {
                   <div className=" flex items-center justify-center border border-gray-400 rounded-full">
                     <button
                       onClick={() => {
-                        dispatch(incerement());
+                        HandleDecrement(detail);
                       }}
                       className="group py-[14px] px-3 w-full border-r border-gray-400 rounded-l-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300"
                     >
@@ -188,36 +241,32 @@ function Detail() {
                         <path
                           d="M16.5 11H5.5"
                           stroke=""
-                          stroke-width="1.6"
-                          stroke-linecap="round"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
                         />
                         <path
                           d="M16.5 11H5.5"
                           stroke=""
-                          stroke-opacity="0.2"
-                          stroke-width="1.6"
-                          stroke-linecap="round"
+                          strokeOpacity="0.2"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
                         />
                         <path
                           d="M16.5 11H5.5"
                           stroke=""
-                          stroke-opacity="0.2"
-                          stroke-width="1.6"
-                          stroke-linecap="round"
+                          strokeOpacity="0.2"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
                         />
                       </svg>
                     </button>
-                    <input
-                      type="text"
-                      onChange={(e) => {
-                        dispatch(inputAmount(e.target.value));
-                      }}
-                      className="font-semibold text-gray-900 text-sm md:text-base lg:text-lg py-3 px-2 w-full min-[400px]:min-w-[75px] h-full bg-transparent placeholder:text-gray-900 text-center hover:text-primary-600 outline-0 hover:placeholder:text-primary-600"
-                      placeholder={counter}
-                    />
+                    <span className="font-semibold focus:border-none text-gray-900 text-sm md:text-base lg:text-lg py-3 px-4 w-full ...">
+                      {" "}
+                      {cartProduct?.count ? cartProduct?.count : 1}
+                    </span>
                     <button
                       onClick={() => {
-                        dispatch(decrement());
+                        HandleIncrement(detail);
                       }}
                       className="group py-[14px] px-3 w-full border-l border-gray-400 rounded-r-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300"
                     >
@@ -232,29 +281,40 @@ function Detail() {
                         <path
                           d="M11 5.5V16.5M16.5 11H5.5"
                           stroke="#9CA3AF"
-                          stroke-width="1.6"
-                          stroke-linecap="round"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
                         />
                         <path
                           d="M11 5.5V16.5M16.5 11H5.5"
                           stroke="black"
-                          stroke-opacity="0.2"
-                          stroke-width="1.6"
-                          stroke-linecap="round"
+                          strokeOpacity="0.2"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
                         />
                         <path
                           d="M11 5.5V16.5M16.5 11H5.5"
                           stroke="black"
-                          stroke-opacity="0.2"
-                          stroke-width="1.6"
-                          stroke-linecap="round"
+                          strokeOpacity="0.2"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
                         />
                       </svg>
                     </button>
                   </div>
-                  <button className="group py-3 px-5 rounded-full bg-primary-50 text-primary-600 font-semibold text-sm md:text-base lg:text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-primary-300 hover:bg-primary-100">
+                  <button
+                    onClick={handleToCart}
+                    className={`group py-3 px-5 rounded-full ${
+                      !exists
+                        ? "bg-red-600 hover:bg-red-700 active:bg-red-400 text-red-50"
+                        : "bg-red-50 hover:bg-red-100 active:bg-red-300 text-red-600"
+                    } font-semibold text-sm md:text-base lg:text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-primary-300`}
+                  >
                     <svg
-                      className="stroke-primary-600 transition-all duration-500 group-hover:stroke-primary-600"
+                      className={`${
+                        !exists
+                          ? "stroke-red-50 group-hover:stroke-red-50"
+                          : "stroke-red-600 group-hover:stroke-red-600"
+                      } transition-all duration-500`}
                       width="22"
                       height="22"
                       viewBox="0 0 22 22"
@@ -264,11 +324,11 @@ function Detail() {
                       <path
                         d="M10.7394 17.875C10.7394 18.6344 10.1062 19.25 9.32511 19.25C8.54402 19.25 7.91083 18.6344 7.91083 17.875M16.3965 17.875C16.3965 18.6344 15.7633 19.25 14.9823 19.25C14.2012 19.25 13.568 18.6344 13.568 17.875M4.1394 5.5L5.46568 12.5908C5.73339 14.0221 5.86724 14.7377 6.37649 15.1605C6.88573 15.5833 7.61377 15.5833 9.06984 15.5833H15.2379C16.6941 15.5833 17.4222 15.5833 17.9314 15.1605C18.4407 14.7376 18.5745 14.0219 18.8421 12.5906L19.3564 9.84059C19.7324 7.82973 19.9203 6.8243 19.3705 6.16215C18.8207 5.5 17.7979 5.5 15.7522 5.5H4.1394ZM4.1394 5.5L3.66797 2.75"
                         stroke=""
-                        stroke-width="1.6"
-                        stroke-linecap="round"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
                       />
                     </svg>
-                    Add to cart
+                    {!exists ? "Add to cart" : "Added to Cart"}
                   </button>
                 </div>
                 <button
@@ -391,7 +451,7 @@ function Detail() {
         </div>
 
         <CommentSection />
-        
+
         <RemeberProducts />
       </div>
     </>

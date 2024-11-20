@@ -12,11 +12,9 @@ import { useNavigate } from "react-router-dom";
 function Card({ product, height, width }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.userIdReducer.uid.token);
+  const token = useSelector((state) => state.userIdReducer.uid);
   const likes = useSelector((state) => state.myFavourites);
   const someLike = likes.some((el) => el._id == product._id);
-
-  console.log(18, token);
 
   function handleSave(e) {
     e.stopPropagation();

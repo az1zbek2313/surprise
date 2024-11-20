@@ -1,6 +1,7 @@
 export default {
     myAdress: [],
     myFavourites:[],
-    defaultCount:1,
+    myCart:[],
+    defaultCount:[],
     user_id: { uid: "" },
 }
