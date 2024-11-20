@@ -130,6 +130,7 @@ function Category() {
                   KidsDropdown={KidsDropdown}
                   FemaleDropdown={FemaleDropdown}
                   MaleDropdown={MaleDropdown}
+                  Category={Category}
                 />
               </div>
             </div>

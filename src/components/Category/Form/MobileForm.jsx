@@ -1,4 +1,4 @@
-function MobileForm({setFemaleDropdown, setMaleDropdown, setKidsDropdown, KidsDropdown, FemaleDropdown, MaleDropdown}) {
+function MobileForm({setFemaleDropdown, setMaleDropdown, setKidsDropdown, KidsDropdown, FemaleDropdown, MaleDropdown, Category}) {
   return (
     <form className="mt-4 border-t border-gray-200">
                   <h3 className="sr-only">Categories</h3>
@@ -50,36 +50,18 @@ function MobileForm({setFemaleDropdown, setMaleDropdown, setKidsDropdown, KidsDr
                     {FemaleDropdown && (
                       <div className="pt-6" id="filter-section-mobile-0">
                         <div className="space-y-6">
-                          <div className="flex items-center">
-                            <input
-                              id="filter-mobile-color-0"
-                              name="color[]"
-                              value="white"
-                              type="checkbox"
-                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <label
-                              for="filter-mobile-color-0"
-                              className="ml-3 min-w-0 flex-1 text-gray-500"
-                            >
-                              White
-                            </label>
-                          </div>
-                          <div className="flex items-center">
-                            <input
-                              id="filter-mobile-color-1"
-                              name="color[]"
-                              value="beige"
-                              type="checkbox"
-                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <label
-                              for="filter-mobile-color-1"
-                              className="ml-3 min-w-0 flex-1 text-gray-500"
-                            >
-                              Beige
-                            </label>
-                          </div>
+                        {Category.female &&
+                          Category.female.map((item) => (
+                            <div className="flex items-center">
+                              <a
+                                href={`/category/${item._id}`}
+                                htmlFor="filter-color-0"
+                                className="ml-3 text-sm text-gray-600"
+                              >
+                                {item?.name.uz}
+                              </a>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     )}
@@ -134,36 +116,18 @@ function MobileForm({setFemaleDropdown, setMaleDropdown, setKidsDropdown, KidsDr
                     {MaleDropdown && (
                       <div className="pt-6" id="filter-section-mobile-1">
                         <div className="space-y-6">
-                          <div className="flex items-center">
-                            <input
-                              id="filter-mobile-category-0"
-                              name="category[]"
-                              value="new-arrivals"
-                              type="checkbox"
-                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <label
-                              for="filter-mobile-category-0"
-                              className="ml-3 min-w-0 flex-1 text-gray-500"
-                            >
-                              Smart watch
-                            </label>
-                          </div>
-                          <div className="flex items-center">
-                            <input
-                              id="filter-mobile-category-1"
-                              name="category[]"
-                              value="sale"
-                              type="checkbox"
-                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <label
-                              for="filter-mobile-category-1"
-                              className="ml-3 min-w-0 flex-1 text-gray-500"
-                            >
-                              Sale
-                            </label>
-                          </div>
+                        {Category.male &&
+                          Category.male.map((item) => (
+                            <div className="flex items-center">
+                              <a
+                                href={`/category/${item._id}`}
+                                htmlFor="filter-color-0"
+                                className="ml-3 text-sm text-gray-600"
+                              >
+                                {item?.name.uz}
+                              </a>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     )}
@@ -216,36 +180,18 @@ function MobileForm({setFemaleDropdown, setMaleDropdown, setKidsDropdown, KidsDr
                     {KidsDropdown && (
                       <div className="pt-6" id="filter-section-mobile-2">
                         <div className="space-y-6">
-                          <div className="flex items-center">
-                            <input
-                              id="filter-mobile-size-0"
-                              name="size[]"
-                              value="2l"
-                              type="checkbox"
-                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <label
-                              for="filter-mobile-size-0"
-                              className="ml-3 min-w-0 flex-1 text-gray-500"
-                            >
-                              2L
-                            </label>
-                          </div>
-                          <div className="flex items-center">
-                            <input
-                              id="filter-mobile-size-1"
-                              name="size[]"
-                              value="6l"
-                              type="checkbox"
-                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <label
-                              for="filter-mobile-size-1"
-                              className="ml-3 min-w-0 flex-1 text-gray-500"
-                            >
-                              6L
-                            </label>
-                          </div>
+                        {Category.kids &&
+                          Category.kids.map((item) => (
+                            <div className="flex items-center">
+                              <a
+                                href={`/category/${item._id}`}
+                                htmlFor="filter-color-0"
+                                className="ml-3 text-sm text-gray-600"
+                              >
+                                {item?.name.uz}
+                              </a>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     )}
