@@ -3,8 +3,6 @@ import { detailColors, detailImages } from "../util/contants";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addedMyCart,
-  decrement,
-  incerement,
 } from "../Redux/Actions/actions";
 import { useNavigate, useParams } from "react-router-dom";
 import { CommentSection, RemeberProducts } from "../components";
@@ -44,25 +42,11 @@ function Detail() {
     fetchProductDetail();
   }, []);
 
-  const cartProduct = cartProducts.find((item) => item._id === detail._id);
-
-  console.log(cartProduct?.count);
-
-  console.log(39, detail);
-
   function handleBuy() {
     if (token) {
     } else {
       navigate("/login");
     }
-  }
-
-  function HandleIncrement(data) {
-    dispatch(incerement(data));
-  }
-
-  function HandleDecrement(data) {
-    dispatch(decrement(data));
   }
 
   function handleToCart() {
@@ -82,7 +66,7 @@ function Detail() {
           <div className="lg:col-span-3 text-center">
             <div>
               <img
-                className="h-[240px] lg:h-[384px] w-full max-w-full rounded-lg object-cover"
+                className="h-[240px] lg:h-[344px] w-full max-w-full rounded-lg object-cover"
                 src={mainImage}
                 alt="main image"
               />
@@ -223,84 +207,6 @@ function Detail() {
                   ))}
                 </div>
                 <div className="flex items-center flex-col min-[400px]:flex-row gap-3 mb-3 min-[400px]:mb-8">
-                  <div className=" flex items-center justify-center border border-gray-400 rounded-full">
-                    <button
-                      onClick={() => {
-                        HandleDecrement(detail);
-                      }}
-                      className="group py-[14px] px-3 w-full border-r border-gray-400 rounded-l-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300"
-                    >
-                      <svg
-                        className="stroke-black group-hover:stroke-black"
-                        width="22"
-                        height="22"
-                        viewBox="0 0 22 22"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M16.5 11H5.5"
-                          stroke=""
-                          strokeWidth="1.6"
-                          strokeLinecap="round"
-                        />
-                        <path
-                          d="M16.5 11H5.5"
-                          stroke=""
-                          strokeOpacity="0.2"
-                          strokeWidth="1.6"
-                          strokeLinecap="round"
-                        />
-                        <path
-                          d="M16.5 11H5.5"
-                          stroke=""
-                          strokeOpacity="0.2"
-                          strokeWidth="1.6"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </button>
-                    <span className="font-semibold focus:border-none text-gray-900 text-sm md:text-base lg:text-lg py-3 px-4 w-full ...">
-                      {" "}
-                      {cartProduct?.count ? cartProduct?.count : 1}
-                    </span>
-                    <button
-                      onClick={() => {
-                        HandleIncrement(detail);
-                      }}
-                      className="group py-[14px] px-3 w-full border-l border-gray-400 rounded-r-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300"
-                    >
-                      <svg
-                        className="stroke-black group-hover:stroke-black"
-                        width="22"
-                        height="22"
-                        viewBox="0 0 22 22"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M11 5.5V16.5M16.5 11H5.5"
-                          stroke="#9CA3AF"
-                          strokeWidth="1.6"
-                          strokeLinecap="round"
-                        />
-                        <path
-                          d="M11 5.5V16.5M16.5 11H5.5"
-                          stroke="black"
-                          strokeOpacity="0.2"
-                          strokeWidth="1.6"
-                          strokeLinecap="round"
-                        />
-                        <path
-                          d="M11 5.5V16.5M16.5 11H5.5"
-                          stroke="black"
-                          strokeOpacity="0.2"
-                          strokeWidth="1.6"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </button>
-                  </div>
                   <button
                     onClick={handleToCart}
                     className={`group py-3 px-5 rounded-full ${
@@ -330,13 +236,14 @@ function Detail() {
                     </svg>
                     {!exists ? "Add to cart" : "Added to Cart"}
                   </button>
-                </div>
-                <button
+                  <button
                   onClick={handleBuy}
                   className="text-center w-full px-5 py-4 rounded-[100px] bg-primary-600 flex items-center justify-center font-semibold text-sm md:text-base lg:text-lg text-white shadow-sm shadow-transparent transition-all duration-500 hover:bg-primary-700 hover:shadow-primary-300"
                 >
                   Buy Now
                 </button>
+                </div>
+                
               </div>
             </div>
           </div>

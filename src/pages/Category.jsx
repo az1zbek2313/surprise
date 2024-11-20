@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import cartCommit from "../assets/pngwing.com.png";
-import { CategoryNav } from "../util/contants";
 import { styles } from "../util/style";
 import Card from "../components/Products/Card";
 import { useNavigate, useParams } from "react-router-dom";
@@ -124,7 +123,14 @@ function Category() {
                   </button>
                 </div>
 
-                <MobileForm setKidsDropdown={setKidsDropdown} setMaleDropdown={setMaleDropdown} setFemaleDropdown={setFemaleDropdown} KidsDropdown={KidsDropdown}  FemaleDropdown={FemaleDropdown} MaleDropdown={MaleDropdown}/>
+                <MobileForm
+                  setKidsDropdown={setKidsDropdown}
+                  setMaleDropdown={setMaleDropdown}
+                  setFemaleDropdown={setFemaleDropdown}
+                  KidsDropdown={KidsDropdown}
+                  FemaleDropdown={FemaleDropdown}
+                  MaleDropdown={MaleDropdown}
+                />
               </div>
             </div>
           </div>
@@ -167,9 +173,7 @@ function Category() {
                     </svg>
                   </button>
                 </div>
-                {checkDropdown && (
-                  <CheckDropdown />
-                )}
+                {checkDropdown && <CheckDropdown />}
               </div>
 
               <button
@@ -220,20 +224,32 @@ function Category() {
             </h2>
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-              <DesktopForm setKidsDropdown={setKidsDropdown} setMaleDropdown={setMaleDropdown} setFemaleDropdown={setFemaleDropdown} KidsDropdown={KidsDropdown}  FemaleDropdown={FemaleDropdown} MaleDropdown={MaleDropdown} Category={Category}/>
+              <DesktopForm
+                setKidsDropdown={setKidsDropdown}
+                setMaleDropdown={setMaleDropdown}
+                setFemaleDropdown={setFemaleDropdown}
+                KidsDropdown={KidsDropdown}
+                FemaleDropdown={FemaleDropdown}
+                MaleDropdown={MaleDropdown}
+                Category={Category}
+              />
 
               <div className="lg:col-span-3">
                 <div
                   className={`${styles.flexBetween} gap-1 xl:gap-4 pr-0 pl-0 ${styles.container}`}
                 >
-                  {ProductCardCategory && ProductCardCategory?.products?.map((item, index) => (
-                    <li
-                      key={index}
-                      className="w-[49%] xs:w-[32%] list-none my-2 md:my-4"
-                    >
-                      <Card product={item} height={"h-[200px] sm:h-[240px]"} />
-                    </li>
-                  ))}
+                  {ProductCardCategory &&
+                    ProductCardCategory?.products?.map((item, index) => (
+                      <li
+                        key={index}
+                        className="w-[49%] xs:w-[32%] list-none my-2 md:my-4"
+                      >
+                        <Card
+                          product={item}
+                          height={"h-[200px] sm:h-[240px]"}
+                        />
+                      </li>
+                    ))}
                   {ProductCardCategory?.products?.length == 0 && (
                     <div className="min-h-[50vh] sm:h-[60vh] lg:min-h-[70vh] flex w-full justify-center items-center">
                       <div className="flex flex-col gap-2 md:gap-4 justify-center items-center">
