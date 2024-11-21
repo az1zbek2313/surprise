@@ -3,6 +3,9 @@ import { detailColors, detailImages } from "../util/contants";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addedMyCart,
+  addedMyFavourites,
+  changeHeartMyFavourites,
+  deletedMyFavourites,
 } from "../Redux/Actions/actions";
 import { useNavigate, useParams } from "react-router-dom";
 import { CommentSection, RemeberProducts } from "../components";
@@ -12,7 +15,6 @@ function Detail() {
   const defaltimg =
     "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg";
   const [defaultColor, setDefaultColor] = useState(1);
-  const [mainImage, setMainImage] = useState(defaltimg);
   const [detail, setDetail] = useState({});
   const cartProducts = useSelector((state) => state.myCart);
   const params = useParams();
@@ -20,6 +22,9 @@ function Detail() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.userIdReducer.uid);
+  const likes = useSelector((state) => state.myFavourites);
+  const someLike = likes.some((el) => el._id == detail._id);
+  const [mainImage, setMainImage] = useState(defaltimg);
 
   function fetchProductDetail() {
     var requestOptions = {
@@ -34,8 +39,68 @@ function Detail() {
       .then((response) => response.json())
       .then((result) => {
         setDetail(result);
+        setMainImage(`${import.meta.env.VITE_IMAGE}${result?.images?.[0]}`);
       })
       .catch((error) => console.log("error", error));
+  }
+
+  function handleSave(e) {
+    e.stopPropagation();
+    toast.success("Yoqtirgan Mahsulotlaringizga saqlandi");
+
+    var myHeaders = new Headers();
+    myHeaders.append("token", token);
+
+    var formdata = new FormData();
+    formdata.append("productId", detail._id);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
+
+    fetch(`${import.meta.env.VITE_DEFAULT_HOST}users/favorite`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.message == "Product added to favorites") {
+          dispatch(addedMyFavourites(detail));
+          dispatch(changeHeartMyFavourites(detail));
+        }
+      })
+      .catch((error) => console.log("error", error));
+    dispatch(addedMyFavourites(detail));
+    dispatch(changeHeartMyFavourites(detail));
+  }
+
+  function handleRemove(e) {
+    e.stopPropagation();
+    toast.error("Yoqtirgan Mahsulotlaringizdan o'chirildi");
+    var myHeaders = new Headers();
+    myHeaders.append("token", token);
+
+    var formdata = new FormData();
+    formdata.append("productId", detail._id);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
+
+    fetch(`${import.meta.env.VITE_DEFAULT_HOST}users/favorite`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.message == "Product removed from favorites") {
+          dispatch(deletedMyFavourites(detail._id));
+          dispatch(changeHeartMyFavourites(detail));
+        }
+      })
+      .catch((error) => console.log("error", error));
+    dispatch(deletedMyFavourites(detail._id));
+    dispatch(changeHeartMyFavourites(detail));
   }
 
   useEffect(() => {
@@ -59,6 +124,8 @@ function Detail() {
     }
   }
 
+  console.log(62, detail);
+
   return (
     <>
       <div className={`container px-4 mx-auto font-sans tracking-wide py-4`}>
@@ -66,32 +133,41 @@ function Detail() {
           <div className="lg:col-span-3 text-center">
             <div>
               <img
-                className="h-[240px] lg:h-[344px] w-full max-w-full rounded-lg object-cover"
+                className="h-[240px] lg:h-[344px] w-full shadow-md border max-w-full rounded-lg object-cover"
                 src={mainImage}
                 alt="main image"
               />
             </div>
 
-            <div className="flex mt-3 justify-between w-full gap-1 sm:gap-2 overflow-x-hidden transition-all duration-1000 hover:overflow-x-scroll pb-3">
-              {detailImages.map((item) => (
-                <div
-                  key={item.id}
-                  className="min-w-[24%] xs:min-w-[24.4%] sm:min-w-[24%]"
-                >
-                  <img
-                    className={`${
-                      item.image === mainImage
-                        ? "border-[1.6px] border-gray-500"
-                        : ""
-                    } hover:border-[1.6px] hover:border-gray-500 rounded-lg cursor-pointer transition-all duration-300`}
-                    src={item.image}
-                    onClick={() => {
-                      setMainImage(item.image);
-                    }}
-                    alt="detail image"
-                  />
-                </div>
-              ))}
+            <div
+              className={`flex mt-3 justify-start w-full gap-1 sm:gap-2 overflow-x-hidden transition-all duration-1000 ${
+                detail?.images?.length > 4 && "hover:overflow-x-scroll"
+              } pb-3`}
+            >
+              {detail?.images &&
+                detail?.images.map((item, index) => (
+                  <div
+                    key={index}
+                    className={
+                      (detail?.images?.length <= 2 && "w-[49%]") ||
+                      (detail?.images?.length == 3 && "w-[32%]") ||
+                      (detail?.images?.length > 3 && "w-[24%]")
+                    }
+                  >
+                    <img
+                      className={`${
+                        `${import.meta.env.VITE_IMAGE}${item}` == mainImage
+                          ? "border-2 border-red-600"
+                          : "border-[1.6px]"
+                      } hover:border-[1.6px] w-full object-cover hover:border-red-600 h-44 xs:h-52 md:h-56 rounded-lg cursor-pointer transition-all duration-300`}
+                      src={`${import.meta.env.VITE_IMAGE}${item}`}
+                      onClick={() => {
+                        setMainImage(`${import.meta.env.VITE_IMAGE}${item}`);
+                      }}
+                      alt="detail image"
+                    />
+                  </div>
+                ))}
             </div>
           </div>
 
@@ -101,40 +177,61 @@ function Detail() {
                 <div className="flex items-center justify-between gap-6 mb-4 md:mb-6">
                   <div className="text">
                     <h2 className="font-manrope font-bold text-lg xs:text-2xl lg:text-3xl leading-10 text-gray-900">
-                      Yellow Summer Travel Bag
+                      {detail?.name?.uz}
                     </h2>
                   </div>
                   <button className="group transition-all duration-500 p-0.5">
-                    <svg
-                      viewBox="0 0 60 60"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-8 xs:w-10 sm:w-12"
-                    >
-                      <circle
-                        className="fill-primary-50 transition-all duration-500 group-hover:fill-primary-100"
-                        cx="30"
-                        cy="30"
-                        r="30"
-                        fill=""
-                      />
-                      <path
-                        className="stroke-primary-600 transition-all duration-500 group-hover:stroke-primary-700"
-                        d="M21.4709 31.3196L30.0282 39.7501L38.96 30.9506M30.0035 22.0789C32.4787 19.6404 36.5008 19.6404 38.976 22.0789C41.4512 24.5254 41.4512 28.4799 38.9842 30.9265M29.9956 22.0789C27.5205 19.6404 23.4983 19.6404 21.0231 22.0789C18.548 24.5174 18.548 28.4799 21.0231 30.9184M21.0231 30.9184L21.0441 30.939M21.0231 30.9184L21.4628 31.3115"
-                        stroke=""
-                        strokeWidth="1.6"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                  {!someLike ? (
+  <svg
+    viewBox="0 0 60 60"
+    fill="none"
+    onClick={handleSave}
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-8 xs:w-10 sm:w-12"
+  >
+    <circle
+      className="fill-primary-50 transition-all duration-500 group-hover:fill-primary-100"
+      cx="30"
+      cy="30"
+      r="30"
+    />
+    <path
+      className="stroke-red-600 transition-all duration-500 group-hover:stroke-red-700"
+      d="M30 42.35l-5.25-4.78C18.4 31.36 15 27.28 15 23.5 15 19.36 18.36 16 22.5 16c2.84 0 5.49 1.24 7.01 3.3C30.51 17.24 33.16 16 36 16 40.14 16 43.5 19.36 43.5 23.5c0 3.78-3.4 7.86-9.75 14.07L30 42.35z"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+  </svg>
+) : (
+  <svg
+    viewBox="0 0 60 60"
+    fill="none"
+    onClick={handleRemove}
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-8 xs:w-10 sm:w-12"
+  >
+    <circle
+      className="fill-primary-50 transition-all duration-500 group-hover:fill-primary-100"
+      cx="30"
+      cy="30"
+      r="30"
+    />
+    <path
+      className="fill-red-600 transition-all duration-500 group-hover:fill-red-700"
+      d="M30 42.35l-5.25-4.78C18.4 31.36 15 27.28 15 23.5 15 19.36 18.36 16 22.5 16c2.84 0 5.49 1.24 7.01 3.3C30.51 17.24 33.16 16 36 16 40.14 16 43.5 19.36 43.5 23.5c0 3.78-3.4 7.86-9.75 14.07L30 42.35z"
+    />
+  </svg>
+)}
+
                   </button>
                 </div>
 
                 <div className="flex min-[400px]:flex-row min-[400px]:items-center mb-4 md:mb-4">
                   <div className="flex items-center">
                     <h5 className="font-manrope font-semibold text-base md:text-lg xl:text-2xl leading-9 text-gray-900 ">
-                      $ 199.00{" "}
+                      $ {detail?.price}.00{" "}
                     </h5>
                     <span className="ml-3 font-semibold text-base md:text-lg line-through text-red-600">
                       $ 219.00
@@ -180,7 +277,7 @@ function Detail() {
                       </defs>
                     </svg>
                     <span className="text-base font-medium text-white">
-                      4.8
+                      {detail?.rating}
                     </span>
                   </button>
                 </div>
@@ -237,13 +334,12 @@ function Detail() {
                     {!exists ? "Add to cart" : "Added to Cart"}
                   </button>
                   <button
-                  onClick={handleBuy}
-                  className="text-center w-full px-5 py-4 rounded-[100px] bg-primary-600 flex items-center justify-center font-semibold text-sm md:text-base lg:text-lg text-white shadow-sm shadow-transparent transition-all duration-500 hover:bg-primary-700 hover:shadow-primary-300"
-                >
-                  Buy Now
-                </button>
+                    onClick={handleBuy}
+                    className="text-center w-full px-5 py-4 rounded-[100px] bg-primary-600 flex items-center justify-center font-semibold text-sm md:text-base lg:text-lg text-white shadow-sm shadow-transparent transition-all duration-500 hover:bg-primary-700 hover:shadow-primary-300"
+                  >
+                    Buy Now
+                  </button>
                 </div>
-                
               </div>
             </div>
           </div>
@@ -346,20 +442,14 @@ function Detail() {
               Product Description
             </h3>
             <p className="text-sm text-gray-600 mt-2 xs:mt-4 ">
-              Step up your style game with our premium white lens sunglasses.
-              Crafted for both fashion and function, these sunglasses offer UV
-              protection, a stylish design, and a lightweight frame. The
-              scratch-resistant and polarized lenses ensure durability and
-              clarity, while the comfortable fit makes them ideal for all-day
-              wear. Elevate your look with these must-have accessories for any
-              occasion.
+              {detail?.description?.uz}
             </p>
           </div>
         </div>
 
         <CommentSection />
 
-        <RemeberProducts />
+        <RemeberProducts data={detail} />
       </div>
     </>
   );

@@ -17,6 +17,7 @@ function Category() {
   const [KidsDropdown, setKidsDropdown] = useState(false);
   const navigate = useNavigate();
 
+  console.log(20, Category);
   useEffect(() => {
     importCategoryAll();
     importCategoryOne();
