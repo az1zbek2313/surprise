@@ -1,4 +1,4 @@
-import { HeaderTop, SearchModal } from "../";
+import { CreateAccount, HeaderTop, LoginModal, SearchModal } from "../";
 import { styles } from "../../util/style";
 import { surpriseLogo, user } from "../../assets";
 import { flagLanguage } from "../../util/contants";
@@ -7,10 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { userId } from "../../Redux/Actions/actions";
+import Code from "../Sign/CodeModal";
 
 function Header() {
   const searchInput = useRef();
   const cartProducts = useSelector(state => state.myCart);
+  const [loginModal, setLoginModal] = useState(false);
+  const [createAccount, setCreateAccount] = useState(false);
+  const [code, setCode] = useState(false);
   const [handleFocus, setHandleFocus] = useState(false);
   const [accountDropdown, setAccountDropdown] = useState(false);
   const token = useSelector((state) => state.userIdReducer.uid);
@@ -44,7 +48,9 @@ function Header() {
 
   const logout = () => {
     dispatch(userId(""));
-    navigate("/login");
+    navigate("/")
+    setAccountDropdown(false)
+    setLoginModal(true)
   };
 
   // Search Product 
@@ -52,6 +58,20 @@ function Header() {
   return (
     <>
       <HeaderTop />
+
+      {
+        loginModal && (
+          <LoginModal setLoginModal={setLoginModal} setCreateAccount={setCreateAccount}/>
+        ) ||
+        createAccount && (
+          <CreateAccount setCreateAccount={setCreateAccount} setLoginModal={setLoginModal} setCode={setCode}/>
+        )
+      }
+      {
+        code && (
+          <Code setCode={setCode}/>
+        )
+      }
       <div
         className={`shadow-md sticky top-[-2px] bg-white  shadow-black/5 my-0 md:!my-0 pt-1 lg:pt-2 z-[100]`}
       >
@@ -241,8 +261,8 @@ function Header() {
                     </a>
                   ) : (
                     <a
-                      href="/login"
-                      className="p-[6px] text-sm md:px-4 md:py-2 md:text-base bg-primary-600 rounded-lg hover:bg-primary-700 text-white transition-all duration-300"
+                      onClick={() => {setLoginModal(true)}}
+                      className="p-[6px] cursor-pointer text-sm md:px-4 md:py-2 md:text-base bg-primary-600 rounded-lg hover:bg-primary-700 text-white transition-all duration-300"
                     >
                       Login
                     </a>

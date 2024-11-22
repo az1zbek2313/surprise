@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HeroImage, CategoryPruducts, HeaderFilter, TrendingSurprize, StepCards } from "../components";
+import { HeroImage, CategoryPruducts, HeaderFilter, TrendingSurprize, StepCards, LoginModal } from "../components";
 import { ProductCategoryData } from "../util/contants";
 import { Toaster } from "sonner";
 

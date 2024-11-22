@@ -25,9 +25,13 @@ import SearchModal from "./SearchModal";
 import CheckDropdown from "./Category/Dropdowns/checkDropdown";
 import MobileForm from "./Category/Form/MobileForm";
 import DesktopForm from "./Category/Form/DesktopForm";
+import LoginModal from "./Sign/LoginModal";
+import CreateAccount from "./Sign/CreateAccounte";
 
 export {
   CheckDropdown,
+  LoginModal,
+  CreateAccount,
   MobileForm,
   DesktopForm,
   Header,
