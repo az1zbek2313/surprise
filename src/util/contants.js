@@ -56,6 +56,18 @@ export const StepCardsData = [
     text:"Complete the checkout and get ready to be amazed by our surprise, fast and reliable delivery!",
     image:Stepcard3
   },
+  {
+    id:4,
+    title:"Step 4",
+    text:"Complete the checkout and get ready to be amazed by our surprise, fast and reliable delivery!",
+    image:Stepcard3
+  },
+  {
+    id:5,
+    title:"Step 5",
+    text:"Complete the checkout and get ready to be amazed by our surprise, fast and reliable delivery!",
+    image:Stepcard3
+  },
 ]
 
 export const star = [1, 2, 3, 4, 5];

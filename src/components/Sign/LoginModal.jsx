@@ -50,7 +50,7 @@ function LoginModal({ setLoginModal, setCreateAccount }) {
             phoneNumberRef.current.value = "";
             passwordRef.current.value = "";
             navigate("/")
-            setLoginModal(false);
+            setLoginModal(false);w
           }
         })
         .catch((err) => console.log("error", err));
