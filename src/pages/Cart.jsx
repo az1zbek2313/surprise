@@ -121,7 +121,7 @@ function Cart() {
                         className="shrink-0 md:order-1"
                       >
                         <img
-                          className="w-full rounded-lg h-[10rem] md:h-28 md:w-28"
+                          className="w-full rounded-lg object-cover h-[10rem] md:h-28 md:w-28"
                           src={`${import.meta.env.VITE_IMAGE}${item.images[0]}`}
                           alt="image"
                         />

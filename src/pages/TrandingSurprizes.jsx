@@ -41,10 +41,10 @@ function TrandingSurprizes() {
             <h2 className="font-bold text-3xl">Tranding Surprizes</h2>
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1 lg:gap-2">
             {
                 tranding.map((item, index) => (
-                    <Card key={index} product={item} width="w-[32%] md:w-[24.5%] lg:w-[24%] my-3 " height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]" />
+                    <Card key={index} product={item} width="w-[32%] md:w-[24.5%] lg:w-[24%] my-1 " height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]" />
                 ))
             }
             </div>
