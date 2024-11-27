@@ -35,9 +35,9 @@ function Section() {
         sectionProduct != {} ?
         <div className={`${styles.container} flex flex-col  gap-2`}> 
 
-            <div className="flex flex-col justify-center items-center mx-auto my-4">
-            <h2 className="font-bold text-3xl">{sectionProduct?.name?.uz}</h2>
-            <p className="text-lg">{sectionProduct?.description?.uz}</p>
+            <div className="flex flex-col justify-center items-center mx-auto mt-4">
+            <h2 className="font-bold text-2xl leading-8 lg:text-3xl text-center">{sectionProduct?.name?.uz}</h2>
+            <p className="text-base lg:text-lg">{sectionProduct?.description?.uz}</p>
             </div>
 
             <div className="flex flex-wrap gap-1">
