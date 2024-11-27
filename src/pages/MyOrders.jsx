@@ -82,7 +82,6 @@ function MyOrders() {
           <div className="bg-gray-100 rounded-2xl md:rounded-3xl p-5 md:p-6 w-fit h-fit">
             <img src={searchBox} alt="search box icon" className="w-8 h-8" />
           </div>
-          <h2 className="font-semibold text-xl">Hali buyurtmalar mavjud emas</h2>
           <p className="opacity-55 font-medium text-sm md:text-base text-center">Hozirda buyurtmalar mavjud emas. Iltimos, <br /> hozir xarid qiling.</p>
           <a href="/" className="text-white w-44 md:w-64 mb-0 bg-red-600 hover:bg-red-700 transition-all duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-base py-2 md:py-3 text-center justify-center inline-flex items-center">Xarid qilish</a>
         </div>
