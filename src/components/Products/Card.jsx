@@ -89,7 +89,7 @@ function Card({ product, height, width }) {
         <div className="group relative bg-[rgb(121, 121, 121)]">
           {/* Like Save */}
           {!someLike ? (
-            <span className="absolute cursor-pointer top-2 right-2 sm:top-3 sm:right-3 w-[18px] sm:[&>svg]:w-6 z-50">
+            <span className="absolute cursor-pointer top-2 right-2 sm:top-3 sm:right-3 w-[14px] sm:[&>svg]:w-6 z-50">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 color="red"
@@ -102,7 +102,7 @@ function Card({ product, height, width }) {
               </svg>
             </span>
           ) : (
-            <span className="absolute cursor-pointer top-2 right-2 sm:top-3 sm:right-3 w-[18px] sm:[&>svg]:w-6 z-50">
+            <span className="absolute cursor-pointer top-2 right-2 sm:top-3 sm:right-3 w-[14px] sm:[&>svg]:w-6 z-50">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"

@@ -50,7 +50,7 @@ import { styles } from "../../util/style";
               <div className="flex flex-wrap gap-[2px] xs:gap-1 w-full">
                 {trandingSurPrizes?.map((product, index) => (
                      <Card key={index} product={product} width="w-[32%] md:w-[24.5%] lg:w-[24%] my-3" height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]" />
-                  )).slice(2, 5)}
+                  )).slice(2, 4)}
                 {trandingSurPrizes?.map((product, index) => (
                      <Card key={index} product={product} width="w-[32%] md:w-[24.5%] lg:w-[24%] my-3" height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]" />
                   )).slice(0, 4)} 

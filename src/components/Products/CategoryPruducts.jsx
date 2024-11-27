@@ -40,7 +40,7 @@ function CategoryPruducts({data, index}) {
   <Swiper
     ref={swiperRef}
     centeredSlides={false}
-    slidesPerView={window.screen.availWidth >= 1024 ? 3.5 : window.screen.availWidth >= 480 ? 3 : 2}
+    slidesPerView={window.screen.availWidth >= 1024 ? 3.5 : window.screen.availWidth >= 480 ? 2.8 : 2.5}
     spaceBetween={8}
     modules={[Scrollbar]}
     scrollbar={{
