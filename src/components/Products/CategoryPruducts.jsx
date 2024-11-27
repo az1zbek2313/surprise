@@ -15,7 +15,7 @@ function CategoryPruducts({data, index}) {
 
   return (
     <div style={index ==1 ? {background:"rgb(244, 254, 255)"} : index == 2 ? {background:"rgb(255, 241, 241)"} : {background:"rgb(236, 255, 205)"}}>
-        <CategoryNames name={data?.name?.uz} to={`category/${import.meta.env.VITE_CATEGORY_ID}`} />
+        <CategoryNames name={data?.name?.uz} to={`/section/${data._id}`} />
       <div
         className={`w-full ${styles.container} flex items-center justify-between py-[30px] gap-3`}
       >
