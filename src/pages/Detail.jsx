@@ -12,6 +12,8 @@ import { CommentSection, RemeberProducts } from "../components";
 import { toast } from "sonner";
 
 function Detail() {
+  const defaltimg =
+    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg";
   const [defaultColor, setDefaultColor] = useState(1);
   const [detail, setDetail] = useState({});
   const cartProducts = useSelector((state) => state.myCart);
@@ -22,7 +24,7 @@ function Detail() {
   const token = useSelector((state) => state.userIdReducer.uid);
   const likes = useSelector((state) => state.myFavourites);
   const someLike = likes.some((el) => el._id == detail._id);
-  const [mainImage, setMainImage] = useState("https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg");
+  const [mainImage, setMainImage] = useState(defaltimg);
 
   function fetchProductDetail() {
     var requestOptions = {
