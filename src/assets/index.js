@@ -15,7 +15,7 @@ import bag from "./bag.svg";
 import notification from "./bell.svg"
 import signIn from "./signIn.svg";
 import signUp from "./signUp.svg";
-import carousel from "./image.svg";
+import carousel from "./Image.svg";
 import categoryImage from "./categoryImage.svg";
 import categoryImage1 from "./categoryImage1.svg";
 import categoryImage2 from "./categoryImage2.svg";
