@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RemeberProducts } from "../components";
+import { OrderModal, RemeberProducts } from "../components";
 import { toast } from "sonner";
 import cartCommit from "../assets/pngwing.com.png";
 import {
@@ -8,13 +8,17 @@ import {
   incerement,
   inputAmount,
 } from "../Redux/Actions/actions";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
+  const myAdress = useSelector((state) => state.myAdress) || [];
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const token = useSelector((state) => state.userIdReducer.uid).token;
   const inputNumberRef = useRef();
-  const cartProducts = useSelector((state) => state.myCart);
+  const [order, setOrder] = useState(false);
+  const cartProducts = useSelector((state) => state.myCart) || [];
 
   function updateProduct(data) {
     var myHeaders = new Headers();
@@ -38,34 +42,52 @@ function Cart() {
       .then((result) => console.log(50, result))
       .catch((error) => console.log("error", error));
   }
-
-  function handleOrder() {
-    console.log(cartProducts);
-    console.log(token);
+  console.log(myAdress);
+  function handleOrder(type) {
     var myHeaders = new Headers();
     myHeaders.append("token", token);
+    myHeaders.append("Content-Type", "application/json"); // JSON ma'lumotini ko'rsatish uchun
 
-    var raw = {
-      products: [
-        "673865937e5fe332e94ae762",
-        "67386fcf7e5fe332e94ae7b5",
-        "67386fcf7e5fe332e94ae7b5",
-      ],
-      location: "Toshkentga",
-      transport_type: "car",
-    };
+    if (myAdress.length > 0) {
+      if (type == "car") {
+        var raw = JSON.stringify({
+          products: ["673865937e5fe332e94ae762", "6725168854cb259e656ee0fb"],
+          location: `${myAdress[0].city}, ${myAdress[0].region}, ${
+            myAdress[0]?.street && myAdress[0]?.street + " ko'chasi, "
+          }${myAdress[0]?.homeNumber && myAdress[0]?.homeNumber + "-uy, "}${
+            myAdress[0]?.floor && myAdress[0]?.floor + "-qavat, "
+          }${myAdress[0]?.train && myAdress[0]?.train + "-padyezd, "}${
+            myAdress[0]?.apartment && myAdress[0]?.apartment + "-xonadon"
+          }`,
+          transport_type: type,
+        });
+      } else {
+        var raw = JSON.stringify({
+          products: ["673865937e5fe332e94ae762", "6725168854cb259e656ee0fb"],
+          location: "Toshkent shahriga",
+          transport_type: type,
+        });
+      }
 
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
 
-    fetch(`${import.meta.env.VITE_DEFAULT_HOST}order`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => console.log(59, result))
-      .catch((error) => console.log("error", error));
+      fetch(`${import.meta.env.VITE_DEFAULT_HOST}order`, requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(58, result);
+          navigate("/account/orders");
+        })
+        .catch((error) => console.log("error", error));
+    } else {
+      navigate("/account/adress");
+    }
+
+    setOrder(false);
   }
 
   function handleClick(id) {
@@ -94,7 +116,7 @@ function Cart() {
 
   const generalPrice = () => {
     return cartProducts.reduce((accumulator, item) => {
-      return accumulator + item.price * item.count;
+      return accumulator + item?.price * item?.count;
     }, 0);
   };
 
@@ -109,20 +131,20 @@ function Cart() {
         <div className="mt-6 md:gap-6 lg:flex lg:items-start xl:gap-8">
           <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
             <div className="space-y-6 flex flex-wrap justify-between">
-              {cartProducts.length > 0 ? (
-                cartProducts.map((item) => (
+              {cartProducts?.length > 0 ? (
+                cartProducts?.map((item) => (
                   <div
-                    key={item._id}
+                    key={item?._id}
                     className="rounded-lg mt-0 cursor-pointer border w-full xs:w-[48%] md:w-full border-gray-200 bg-white p-4 shadow-sm"
                   >
                     <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                       <a
-                        href={`/detail/${item._id}`}
+                        href={`/detail/${item?._id}`}
                         className="shrink-0 md:order-1"
                       >
                         <img
                           className="w-full rounded-lg object-cover h-[10rem] md:h-28 md:w-28"
-                          src={`${import.meta.env.VITE_IMAGE}${item.images[0]}`}
+                          src={`${import.meta.env.VITE_IMAGE}${item?.images[0]}`}
                           alt="image"
                         />
                       </a>
@@ -170,7 +192,7 @@ function Cart() {
                             id="counter-input"
                             className="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 "
                             placeholder=""
-                            value={item.count ? item.count : ""}
+                            value={item?.count ? item?.count : ""}
                             required
                           />
                           <button
@@ -201,7 +223,7 @@ function Cart() {
                         </div>
                         <div className="text-start sm:text-end md:order-4 md:w-32">
                           <p className="my-4 sm:my-0 text-2xl sm:text-xl mr-4 md:mr-0 opacity-80 font-bold text-gray-900 ">
-                            {item.price.toLocaleString("en-US", {
+                            {item?.price.toLocaleString("en-US", {
                               style: "currency",
                               currency: "usd",
                             })}
@@ -211,18 +233,18 @@ function Cart() {
 
                       <div className="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
                         <a
-                          href={`/detail/${item._id}`}
+                          href={`/detail/${item?._id}`}
                           className="text-base font-medium flex cursor-pointer flex-col text-gray-900 hover:underline "
                         >
-                          <span className="font-bold">{item.name.uz}</span>
-                          <span>{item.description.uz}</span>
+                          <span className="font-bold">{item?.name.uz}</span>
+                          <span>{item?.description.uz}</span>
                         </a>
 
                         <div className="flex items-center gap-4">
                           <button
                             type="button"
                             onClick={() => {
-                              handleClick(item._id);
+                              handleClick(item?._id);
                             }}
                             className="inline-flex items-center text-sm font-medium border border-red-600 px-2 py-[2px] rounded-md text-red-600 hover:bg-red-600 hover:text-white active:bg-red-700 transition-all duration-300"
                           >
@@ -327,7 +349,9 @@ function Cart() {
 
               <a
                 href="#"
-                onClick={handleOrder}
+                onClick={() => {
+                  setOrder(true);
+                }}
                 className="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300"
               >
                 Proceed to Checkout
@@ -364,6 +388,8 @@ function Cart() {
 
         <RemeberProducts />
       </div>
+
+      {order && <OrderModal setOrder={setOrder} handleOrder={handleOrder} />}
     </section>
   );
 }

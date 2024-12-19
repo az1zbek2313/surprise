@@ -1,30 +1,29 @@
 import { useEffect, useState } from "react";
-import { detailColors, detailImages } from "../util/contants";
+import { detailColors } from "../../util/contants";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addedMyCart,
   addedMyFavourites,
   changeHeartMyFavourites,
   deletedMyFavourites,
-} from "../Redux/Actions/actions";
-import { useNavigate, useParams } from "react-router-dom";
-import { CommentSection, RemeberProducts } from "../components";
+  productId,
+} from "../../Redux/Actions/actions";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { defaultImage } from "../../assets";
 
-function Detail() {
-  const defaltimg =
-    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg";
+function DetailModal() {
   const [defaultColor, setDefaultColor] = useState(1);
   const [detail, setDetail] = useState({});
   const cartProducts = useSelector((state) => state.myCart);
-  const params = useParams();
+  const params = useSelector((state) => state.productIdReducer);
   const exists = cartProducts.some((item) => item._id === params.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.userIdReducer.uid);
   const likes = useSelector((state) => state.myFavourites);
   const someLike = likes.some((el) => el._id == detail._id);
-  const [mainImage, setMainImage] = useState(defaltimg);
+  const [mainImage, setMainImage] = useState(defaultImage);
 
   function fetchProductDetail() {
     var requestOptions = {
@@ -39,39 +38,48 @@ function Detail() {
       .then((response) => response.json())
       .then((result) => {
         setDetail(result);
-        setMainImage(`${import.meta.env.VITE_IMAGE}${result?.images?.[0]}`);
+        setMainImage(
+          result?.images?.[0]
+            ? `${import.meta.env.VITE_IMAGE}${result.images[0]}`
+            : defaultImage
+        );
       })
       .catch((error) => console.log("error", error));
   }
 
   function handleSave(e) {
     e.stopPropagation();
-    toast.success("Yoqtirgan Mahsulotlaringizga saqlandi");
+    if (detail.error !== "Failed to get product") {
+      toast.success("Yoqtirgan Mahsulotlaringizga saqlandi");
 
-    var myHeaders = new Headers();
-    myHeaders.append("token", token);
+      var myHeaders = new Headers();
+      myHeaders.append("token", token);
 
-    var formdata = new FormData();
-    formdata.append("productId", detail._id);
+      var formdata = new FormData();
+      formdata.append("productId", detail._id);
 
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: formdata,
-      redirect: "follow",
-    };
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow",
+      };
 
-    fetch(`${import.meta.env.VITE_DEFAULT_HOST}users/favorite`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.message == "Product added to favorites") {
-          dispatch(addedMyFavourites(detail));
-          dispatch(changeHeartMyFavourites(detail));
-        }
-      })
-      .catch((error) => console.log("error", error));
-    dispatch(addedMyFavourites(detail));
-    dispatch(changeHeartMyFavourites(detail));
+      fetch(
+        `${import.meta.env.VITE_DEFAULT_HOST}users/favorite`,
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          if (result.message == "Product added to favorites") {
+            dispatch(addedMyFavourites(detail));
+            dispatch(changeHeartMyFavourites(detail));
+          }
+        })
+        .catch((error) => console.log("error", error));
+      dispatch(addedMyFavourites(detail));
+      dispatch(changeHeartMyFavourites(detail));
+    }
   }
 
   function handleRemove(e) {
@@ -103,8 +111,13 @@ function Detail() {
     dispatch(changeHeartMyFavourites(detail));
   }
 
+  function handleOpenModal(id) {
+    dispatch(productId(id)); 
+  }
+
   useEffect(() => {
     fetchProductDetail();
+    // handleOpenModal("")
   }, []);
 
   function handleBuy() {
@@ -115,12 +128,14 @@ function Detail() {
   }
 
   function handleToCart() {
-    dispatch(addedMyCart(detail));
+    if (detail.error !== "Failed to get product") {
+      dispatch(addedMyCart(detail));
 
-    if (exists) {
-      navigate("/cart");
-    } else {
-      toast.success("Mahsulot cartga qo'shildi");
+      if (exists) {
+        navigate("/cart");
+      } else {
+        toast.success("Mahsulot cartga qo'shildi");
+      }
     }
   }
 
@@ -128,12 +143,30 @@ function Detail() {
 
   return (
     <>
-      <div className={`container px-4 mx-auto font-sans tracking-wide py-4`}>
-        <div className="grid items-start grid-cols-1 lg:grid-cols-6">
+      <div className="fixed inset-0 bg-black/30 z-[100]"></div>
+
+      <div
+        className={`w-full ss:max-w-[400px] xs:max-w-[480px] sm:max-w-[640px] md:max-w-[700px] lg:max-w-[1000px] xl:max-w-[1180px] fixed z-[1000] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 font-sans tracking-wide`}
+      >
+        {/* Icon remove */}
+        <div onClick={() => {dispatch(productId(""))}} className="p-2 fixed cursor-pointer top-[-10px] right-[-10px] sm:top-[-20px] sm:right-[-20px] z-[1000] rounded-full bg-black/60">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            className="bi bi-x text-white"
+            viewBox="0 0 16 16"
+          >
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+          </svg>
+        </div>
+
+        <div className="grid rounded bg-white items-start grid-cols-1 lg:grid-cols-6 p-8 pb-6">
           <div className="lg:col-span-3 text-center">
             <div>
               <img
-                className="h-[240px] lg:h-[344px] w-full shadow-md border max-w-full rounded-lg object-cover"
+                className="h-[200px] lg:h-[300px] w-full shadow-md border max-w-full rounded-lg object-cover"
                 src={mainImage}
                 alt="main image"
               />
@@ -149,7 +182,7 @@ function Detail() {
                   <div
                     key={index}
                     className={
-                      (detail?.images?.length <= 2 && "w-[49%]") ||
+                      (detail?.images?.length <= 2 && "w-[32%]") ||
                       (detail?.images?.length == 3 && "w-[32%]") ||
                       (detail?.images?.length > 3 && "w-[24%]")
                     }
@@ -159,7 +192,7 @@ function Detail() {
                         `${import.meta.env.VITE_IMAGE}${item}` == mainImage
                           ? "border-2 border-red-600"
                           : "border-[1.6px]"
-                      } hover:border-[1.6px] w-full object-cover hover:border-red-600 h-44 xs:h-52 md:h-56 rounded-lg cursor-pointer transition-all duration-300`}
+                      } hover:border-[1.6px] w-full object-cover hover:border-red-600 h-24 xs:h-28 md:h-32 rounded-lg cursor-pointer transition-all duration-300`}
                       src={`${import.meta.env.VITE_IMAGE}${item}`}
                       onClick={() => {
                         setMainImage(`${import.meta.env.VITE_IMAGE}${item}`);
@@ -177,7 +210,7 @@ function Detail() {
                 <div className="flex items-center justify-between gap-6 mb-4 md:mb-6">
                   <div className="text">
                     <h2 className="font-manrope font-bold text-lg xs:text-2xl lg:text-3xl leading-10 text-gray-900">
-                      {detail?.name?.uz}
+                      {detail?.name?.uz ? detail?.name?.uz : "Detail product"}
                     </h2>
                   </div>
                   <button className="group transition-all duration-500 p-0.5">
@@ -343,115 +376,9 @@ function Detail() {
             </div>
           </div>
         </div>
-
-        <div className="mt-6 max-w-2xl">
-          <h3 className="text-lg md:text-xl font-bold text-gray-800">
-            Product Features
-          </h3>
-
-          <ul className="grid sm:grid-cols-2 gap-3 mt-4">
-            <li className="flex items-center text-sm text-gray-600">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="17"
-                className="mr-4 bg-blue-500 fill-white rounded-full p-[3px]"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"
-                  data-original="#000000"
-                />
-              </svg>
-              UV Protection
-            </li>
-            <li className="flex items-center text-sm text-gray-600">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="17"
-                className="mr-4 bg-blue-500 fill-white rounded-full p-[3px]"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"
-                  data-original="#000000"
-                />
-              </svg>
-              Stylish Design
-            </li>
-            <li className="flex items-center text-sm text-gray-600">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="17"
-                className="mr-4 bg-blue-500 fill-white rounded-full p-[3px]"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"
-                  data-original="#000000"
-                />
-              </svg>
-              Lightweight Frame
-            </li>
-            <li className="flex items-center text-sm text-gray-600">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="17"
-                className="mr-4 bg-blue-500 fill-white rounded-full p-[3px]"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"
-                  data-original="#000000"
-                />
-              </svg>
-              Scratch-Resistant Lenses
-            </li>
-            <li className="flex items-center text-sm text-gray-600">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="17"
-                className="mr-4 bg-blue-500 fill-white rounded-full p-[3px]"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"
-                  data-original="#000000"
-                />
-              </svg>
-              Polarized Lenses
-            </li>
-            <li className="flex items-center text-sm text-gray-600">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="17"
-                className="mr-4 bg-blue-500 fill-white rounded-full p-[3px]"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"
-                  data-original="#000000"
-                />
-              </svg>
-              Comfortable Fit
-            </li>
-          </ul>
-
-          <div className="mt-6">
-            <h3 className="text-lg md:text-xl font-bold text-gray-800">
-              Product Description
-            </h3>
-            <p className="text-sm text-gray-600 mt-2 xs:mt-4 ">
-              {detail?.description?.uz}
-            </p>
-          </div>
-        </div>
-
-        <CommentSection />
-
-        <RemeberProducts data={detail} />
       </div>
     </>
   );
 }
 
-export default Detail;
+export default DetailModal;

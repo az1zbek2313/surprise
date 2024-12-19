@@ -27,9 +27,12 @@ import MobileForm from "./Category/Form/MobileForm";
 import DesktopForm from "./Category/Form/DesktopForm";
 import LoginModal from "./Sign/LoginModal";
 import CreateAccount from "./Sign/CreateAccounte";
+import OrderModal from "./OrderModal";
+import DetailModal from "./DetailModal";
 
 export {
   CheckDropdown,
+  OrderModal,
   LoginModal,
   CreateAccount,
   MobileForm,
@@ -56,5 +59,6 @@ export {
   LocationModal,
   CommentSection,
   StepCards,
-  SearchModal
+  SearchModal,
+  DetailModal
 };

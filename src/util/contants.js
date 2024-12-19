@@ -1,8 +1,10 @@
-import { defaultImage } from "../assets";
 import {
-  carousel1,
-  carousel2,
-  carousel3,
+  defaultImage,
+  categoryImage,
+  categoryImage1,
+  categoryImage2,
+} from "../assets";
+import {
   uzbFlag,
   rusFlag,
   engFlag,
@@ -12,9 +14,6 @@ import {
   heart,
   bag,
   notification,
-  carouselMobile1,
-  carouselMobile2,
-  carouselMobile3,
   cardImage1,
   cardImage2,
   cardImage3,
@@ -34,51 +33,72 @@ import {
   TrendingSurprizes8,
   Stepcard1,
   Stepcard2,
-  Stepcard3
+  Stepcard3,
 } from "../assets";
 
 export const StepCardsData = [
   {
-    id:1,
-    title:"Step 1",
-    text:"Select your favorite surprise item and add it to your cart for a delightful shoppping journey.",
-    image:Stepcard1
+    id: 1,
+    title: "Step 1",
+    text: "Select your favorite surprise item and add it to your cart for a delightful shoppping journey.",
+    image: Stepcard1,
   },
   {
-    id:2,
-    title:"Step 2",
-    text:"Select your favorite surprise item and add it to your cart for a delightful shoppping journey.",
-    image:Stepcard2
+    id: 2,
+    title: "Step 2",
+    text: "Select your favorite surprise item and add it to your cart for a delightful shoppping journey.",
+    image: Stepcard2,
   },
   {
-    id:3,
-    title:"Step 3",
-    text:"Complete the checkout and get ready to be amazed by our surprise, fast and reliable delivery!",
-    image:Stepcard3
+    id: 3,
+    title: "Step 3",
+    text: "Complete the checkout and get ready to be amazed by our surprise, fast and reliable delivery!",
+    image: Stepcard3,
   },
   {
-    id:4,
-    title:"Step 4",
-    text:"Complete the checkout and get ready to be amazed by our surprise, fast and reliable delivery!",
-    image:Stepcard3
+    id: 4,
+    title: "Step 4",
+    text: "Complete the checkout and get ready to be amazed by our surprise, fast and reliable delivery!",
+    image: Stepcard3,
   },
   {
-    id:5,
-    title:"Step 5",
-    text:"Complete the checkout and get ready to be amazed by our surprise, fast and reliable delivery!",
-    image:Stepcard3
+    id: 5,
+    title: "Step 5",
+    text: "Complete the checkout and get ready to be amazed by our surprise, fast and reliable delivery!",
+    image: Stepcard3,
   },
-]
+];
+
+export const categoryCard = [
+  {
+    id: 1,
+    image: categoryImage,
+    title: "Samsung Electronics Samsung Galexy S21 5G",
+    price: 160,
+  },
+  {
+    id: 2,
+    image: categoryImage1,
+    title: "Simple Mobile 5G LTE Galexy 12 Mini 512GB Gaming Phone",
+    price: 1500,
+  },
+  {
+    id: 3,
+    image: categoryImage2,
+    title: "Sony DSCHX8 High Zoom Point & Shoot Camera",
+    price: 2300,
+  },
+];
 
 export const star = [1, 2, 3, 4, 5];
 
 export const ProductCategoryData = [
   {
-    id:1,
-    categoryName:"Happy Birthday!",
-    categoryText:"Make the day bright",
-    bg:"rgb(244, 254, 255)",
-    categoryCards:[
+    id: 1,
+    categoryName: "Happy Birthday!",
+    categoryText: "Make the day bright",
+    bg: "rgb(244, 254, 255)",
+    categoryCards: [
       {
         id: 1,
         like: false,
@@ -87,7 +107,7 @@ export const ProductCategoryData = [
         price: 2499,
         newprice: 2099,
         image: cardImage9,
-        star:5
+        star: 5,
       },
       {
         id: 2,
@@ -97,7 +117,7 @@ export const ProductCategoryData = [
         price: 3999,
         newprice: 3099,
         image: cardImage8,
-        star:5
+        star: 5,
       },
       {
         id: 3,
@@ -107,7 +127,7 @@ export const ProductCategoryData = [
         price: 1299,
         newprice: 1099,
         image: cardImage7,
-        star:5
+        star: 5,
       },
       {
         id: 4,
@@ -117,16 +137,17 @@ export const ProductCategoryData = [
         price: 1299,
         newprice: 1099,
         image: cardImage2,
-        star:5
-      }
-    ]
+        star: 5,
+      },
+    ],
   },
   {
-    id:2,
-    categoryName:"Anniversary Celebrate Lasting Love",
-    categoryText:"Celebrate the happy couple with a gift they’ll love, but never expect.",
-    bg:"rgb(255, 241, 241)",
-    categoryCards:[
+    id: 2,
+    categoryName: "Anniversary Celebrate Lasting Love",
+    categoryText:
+      "Celebrate the happy couple with a gift they’ll love, but never expect.",
+    bg: "rgb(255, 241, 241)",
+    categoryCards: [
       {
         id: 1,
         like: false,
@@ -135,7 +156,7 @@ export const ProductCategoryData = [
         price: 2499,
         newprice: 2099,
         image: cardImage6,
-        star:5
+        star: 5,
       },
       {
         id: 2,
@@ -145,7 +166,7 @@ export const ProductCategoryData = [
         price: 3999,
         newprice: 3099,
         image: cardImage5,
-        star:5
+        star: 5,
       },
       {
         id: 3,
@@ -155,7 +176,7 @@ export const ProductCategoryData = [
         price: 1299,
         newprice: 1099,
         image: cardImage4,
-        star:5
+        star: 5,
       },
       {
         id: 4,
@@ -165,16 +186,16 @@ export const ProductCategoryData = [
         price: 1299,
         newprice: 1099,
         image: cardImage9,
-        star:5
-      }
-    ]
+        star: 5,
+      },
+    ],
   },
   {
-    id:3,
-    categoryName:"Special day!",
-    categoryText:"Georgeous surprize is waiting for you",
-    bg:"rgb(236, 255, 205)",
-    categoryCards:[
+    id: 3,
+    categoryName: "Special day!",
+    categoryText: "Georgeous surprize is waiting for you",
+    bg: "rgb(236, 255, 205)",
+    categoryCards: [
       {
         id: 1,
         like: false,
@@ -183,7 +204,7 @@ export const ProductCategoryData = [
         price: 2499,
         newprice: 2099,
         image: cardImage3,
-        star:5
+        star: 5,
       },
       {
         id: 2,
@@ -193,7 +214,7 @@ export const ProductCategoryData = [
         price: 3999,
         newprice: 3099,
         image: cardImage2,
-        star:5
+        star: 5,
       },
       {
         id: 3,
@@ -203,7 +224,7 @@ export const ProductCategoryData = [
         price: 1299,
         newprice: 1099,
         image: cardImage1,
-        star:5
+        star: 5,
       },
       {
         id: 4,
@@ -213,106 +234,146 @@ export const ProductCategoryData = [
         price: 1299,
         newprice: 1099,
         image: cardImage8,
-        star:5
-      }
-    ]
-  }
+        star: 5,
+      },
+    ],
+  },
 ];
 
 export const trandingSurPrizes = [
   {
-    id:1,
-    title:"Gold ring",
-    price:2200,
-    newprice:1800,
-    star:5,
-    image:TrendingSurprizes1
+    id: 1,
+    title: "Gold ring",
+    price: 2200,
+    newprice: 1800,
+    star: 5,
+    image: TrendingSurprizes1,
   },
   {
-    id:2,
-    title:"Gold ring",
-    price:2200,
-    newprice:1800,
-    star:5,
-    image:TrendingSurprizes2
+    id: 2,
+    title: "Gold ring",
+    price: 2200,
+    newprice: 1800,
+    star: 5,
+    image: TrendingSurprizes2,
   },
   {
-    id:3,
-    title:"Gold ring",
-    price:2200,
-    newprice:1800,
-    star:5,
-    image:TrendingSurprizes3
+    id: 3,
+    title: "Gold ring",
+    price: 2200,
+    newprice: 1800,
+    star: 5,
+    image: TrendingSurprizes3,
   },
   {
-    id:4,
-    title:"Gold ring",
-    price:2200,
-    newprice:1800,
-    star:5,
-    image:TrendingSurprizes4
+    id: 4,
+    title: "Gold ring",
+    price: 2200,
+    newprice: 1800,
+    star: 5,
+    image: TrendingSurprizes4,
   },
   {
-    id:5,
-    title:"Gold ring",
-    price:2200,
-    newprice:1800,
-    star:5,
-    image:TrendingSurprizes5
+    id: 5,
+    title: "Gold ring",
+    price: 2200,
+    newprice: 1800,
+    star: 5,
+    image: TrendingSurprizes5,
   },
   {
-    id:6,
-    title:"Gold ring",
-    price:2200,
-    newprice:1800,
-    star:5,
-    image:TrendingSurprizes6
+    id: 6,
+    title: "Gold ring",
+    price: 2200,
+    newprice: 1800,
+    star: 5,
+    image: TrendingSurprizes6,
   },
   {
-    id:7,
-    title:"Gold ring",
-    price:2200,
-    newprice:1800,
-    star:5,
-    image:TrendingSurprizes7
+    id: 7,
+    title: "Gold ring",
+    price: 2200,
+    newprice: 1800,
+    star: 5,
+    image: TrendingSurprizes7,
   },
   {
-    id:8,
-    title:"Gold ring",
-    price:2200,
-    newprice:1800,
-    star:5,
-    image:TrendingSurprizes8
+    id: 8,
+    title: "Gold ring",
+    price: 2200,
+    newprice: 1800,
+    star: 5,
+    image: TrendingSurprizes8,
   },
-]
+];
 
 export const categoryHeader = [
   {
-    id:1,
-    categoryName:"Flowers",
-    categoryProducts:["Tulip", "Rose", "Lily", "Iris", "Begonia", "Orchid", "Violet", "Peonies"]
+    id: 1,
+    categoryName: "Flowers",
+    categoryProducts: [
+      "Tulip",
+      "Rose",
+      "Lily",
+      "Iris",
+      "Begonia",
+      "Orchid",
+      "Violet",
+      "Peonies",
+    ],
   },
   {
-    id:2,
-    categoryName:"Accessories",
-    categoryProducts:["Belt", "Handbags", "Hats & caps", "Hair accessories", "Sunglasses & Eyewear", "Scarves & Wraps", "Wallets, Card Cases"]
+    id: 2,
+    categoryName: "Accessories",
+    categoryProducts: [
+      "Belt",
+      "Handbags",
+      "Hats & caps",
+      "Hair accessories",
+      "Sunglasses & Eyewear",
+      "Scarves & Wraps",
+      "Wallets, Card Cases",
+    ],
   },
   {
-    id:3,
-    categoryName:"Jeweleries",
-    categoryProducts:["Brooches", "Rings", "Necklaces, Earrings", "Pendants", "Bracelets cufflinks", "Diamond solitaires"]
+    id: 3,
+    categoryName: "Jeweleries",
+    categoryProducts: [
+      "Brooches",
+      "Rings",
+      "Necklaces, Earrings",
+      "Pendants",
+      "Bracelets cufflinks",
+      "Diamond solitaires",
+    ],
   },
   {
-    id:4,
-    categoryName:"Souvenirs",
-    categoryProducts:["Ornaments ", "T-Shirts", "Postcards", "Sand in a Bottle", "Fridge Magnets.", "Tea Towels.", "Books"]
+    id: 4,
+    categoryName: "Souvenirs",
+    categoryProducts: [
+      "Ornaments ",
+      "T-Shirts",
+      "Postcards",
+      "Sand in a Bottle",
+      "Fridge Magnets.",
+      "Tea Towels.",
+      "Books",
+    ],
   },
   {
-    id:5,
-    categoryName:"Sweets",
-    categoryProducts:["Birthday cake", "Choco-locma", "Chocolate", "Lorem", "Lorem", "Lorem", "Lorem"]
+    id: 5,
+    categoryName: "Sweets",
+    categoryProducts: [
+      "Birthday cake",
+      "Choco-locma",
+      "Chocolate",
+      "Lorem",
+      "Lorem",
+      "Lorem",
+      "Lorem",
+    ],
   },
-]
+];
 
 export const categoryHeaderNames = ["All people", "Men", "Women", "Children"];
 
@@ -490,17 +551,17 @@ export const CategoryCardData = [
 
 export const CategoryNav = [
   {
-    id: '671e24116f6dc9123f123b1f',
+    id: "671e24116f6dc9123f123b1f",
     title: "Flowers",
     href: "/category/671e24116f6dc9123f123b1f",
   },
   {
-    id: '671fbdd45598a83c8350431e',
+    id: "671fbdd45598a83c8350431e",
     title: "Hoodies",
     href: "/category/671fbdd45598a83c8350431e",
   },
   {
-    id: '67250bd454cb259e656edecd',
+    id: "67250bd454cb259e656edecd",
     title: "T-shirts & Vests",
     href: "/category/67250bd454cb259e656edecd",
   },
@@ -563,6 +624,27 @@ export const OrdersDropdown = [
   {
     id: 8,
     title: "Ta'mirlash",
+    href: "#",
+  },
+];
+
+export const Gender = [
+  {
+    id: 1,
+    title: "Male",
+    gender: "male",
+    href: "#",
+  },
+  {
+    id: 2,
+    title: "Female",
+    gender: "female",
+    href: "#",
+  },
+  {
+    id: 3,
+    title: "Kids",
+    gender: "kids",
     href: "#",
   },
 ];
@@ -642,52 +724,6 @@ export const clients = [
     title: "Project",
     description:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia inventore a sed, quos",
-  },
-];
-
-export const heroImagesMobile = [
-  {
-    id: 1,
-    image: carouselMobile1,
-  },
-  {
-    id: 2,
-    image: carouselMobile2,
-  },
-  {
-    id: 3,
-    image: carouselMobile3,
-  },
-  {
-    id: 4,
-    image: carousel1,
-  },
-  {
-    id: 5,
-    image: carousel2,
-  },
-];
-
-export const heroImages = [
-  {
-    id: 1,
-    image: carousel1,
-  },
-  {
-    id: 2,
-    image: carousel2,
-  },
-  {
-    id: 3,
-    image: carousel3,
-  },
-  {
-    id: 4,
-    image: carousel1,
-  },
-  {
-    id: 5,
-    image: carousel2,
   },
 ];
 

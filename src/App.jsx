@@ -51,7 +51,10 @@ export default function App() {
           <Route path="/detail/:id" element={<Detail />}></Route>
           <Route path="/tranding" element={<TrandingSurprizes />}></Route>
           <Route path="/section/:id" element={<Section />}></Route>
-          <Route path="/cart" element={<Cart />}></Route>
+          {
+            token && 
+            <Route path="/cart" element={<Cart />}></Route>
+          }
           {token ? (
             <Route path="/account" element={<SidebarAccount />}>
               <Route index element={<MyData />}></Route>

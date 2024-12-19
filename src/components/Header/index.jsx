@@ -220,8 +220,14 @@ function Header() {
 
                 {/* <!-- Cart Icon --> */}
                 <a
-                  href="/cart"
-                  className="me-3 xs:me-4 relative text-black/80 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
+                  onClick={() => {
+                    if (token) {
+                      navigate("/cart")
+                    } else {
+                      setLoginModal(true)
+                    }
+                  }}
+                  className="cursor-pointer me-3 xs:me-4 relative text-black/80 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
                 >
                   <span className="[&>svg]:w-6 lg:[&>svg]:w-7">
                     <svg

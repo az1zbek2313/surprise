@@ -93,3 +93,10 @@ export function userId(data) {
     payload: data,
   };
 }
+
+export function productId(data) {
+  return {
+    type: actionTypes.PRODUCT_ID,
+    payload: data,
+  };
+}

@@ -56,14 +56,15 @@ function CategoryPruducts({data, index}) {
       <SwiperSlide
         key={index}
         style={{
+          width:"100%",
           backgroundColor: "transparent",
           border: "none",
           borderRadius: "0",
           overflow: "hidden",
         }}
       >
-        <div className="pb-4" style={{ width: "400px", height: "auto", borderRadius: "0", overflow: "hidden" }}>
-          <Card height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[16em]" product={product} />
+        <div className="pb-4" style={{ width: "100%", height: "auto", borderRadius: "0", overflow: "hidden" }}>
+          <Card width="w-full" height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[16em]" product={product} />
         </div>
       </SwiperSlide>
     ))}

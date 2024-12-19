@@ -6,9 +6,6 @@ import rusFlag from "./rus.png";
 import engFlag from "./eng.png";
 import user from "./user.png";
 import star from "./star.png";
-import carousel1 from "./carousel-1.jpg";
-import carousel2 from "./carousel-2.jpg";
-import carousel3 from "./carousel-3.jpg";
 import butsa from "./butsa.jpg";
 import user128 from "./user-128.png";
 import chat from "./chat.svg";
@@ -16,11 +13,12 @@ import heart from "./likes.svg";
 import geo from "./geo.svg";
 import bag from "./bag.svg";
 import notification from "./bell.svg"
-import carouselMobile1 from "./carousel-1-mobile.jpg"
-import carouselMobile2 from "./carousel-2-mobile.jpg"
-import carouselMobile3 from "./carousel-3-mobile.jpg"
 import signIn from "./signIn.svg";
 import signUp from "./signUp.svg";
+import carousel from "./image.svg";
+import categoryImage from "./categoryImage.svg";
+import categoryImage1 from "./categoryImage1.svg";
+import categoryImage2 from "./categoryImage2.svg";
 // Card Images 
 import cardImage1 from "./CardImages/Rectangle 31.png"
 import cardImage2 from "./CardImages/Rectangle 31-1.png"
@@ -44,9 +42,10 @@ import TrendingSurprizes8 from "./TrendingSurprizes/Rectangle 31-7.png"
 import Stepcard1 from "./StepCardImages/delivery-app-svg-clipart.svg"
 import Stepcard2 from "./StepCardImages/truck with gifts-1.svg"
 import Stepcard3 from "./StepCardImages/truck with gifts-2.svg"
-
+import discount from "./Discount.svg"
 export {
   signIn,
+  discount,
   signUp,
   notification,
   chat,
@@ -60,15 +59,10 @@ export {
   uzbFlag,
   surpriseLogo,
   rusFlag,
+  carousel,
   engFlag,
   user,
-  carousel1,
-  carousel2,
-  carousel3,
   butsa,
-  carouselMobile1,
-  carouselMobile2,
-  carouselMobile3,
   cardImage1,
   cardImage2,
   cardImage3,
@@ -88,5 +82,8 @@ export {
   TrendingSurprizes8,
   Stepcard1,
   Stepcard2,
-  Stepcard3
+  Stepcard3,
+  categoryImage,
+  categoryImage1,
+  categoryImage2
 };

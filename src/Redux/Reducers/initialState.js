@@ -4,4 +4,5 @@ export default {
     myCart:[],
     defaultCount:[],
     user_id: { uid: "" },
+    product_id: { id: "" },
 }

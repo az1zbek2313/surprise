@@ -3,18 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { cardImage9 } from "../../assets";
 import "./style.css";
 import {
+  addedMyCart,
   addedMyFavourites,
   changeHeartMyFavourites,
   deletedMyFavourites,
+  productId,
 } from "../../Redux/Actions/actions";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Card({ product, height, width }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const params = useSelector((state) => state.productIdReducer);
+  const cartProducts = useSelector((state) => state.myCart);
   const token = useSelector((state) => state.userIdReducer.uid);
+  const exists = cartProducts.some((item) => item._id === product._id);
   const likes = useSelector((state) => state.myFavourites);
   const someLike = likes.some((el) => el._id == product._id);
+  const [hover, setHover] = useState(false);
 
   function handleSave(e) {
     e.stopPropagation();
@@ -73,6 +80,16 @@ function Card({ product, height, width }) {
     dispatch(deletedMyFavourites(product._id));
     dispatch(changeHeartMyFavourites(product));
   }
+  function handleToCart() {
+    dispatch(addedMyCart(product));
+
+    if (exists) {
+      navigate("/cart");
+    } else {
+      toast.success("Mahsulot cartga qo'shildi");
+      navigate("/cart");
+    }
+  }
   return (
     <>
       <div
@@ -82,12 +99,17 @@ function Card({ product, height, width }) {
             behavior: "smooth",
           });
 
-          navigate(`/detail/${product?._id ? product._id : product?.id}`);
+          // navigate(`/detail/${product?._id ? product._id : product?.id}`);
         }}
-        className={`flex flex-col gap-2 sm:gap-[10px] cursor-pointer ${width}`}
+        className={`flex flex-col gap-2 sm:gap-[10px] ${width}`}
       >
-        <div className="group relative bg-[rgb(121, 121, 121)]">
-          {/* Like Save */}
+        <div
+          onClick={() => {
+            navigate(`/detail/${product?._id}`);
+          }}
+          className="group relative bg-[rgb(121, 121, 121)]"
+        >
+          {/* Like Save
           {!someLike ? (
             <span className="absolute cursor-pointer top-2 right-2 sm:top-3 sm:right-3 w-[14px] sm:[&>svg]:w-6 z-50">
               <svg
@@ -113,9 +135,9 @@ function Card({ product, height, width }) {
                 <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1" />
               </svg>
             </span>
-          )}
+          )} */}
           <div
-            className={`overflow-hidden border shadow rounded-md sm:rounded-[10px] border-gray-200 opacity-90 transition duration-500 ease-in-out group-hover:opacity-100 ${
+            className={`overflow-hidden relative border shadow rounded-md sm:rounded-[10px] border-gray-200 opacity-90 transition duration-500 ease-in-out group-hover:opacity-100 ${
               height ? height : ""
             }`}
           >
@@ -130,6 +152,100 @@ function Card({ product, height, width }) {
                 height ? height : "h-auto"
               }`}
             />
+          </div>
+          <div
+            onMouseEnter={() => {
+              setHover(true);
+            }}
+            onMouseLeave={() => {
+              setHover(false);
+            }}
+            className="absolute cursor-pointer top-0 flex items-center justify-center rounded-md sm:rounded-[10px] w-full transition-all duration-200 hover:bg-black/20 h-full z-[10]"
+          >
+            {hover && (
+              <div className="flex justify-between items-center gap-1 lg:gap-3">
+                {/* Like Icon */}
+                <button className=" group transition-all duration-500 p-0.5">
+                  {!someLike ? (
+                    <svg
+                      viewBox="0 0 60 60"
+                      fill="none"
+                      onClick={handleSave}
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-6 md:w-8 lg:w-12"
+                    >
+                      <circle
+                        className="fill-primary-50 bg-primarfill-primary-50 transition-all duration-500 group-hover:fill-primary-50"
+                        cx="30"
+                        cy="30"
+                        r="30"
+                      />
+                      <path
+                        className="stroke-red-600 transition-all duration-500 group-hover:stroke-red-700"
+                        d="M30 42.35l-5.25-4.78C18.4 31.36 15 27.28 15 23.5 15 19.36 18.36 16 22.5 16c2.84 0 5.49 1.24 7.01 3.3C30.51 17.24 33.16 16 36 16 40.14 16 43.5 19.36 43.5 23.5c0 3.78-3.4 7.86-9.75 14.07L30 42.35z"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      viewBox="0 0 60 60"
+                      fill="none"
+                      onClick={handleRemove}
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-6 md:w-8 lg:w-12"
+                    >
+                      <circle
+                        className="fill-primary-50 transition-all duration-500 group-hover:fill-primary-50"
+                        cx="30"
+                        cy="30"
+                        r="30"
+                      />
+                      <path
+                        className="fill-red-600 transition-all duration-500 group-hover:fill-red-700"
+                        d="M30 42.35l-5.25-4.78C18.4 31.36 15 27.28 15 23.5 15 19.36 18.36 16 22.5 16c2.84 0 5.49 1.24 7.01 3.3C30.51 17.24 33.16 16 36 16 40.14 16 43.5 19.36 43.5 23.5c0 3.78-3.4 7.86-9.75 14.07L30 42.35z"
+                      />
+                    </svg>
+                  )}
+                </button>
+
+                {/* Cart Icon  */}
+                <button
+                  onClick={handleToCart}
+                  className="group hover:bg-red-500 hover:text-white transition-all duration-500 p-[6px] lg:p-3 bg-primary-50 rounded-full"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    class="bi bi-cart2 w-3 md:w-4 lg:w-6"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                  </svg>
+                </button>
+
+                {/* Eye Icon  */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    dispatch(productId(product?._id));
+                  }}
+                  className="group hover:bg-red-500 hover:text-white  transition-all duration-500 p-[6px] lg:p-3 bg-primary-50 rounded-full"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    className="bi bi-eye w-3 md:w-4 lg:w-6"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                  </svg>
+                </button>
+              </div>
+            )}
           </div>
         </div>
         <div className="flex flex-col">

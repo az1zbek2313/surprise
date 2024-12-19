@@ -1,29 +1,37 @@
 import { useEffect, useState } from "react";
-import { HeroImage, CategoryPruducts, HeaderFilter, TrendingSurprize, StepCards, LoginModal } from "../components";
-import { ProductCategoryData } from "../util/contants";
+import {
+  HeroImage,
+  CategoryPruducts,
+  HeaderFilter,
+  TrendingSurprize,
+  StepCards,
+  LoginModal,
+  DetailModal,
+} from "../components";
 import { Toaster } from "sonner";
-
+import { useSelector } from "react-redux";
 
 function LandingPage() {
   const [sections, setSections] = useState([]);
+  const params = useSelector((state) => state.productIdReducer);
 
   useEffect(() => {
     fetchProducts();
-}, [])
+  }, []);
 
-const fetchProducts = () => {
+  const fetchProducts = () => {
     var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-      };
-      
-      fetch(`${import.meta.env.VITE_DEFAULT_HOST}sections`, requestOptions)
-        .then(response => response.json())
-        .then(result => {
-          setSections(result);
-        })
-        .catch(error => console.log('error', error));
-}
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(`${import.meta.env.VITE_DEFAULT_HOST}sections`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setSections(result);
+      })
+      .catch((error) => console.log("error", error));
+  };
 
   return (
     <div>
@@ -40,6 +48,12 @@ const fetchProducts = () => {
       {/* Header filter category */}
       <HeaderFilter />
 
+      {/* DETAIL MODAL  */}
+      {
+        params.id !== "" && 
+        <DetailModal />
+      }
+
       {/* Hero Images Carousel */}
       <HeroImage />
 
@@ -47,15 +61,17 @@ const fetchProducts = () => {
       <TrendingSurprize />
 
       {/* Categor Cards */}
-      {sections && sections.map((items, index) => (
-        index == 1 ?
-       <div key={index}>
-         <StepCards />
-         <CategoryPruducts data={items} index={index+1}/>
-       </div>
-        : 
-        <CategoryPruducts key={index} data={items} index={index+1}/>
-      ))}
+      {sections &&
+        sections.map((items, index) =>
+          index == 1 ? (
+            <div key={index}>
+              <StepCards />
+              <CategoryPruducts data={items} index={index + 1} />
+            </div>
+          ) : (
+            <CategoryPruducts key={index} data={items} index={index + 1} />
+          )
+        )}
     </div>
   );
 }

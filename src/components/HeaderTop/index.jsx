@@ -9,7 +9,7 @@ function HeaderTop() {
   const [flagLang, setflagLang] = useState(
     languageDefault ? languageDefault : "uz"
   );
-  const [city, setCity] = useState("Tashkent"); // Default shahar
+  const [city, setCity] = useState("Toshkent"); // Default shahar
   const { t, i18n } = useTranslation();
   const changeLang = (value) => {
     i18n.changeLanguage(value);
@@ -22,26 +22,6 @@ function HeaderTop() {
     setflagLang(id);
   }
 
-  // Geolocation API orqali joylashuvni aniqlash
-  const handleLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          // Google Maps API yoki boshqa xizmat orqali shaharni aniqlash
-          const url = `https://www.google.com/maps/@${latitude},${longitude},11z?entry=ttu`;
-          window.open(url, "_blank");
-        },
-        (error) => {
-          console.error("Joylashuvni aniqlash xatosi:", error);
-          alert(t("location_error")); // Foydalanuvchiga xabar berish
-        }
-      );
-    } else {
-      alert(t("location_not_supported")); // Geolocation qo'llab-quvvatlanmasa
-    }
-  };
-
   return (
     <div className="hidden lg:block bg-[#f0f2f5]">
       <div
@@ -49,7 +29,8 @@ function HeaderTop() {
       >
         <div className="">
           <a
-            onClick={handleLocation}
+           href={`https://www.google.com/maps/place/${city},+O'zbekiston/`}
+           target="blank"
             className="flex items-center gap-2 w-fit cursor-pointer"
           >
             <svg
