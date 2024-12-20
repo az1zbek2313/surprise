@@ -11,7 +11,8 @@ import Code from "../Sign/CodeModal";
 
 function Header() {
   const searchInput = useRef();
-  const cartProducts = useSelector(state => state.myCart);
+  const cartProducts = useSelector((state) => state.myCart);
+  const favourites = useSelector((state) => state.myFavourites);
   const [loginModal, setLoginModal] = useState(false);
   const [createAccount, setCreateAccount] = useState(false);
   const [code, setCode] = useState(false);
@@ -48,30 +49,31 @@ function Header() {
 
   const logout = () => {
     dispatch(userId(""));
-    navigate("/")
-    setAccountDropdown(false)
-    setLoginModal(true)
+    navigate("/");
+    setAccountDropdown(false);
+    setLoginModal(true);
   };
 
-  // Search Product 
+  // Search Product
 
   return (
     <>
       <HeaderTop />
 
-      {
-        loginModal && (
-          <LoginModal setLoginModal={setLoginModal} setCreateAccount={setCreateAccount}/>
-        ) ||
-        createAccount && (
-          <CreateAccount setCreateAccount={setCreateAccount} setLoginModal={setLoginModal} setCode={setCode}/>
-        )
-      }
-      {
-        code && (
-          <Code setCode={setCode}/>
-        )
-      }
+      {(loginModal && (
+        <LoginModal
+          setLoginModal={setLoginModal}
+          setCreateAccount={setCreateAccount}
+        />
+      )) ||
+        (createAccount && (
+          <CreateAccount
+            setCreateAccount={setCreateAccount}
+            setLoginModal={setLoginModal}
+            setCode={setCode}
+          />
+        ))}
+      {code && <Code setCode={setCode} />}
       <div
         className={`shadow-md sticky top-[-2px] bg-white  shadow-black/5 my-0 md:!my-0 pt-1 lg:pt-2 z-[100]`}
       >
@@ -127,11 +129,17 @@ function Header() {
               </div>
 
               {/* Search Logo */}
-              <div className={`hidden ${!handleFocus ? "md:flex" : "md:absolute z-[1000000]" } items-center border-[1.5px] rounded-full h-9 lg:h-11 mb-1 lg:mb-2`}>
+              <div
+                className={`hidden ${
+                  !handleFocus ? "md:flex" : "md:absolute z-[1000000]"
+                } items-center border-[1.5px] rounded-full h-9 lg:h-11 mb-1 lg:mb-2`}
+              >
                 <input
                   type="text"
                   placeholder={t("searchHeader")}
-                  onFocus={() => {setHandleFocus(true)}}
+                  onFocus={() => {
+                    setHandleFocus(true);
+                  }}
                   ref={searchInput}
                   className="h-full pr-0 lg:pr-72 placeholder:text-xs lg:placeholder:text-sm  rounded-l-full px-2 lg:px-4 outline-none text-gray-500"
                 />
@@ -214,6 +222,9 @@ function Header() {
                       >
                         <path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.6 7.6 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z" />
                       </svg>
+                      <span className="absolute bg-red-500 px-1 top-[-5px] right-2 text-[8px] ss:text-[9px] rounded-full text-white">
+                        {favourites.length}
+                      </span>
                     </span>
                   </a>
                 </div>
@@ -222,9 +233,9 @@ function Header() {
                 <a
                   onClick={() => {
                     if (token) {
-                      navigate("/cart")
+                      navigate("/cart");
                     } else {
-                      setLoginModal(true)
+                      setLoginModal(true);
                     }
                   }}
                   className="cursor-pointer me-3 xs:me-4 relative text-black/80 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 [&.active]:text-black/90"
@@ -267,7 +278,9 @@ function Header() {
                     </a>
                   ) : (
                     <a
-                      onClick={() => {setLoginModal(true)}}
+                      onClick={() => {
+                        setLoginModal(true);
+                      }}
                       className="p-[6px] cursor-pointer text-sm md:px-4 md:py-2 md:text-base bg-primary-600 rounded-lg hover:bg-primary-700 text-white transition-all duration-300"
                     >
                       Login
@@ -396,16 +409,20 @@ function Header() {
           <input
             type="search"
             placeholder={t("searchHeader")}
-            onFocus={() => {setHandleFocus(true)}}
+            onFocus={() => {
+              setHandleFocus(true);
+            }}
             className="h-full w-full placeholder:text-sm rounded-full px-3 lg:px-4 outline-none text-gray-500"
           />
         </div>
       </div>
 
-      {
-        handleFocus && 
-        <SearchModal handleFocus={handleFocus} setHandleFocus={setHandleFocus}/>
-      }
+      {handleFocus && (
+        <SearchModal
+          handleFocus={handleFocus}
+          setHandleFocus={setHandleFocus}
+        />
+      )}
     </>
   );
 }
