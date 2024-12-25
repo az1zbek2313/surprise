@@ -19,6 +19,7 @@ function SearchModal({ setHandleFocus }) {
         setProductList(result);
       })
       .catch((error) => console.log("error", error));
+      searchInput.current.focus();
   }, []);
 
   const search = () => {
@@ -114,7 +115,7 @@ function SearchModal({ setHandleFocus }) {
           <div className="relative bg-white rounded-lg shadow">
             {/* <!-- Modal header --> */}
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-              {list && (
+              {list && searchInput?.current?.value !== "" && (
                 <>
                   <h3 className="text-lg font-semibold text-gray-900">
                     Search Products
@@ -148,7 +149,7 @@ function SearchModal({ setHandleFocus }) {
               )}
             </div>
             {/* <!-- Modal body --> */}
-            {list && (
+            {list && searchInput?.current?.value !== "" && (
               <div className="p-4 md:p-5">
                 <ul className="my-4 space-y-3">
                   {filteredProductList && filteredProductList?.map((items, index) => (

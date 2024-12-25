@@ -2,6 +2,7 @@ import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { cardImage9 } from "../../assets";
 import "./style.css";
+import React from "react";
 import {
   addedMyCart,
   addedMyFavourites,
@@ -11,6 +12,7 @@ import {
 } from "../../Redux/Actions/actions";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import DetailModal from "../DetailModal";
 
 function Card({ product, height, width }) {
   const navigate = useNavigate();
@@ -22,6 +24,9 @@ function Card({ product, height, width }) {
   const likes = useSelector((state) => state.myFavourites);
   const someLike = likes.some((el) => el._id == product._id);
   const [hover, setHover] = useState(false);
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const showDetailModal = params.id === product._id && isDetailModalOpen;
+
 
   function handleSave(e) {
     e.stopPropagation();
@@ -80,26 +85,34 @@ function Card({ product, height, width }) {
     dispatch(deletedMyFavourites(product._id));
     dispatch(changeHeartMyFavourites(product));
   }
-  function handleToCart() {
-    dispatch(addedMyCart(product));
+  function handleToCart(e) {
+    e.stopPropagation()
+    if (product.error !== "Failed to get product") {
+      dispatch(addedMyCart(product));
 
-    if (exists) {
+      if (!exists) {
+        toast.success("Mahsulot cartga qo'shildi");
+      }
+      
       navigate("/cart");
-    } else {
-      toast.success("Mahsulot cartga qo'shildi");
-      navigate("/cart");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      
     }
   }
   return (
     <>
+      {/* DETAIL MODAL  */}
+      {showDetailModal && <DetailModal setIsDetailModalOpen={setIsDetailModalOpen}/>}
+
       <div
         onClick={() => {
           window.scrollTo({
             top: 0,
             behavior: "smooth",
           });
-
-          // navigate(`/detail/${product?._id ? product._id : product?.id}`);
         }}
         className={`flex flex-col gap-2 sm:gap-[10px] ${width}`}
       >
@@ -109,9 +122,9 @@ function Card({ product, height, width }) {
           }}
           className="group relative bg-[rgb(121, 121, 121)]"
         >
-          {/* Like Save
+          {/* Like Save */}
           {!someLike ? (
-            <span className="absolute cursor-pointer top-2 right-2 sm:top-3 sm:right-3 w-[14px] sm:[&>svg]:w-6 z-50">
+            <span className="absolute lg:hidden cursor-pointer top-2 right-2 sm:top-3 sm:right-4 w-5 sm:[&>svg]:w-6 z-50">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 color="red"
@@ -124,7 +137,7 @@ function Card({ product, height, width }) {
               </svg>
             </span>
           ) : (
-            <span className="absolute cursor-pointer top-2 right-2 sm:top-3 sm:right-3 w-[14px] sm:[&>svg]:w-6 z-50">
+            <span className="absolute lg:hidden cursor-pointer top-2 right-2 sm:top-3 sm:right-4 w-5 sm:[&>svg]:w-6 z-50">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -135,7 +148,7 @@ function Card({ product, height, width }) {
                 <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1" />
               </svg>
             </span>
-          )} */}
+          )}
           <div
             className={`overflow-hidden relative border shadow rounded-md sm:rounded-[10px] border-gray-200 opacity-90 transition duration-500 ease-in-out group-hover:opacity-100 ${
               height ? height : ""
@@ -231,6 +244,7 @@ function Card({ product, height, width }) {
                   onClick={(e) => {
                     e.stopPropagation();
                     dispatch(productId(product?._id));
+                    setIsDetailModalOpen(true);
                   }}
                   className="group hover:bg-red-500 hover:text-white  transition-all duration-500 p-[6px] lg:p-3 bg-primary-50 rounded-full"
                 >
@@ -281,4 +295,4 @@ function Card({ product, height, width }) {
   );
 }
 
-export default Card;
+export default React.memo(Card);

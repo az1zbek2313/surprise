@@ -5,15 +5,11 @@ import {
   HeaderFilter,
   TrendingSurprize,
   StepCards,
-  LoginModal,
-  DetailModal,
 } from "../components";
 import { Toaster } from "sonner";
-import { useSelector } from "react-redux";
 
 function LandingPage() {
   const [sections, setSections] = useState([]);
-  const params = useSelector((state) => state.productIdReducer);
 
   useEffect(() => {
     fetchProducts();
@@ -47,12 +43,6 @@ function LandingPage() {
 
       {/* Header filter category */}
       <HeaderFilter />
-
-      {/* DETAIL MODAL  */}
-      {
-        params.id !== "" && 
-        <DetailModal />
-      }
 
       {/* Hero Images Carousel */}
       <HeroImage />

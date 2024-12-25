@@ -42,7 +42,7 @@ function Cart() {
       .then((result) => console.log(50, result))
       .catch((error) => console.log("error", error));
   }
-  console.log(myAdress);
+  
   function handleOrder(type) {
     var myHeaders = new Headers();
     myHeaders.append("token", token);

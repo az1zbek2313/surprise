@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { detailColors } from "../../util/contants";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { defaultImage } from "../../assets";
 
-function DetailModal() {
+function DetailModal({setIsDetailModalOpen}) {
   const [defaultColor, setDefaultColor] = useState(1);
   const [detail, setDetail] = useState({});
   const cartProducts = useSelector((state) => state.myCart);
@@ -24,6 +24,7 @@ function DetailModal() {
   const likes = useSelector((state) => state.myFavourites);
   const someLike = likes.some((el) => el._id == detail._id);
   const [mainImage, setMainImage] = useState(defaultImage);
+
 
   function fetchProductDetail() {
     var requestOptions = {
@@ -111,35 +112,36 @@ function DetailModal() {
     dispatch(changeHeartMyFavourites(detail));
   }
 
-  function handleOpenModal(id) {
-    dispatch(productId(id)); 
-  }
-
   useEffect(() => {
     fetchProductDetail();
-    // handleOpenModal("")
   }, []);
 
-  function handleBuy() {
-    if (token) {
-    } else {
-      navigate("/login");
-    }
-  }
-
   function handleToCart() {
-    if (detail.error !== "Failed to get product") {
-      dispatch(addedMyCart(detail));
 
-      if (exists) {
-        navigate("/cart");
-      } else {
+      if (!exists) {
+        dispatch(addedMyCart(detail));
         toast.success("Mahsulot cartga qo'shildi");
       }
-    }
+      
+        navigate("/cart");
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
   }
 
-  console.log(62, detail);
+  function handleBuy(e) {
+    e.preventDefault()
+    if (token) {
+      handleToCart()
+    } else {
+      navigate("/login");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }
 
   return (
     <>
@@ -149,7 +151,10 @@ function DetailModal() {
         className={`w-full ss:max-w-[400px] xs:max-w-[480px] sm:max-w-[640px] md:max-w-[700px] lg:max-w-[1000px] xl:max-w-[1180px] fixed z-[1000] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 font-sans tracking-wide`}
       >
         {/* Icon remove */}
-        <div onClick={() => {dispatch(productId(""))}} className="p-2 fixed cursor-pointer top-[-10px] right-[-10px] sm:top-[-20px] sm:right-[-20px] z-[1000] rounded-full bg-black/60">
+        <div onClick={() => {
+          dispatch(productId(""))
+          setIsDetailModalOpen(false)
+        }} className="p-2 fixed cursor-pointer top-[-10px] right-[-10px] sm:top-[-20px] sm:right-[-20px] z-[1000] rounded-full bg-black/60">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -381,4 +386,4 @@ function DetailModal() {
   );
 }
 
-export default DetailModal;
+export default memo(DetailModal);

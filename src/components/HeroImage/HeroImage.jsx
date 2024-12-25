@@ -39,7 +39,7 @@ function HeroImage() {
         <Swiper
           ref={swiperRef}
           spaceBetween={30}
-          centeredSlides={true}
+          centeredSlides={false}
           loop={true}
           autoplay={{
             delay: 7000,

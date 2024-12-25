@@ -107,20 +107,28 @@ function Detail() {
     fetchProductDetail();
   }, []);
 
-  function handleBuy() {
+  function handleToCart() {
+    if (!exists) {
+      dispatch(addedMyCart(detail));
+      toast.success("Mahsulot cartga qo'shildi");
+    }    
+      navigate("/cart");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+}
+
+  function handleBuy(e) {
+    e.preventDefault()
     if (token) {
+      handleToCart()
     } else {
       navigate("/login");
-    }
-  }
-
-  function handleToCart() {
-    dispatch(addedMyCart(detail));
-
-    if (exists) {
-      navigate("/cart");
-    } else {
-      toast.success("Mahsulot cartga qo'shildi");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }
   }
 
