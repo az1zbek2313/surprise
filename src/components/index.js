@@ -29,6 +29,7 @@ import LoginModal from "./Sign/LoginModal";
 import CreateAccount from "./Sign/CreateAccounte";
 import OrderModal from "./OrderModal";
 import DetailModal from "./DetailModal";
+import OrderCard from "./Products/orderCard";
 
 export {
   CheckDropdown,
@@ -60,5 +61,6 @@ export {
   CommentSection,
   StepCards,
   SearchModal,
-  DetailModal
+  DetailModal,
+  OrderCard
 };

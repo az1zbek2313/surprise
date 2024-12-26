@@ -8,7 +8,7 @@ import {
   incerement,
   inputAmount,
 } from "../Redux/Actions/actions";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Cart() {
@@ -25,7 +25,7 @@ function Cart() {
     myHeaders.append("token", token);
 
     var formdata = new FormData();
-    formdata.append("count", data.count);
+    formdata.append("count", data ? data.count : 1);
 
     var requestOptions = {
       method: "PUT",
@@ -42,6 +42,11 @@ function Cart() {
       .then((result) => console.log(50, result))
       .catch((error) => console.log("error", error));
   }
+
+  function cartId(data) {
+    return data.map(item => item._id);
+  }
+   const productId = cartId(cartProducts);
   
   function handleOrder(type) {
     var myHeaders = new Headers();
@@ -51,7 +56,7 @@ function Cart() {
     if (myAdress.length > 0) {
       if (type == "car") {
         var raw = JSON.stringify({
-          products: ["673865937e5fe332e94ae762", "6725168854cb259e656ee0fb"],
+          products: productId,
           location: `${myAdress[0].city}, ${myAdress[0].region}, ${
             myAdress[0]?.street && myAdress[0]?.street + " ko'chasi, "
           }${myAdress[0]?.homeNumber && myAdress[0]?.homeNumber + "-uy, "}${
@@ -63,7 +68,7 @@ function Cart() {
         });
       } else {
         var raw = JSON.stringify({
-          products: ["673865937e5fe332e94ae762", "6725168854cb259e656ee0fb"],
+          products: productId,
           location: "Toshkent shahriga",
           transport_type: type,
         });
@@ -101,11 +106,10 @@ function Cart() {
 
   function HandleDecrement(data) {
     dispatch(decrement(data));
-    console.log(data);
   }
 
   function HandleInputAmount(data, inputNumber) {
-    dispatch(inputAmount(data, inputNumber));
+    dispatch(inputAmount(data, Number(inputNumber)));
   }
 
   const handleKeyDown = (event, inputRef) => {
@@ -130,7 +134,7 @@ function Cart() {
 
         <div className="mt-6 md:gap-6 lg:flex lg:items-start xl:gap-8">
           <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
-            <div className="space-y-6 flex flex-wrap justify-between">
+            <div className="gap-4 flex flex-wrap justify-between">
               {cartProducts?.length > 0 ? (
                 cartProducts?.map((item) => (
                   <div

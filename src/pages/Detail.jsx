@@ -132,8 +132,6 @@ function Detail() {
     }
   }
 
-  console.log(62, detail);
-
   return (
     <>
       <div className={`container px-4 mx-auto font-sans tracking-wide py-4`}>

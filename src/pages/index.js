@@ -16,6 +16,7 @@ import NotFound from "./NotFound";
 import Code from "./Code";
 import Section from "./Section";
 import TrandingSurprizes from "./TrandingSurprizes";
+import GetOrder from "./GetOrder";
 
 export {
   Section, 
@@ -33,6 +34,7 @@ export {
   MyData,
   MyCommit,
   MyOrders,
+  GetOrder,
   Location,
   Notifications,
   MyFavouritesLogout

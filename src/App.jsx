@@ -16,7 +16,8 @@ import {
   MyFavouritesLogout,
   Code,
   TrandingSurprizes,
-  Section
+  Section,
+  GetOrder,
 } from "./pages";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -31,7 +32,7 @@ export default function App() {
 
   return (
     <>
-          <Toaster
+      <Toaster
         toastOptions={{
           classNames: {
             error: "bg-red-400 text-white",
@@ -44,17 +45,19 @@ export default function App() {
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/code" element={<Code />}></Route>
 
-        <Route path="/" element={<Layout />}> 
+        <Route path="/" element={<Layout />}>
           <Route index element={<LandingPage />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
           <Route path="/category/:id" element={<Category />}></Route>
           <Route path="/detail/:id" element={<Detail />}></Route>
           <Route path="/tranding" element={<TrandingSurprizes />}></Route>
           <Route path="/section/:id" element={<Section />}></Route>
-          {
-            token && 
-            <Route path="/cart" element={<Cart />}></Route>
-          }
+          {token && (
+            <>
+              <Route path="/cart" element={<Cart />}></Route>
+              <Route path="orders/:id" element={<GetOrder />}></Route>
+            </>
+          )}
           {token ? (
             <Route path="/account" element={<SidebarAccount />}>
               <Route index element={<MyData />}></Route>
