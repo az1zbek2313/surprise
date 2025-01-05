@@ -1,27 +1,52 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
-function CommentSection() {
+function CommentSection({ reviews }) {
   const params = useParams();
   const commentRef = useRef();
-  const [review, setReview] = useState([]);
+  const defaultReview = reviews ? reviews : []
+  const [review, setReview] = useState(defaultReview);
   const [number, setNumber] = useState(2);
   const token = useSelector((state) => state.userIdReducer.uid);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
+    if (Array.isArray(reviews)) {
+      setReview(reviews);
+    }
+  }, [reviews]);
+  
 
-    fetch(`${import.meta.env.VITE_DEFAULT_HOST}review`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setReview(result);
-      })
-      .catch((error) => console.log("error", error));
-  }, []);
+  const thirdExample = {
+    size: 40,
+    count: 5,
+    isHalf: false,
+    value: 0,
+    color: "gray",
+    activeColor: "orange",
+    onChange: (newValue) => {
+      setRating(newValue);
+    },
+  };
+
+  console.log(27, token);
+
+  // useEffect(() => {
+  //   var requestOptions = {
+  //     method: "GET",
+  //     redirect: "follow",
+  //   };
+
+  //   fetch(`${import.meta.env.VITE_DEFAULT_HOST}review`, requestOptions)
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       setReview(result);
+  //       console.log(22, result);
+  //     })
+  //     .catch((error) => console.log("error", error));
+  // }, []);
 
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
@@ -40,11 +65,11 @@ function CommentSection() {
   function handleSubmit(e) {
     e.preventDefault();
     var myHeaders = new Headers();
-    myHeaders.append("token", token);
+    myHeaders.append("token", token.token);
 
     var formdata = new FormData();
     formdata.append("product", params.id);
-    formdata.append("rating", "4");
+    formdata.append("rating", rating);
     formdata.append("comment", commentRef.current.value);
 
     var requestOptions = {
@@ -57,10 +82,12 @@ function CommentSection() {
     fetch(`${import.meta.env.VITE_DEFAULT_HOST}review`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        const newReview = JSON.parse(JSON.stringify(review))
-        newReview.unshift()
-        setReview(newReview)
-        commentRef.current.value = ""
+        const newReview = JSON.parse(JSON.stringify(review));
+        newReview.unshift(result);
+        setReview(newReview);
+        commentRef.current.value = "";
+        setRating(0);
+        console.log(89, result);
       })
       .catch((error) => console.log("error", error));
   }
@@ -101,11 +128,11 @@ function CommentSection() {
                     <div className="flex items-center mt-2">
                       <button className="flex items-center gap-1 text-sm text-blue-500 hover:text-blue-600 mr-2">
                         <p>Rating:</p>
-                        <span>5</span>
+                        <span>{items.rating}</span>
                       </button>
-                        <button className="text-gray-500 text-sm hover:text-gray-600">
-                          Edit
-                        </button>
+                      <button className="text-gray-500 text-sm hover:text-gray-600">
+                        Edit
+                      </button>
                     </div>
                   </div>
                 ))
@@ -134,8 +161,15 @@ function CommentSection() {
             )}
           </div>
 
-          <form onSubmit={handleSubmit} className="bg-white p-4 rounded-lg shadow w-full mt-14 lg:mt-0 lg:w-[48%]">
-            <h3 className="text-lg font-semibold mb-2">Add a Comment</h3>
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-4 rounded-lg shadow w-full mt-14 lg:mt-0 lg:w-[48%]"
+          >
+            <h3 className="text-lg font-semibold">Add a Comment</h3>
+            <div className="flex items-center gap-4">
+              <ReactStars {...thirdExample} />
+              <p className="text-xl">{rating}</p>
+            </div>
             <div className="mb-4">
               <textarea
                 ref={commentRef}

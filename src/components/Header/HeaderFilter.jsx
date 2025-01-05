@@ -3,13 +3,15 @@ import { OrdersDropdown, Gender, categoryCard } from "../../util/contants";
 import { styles } from "../../util/style";
 import { discount } from "../../assets";
 import "../HeroImage/style.css";
+import { useNavigate } from "react-router-dom";
 
-function HeaderFilter() {
+function HeaderFilter({setLoginModal, token}) {
   const [dropdown, setDropdown] = useState(false);
   const [checkDropdown, setCheckDropdown] = useState("All Category");
   const [gender, setGender] = useState("");
   const [categoryGender, setCategoryGender] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   function fetchGender(gender) {
     setLoading(true);
@@ -35,7 +37,13 @@ function HeaderFilter() {
       .catch((error) => console.log("error", error));
   }
 
-  console.log(categoryGender, 38);
+  function handleToOrder() {
+    if (token) {
+      navigate("/account/orders");
+    } else {
+      setLoginModal(true)
+    }
+  }
 
   return (
     <div className="">
@@ -47,7 +55,7 @@ function HeaderFilter() {
               onClick={() => {
                 setDropdown(!dropdown);
                 setCategoryGender([]);
-                setGender("")
+                setGender("");
               }}
               data-dropdown-trigger="hover"
               className="text-white py-2 md:p-[14px] px-4 md:px-8 mb-0 bg-red-600 focus:outline-none font-medium rounded-lg text-xs md:text-sm text-center justify-center inline-flex items-center"
@@ -117,106 +125,108 @@ function HeaderFilter() {
             )}
           </div>
 
-          {loading ? (
-            gender !== "" &&
-            <div
-              id="dropdownHover"
-              className="z-50 top-36 md:top-40 lg:top-40 absolute flex mt-2 left-auto right-auto ml-24 md:ml-52 gap-5 bg-white divide-y p-5 divide-gray-100 rounded-lg shadow"
-            >
-              <div role="status" className=" animate-pulse w-40 xs:w-64 md:w-96">
-               <div className="flex flex-col gap-2">
-               <div className="h-4 xs:h-6 md:h-8 bg-gray-200 rounded-md  w-full"></div>
-               <div className="h-4 xs:h-6 md:h-8 bg-gray-200 rounded-md  w-full"></div>
-               <div className="h-4 xs:h-6 md:h-8 bg-gray-200 rounded-md  w-full"></div>
-               <div className="h-4 xs:h-6 md:h-8 bg-gray-200 rounded-md  w-full"></div>
-               <div className="h-4 xs:h-6 md:h-8 bg-gray-200 rounded-md  w-full"></div>
-               <div className="h-4 xs:h-6 md:h-8 bg-gray-200 rounded-md  w-full"></div>
-               </div>
-                <span className="sr-only">Loading...</span>
-              </div>
-            </div>
-          ) : (
-            categoryGender.length > 0 && (
-              <div
-                id="dropdownHover"
-                className="z-50 top-36 md:top-40 lg:top-40 absolute flex mt-2 left-auto right-auto ml-24 md:ml-52 gap-5 bg-white divide-y p-5 divide-gray-100 rounded-lg shadow"
-              >
-                <ul
-                  className="text-xs md:text-sm text-gray-700 max-w-52"
-                  aria-labelledby="dropdownHoverButton"
+          {loading
+            ? gender !== "" && (
+                <div
+                  id="dropdownHover"
+                  className="z-50 top-36 md:top-40 lg:top-40 absolute flex mt-2 left-auto right-auto ml-24 md:ml-52 gap-5 bg-white divide-y p-5 divide-gray-100 rounded-lg shadow"
                 >
-                  {categoryGender.map((item) => (
-                    <li key={item._id}>
-                      <a
-                        href={`category/${item._id}`}
-                        className={`block px-2 py-1 md:px-4 md:py-2 hover:bg-gray-100 hover:text-black public-sans`}
-                      >
-                        {item.name.uz}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="hidden xs:block max-w-[300px] border-none">
-                  <h2 className="mb-1 sm:mb-3 font-semibold public-sans w-full">
-                    {gender.charAt().toUpperCase() + gender.slice(1)}
-                  </h2>
-                  <ul className="flex gap-2 sm:gap-4 flex-col items-start w-full">
-                    {categoryCard &&
-                      categoryCard.map((item) => (
-                        <li
-                          key={item.id}
-                          className="rounded-[3px] border p-2 sm:p-3 flex flex-col sm:flex-row w-40 sm:w-auto gap-3 items-center"
-                        >
-                          <img
-                            src={item.image}
-                            alt="icon"
-                            className="w-16 sm:w-20 h-16 sm:h-20"
-                          />
-                          <div className="flex flex-col gap-1 sm:gap-2">
-                            <p className=" text-xs sm:text-sm public-sans">
-                              {item.title}
-                            </p>
-                            <span className="font-semibold text-xs sm:text-sm text-primary-10 public-sans">
-                              $ {item.price}
-                            </span>
-                          </div>
-                        </li>
-                      ))}
-                  </ul>
-                </div>
-
-                <div className="hidden xl:flex bg-yellow-100 p-8 flex-col gap-6 rounded-[6px]">
-                  <div className="flex flex-col items-center gap-3">
-                    <img src={discount} alt="Discount icon" />
-                    <h2 className="public-sans font-semibold text-[28px]">
-                      21% Discount
-                    </h2>
-                    <p className="public-sans text-center max-w-[248px] text-qoramtir-gray">
-                      Escape the noise, It’s time to hear the magic with Xiaomi
-                      Earbuds.
-                    </p>
-                    <div className="flex gap-2 items-center lg:mt-2">
-                      <span className="text-sm public-sans">
-                        Starting price:
-                      </span>
-                      <button className="bg-white px-3 py-[6px] rounded-[3px] font-semibold public-sans">
-                        $99 USD
-                      </button>
+                  <div
+                    role="status"
+                    className=" animate-pulse w-40 xs:w-64 md:w-96"
+                  >
+                    <div className="flex flex-col gap-2">
+                      <div className="h-4 xs:h-6 md:h-8 bg-gray-200 rounded-md  w-full"></div>
+                      <div className="h-4 xs:h-6 md:h-8 bg-gray-200 rounded-md  w-full"></div>
+                      <div className="h-4 xs:h-6 md:h-8 bg-gray-200 rounded-md  w-full"></div>
+                      <div className="h-4 xs:h-6 md:h-8 bg-gray-200 rounded-md  w-full"></div>
+                      <div className="h-4 xs:h-6 md:h-8 bg-gray-200 rounded-md  w-full"></div>
+                      <div className="h-4 xs:h-6 md:h-8 bg-gray-200 rounded-md  w-full"></div>
                     </div>
+                    <span className="sr-only">Loading...</span>
                   </div>
-                  <button className="rounded-[3px] px-4 lg:px-8 py-2 public-sans lg:py-3 text-xs sm:text-sm md:font-bold hover:bg-primary-500 transition-all duration-200 active:bg-primary-400 text-white bg-primary-600 inline-block">
-                    Shop Now →
-                  </button>
                 </div>
-              </div>
-            )
-          )}
+              )
+            : categoryGender.length > 0 && (
+                <div
+                  id="dropdownHover"
+                  className="z-50 top-36 md:top-40 lg:top-40 absolute flex mt-2 left-auto right-auto ml-24 md:ml-52 gap-5 bg-white divide-y p-5 divide-gray-100 rounded-lg shadow"
+                >
+                  <ul
+                    className="text-xs md:text-sm text-gray-700 max-w-52"
+                    aria-labelledby="dropdownHoverButton"
+                  >
+                    {categoryGender.map((item) => (
+                      <li key={item._id}>
+                        <a
+                          href={`category/${item._id}`}
+                          className={`block px-2 py-1 md:px-4 md:py-2 hover:bg-gray-100 hover:text-black public-sans`}
+                        >
+                          {item.name.uz}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="hidden xs:block max-w-[300px] border-none">
+                    <h2 className="mb-1 sm:mb-3 font-semibold public-sans w-full">
+                      {gender.charAt().toUpperCase() + gender.slice(1)}
+                    </h2>
+                    <ul className="flex gap-2 sm:gap-4 flex-col items-start w-full">
+                      {categoryCard &&
+                        categoryCard.map((item) => (
+                          <li
+                            key={item.id}
+                            className="rounded-[3px] border p-2 sm:p-3 flex flex-col sm:flex-row w-40 sm:w-auto gap-3 items-center"
+                          >
+                            <img
+                              src={item.image}
+                              alt="icon"
+                              className="w-16 sm:w-20 h-16 sm:h-20"
+                            />
+                            <div className="flex flex-col gap-1 sm:gap-2">
+                              <p className=" text-xs sm:text-sm public-sans">
+                                {item.title}
+                              </p>
+                              <span className="font-semibold text-xs sm:text-sm text-primary-10 public-sans">
+                                $ {item.price}
+                              </span>
+                            </div>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+
+                  <div className="hidden xl:flex bg-yellow-100 p-8 flex-col gap-6 rounded-[6px]">
+                    <div className="flex flex-col items-center gap-3">
+                      <img src={discount} alt="Discount icon" />
+                      <h2 className="public-sans font-semibold text-[28px]">
+                        21% Discount
+                      </h2>
+                      <p className="public-sans text-center max-w-[248px] text-qoramtir-gray">
+                        Escape the noise, It’s time to hear the magic with
+                        Xiaomi Earbuds.
+                      </p>
+                      <div className="flex gap-2 items-center lg:mt-2">
+                        <span className="text-sm public-sans">
+                          Starting price:
+                        </span>
+                        <button className="bg-white px-3 py-[6px] rounded-[3px] font-semibold public-sans">
+                          $99 USD
+                        </button>
+                      </div>
+                    </div>
+                    <button className="rounded-[3px] px-4 lg:px-8 py-2 public-sans lg:py-3 text-xs sm:text-sm md:font-bold hover:bg-primary-500 transition-all duration-200 active:bg-primary-400 text-white bg-primary-600 inline-block">
+                      Shop Now →
+                    </button>
+                  </div>
+                </div>
+              )}
 
           <li className="list-none hidden  md:inline-block">
             <a
-              href="/adress"
-              className={`flex items-center p-1 text-gray-900 rounded-lg hover:underline`}
+              onClick={handleToOrder}
+              className={`flex items-center p-1 cursor-pointer text-gray-900 rounded-lg hover:underline`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -234,6 +244,24 @@ function HeaderFilter() {
           </li>
           <li className="list-none hidden  md:inline-block">
             <a
+              href="/support"
+              className={`flex items-center p-1 text-gray-900 rounded-lg hover:underline group`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                className="w-5 h-5 text-qoramtir-gray1"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5" />
+              </svg>
+              <span className="ms-2 public-sans text-qoramtir-gray1">
+                Customer Support
+              </span>
+            </a>
+          </li>
+          {/* <li className="list-none hidden  md:inline-block">
+            <a
               href="#"
               className={`flex items-center p-1 text-gray-900 rounded-lg hover:underline group`}
             >
@@ -250,7 +278,7 @@ function HeaderFilter() {
                 Need Help
               </span>
             </a>
-          </li>
+          </li> */}
         </div>
 
         <li className="list-none hidden md:inline-block">

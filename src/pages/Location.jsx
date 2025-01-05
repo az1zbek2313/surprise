@@ -1,34 +1,75 @@
-import { useState } from "react";
 import geo from "../assets/geo.svg";
 import { LocationModal } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { deletedMyAdress } from "../Redux/Actions/actions";
 import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react";
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+
+const GOOGLE_MAPS_API_KEY = "AIzaSyAPZvnnWl8tL0G8mDBRa16jn4R3oqYli34";
+
+const containerStyle = {
+  width: "100%",
+  height: "400px",
+};
+
+const initialCenter = { lat: 40.4541325, lng: 71.2056026 };
 
 function Location() {
+  // MAP
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+    libraries: ["places"],
+  });
+
+  const [position, setPosition] = useState(initialCenter);
+  const {
+    ready,
+    value,
+    suggestions: { status, data },
+    setValue,
+    clearSuggestions,
+  } = usePlacesAutocomplete();
+
+  const handleSelect = async (address) => {
+    setValue(address, false);
+    clearSuggestions();
+
+    try {
+      const results = await getGeocode({ address });
+      const { lat, lng } = await getLatLng(results[0]);
+      setPosition({ lat, lng }); // Xarita markazini yangilash
+    } catch (error) {
+      console.error("Xatolik: ", error);
+    }
+  };
+
+  // ADRESS
   const [dropdown, setDropdown] = useState(false);
   const [modal, setModal] = useState(false);
   const [newMessage, setNewMessage] = useState(0);
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.myAdress);
+  const dataAdress = useSelector((state) => state.myAdress);
   const { t } = useTranslation();
 
   function handleDelete(item) {
     const deleted = confirm("Rostdan ham o'chirmoqchimisiz?");
     if (deleted) {
-      dispatch(deletedMyAdress(item.id))
+      dispatch(deletedMyAdress(item.id));
     }
   }
   function handleEdit(item) {
     setModal(true);
-    setNewMessage(item); 
+    setNewMessage(item);
   }
 
   return (
     <>
-      <div
-        className={`container mx-auto md:px-0`}
-      >
+      <div className={`container mx-auto md:px-0`}>
         <div className="flex flex-wrap gap-1 xs:gap-0 justify-between items-center px-4 border-b-[1.6px] py-2">
           <h1 className="text-2xl mx-auto xs:mx-0 font-semibold">
             {t("locations")}
@@ -40,7 +81,7 @@ function Location() {
               onClick={() => {
                 setDropdown(!dropdown);
                 setModal(true);
-                setNewMessage(0)
+                setNewMessage(0);
               }}
               data-dropdown-trigger="hover"
               className="text-white  w-44 mb-0 bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs md:text-sm py-2 text-center justify-center inline-flex items-center"
@@ -52,37 +93,43 @@ function Location() {
           </div>
         </div>
 
-        {data.length <= 0 ? (
+        {dataAdress.length <= 0 ? (
           <div className="min-h-[50vh] sm:h-[60vh] lg:min-h-[70vh] flex justify-center items-center">
-          <div className="flex flex-col gap-2 md:gap-4 justify-center items-center">
-            <div className="bg-gray-100 rounded-2xl md:rounded-3xl p-5 md:p-6 w-fit h-fit">
-              <img src={geo} alt="search box icon" className="w-8 h-8" />
+            <div className="flex flex-col gap-2 md:gap-4 justify-center items-center">
+              <div className="bg-gray-100 rounded-2xl md:rounded-3xl p-5 md:p-6 w-fit h-fit">
+                <img src={geo} alt="search box icon" className="w-8 h-8" />
+              </div>
+              <p className="opacity-55 font-medium text-sm md:text-base text-center">
+                Hozirda manzillar mavjud emas. Iltimos, <br /> hozir manzil
+                qo'shing.
+              </p>
+              <a
+                onClick={() => {
+                  setModal(true);
+                }}
+                className="text-white w-44 md:w-64 mb-0 cursor-pointer bg-red-600 hover:bg-red-700 transition-all duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-base py-2 md:py-3 text-center justify-center inline-flex items-center"
+              >
+                <span className="scale-150 mr-1 pb-0.5">+</span> &nbsp;
+                <p>Manzil qo'shish</p>
+              </a>
             </div>
-            <p className="opacity-55 font-medium text-sm md:text-base text-center">
-              Hozirda manzillar mavjud emas. Iltimos, <br /> hozir manzil
-              qo'shing.
-            </p>
-            <a
-              onClick={() => {
-                setModal(true);
-              }}
-              className="text-white w-44 md:w-64 mb-0 cursor-pointer bg-red-600 hover:bg-red-700 transition-all duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-base py-2 md:py-3 text-center justify-center inline-flex items-center"
-            >
-              <span className="scale-150 mr-1 pb-0.5">+</span> &nbsp;
-              <p>Manzil qo'shish</p>
-            </a>
-          </div>
           </div>
         ) : (
           <div className="p-4 flex justify-between gap-4 flex-wrap">
-            {data?.map((item, index) => (
+            {dataAdress?.map((item, index) => (
               <div key={index} className="border-2 rounded-lg sm:w-[48%] p-4">
                 <div className="flex gap-8">
                   <h2 className="text-base font-semibold">
-                  {item?.city}, {item?.region}, {item?.street} ko'chasi, &nbsp;
-                    {item?.homeNumber && (item?.homeNumber + "-")}uy
+                    {item?.city}, {item?.region}, {item?.street} ko'chasi,
+                    &nbsp;
+                    {item?.homeNumber && item?.homeNumber + "-"}uy
                   </h2>
-                  <div onClick={() => {handleEdit(item)}} className="border-[1.2px] cursor-pointer hover:bg-gray-50 transition-all duration-300 rounded-md flex justify-center items-center h-fit p-3">
+                  <div
+                    onClick={() => {
+                      handleEdit(item);
+                    }}
+                    className="border-[1.2px] cursor-pointer hover:bg-gray-50 transition-all duration-300 rounded-md flex justify-center items-center h-fit p-3"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
@@ -103,7 +150,9 @@ function Location() {
                     Standart {item?.standart ? "✅" : "❎"}
                   </button>
                   <svg
-                    onClick={() => {handleDelete(item)}}
+                    onClick={() => {
+                      handleDelete(item);
+                    }}
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
                     className="bi bi-trash w-7 h-7 text-red-600 cursor-pointer hover:scale-105 transition-all duration-300"
@@ -118,6 +167,46 @@ function Location() {
           </div>
         )}
       </div>
+
+      {isLoaded ? (
+        <div className="mx-4 mb-4">
+          <div className="flex justify-between items-center mb-2">
+            <input
+              type="text"
+              placeholder="Manzilni kiriting"
+              value={value}
+              className="border-primary-600 border rounded focus:border-primary-10 focus:border-2 focus:outline-none"
+              onChange={(e) => setValue(e.target.value)}
+              style={{ width: "73%", padding: "8px" }}
+            />
+            <a
+              className="text-white w-[25%] py-2 mb-0 cursor-pointer bg-red-600 hover:bg-red-700 transition-all duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-base text-center justify-center inline-flex items-center"
+            >
+              <p>Manzil qo'shish</p>
+            </a>
+          </div>
+          {status === "OK" && (
+            <ul>
+              {data.map(({ place_id, description }) => (
+                <li key={place_id} onClick={() => handleSelect(description)}>
+                  {description}
+                </li>
+              ))}
+            </ul>
+          )}
+          <div className="">
+            <GoogleMap
+              mapContainerStyle={containerStyle}
+              center={position} // Dinamik markaz
+              zoom={12}
+            >
+              <Marker position={position} />
+            </GoogleMap>
+          </div>
+        </div>
+      ) : (
+        <div>Yuklanmoqda...</div>
+      )}
 
       {modal && <LocationModal newMessage={newMessage} setModal={setModal} />}
     </>

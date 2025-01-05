@@ -30,9 +30,38 @@ import CreateAccount from "./Sign/CreateAccounte";
 import OrderModal from "./OrderModal";
 import DetailModal from "./DetailModal";
 import OrderCard from "./Products/orderCard";
+import HeroSupport from "./Support/HeroSupport"
+import WeAssist from "./Support/WeAssist"
+import PopularTopics from "./Support/PopularTopics"
+import ContactUs from "./Support/ContactUs"
+import ContactUsCard from "./Support/ContactUsCard";
+// BLOG PAGES 
+import BlogCategory from "./BlogList/BlogCategory";
+import BlogCard from "./BlogList/BlogCard";
+import BlogGallery from "./BlogList/BlogGallery";
+import BlogListComponent from "./BlogList";
+import LatestBlog from "./BlogList/LatestBlog";
+import PopularTag from "./BlogList/PopularTag";
+import BlogSearch from "./BlogList/BlogSearch";
+import BlogComments from "./BlogDetail/BlogComments";
+import UserBlogMessage from "./BlogDetail/UserBlogMessage";
 
 export {
+  BlogCategory,
+  BlogCard,
+  BlogGallery,
+  BlogSearch,
+  BlogListComponent,
+  LatestBlog,
+  PopularTag,
+  BlogComments,
+  UserBlogMessage,
   CheckDropdown,
+  HeroSupport,
+  WeAssist,
+  ContactUs,
+  ContactUsCard,
+  PopularTopics,
   OrderModal,
   LoginModal,
   CreateAccount,

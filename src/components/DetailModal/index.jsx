@@ -11,8 +11,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { defaultImage } from "../../assets";
+import productShow from "../../Redux/Reducers/AllReducers/productshow";
 
-function DetailModal({setIsDetailModalOpen}) {
+function DetailModal() {
   const [defaultColor, setDefaultColor] = useState(1);
   const [detail, setDetail] = useState({});
   const cartProducts = useSelector((state) => state.myCart);
@@ -24,7 +25,6 @@ function DetailModal({setIsDetailModalOpen}) {
   const likes = useSelector((state) => state.myFavourites);
   const someLike = likes.some((el) => el._id == detail._id);
   const [mainImage, setMainImage] = useState(defaultImage);
-
 
   function fetchProductDetail() {
     var requestOptions = {
@@ -128,6 +128,7 @@ function DetailModal({setIsDetailModalOpen}) {
           top: 0,
           behavior: "smooth",
         });
+        dispatch(productId(""))
   }
 
   function handleBuy(e) {
@@ -141,6 +142,7 @@ function DetailModal({setIsDetailModalOpen}) {
         behavior: "smooth",
       });
     }
+    dispatch(productId(""))
   }
 
   return (
@@ -153,7 +155,7 @@ function DetailModal({setIsDetailModalOpen}) {
         {/* Icon remove */}
         <div onClick={() => {
           dispatch(productId(""))
-          setIsDetailModalOpen(false)
+          dispatch(productShow(false));
         }} className="p-2 fixed cursor-pointer top-[-10px] right-[-10px] sm:top-[-20px] sm:right-[-20px] z-[1000] rounded-full bg-black/60">
           <svg
             xmlns="http://www.w3.org/2000/svg"

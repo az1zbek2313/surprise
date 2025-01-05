@@ -17,15 +17,12 @@ import DetailModal from "../DetailModal";
 function Card({ product, height, width }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const params = useSelector((state) => state.productIdReducer);
   const cartProducts = useSelector((state) => state.myCart);
   const token = useSelector((state) => state.userIdReducer.uid);
   const exists = cartProducts.some((item) => item._id === product._id);
   const likes = useSelector((state) => state.myFavourites);
   const someLike = likes.some((el) => el._id == product._id);
   const [hover, setHover] = useState(false);
-  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-  const showDetailModal = params.id === product._id && isDetailModalOpen;
 
 
   function handleSave(e) {
@@ -104,9 +101,6 @@ function Card({ product, height, width }) {
   }
   return (
     <>
-      {/* DETAIL MODAL  */}
-      {showDetailModal && <DetailModal setIsDetailModalOpen={setIsDetailModalOpen}/>}
-
       <div
         onClick={() => {
           window.scrollTo({
@@ -244,7 +238,7 @@ function Card({ product, height, width }) {
                   onClick={(e) => {
                     e.stopPropagation();
                     dispatch(productId(product?._id));
-                    setIsDetailModalOpen(true);
+                    dispatch(productShow(true));
                   }}
                   className="group hover:bg-red-500 hover:text-white  transition-all duration-500 p-[6px] lg:p-3 bg-primary-50 rounded-full"
                 >

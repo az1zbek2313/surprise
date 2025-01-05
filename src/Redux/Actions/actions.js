@@ -100,3 +100,10 @@ export function productId(data) {
     payload: data,
   };
 }
+
+export function showProduct(data) {
+  return {
+    type: actionTypes.PRODUCT_SHOW,
+    payload: data,
+  };
+}

@@ -18,6 +18,10 @@ import {
   TrandingSurprizes,
   Section,
   GetOrder,
+  Map,
+  BlogDetail,
+  BlogList,
+  Support
 } from "./pages";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -44,6 +48,7 @@ export default function App() {
         <Route path="/login" element={<SignIn />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/code" element={<Code />}></Route>
+        <Route path="/map" element={<Map />}></Route>
 
         <Route path="/" element={<Layout />}>
           <Route index element={<LandingPage />}></Route>
@@ -51,6 +56,9 @@ export default function App() {
           <Route path="/category/:id" element={<Category />}></Route>
           <Route path="/detail/:id" element={<Detail />}></Route>
           <Route path="/tranding" element={<TrandingSurprizes />}></Route>
+          <Route path="/support" element={<Support />}></Route>
+          <Route path="/blog" element={<BlogList />}></Route>
+          <Route path="/blog/:id" element={<BlogDetail />}></Route>
           <Route path="/section/:id" element={<Section />}></Route>
           {token && (
             <>

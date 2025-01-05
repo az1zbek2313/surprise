@@ -12,3 +12,4 @@ export const INCEREMENT = "INCEREMENT";
 export const INPUTAMOUNT = "INPUTAMOUNT";
 export const USER_ID = "USER_ID";
 export const PRODUCT_ID = "PRODUCT_ID";
+export const PRODUCT_SHOW = "PRODUCT_SHOW";

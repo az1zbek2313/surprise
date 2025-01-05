@@ -1,8 +1,31 @@
 import { useTranslation } from "react-i18next";
 import { styles } from "../../util/style";
+import { useEffect, useState } from "react";
 
 function FooterLink() {
   const { t } = useTranslation();
+  const [categoryGender, setCategoryGender] = useState();
+  const [loading, setLoading] = useState();
+
+  function fetchGender() {
+    setLoading(true);
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(`${import.meta.env.VITE_DEFAULT_HOST}category`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setCategoryGender(result)
+        setLoading(false);
+      })
+      .catch((error) => console.log("error", error));
+  }
+
+  useEffect(() => {
+    fetchGender()
+  }, [])
 
   return (
     <div className="border-t-[1.5px] py-2 border-gray-300">
@@ -71,136 +94,52 @@ function FooterLink() {
           <li className="font-semibold text-sm md:text-base mb-2">
             Erkak
           </li>
-          <li className="text-sm text-gray-500">
+          {
+            categoryGender?.male.map(item => (
+              <li key={item} className="text-sm text-gray-500">
             <a
               className="transition-all duration-500 hover:underline"
-              href="/category"
+              href={`category/${item._id}`}
             >
-              Flowers
+              {item?.name.uz}
             </a>
           </li>
-          <li className="text-sm text-gray-500">
-            <a
-              className="transition-all duration-500 hover:underline"
-              href="/category"
-            >
-              Accessories
-            </a>
-          </li>
-          <li className="text-sm text-gray-500">
-            <a
-              className="transition-all duration-500 hover:underline"
-              href="/category"
-            >
-              Jeweleries
-            </a>
-          </li>
-          <li className="text-sm text-gray-500">
-            <a
-              className="transition-all duration-500 hover:underline"
-              href="/category"
-            >
-              Souvenirs
-            </a>
-          </li>
-          <li className="text-sm text-gray-500">
-            <a
-              className="transition-all duration-500 hover:underline"
-              href="/category"
-            >
-              Sweets
-            </a>
-          </li>
+            ))
+          }
         </ul>
         <ul className="w-[47%] sm:w-auto">
           <li className="font-semibold text-sm md:text-base mb-2">
             Ayol
           </li>
-          <li className="text-sm text-gray-500">
+          {
+            categoryGender?.female.map(item => (
+              <li key={item} className="text-sm text-gray-500">
             <a
               className="transition-all duration-500 hover:underline"
-              href="/category"
+              href={`category/${item._id}`}
             >
-              Flowers
+              {item?.name.uz}
             </a>
           </li>
-          <li className="text-sm text-gray-500">
-            <a
-              className="transition-all duration-500 hover:underline"
-              href="/category"
-            >
-              Accessories
-            </a>
-          </li>
-          <li className="text-sm text-gray-500">
-            <a
-              className="transition-all duration-500 hover:underline"
-              href="/category"
-            >
-              Jeweleries
-            </a>
-          </li>
-          <li className="text-sm text-gray-500">
-            <a
-              className="transition-all duration-500 hover:underline"
-              href="/category"
-            >
-              Souvenirs
-            </a>
-          </li>
-          <li className="text-sm text-gray-500">
-            <a
-              className="transition-all duration-500 hover:underline"
-              href="/category"
-            >
-              Sweets
-            </a>
-          </li>
+            ))
+          }
         </ul>
         <ul className="w-[47%] sm:w-auto">
           <li className="font-semibold text-sm md:text-base mb-2">
             Children
           </li>
-          <li className="text-sm text-gray-500">
+          {
+            categoryGender?.kids.map(item => (
+              <li key={item} className="text-sm text-gray-500">
             <a
               className="transition-all duration-500 hover:underline"
-              href="/category"
+              href={`category/${item._id}`}
             >
-              Flowers
+              {item?.name.uz}
             </a>
           </li>
-          <li className="text-sm text-gray-500">
-            <a
-              className="transition-all duration-500 hover:underline"
-              href="/category"
-            >
-              Accessories
-            </a>
-          </li>
-          <li className="text-sm text-gray-500">
-            <a
-              className="transition-all duration-500 hover:underline"
-              href="/category"
-            >
-              Jeweleries
-            </a>
-          </li>
-          <li className="text-sm text-gray-500">
-            <a
-              className="transition-all duration-500 hover:underline"
-              href="/category"
-            >
-              Souvenirs
-            </a>
-          </li>
-          <li className="text-sm text-gray-500">
-            <a
-              className="transition-all duration-500 hover:underline"
-              href="/category"
-            >
-              Sweets
-            </a>
-          </li>
+            ))
+          }
         </ul>
       </div>
     </div>

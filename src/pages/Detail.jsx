@@ -452,7 +452,7 @@ function Detail() {
           </div>
         </div>
 
-        <CommentSection />
+        <CommentSection reviews={detail.reviews}/>
 
         <RemeberProducts data={detail} />
       </div>

@@ -17,9 +17,14 @@ import Code from "./Code";
 import Section from "./Section";
 import TrandingSurprizes from "./TrandingSurprizes";
 import GetOrder from "./GetOrder";
+import Map from "./Map";
+import Support from "./Support";
+import BlogList from "./BlogList";
+import BlogDetail from "./BlogDetail";
 
 export {
   Section, 
+  Map,
   TrandingSurprizes,
   Code,
   LandingPage,
@@ -37,5 +42,8 @@ export {
   GetOrder,
   Location,
   Notifications,
-  MyFavouritesLogout
+  MyFavouritesLogout,
+  Support, 
+  BlogList,
+  BlogDetail
 };

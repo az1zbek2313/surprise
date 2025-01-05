@@ -1,8 +1,15 @@
-import { CreateAccount, HeaderTop, LoginModal, SearchModal } from "../";
+import {
+  CreateAccount,
+  DetailModal,
+  HeaderFilter,
+  HeaderTop,
+  LoginModal,
+  SearchModal,
+} from "../";
 import { styles } from "../../util/style";
 import { surpriseLogo, user } from "../../assets";
 import { flagLanguage } from "../../util/contants";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -423,6 +430,8 @@ function Header() {
           setHandleFocus={setHandleFocus}
         />
       )}
+
+      <HeaderFilter setLoginModal={setLoginModal} token={token} />
     </>
   );
 }

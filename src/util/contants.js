@@ -3,6 +3,8 @@ import {
   categoryImage,
   categoryImage1,
   categoryImage2,
+  ChatCircleDots,
+  PhoneCall,
 } from "../assets";
 import {
   uzbFlag,
@@ -34,7 +36,120 @@ import {
   Stepcard1,
   Stepcard2,
   Stepcard3,
+  Truck,
+  LockOpen,
+  CreditCard,
+  Stack,
+  Storefront,
+  Notepad,
+  User,
 } from "../assets";
+
+// SUPPORT PAGE
+export const weAssistData = [
+  {
+    id: 1,
+    image: Truck,
+    title: "Track Order",
+  },
+  {
+    id: 2,
+    image: LockOpen,
+    title: "Reset Password",
+  },
+  {
+    id: 3,
+    image: CreditCard,
+    title: "Payment Option",
+  },
+  {
+    id: 4,
+    image: User,
+    title: "User & Account",
+  },
+  {
+    id: 5,
+    image: Stack,
+    title: "Wishlist & Compare",
+  },
+  {
+    id: 6,
+    image: Notepad,
+    title: "Shipping & Billing",
+  },
+  {
+    id: 7,
+    image: CreditCard,
+    title: "Shoping Cart & Wallet",
+  },
+  {
+    id: 8,
+    image: Storefront,
+    title: "Sell on Clicon",
+  },
+];
+
+export const popularTopics = [
+  {
+    id: 1,
+    title: "How do I return my item?",
+  },
+  {
+    id: 2,
+    title: "What is Clicons Returns Policy?",
+  },
+  {
+    id: 3,
+    title: "How long is the refund process?",
+  },
+  {
+    id: 2,
+    title: "What are the 'Delivery Timelines'?",
+  },
+  {
+    id: 5,
+    title: "What is 'Discover Your Daraz Campaign 2022'?",
+  },
+  {
+    id: 6,
+    title: "What is the Voucher & Gift Offer in this Campaign?",
+  },
+  {
+    id: 7,
+    title: "Ask the Digital and Device Community",
+  },
+  {
+    id: 8,
+    title: "How to cancel Clicon Order.",
+  },
+  {
+    id: 9,
+    title: "How to change my shop name?",
+  },
+];
+
+export const contactUsCard = [
+  {
+    id: 1,
+    title: "Call us now",
+    image: PhoneCall,
+    background:"bg-kok-10",
+    backButton:"bg-primary-10",
+    hover:"hover:bg-primary-500",
+    contact:"+1-202-555-0126",
+    button:"Call now"
+  },
+  {
+    id: 2,
+    title: "Chat with us",
+    image: ChatCircleDots,
+    background:"bg-kok-20",
+    backButton:"bg-green-600",
+    hover:"hover:bg-green-500",
+    contact:"Support@clicon.com",
+    button:"Contact Us"
+  },
+];
 
 export const StepCardsData = [
   {

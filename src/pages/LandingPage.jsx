@@ -41,9 +41,6 @@ function LandingPage() {
         }}
       />
 
-      {/* Header filter category */}
-      <HeaderFilter />
-
       {/* Hero Images Carousel */}
       <HeroImage />
 

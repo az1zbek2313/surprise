@@ -1,5 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { myAdress, myFavourites, userIdReducer, myCart, productIdReducer } from "./AllReducers";
+import { myAdress, myFavourites, userIdReducer, myCart, productIdReducer, productShowReducer } from "./AllReducers";
 
 const rootReducer = combineReducers({
   //All reducers
@@ -7,7 +7,8 @@ const rootReducer = combineReducers({
   myFavourites,
   userIdReducer,
   myCart,
-  productIdReducer
+  productIdReducer,
+  productShowReducer
 });
 
 export default rootReducer;
