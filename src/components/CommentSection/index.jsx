@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 
 function CommentSection({ reviews }) {
   const params = useParams();
   const commentRef = useRef();
-  const defaultReview = reviews ? reviews : []
+  const navigate = useNavigate();
+  const defaultReview = reviews ? reviews : [];
   const [review, setReview] = useState(defaultReview);
   const [number, setNumber] = useState(2);
   const token = useSelector((state) => state.userIdReducer.uid);
@@ -17,7 +18,6 @@ function CommentSection({ reviews }) {
       setReview(reviews);
     }
   }, [reviews]);
-  
 
   const thirdExample = {
     size: 40,
@@ -82,12 +82,15 @@ function CommentSection({ reviews }) {
     fetch(`${import.meta.env.VITE_DEFAULT_HOST}review`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        const newReview = JSON.parse(JSON.stringify(review));
-        newReview.unshift(result);
-        setReview(newReview);
-        commentRef.current.value = "";
-        setRating(0);
-        console.log(89, result);
+        if (result?._id) {
+          const newReview = JSON.parse(JSON.stringify(review));
+          newReview.unshift(result);
+          setReview(newReview);
+          commentRef.current.value = "";
+          setRating(0);
+        } else {
+          navigate('/cart')
+        }
       })
       .catch((error) => console.log("error", error));
   }
