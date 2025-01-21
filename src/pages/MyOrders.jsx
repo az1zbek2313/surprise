@@ -8,6 +8,9 @@ import { formatDate, formatNumberWithCommas } from "../util/functions";
 function MyOrders() {
   const [dropdown, setDropdown] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [arrPages, setArrPages] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10); // Sahifa boshiga elementlar soni
   const message = useSelector((state) => state.userIdReducer.uid);
 
   const [checkDropdown, setCheckDropdown] = useState("Barcha buyurtmalar");
@@ -40,7 +43,44 @@ function MyOrders() {
     fetchData();
   }, []);
 
-  console.log(42, data);
+  // Sahifa bo'yicha ma'lumotlarni olish
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  //Sahifani raqamlarini hisoblash
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
+  useEffect(() => {
+    const pagesArray = Array.from(
+      { length: totalPages },
+      (_, index) => index + 1
+    );
+    setArrPages(pagesArray);
+  }, [data, totalPages]);
+
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const handleNext = () => {
+    if (totalPages === currentPage) {
+      setCurrentPage(1);
+    } else {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentPage === 1) {
+      setCurrentPage(totalPages);
+    } else {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  console.log(81, arrPages);
 
   return (
     <div className={`container mx-auto md:px-0`}>
@@ -107,7 +147,7 @@ function MyOrders() {
         </div>
       </div>
 
-      {data.length <= 0 ? (
+      {data.length == 0 ? (
         <div className="min-h-[50vh] sm:h-[60vh] lg:min-h-[70vh] flex justify-center items-center">
           <div className="flex flex-col gap-2 md:gap-4 justify-center items-center">
             <div className="bg-gray-100 rounded-2xl md:rounded-3xl p-5 md:p-6 w-fit h-fit">
@@ -131,8 +171,11 @@ function MyOrders() {
             <div class="mx-auto max-w-5xl">
               <div class="flow-root ">
                 <div class="divide-y divide-gray-200">
-                  {data?.map((item, index) => (
-                    <div key={index+1} class="flex flex-wrap items-center gap-y-4 py-6">
+                  {currentItems?.map((item, index) => (
+                    <div
+                      key={index + 1}
+                      class="flex flex-wrap items-center gap-y-4 py-6"
+                    >
                       <dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
                         <dt class="text-base font-medium text-gray-500">
                           Order ID:
@@ -158,7 +201,7 @@ function MyOrders() {
                           Price:
                         </dt>
                         <dd class="mt-1.5 text-base font-semibold text-gray-900 ">
-                        ${formatNumberWithCommas(item.price)}
+                          ${formatNumberWithCommas(item.price)}
                         </dd>
                       </dl>
 
@@ -184,7 +227,9 @@ function MyOrders() {
                               d="M18.5 4h-13m13 16h-13M8 20v-3.333a2 2 0 0 1 .4-1.2L10 12.6a1 1 0 0 0 0-1.2L8.4 8.533a2 2 0 0 1-.4-1.2V4h8v3.333a2 2 0 0 1-.4 1.2L13.957 11.4a1 1 0 0 0 0 1.2l1.643 2.867a2 2 0 0 1 .4 1.2V20H8Z"
                             />
                           </svg>
-                          <span className="text-orange-400">{item?.status}</span>
+                          <span className="text-orange-400">
+                            {item?.status}
+                          </span>
                         </dd>
                       </dl>
 
@@ -207,12 +252,14 @@ function MyOrders() {
                 </div>
               </div>
 
-              <nav
+              {
+                totalPages > 1 &&
+                <nav
                 class="mt-6 flex items-center justify-center sm:mt-8"
                 aria-label="Page navigation example"
               >
                 <ul class="flex h-8 items-center -space-x-px text-sm">
-                  <li>
+                  <li onClick={handlePrevious}>
                     <a
                       href="#"
                       class="ms-0 flex h-8 items-center justify-center rounded-s-lg border border-e-0 border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
@@ -237,48 +284,21 @@ function MyOrders() {
                       </svg>
                     </a>
                   </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      1
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      2
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      aria-current="page"
-                      class="z-10 flex h-8 items-center justify-center border border-primary-300 bg-primary-50 px-3 leading-tight text-primary-600 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 "
-                    >
-                      3
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      ...
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      100
-                    </a>
-                  </li>
-                  <li>
+                  {arrPages.map((pageNumber) => (
+                    <li key={pageNumber}>
+                      <button
+                        onClick={() => handlePageChange(pageNumber)}
+                        className={`flex h-8 items-center justify-center border px-3 ${
+                          pageNumber === currentPage
+                            ? "bg-blue-500 text-white"
+                            : "bg-white text-gray-500"
+                        }`}
+                      >
+                        {pageNumber}
+                      </button>
+                    </li>
+                  ))}
+                  <li onClick={handleNext}>
                     <a
                       href="#"
                       class="flex h-8 items-center justify-center rounded-e-lg border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
@@ -305,6 +325,7 @@ function MyOrders() {
                   </li>
                 </ul>
               </nav>
+              }
             </div>
           </div>
         </section>

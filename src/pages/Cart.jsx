@@ -10,6 +10,7 @@ import {
 } from "../Redux/Actions/actions";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Stations from "../components/OrderModal/Stations";
 
 function Cart() {
   const myAdress = useSelector((state) => state.myAdress) || [];
@@ -18,7 +19,23 @@ function Cart() {
   const token = useSelector((state) => state.userIdReducer.uid).token;
   const inputNumberRef = useRef();
   const [order, setOrder] = useState(false);
+  const [station, setStation] = useState("");
+  const [booleanStation, setBooleanStation] = useState(false);
   const cartProducts = useSelector((state) => state.myCart) || [];
+  const [stations, setStations] = useState({});
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_DEFAULT_HOST}stations`)
+      .then((data) => data.json())
+      .then((result) => {
+        setStations(result);
+      })
+      .catch((error) => {
+        console.error("Error fetching stations:", error);
+      });
+  }, []);
+
+  console.log(38, station);
 
   function updateProduct(data) {
     var myHeaders = new Headers();
@@ -54,10 +71,10 @@ function Cart() {
     myHeaders.append("Content-Type", "application/json"); // JSON ma'lumotini ko'rsatish uchun
 
     if (myAdress.length > 0) {
-      if (type == "car") {
+      if (type === "car") {
         var raw = JSON.stringify({
           products: productId,
-          location: `${myAdress[0].city}, ${myAdress[0].region}, ${
+          location: myAdress[0].position?.lat ? JSON.stringify(myAdress[0].position) : `${myAdress[0].city}, ${myAdress[0].region}, ${
             myAdress[0]?.street && myAdress[0]?.street + " ko'chasi, "
           }${myAdress[0]?.homeNumber && myAdress[0]?.homeNumber + "-uy, "}${
             myAdress[0]?.floor && myAdress[0]?.floor + "-qavat, "
@@ -66,11 +83,11 @@ function Cart() {
           }`,
           transport_type: type,
         });
-      } else {
+      } else if (type === "walker") {
         var raw = JSON.stringify({
           products: productId,
-          location: "Toshkent shahriga",
-          transport_type: type,
+          location: station,
+          transport_type: "walker",
         });
       }
 
@@ -91,8 +108,6 @@ function Cart() {
     } else {
       navigate("/account/adress");
     }
-
-    setOrder(false);
   }
 
   function handleClick(id) {
@@ -393,9 +408,10 @@ function Cart() {
         <RemeberProducts />
       </div>
 
-      {order && <OrderModal setOrder={setOrder} handleOrder={handleOrder} />}
+      {order && <OrderModal setBooleanStation={setBooleanStation} setOrder={setOrder} handleOrder={handleOrder} />}
+      {booleanStation && <Stations stations={stations} station={station} setBooleanStation={setBooleanStation} handleOrder={handleOrder} setStation={setStation}/>}
     </section>
   );
-}
+} 
 
 export default Cart;

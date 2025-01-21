@@ -159,7 +159,7 @@ function HeaderFilter({setLoginModal, token}) {
                     {categoryGender.map((item) => (
                       <li key={item._id}>
                         <a
-                          href={`category/${item._id}`}
+                          href={`/category/${item._id}`}
                           className={`block px-2 py-1 md:px-4 md:py-2 hover:bg-gray-100 hover:text-black public-sans`}
                         >
                           {item.name.uz}

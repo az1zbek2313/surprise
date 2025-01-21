@@ -6,6 +6,7 @@ import ReactStars from "react-rating-stars-component";
 function CommentSection({ reviews }) {
   const params = useParams();
   const commentRef = useRef();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [review, setReview] = useState(reviews || []);
   const [number, setNumber] = useState(2);
@@ -51,7 +52,7 @@ function CommentSection({ reviews }) {
     size: 40,
     count: 5,
     isHalf: false,
-    value: 0,
+    value: rating,
     color: "gray",
     activeColor: "orange",
     onChange: (newValue) => {
@@ -69,33 +70,45 @@ function CommentSection({ reviews }) {
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const myHeaders = new Headers();
-    myHeaders.append("token", token.token);
-
-    const formdata = new FormData();
-    formdata.append("product", params.id);
-    formdata.append("rating", rating);
-    formdata.append("comment", commentRef.current.value.trim());
-
-    fetch(`${import.meta.env.VITE_DEFAULT_HOST}review`, {
-      method: "POST",
-      headers: myHeaders,
-      body: formdata,
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        if (result?._id) {
-          setReview([result, ...review]);
-          commentRef.current.value = "";
-          setRating(0);
-        } else {
-          navigate("/cart");
-        }
-      })
-      .catch((error) => console.error("Error posting comment:", error));
+    
+    if (loading) return;
+  
+    setLoading(true);
+  
+    const headers = new Headers({ token: token.token });
+    const formData = new FormData();
+  
+    formData.append("product", params.id);
+    formData.append("rating", rating);
+    formData.append("comment", commentRef.current.value.trim());
+  
+    try {
+      const response = await fetch(`${import.meta.env.VITE_DEFAULT_HOST}review`, {
+        method: "POST",
+        headers,
+        body: formData,
+      });
+  
+      const result = await response.json();
+  
+      if (result?._id) {
+        setReview([{ ...result, name: token.data.name }, ...review]);
+        commentRef.current.value = "";
+        setRating(0);
+      } else if (result.message === '"rating" must be greater than or equal to 1') {
+        alert("Ratingni kiriting!");
+      } else {
+        navigate("/cart");
+      }
+    } catch (error) {
+      console.error("Error posting comment:", error);
+    } finally {
+      setLoading(false);
+    }
   };
+  
 
   return (
     <section className="py-8">
@@ -183,9 +196,9 @@ function CommentSection({ reviews }) {
             </div>
             <button
               type="submit"
-              className="text-blue-500 flex justify-end border border-blue-500 px-4 py-2 rounded-md hover:bg-blue-600 hover:text-white transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className={`${loading ? "text-gray-500 focus:outline-none border-gray-500 cursor-auto bg-gray-100" : "text-blue-500 border-blue-500 hover:bg-blue-600 focus:ring-blue-500 hover:text-white focus:ring-2 focus:ring-offset-2"} flex justify-end border px-4 py-2 rounded-md transition-all duration-500 focus:outline-none `}
             >
-              Post Comment
+              {loading ? "Loading..." : "Post Comment"}
             </button>
           </form>
         </div>

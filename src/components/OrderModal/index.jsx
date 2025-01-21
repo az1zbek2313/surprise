@@ -1,6 +1,6 @@
 import React from "react";
 
-function OrderModal({ setOrder, handleOrder }) {
+function OrderModal({ setOrder, handleOrder, setBooleanStation }) {
   return (
     <div
       id="popup-modal"
@@ -54,7 +54,9 @@ function OrderModal({ setOrder, handleOrder }) {
             </h3>
             <button
               onClick={() => {
-                handleOrder("walker");
+                setOrder(false);
+                setBooleanStation(true);
+
               }}
               data-modal-hide="popup-modal"
               type="button"

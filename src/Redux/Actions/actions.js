@@ -24,6 +24,12 @@ export function editMyAdress(data) {
   };
 }
 
+export const setStandardMyAdress = (address) => ({
+  type: actionTypes.SET_STANDARD_MYADRESS,
+  payload: address,
+});
+
+
 export function addedMyFavourites(data) {
   return {
     type: actionTypes.DATA_ADDED_MYFAVOURITES,
@@ -107,3 +113,4 @@ export function showProduct(data) {
     payload: data,
   };
 }
+
