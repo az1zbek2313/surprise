@@ -10,7 +10,9 @@ const ImageWithSkeleton = ({ imageUrl, skeletonHeight = "h-full" }) => {
   }, [imageUrl]);
 
   return (
-    <div className={`relative border shadow rounded-md sm:rounded-[10px] border-gray-200 overflow-hidden ${skeletonHeight} `}>
+    <div
+      className={`relative border shadow rounded-md sm:rounded-[10px] border-gray-200 overflow-hidden ${skeletonHeight} `}
+    >
       {!imageLoaded ? (
         <div
           className={`flex items-center justify-center w-full h-full bg-gray-300 rounded dark:bg-gray-700`}
