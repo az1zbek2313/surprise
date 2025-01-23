@@ -18,9 +18,11 @@ function FooterLink() {
       .then((response) => response.json())
       .then((result) => {
         setCategoryGender(result)
+      })
+      .catch((error) => console.log("error", error))
+      .finally(_ => {
         setLoading(false);
       })
-      .catch((error) => console.log("error", error));
   }
 
   useEffect(() => {
@@ -95,6 +97,7 @@ function FooterLink() {
             Erkak
           </li>
           {
+            !loading ?
             categoryGender?.male.map(item => (
               <li key={item} className="text-sm text-gray-500">
             <a
@@ -105,6 +108,13 @@ function FooterLink() {
             </a>
           </li>
             ))
+            :
+            <div className="flex flex-col w-full">
+                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full md:w-[100px] mb-2.5"></div>
+                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full md:w-[100px] mb-2.5"></div>
+                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full md:w-[100px] mb-2.5"></div>
+                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full md:w-[100px] mb-2.5"></div>
+            </div>
           }
         </ul>
         <ul className="w-[47%] sm:w-auto">
@@ -112,6 +122,7 @@ function FooterLink() {
             Ayol
           </li>
           {
+            !loading ?
             categoryGender?.female.map(item => (
               <li key={item} className="text-sm text-gray-500">
             <a
@@ -121,7 +132,13 @@ function FooterLink() {
               {item?.name.uz}
             </a>
           </li>
-            ))
+            )):
+            <div className="flex flex-col w-full">
+                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full md:w-[100px] mb-2.5"></div>
+                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full md:w-[100px] mb-2.5"></div>
+                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full md:w-[100px] mb-2.5"></div>
+                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full md:w-[100px] mb-2.5"></div>
+            </div>
           }
         </ul>
         <ul className="w-[47%] sm:w-auto">
@@ -129,6 +146,7 @@ function FooterLink() {
             Children
           </li>
           {
+            !loading ?
             categoryGender?.kids.map(item => (
               <li key={item} className="text-sm text-gray-500">
             <a
@@ -138,7 +156,13 @@ function FooterLink() {
               {item?.name.uz}
             </a>
           </li>
-            ))
+            )):
+            <div className="flex flex-col w-full">
+                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full md:w-[100px] mb-2.5"></div>
+                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full md:w-[100px] mb-2.5"></div>
+                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full md:w-[100px] mb-2.5"></div>
+                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full md:w-[100px] mb-2.5"></div>
+            </div>
           }
         </ul>
       </div>

@@ -1,72 +1,186 @@
-  import { useEffect, useState } from "react"
-  import Card from "../Products/Card"
-  // Import Swiper styles
-  import "swiper/css";
-  import "swiper/css/navigation";
+import { useEffect, useState } from "react";
+import Card from "../Products/Card";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
 import { styles } from "../../util/style";
 
+function TrendingSurprize() {
+  const [loader, setLoader] = useState(false);
+  const [trandingSurPrizes, setTranding] = useState([]);
 
-  function TrendingSurprize() {
-      const [loader, setLoader] = useState(false);
-      const [trandingSurPrizes, setTranding] = useState([]);
+  useEffect(() => {
+    setLoader(true)
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
 
-      useEffect(() => {
-          var requestOptions = {
-              method: 'GET',
-              redirect: 'follow'
-            };
-            
-            fetch(`${import.meta.env.VITE_DEFAULT_HOST}product`, requestOptions)
-              .then(response => response.json())
-              .then(result => {
-                  setTranding(result)
-              })
-              .catch(error => console.log('error', error))
-              .finally(_ => {
-                setLoader(false);
-              });
-      }, [])
-    return (
-      trandingSurPrizes.length > 0 && 
-      <div className={styles.container}>
-          <div className="shadow-xl rounded-[10px] px-4 md:px-8 lg:px-12 py-4 md:py-6 border ">
-              <h2 className="text-lg xs:text-xl md:text-3xl font-medium">Trending Surprizes</h2>
-              <div className="flex flex-wrap gap-2 ss:gap-3 lg:gap-4">
-             {
-              loader ? 
-              <h3>Loading...</h3> :
-
-              // Desktop 
-              window.screen.availWidth >= 768 ?
-              <div className="flex flex-wrap gap-[2px] xs:gap-1 md:gap-1 lg:gap-2 xl:gap-3 w-full">
-                {trandingSurPrizes?.map((product, index) => (
-                     <Card key={index} product={product} width="w-[32%] md:w-[24.5%] lg:w-[24%] my-3 " height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]" />
-                  )).slice(0, 4).reverse()}
-                {trandingSurPrizes?.map((product, index) => (
-                     <Card key={index} product={product} width="w-[32%] md:w-[24.4%] lg:w-[24%] my-3" height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]" />
-                  )).slice(0, 4)} 
-              </div> :
-              // Mobile 
-              <div className="flex flex-wrap gap-[2px] xs:gap-1 w-full">
-                {trandingSurPrizes?.map((product, index) => (
-                     <Card key={index} product={product} width="w-[32%] md:w-[24.5%] lg:w-[24%] my-3" height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]" />
-                  )).slice(2, 4)}
-                {trandingSurPrizes?.map((product, index) => (
-                     <Card key={index} product={product} width="w-[32%] md:w-[24.5%] lg:w-[24%] my-3" height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]" />
-                  )).slice(0, 4)} 
+    fetch(`${import.meta.env.VITE_DEFAULT_HOST}product`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setTranding(result);
+      })
+      .catch((error) => console.log("error", error))
+      .finally((_) => {
+        setLoader(false);
+      });
+  }, []);
+  return (
+    <div className={styles.container}>
+      <div className="shadow-xl rounded-[10px] px-4 md:px-8 lg:px-12 py-4 md:py-6 border ">
+        <h2 className="text-lg xs:text-xl md:text-3xl font-medium">
+          Trending Surprizes
+        </h2>
+        <div className="flex flex-wrap gap-2 ss:gap-3 lg:gap-4">
+          {loader ? (
+            <div className="flex flex-wrap gap-[2px] my-3 justify-between w-full">
+              <div
+                role="status"
+                className="max-w-sm border hidden lg:block border-gray-300 rounded-lg p-2 lg:p-4 w-[32%]"
+              >
+                <div className="animate-pulse w-full bg-gray-300 h-32 lg:h-48 rounded-lg mb-2 lg:mb-5 flex justify-center items-center">
+                  <svg
+                    className="w-8 h-8 stroke-gray-400"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.5499 15.15L19.8781 14.7863C17.4132 13.4517 16.1808 12.7844 14.9244 13.0211C13.6681 13.2578 12.763 14.3279 10.9528 16.4679L7.49988 20.55M3.89988 17.85L5.53708 16.2384C6.57495 15.2167 7.09388 14.7059 7.73433 14.5134C7.98012 14.4396 8.2352 14.4011 8.49185 14.3993C9.16057 14.3944 9.80701 14.7296 11.0999 15.4M11.9999 21C12.3154 21 12.6509 21 12.9999 21C16.7711 21 18.6567 21 19.8283 19.8284C20.9999 18.6569 20.9999 16.7728 20.9999 13.0046C20.9999 12.6828 20.9999 12.3482 20.9999 12C20.9999 11.6845 20.9999 11.3491 20.9999 11.0002C20.9999 7.22883 20.9999 5.34316 19.8283 4.17158C18.6568 3 16.7711 3 12.9998 3H10.9999C7.22865 3 5.34303 3 4.17145 4.17157C2.99988 5.34315 2.99988 7.22877 2.99988 11C2.99988 11.349 2.99988 11.6845 2.99988 12C2.99988 12.3155 2.99988 12.651 2.99988 13C2.99988 16.7712 2.99988 18.6569 4.17145 19.8284C5.34303 21 7.22921 21 11.0016 21C11.3654 21 11.7021 21 11.9999 21ZM7.01353 8.85C7.01353 9.84411 7.81942 10.65 8.81354 10.65C9.80765 10.65 10.6135 9.84411 10.6135 8.85C10.6135 7.85589 9.80765 7.05 8.81354 7.05C7.81942 7.05 7.01353 7.85589 7.01353 8.85Z"
+                      stroke="stroke-current"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    ></path>
+                  </svg>
+                </div>
+                <div className=" w-full flex justify-between items-start animate-pulse">
+                  <div className="block">
+                    <h3 className="h-2 lg:h-3 bg-gray-300 rounded-full  lg:w-48 mb-2 lg:mb-4"></h3>
+                    <p className="h-2 bg-gray-300 rounded-full w-24 lg:w-32 mb-1 lg:mb-2.5"></p>
+                  </div>
+                  <span className="h-2 bg-gray-300 rounded-full lg:w-16 "></span>
+                </div>
               </div>
-             }
-
-
-             {/* absolute More button */}
-             <h5 className="w-full flex justify-end">
-              <a href="/tranding" className="shadow rounded-full cursor-pointer transition-all duration-500 hover:bg-gray-100 active:bg-gray-200 px-4 xs:py-1 md:text-lg border">More</a>
-             </h5>
+              <div
+                role="status"
+                className="max-w-sm border border-gray-300 rounded-lg p-2 lg:p-4 w-[48%] lg:w-[32%]"
+              >
+                <div className="animate-pulse w-full bg-gray-300 h-32 lg:h-48 rounded-lg mb-2 lg:mb-5 flex justify-center items-center">
+                  <svg
+                    className="w-8 h-8 stroke-gray-400"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.5499 15.15L19.8781 14.7863C17.4132 13.4517 16.1808 12.7844 14.9244 13.0211C13.6681 13.2578 12.763 14.3279 10.9528 16.4679L7.49988 20.55M3.89988 17.85L5.53708 16.2384C6.57495 15.2167 7.09388 14.7059 7.73433 14.5134C7.98012 14.4396 8.2352 14.4011 8.49185 14.3993C9.16057 14.3944 9.80701 14.7296 11.0999 15.4M11.9999 21C12.3154 21 12.6509 21 12.9999 21C16.7711 21 18.6567 21 19.8283 19.8284C20.9999 18.6569 20.9999 16.7728 20.9999 13.0046C20.9999 12.6828 20.9999 12.3482 20.9999 12C20.9999 11.6845 20.9999 11.3491 20.9999 11.0002C20.9999 7.22883 20.9999 5.34316 19.8283 4.17158C18.6568 3 16.7711 3 12.9998 3H10.9999C7.22865 3 5.34303 3 4.17145 4.17157C2.99988 5.34315 2.99988 7.22877 2.99988 11C2.99988 11.349 2.99988 11.6845 2.99988 12C2.99988 12.3155 2.99988 12.651 2.99988 13C2.99988 16.7712 2.99988 18.6569 4.17145 19.8284C5.34303 21 7.22921 21 11.0016 21C11.3654 21 11.7021 21 11.9999 21ZM7.01353 8.85C7.01353 9.84411 7.81942 10.65 8.81354 10.65C9.80765 10.65 10.6135 9.84411 10.6135 8.85C10.6135 7.85589 9.80765 7.05 8.81354 7.05C7.81942 7.05 7.01353 7.85589 7.01353 8.85Z"
+                      stroke="stroke-current"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    ></path>
+                  </svg>
+                </div>
+                <div className=" w-full flex justify-between items-start animate-pulse">
+                  <div className="block">
+                    <h3 className="h-2 lg:h-3 bg-gray-300 rounded-full  lg:w-48 mb-2 lg:mb-4"></h3>
+                    <p className="h-2 bg-gray-300 rounded-full w-24 lg:w-32 mb-1 lg:mb-2.5"></p>
+                  </div>
+                  <span className="h-2 bg-gray-300 rounded-full lg:w-16 "></span>
+                </div>
               </div>
-          </div>
-          
+              <div
+                role="status"
+                className="max-w-sm border border-gray-300 rounded-lg p-2 lg:p-4 w-[48%] lg:w-[32%]"
+              >
+                <div className="animate-pulse w-full bg-gray-300 h-32 lg:h-48 rounded-lg mb-2 lg:mb-5 flex justify-center items-center">
+                  <svg
+                    className="w-8 h-8 stroke-gray-400"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.5499 15.15L19.8781 14.7863C17.4132 13.4517 16.1808 12.7844 14.9244 13.0211C13.6681 13.2578 12.763 14.3279 10.9528 16.4679L7.49988 20.55M3.89988 17.85L5.53708 16.2384C6.57495 15.2167 7.09388 14.7059 7.73433 14.5134C7.98012 14.4396 8.2352 14.4011 8.49185 14.3993C9.16057 14.3944 9.80701 14.7296 11.0999 15.4M11.9999 21C12.3154 21 12.6509 21 12.9999 21C16.7711 21 18.6567 21 19.8283 19.8284C20.9999 18.6569 20.9999 16.7728 20.9999 13.0046C20.9999 12.6828 20.9999 12.3482 20.9999 12C20.9999 11.6845 20.9999 11.3491 20.9999 11.0002C20.9999 7.22883 20.9999 5.34316 19.8283 4.17158C18.6568 3 16.7711 3 12.9998 3H10.9999C7.22865 3 5.34303 3 4.17145 4.17157C2.99988 5.34315 2.99988 7.22877 2.99988 11C2.99988 11.349 2.99988 11.6845 2.99988 12C2.99988 12.3155 2.99988 12.651 2.99988 13C2.99988 16.7712 2.99988 18.6569 4.17145 19.8284C5.34303 21 7.22921 21 11.0016 21C11.3654 21 11.7021 21 11.9999 21ZM7.01353 8.85C7.01353 9.84411 7.81942 10.65 8.81354 10.65C9.80765 10.65 10.6135 9.84411 10.6135 8.85C10.6135 7.85589 9.80765 7.05 8.81354 7.05C7.81942 7.05 7.01353 7.85589 7.01353 8.85Z"
+                      stroke="stroke-current"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    ></path>
+                  </svg>
+                </div>
+                <div className=" w-full flex justify-between items-start animate-pulse">
+                  <div className="block">
+                    <h3 className="h-2 lg:h-3 bg-gray-300 rounded-full  lg:w-48 mb-2 lg:mb-4"></h3>
+                    <p className="h-2 bg-gray-300 rounded-full w-24 lg:w-32 mb-1 lg:mb-2.5"></p>
+                  </div>
+                  <span className="h-2 bg-gray-300 rounded-full lg:w-16 "></span>
+                </div>
+              </div>
+            </div>
+          ) : // Desktop
+          window.screen.availWidth >= 768 ? (
+            <div className="flex flex-wrap gap-[2px] xs:gap-1 md:gap-1 lg:gap-2 xl:gap-3 w-full">
+              {trandingSurPrizes
+                ?.map((product, index) => (
+                  <Card
+                    key={index}
+                    product={product}
+                    width="w-[32%] md:w-[24.5%] lg:w-[24%] my-3 "
+                    height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]"
+                  />
+                ))
+                .slice(0, 4)
+                .reverse()}
+              {trandingSurPrizes
+                ?.map((product, index) => (
+                  <Card
+                    key={index}
+                    product={product}
+                    width="w-[32%] md:w-[24.4%] lg:w-[24%] my-3"
+                    height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]"
+                  />
+                ))
+                .slice(0, 4)}
+            </div>
+          ) : (
+            // Mobile
+            <div className="flex flex-wrap gap-[2px] xs:gap-1 w-full">
+              {trandingSurPrizes
+                ?.map((product, index) => (
+                  <Card
+                    key={index}
+                    product={product}
+                    width="w-[32%] md:w-[24.5%] lg:w-[24%] my-3"
+                    height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]"
+                  />
+                ))
+                .slice(2, 4)}
+              {trandingSurPrizes
+                ?.map((product, index) => (
+                  <Card
+                    key={index}
+                    product={product}
+                    width="w-[32%] md:w-[24.5%] lg:w-[24%] my-3"
+                    height="h-[7em] ss:h-[10em] sm:h-[12em] lg:h-[18em]"
+                  />
+                ))
+                .slice(0, 4)}
+            </div>
+          )}
+
+          {/* absolute More button */}
+          <h5 className="w-full flex justify-end">
+            <a
+              href="/tranding"
+              className="shadow rounded-full cursor-pointer transition-all duration-500 hover:bg-gray-100 active:bg-gray-200 px-4 xs:py-1 md:text-lg border"
+            >
+              More
+            </a>
+          </h5>
+        </div>
       </div>
-    )
-  }
+    </div>
+  );
+}
 
-  export default TrendingSurprize
+export default TrendingSurprize;

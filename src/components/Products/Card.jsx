@@ -12,7 +12,7 @@ import {
 } from "../../Redux/Actions/actions";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import DetailModal from "../DetailModal";
+import ImageWithSkeleton from "../ImageWithSkeleton/Index";
 
 function Card({ product, height, width }) {
   const navigate = useNavigate();
@@ -23,7 +23,6 @@ function Card({ product, height, width }) {
   const likes = useSelector((state) => state.myFavourites);
   const someLike = likes.some((el) => el._id == product._id);
   const [hover, setHover] = useState(false);
-
 
   function handleSave(e) {
     e.stopPropagation();
@@ -83,20 +82,19 @@ function Card({ product, height, width }) {
     dispatch(changeHeartMyFavourites(product));
   }
   function handleToCart(e) {
-    e.stopPropagation()
+    e.stopPropagation();
     if (product.error !== "Failed to get product") {
       dispatch(addedMyCart(product));
 
       if (!exists) {
         toast.success("Mahsulot cartga qo'shildi");
       }
-      
+
       navigate("/cart");
       window.scrollTo({
         top: 0,
         behavior: "smooth",
       });
-      
     }
   }
   return (
@@ -148,16 +146,15 @@ function Card({ product, height, width }) {
               height ? height : ""
             }`}
           >
-            <img
-              src={
-                (product?.image && cardImage9) ||
-                (product?.images.length &&
-                  `https://surprize.uz${product.images[0]}`)
-              }
-              alt="card image"
-              className={`animate-fade-in block w-full scale-100 transform object-cover object-center opacity-100 transition duration-500 group-hover:scale-110 ${
-                height ? height : "h-auto"
-              }`}
+            <ImageWithSkeleton
+            skeletonHeight={height}
+              imageUrl={
+                product?.image
+                  ? cardImage9
+                  : product?.images?.length
+                  ? `https://surprize.uz${product.images[0]}`
+                  : null
+              } 
             />
           </div>
           <div
