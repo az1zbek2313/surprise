@@ -45,7 +45,7 @@ import PopularTag from "./BlogList/PopularTag";
 import BlogSearch from "./BlogList/BlogSearch";
 import BlogComments from "./BlogDetail/BlogComments";
 import UserBlogMessage from "./BlogDetail/UserBlogMessage";
-import ImageWithSkeleton from "./ImageWithSkeleton/Index";
+import ImageWithSkeleton from "./ImageWithSkeleton/ImageWithSkeleton";
 
 export {
   BlogCategory,

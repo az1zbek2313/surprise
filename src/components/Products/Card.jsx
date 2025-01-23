@@ -12,7 +12,7 @@ import {
 } from "../../Redux/Actions/actions";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import ImageWithSkeleton from "../ImageWithSkeleton/Index";
+import ImageWithSkeleton from "../ImageWithSkeleton/ImageWithSkeleton";
 
 function Card({ product, height, width }) {
   const navigate = useNavigate();

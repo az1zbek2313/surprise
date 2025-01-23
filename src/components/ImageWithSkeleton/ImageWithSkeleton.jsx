@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ImageWithSkeleton = ({ imageUrl, skeletonHeight = "h-full" }) => {
+function ImageWithSkeleton ({ imageUrl, skeletonHeight = "h-full" }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
