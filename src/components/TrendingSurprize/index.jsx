@@ -1,39 +1,38 @@
-import { useEffect, useState } from "react";
 import Card from "../Products/Card";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import { styles } from "../../util/style";
+import { useQuery } from "@tanstack/react-query";
+
+const fetchTrendingSurPrizes = async () => {
+  const response = await fetch(`${import.meta.env.VITE_DEFAULT_HOST}product`);
+  if (!response.ok) {
+    throw new Error("Ma'lumotni yuklashda xatolik yuz berdi");
+  }
+  return response.json();
+};
 
 function TrendingSurprize() {
-  const [loader, setLoader] = useState(false);
-  const [trandingSurPrizes, setTranding] = useState([]);
+  const {
+    data: trandingSurPrizes,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["trendingSurPrizes"],
+    queryFn: fetchTrendingSurPrizes,
+  });
 
-  useEffect(() => {
-    setLoader(true)
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
+  if (error) return <div>Xatolik yuz berdi: {error.message}</div>;
 
-    fetch(`${import.meta.env.VITE_DEFAULT_HOST}product`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setTranding(result);
-      })
-      .catch((error) => console.log("error", error))
-      .finally((_) => {
-        setLoader(false);
-      });
-  }, []);
-  return (
-    <div className={styles.container}>
-      <div className="shadow-xl rounded-[10px] px-4 md:px-8 lg:px-12 py-4 md:py-6 border ">
-        <h2 className="text-lg xs:text-xl md:text-3xl font-medium">
-          Trending Surprizes
-        </h2>
-        <div className="flex flex-wrap gap-2 ss:gap-3 lg:gap-4">
-          {loader ? (
+  if (isLoading)
+    return (
+      <div className={styles.container}>
+        <div className="shadow-xl rounded-[10px] px-4 md:px-8 lg:px-12 py-4 md:py-6 border ">
+          <h2 className="text-lg xs:text-xl md:text-3xl font-medium">
+            Trending Surprizes
+          </h2>
+          <div className="flex flex-wrap gap-2 ss:gap-3 lg:gap-4">
             <div className="flex flex-wrap gap-[2px] my-3 justify-between w-full">
               <div
                 role="status"
@@ -117,8 +116,19 @@ function TrendingSurprize() {
                 </div>
               </div>
             </div>
-          ) : // Desktop
-          window.screen.availWidth >= 768 ? (
+          </div>
+        </div>
+      </div>
+    );
+
+  return (
+    <div className={styles.container}>
+      <div className="shadow-xl rounded-[10px] px-4 md:px-8 lg:px-12 py-4 md:py-6 border ">
+        <h2 className="text-lg xs:text-xl md:text-3xl font-medium">
+          Trending Surprizes
+        </h2>
+        <div className="flex flex-wrap gap-2 ss:gap-3 lg:gap-4">
+          {window.screen.availWidth >= 768 ? (
             <div className="flex flex-wrap gap-[2px] xs:gap-1 md:gap-1 lg:gap-2 xl:gap-3 w-full">
               {trandingSurPrizes
                 ?.map((product, index) => (

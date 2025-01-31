@@ -1,39 +1,26 @@
-import { useEffect, useState } from "react";
-import {
-  HeroImage,
-  CategoryPruducts,
-  HeaderFilter,
-  TrendingSurprize,
-  StepCards,
-} from "../components";
+import { useQuery } from "@tanstack/react-query";
+import { HeroImage, CategoryPruducts, TrendingSurprize, StepCards } from "../components";
 import { Toaster } from "sonner";
 import { styles } from "../util/style";
 
+const fetchProducts = async () => {
+  const response = await fetch(`${import.meta.env.VITE_DEFAULT_HOST}sections`);
+  if (!response.ok) {
+    throw new Error("Ma'lumotlarni yuklashda xatolik!");
+  }
+  return response.json();
+};
+
 function LandingPage() {
-  const [sections, setSections] = useState([]);
-  const [loader, setLoader] = useState(false);
+  const { data: sections, isLoading, error } = useQuery({
+    queryKey: ["sections"],
+    queryFn: fetchProducts,
+    staleTime: 1000 * 60 * 5, 
+    cacheTime: 1000 * 60 * 10, 
+    refetchOnWindowFocus: false,
+  });
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = () => {
-    setLoader(true);
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    fetch(`${import.meta.env.VITE_DEFAULT_HOST}sections`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setSections(result);
-      })
-      .catch((error) => console.log("error", error))
-      .finally((_) => {
-        setLoader(false);
-      });
-  };
+  if (error) return <p className="text-red-500">Xatolik yuz berdi: {error.message}</p>;
 
   return (
     <div>
@@ -54,9 +41,9 @@ function LandingPage() {
       <TrendingSurprize />
 
       {/* Categor Cards */}
-      {!loader ? (
+      {!isLoading ? (
         sections.map((items, index) =>
-          index == 1 ? (
+          index === 1 ? (
             <div key={index}>
               <StepCards />
               <CategoryPruducts data={items} index={index + 1} />
@@ -66,9 +53,7 @@ function LandingPage() {
           )
         )
       ) : (
-        <div
-          className={`w-full ${styles.container} flex items-center justify-center py-[30px] gap-3`}
-        >
+        <div className={`w-full ${styles.container} flex items-center justify-center py-[30px] gap-3`}>
           <div role="status">
             <svg
               aria-hidden="true"

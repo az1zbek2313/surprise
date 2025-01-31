@@ -275,7 +275,7 @@ function Card({ product, height, width }) {
             </p>
             <div className="flex items-center rtl:space-x-reverse md:mr-2">
               <span className="text-sm opacity-70">
-                {product.star || product.rating}
+                {product.star || Math.trunc(product.rating)}
               </span>
               <span className="text-sm">⭐️</span>
             </div>
