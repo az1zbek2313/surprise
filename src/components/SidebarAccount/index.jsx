@@ -12,12 +12,8 @@ function SidebarAccount() {
     (pathname == "/account/orders" && 3) ||
     (pathname == "/account/adress" && 4) ||
     (pathname == "/account/commit" && 5) ||
-<<<<<<< HEAD
     (pathname == "/account/notifications" && 6) ||
     (pathname == "/account/history" && 7)
-=======
-    (pathname == "/account/notifications" && 6);
->>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
 
   return (
     <>
@@ -48,12 +44,8 @@ function SidebarAccount() {
                         item.id == 3 && t("allorders") ||
                         item.id == 4 && t("locations") ||
                         item.id == 5 && t("mycommit") ||
-<<<<<<< HEAD
                         item.id == 6 && t("notifications") ||
                         item.id == 7 && t("history") 
-=======
-                        item.id == 6 && t("notifications")
->>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
                         }
                       </span>
                     </a>
