@@ -21,12 +21,18 @@ import Map from "./Map";
 import Support from "./Support";
 import BlogList from "./BlogList";
 import BlogDetail from "./BlogDetail";
+<<<<<<< HEAD
 import OrderHistory from "./History";
+=======
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
 
 export {
   Section, 
   Map,
+<<<<<<< HEAD
   OrderHistory,
+=======
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
   TrandingSurprizes,
   Code,
   LandingPage,

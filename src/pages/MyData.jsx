@@ -4,7 +4,10 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { debounce } from "lodash";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { user } from "../assets";
+=======
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
 
 function MyData() {
   const [formDisabled, setFormDisabled] = useState(true);
@@ -14,7 +17,10 @@ function MyData() {
     name: "Firstname Lastname",
     phone: "000000000000",
     password: "0000",
+<<<<<<< HEAD
     location: "My location",
+=======
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
   });
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
@@ -118,6 +124,7 @@ function MyData() {
           </button>
         </div>
       </div>
+<<<<<<< HEAD
      <div className="flex gap-4 justify-center ss:justify-start items-center flex-wrap">
       <div className="flex justify-center items-center pl-4 pt-6">
         <img src={user} alt="" className=" rounded-full w-28 h-28"/>
@@ -129,6 +136,11 @@ function MyData() {
      <div className={`${styles.flexBetween} w-full gap-6 px-4 lg:gap-4 mt-8 min-h-auto`}>
         <form className="w-full flex flex-col gap-4">
           <div className="grid md:grid-cols-1 lg:grid-cols-2 md:gap-6">
+=======
+      <div className={`${styles.flexBetween} w-full gap-6 px-4 lg:gap-4 mt-8 min-h-auto`}>
+        <form className="w-full flex flex-col gap-4">
+          <div className="grid md:grid-cols-1 md:gap-6">
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
             <div className="relative z-0 w-full mb-5 group">
               <input
                 onChange={handleInputChange}
@@ -148,6 +160,7 @@ function MyData() {
                 Fullname
               </label>
             </div>
+<<<<<<< HEAD
             <div className="relative z-0 w-full mb-5 group">
               <input
                 type="text"
@@ -169,6 +182,11 @@ function MyData() {
           </div>
 
           <div className="grid md:grid-cols-1  lg:grid-cols-2 md:gap-6">
+=======
+          </div>
+
+          <div className="grid md:grid-cols-2 md:gap-6">
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
             <div className="relative z-0 w-full mb-5 group">
               <input
                 onChange={handleInputChange}
@@ -238,7 +256,10 @@ function MyData() {
           )}
         </form>
       </div>
+<<<<<<< HEAD
      </div>
+=======
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
     </div>
   );
 }

@@ -82,10 +82,15 @@ import blogSocialMedia6 from"./Blog/Blog_Detail/Social Media-5.svg";
 import blogDetailImage1 from "./Blog/Blog_Detail/blogdetail1.png";
 import blogDetailImage2 from "./Blog/Blog_Detail/blogdetail2.png";
 import Tirnoq from "./tirnoq.svg"
+<<<<<<< HEAD
 import clockHistory from "./clock-history.svg"
 
 export {
   clockHistory,
+=======
+
+export {
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
   Tirnoq,
   blogDetailImage1,
   blogDetailImage2,

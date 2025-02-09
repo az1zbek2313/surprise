@@ -23,7 +23,10 @@ const translationUz = {
   locations: "Manzillar",
   mycommit: "Mening sharhlarim",
   notifications: "Bildirishnomalar",
+<<<<<<< HEAD
   history: "Tarix",
+=======
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
 };
 
 export default translationUz;

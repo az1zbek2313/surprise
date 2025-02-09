@@ -23,7 +23,10 @@ const translationRu = {
   locations: "Адреса",
   mycommit: "Мои комментарии",
   notifications: "Уведомления",
+<<<<<<< HEAD
   history: "история",
+=======
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
 };
 
 export default translationRu;

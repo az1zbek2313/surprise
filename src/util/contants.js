@@ -5,7 +5,10 @@ import {
   categoryImage2,
   ChatCircleDots,
   PhoneCall,
+<<<<<<< HEAD
   clockHistory,
+=======
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
 } from "../assets";
 import {
   uzbFlag,
@@ -949,6 +952,7 @@ export const SidebarData = [
     href: "/account/notifications",
     alt: "chat icon",
   },
+<<<<<<< HEAD
   {
     id: 7,
     title: "Buyurtma tarixi",
@@ -956,6 +960,8 @@ export const SidebarData = [
     href: "/account/history",
     alt: "history icon",
   },
+=======
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
 ];
 
 export const CityForm = [

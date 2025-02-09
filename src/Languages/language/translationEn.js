@@ -23,7 +23,10 @@ const translationEn = {
   locations: "Addresses",
   mycommit: "My comments",
   notifications: "Notifications",
+<<<<<<< HEAD
   history: "History",
+=======
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
 };
 
 export default translationEn;

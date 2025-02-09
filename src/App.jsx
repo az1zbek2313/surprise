@@ -21,8 +21,12 @@ import {
   Map,
   BlogDetail,
   BlogList,
+<<<<<<< HEAD
   Support,
   OrderHistory
+=======
+  Support
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
 } from "./pages";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -67,6 +71,7 @@ export default function App() {
               <Route path="orders/:id" element={<GetOrder />}></Route>
             </>
           )}
+<<<<<<< HEAD
           <Route path="/account" element={!token ? <SidebarAccount /> : <MyFavouritesLogout />}>
             <Route index element={<MyData />}></Route>
             <Route path="orders" element={<MyOrders />}></Route>
@@ -76,6 +81,20 @@ export default function App() {
             <Route path="notifications" element={<Notifications />}></Route>
             <Route path="history" element={<OrderHistory />}></Route>
           </Route>
+=======
+          {token ? (
+            <Route path="/account" element={<SidebarAccount />}>
+              <Route index element={<MyData />}></Route>
+              <Route path="orders" element={<MyOrders />}></Route>
+              <Route path="adress" element={<Location />}></Route>
+              <Route path="commit" element={<MyCommit />}></Route>
+              <Route path="likes" element={<MyFavourites />}></Route>
+              <Route path="notifications" element={<Notifications />}></Route>
+            </Route>
+          ) : (
+            <Route path="/likes" element={<MyFavouritesLogout />}></Route>
+          )}
+>>>>>>> 64ee554d4beebee4cfae28c396c39758088ea84c
         </Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
